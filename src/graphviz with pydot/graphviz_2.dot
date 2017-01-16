@@ -1,0 +1,11 @@
+digraph G {
+1 -> 2;
+2 -> 3;
+1 -> 4;
+subgraph  {
+rank=same;
+3;
+4;
+}
+
+}

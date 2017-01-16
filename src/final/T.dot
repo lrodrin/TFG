@@ -1,0 +1,56 @@
+digraph G {
+compound=True;
+C;
+A;
+E;
+D;
+B;
+subgraph cluster_EACDB {
+s_BADE [fillcolor=white, fixedsize=True, width=0.2, label=" "];
+s_C [fillcolor=white, fixedsize=True, width=0.2, label=" "];
+subgraph  {
+rank=same;
+s_C -> s_BADE  [arrowhead=none];
+}
+
+}
+
+subgraph cluster_BADE {
+s_EAD [fillcolor=white, fixedsize=True, width=0.2, label=" "];
+s_B [fillcolor=white, fixedsize=True, width=0.2, label=" "];
+subgraph  {
+rank=same;
+s_B -> s_EAD  [arrowhead=none];
+}
+
+}
+
+subgraph cluster_EAD {
+s_ED [fillcolor=white, fixedsize=True, width=0.2, label=" "];
+s_A [fillcolor=white, fixedsize=True, width=0.2, label=" "];
+subgraph  {
+rank=same;
+s_A -> s_ED  [arrowhead=none];
+}
+
+}
+
+subgraph cluster_ED {
+s_E [fillcolor=white, fixedsize=True, width=0.2, label=" "];
+s_D [fillcolor=white, fixedsize=True, width=0.2, label=" "];
+subgraph  {
+rank=same;
+s_E -> s_D  [arrowhead=none];
+}
+
+}
+
+s_C -> C  [arrowhead=none];
+s_A -> A  [arrowhead=none];
+s_E -> E  [arrowhead=none];
+s_D -> D  [arrowhead=none];
+s_B -> B  [arrowhead=none];
+s_BADE -> s_EAD  [arrowhead=none, lhead=cluster_BADE];
+s_EAD -> s_ED  [arrowhead=none, lhead=cluster_EAD];
+s_ED -> s_E  [arrowhead=none, lhead=cluster_ED];
+}

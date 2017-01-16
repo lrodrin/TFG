@@ -1,0 +1,34 @@
+digraph G {
+fontname=Verdana;
+subgraph cluster_foo {
+label=foo;
+foo_method_1 [label=method_1];
+foo_method_2 [label=method_2];
+foo_method_3 [label=method_3];
+}
+
+subgraph cluster_bar {
+bar_method_a;
+bar_method_b;
+bar_method_c;
+}
+
+subgraph cluster_baz {
+baz_method_1;
+baz_method_b;
+baz_method_3;
+baz_method_c;
+}
+
+main -> sub;
+main -> bar_method_a;
+bar_method_a -> bar_method_c;
+bar_method_a -> foo_method_2;
+foo_method_2 -> baz_method_3;
+bar_method_b -> foo_method_1;
+bar_method_b -> foo_method_2;
+baz_method_b -> baz_method_1;
+foo_method_2 -> foo_method_3;
+bar_method_c -> baz_method_c;
+bar_method_b -> baz_method_b;
+}

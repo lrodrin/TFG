@@ -5,9 +5,9 @@ A;
 E;
 D;
 B;
-subgraph cluster_EACDB {
-s_BADE [fillcolor=white, fixedsize=True, width=0.2, label=" "];
-s_C [fillcolor=white, fixedsize=True, width=0.2, label=" "];
+subgraph cluster_ECADB {
+s_BADE [label=" ", fixedsize=True, width=0.2, fillcolor=white];
+s_C [label=" ", fixedsize=True, width=0.2, fillcolor=white];
 subgraph  {
 rank=same;
 s_C -> s_BADE  [arrowhead=none];
@@ -16,8 +16,8 @@ s_C -> s_BADE  [arrowhead=none];
 }
 
 subgraph cluster_BADE {
-s_EAD [fillcolor=white, fixedsize=True, width=0.2, label=" "];
-s_B [fillcolor=white, fixedsize=True, width=0.2, label=" "];
+s_EAD [label=" ", fixedsize=True, width=0.2, fillcolor=white];
+s_B [label=" ", fixedsize=True, width=0.2, fillcolor=white];
 subgraph  {
 rank=same;
 s_B -> s_EAD  [arrowhead=none];
@@ -26,8 +26,8 @@ s_B -> s_EAD  [arrowhead=none];
 }
 
 subgraph cluster_EAD {
-s_ED [fillcolor=white, fixedsize=True, width=0.2, label=" "];
-s_A [fillcolor=white, fixedsize=True, width=0.2, label=" "];
+s_ED [label=" ", fixedsize=True, width=0.2, fillcolor=white];
+s_A [label=" ", fixedsize=True, width=0.2, fillcolor=white];
 subgraph  {
 rank=same;
 s_A -> s_ED  [arrowhead=none];
@@ -36,8 +36,8 @@ s_A -> s_ED  [arrowhead=none];
 }
 
 subgraph cluster_ED {
-s_E [fillcolor=white, fixedsize=True, width=0.2, label=" "];
-s_D [fillcolor=white, fixedsize=True, width=0.2, label=" "];
+s_E [label=" ", fixedsize=True, width=0.2, fillcolor=white];
+s_D [label=" ", fixedsize=True, width=0.2, fillcolor=white];
 subgraph  {
 rank=same;
 s_E -> s_D  [arrowhead=none];

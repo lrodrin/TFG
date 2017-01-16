@@ -24,4 +24,5 @@ if __name__ == "__main__":
 
     G = g.Graph.creating_and_coloring_graph(nnodes=nnodes, nequivalences=ncolors, colorList=colorList)
     g.Graph.view(G)
+
     print(g.Graph.create_dict_from_graph(G))

@@ -9,6 +9,7 @@ Distributed under MIT license
 import networkx as nx
 import src.iter_subsets as it
 import src.final.Clan as c
+import src.final.Graph as g
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
@@ -59,3 +60,5 @@ if __name__ == "__main__":
     # print("-" * 20)
     print("Complete list of primal clans less trivial clans:\n", c.Clan.primalClans(clansList_4))
     print("-" * 20)
+
+    print(g.Graph.create_dict_from_graph(G))

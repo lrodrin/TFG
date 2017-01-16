@@ -15,4 +15,7 @@ if __name__ == "__main__":
     clansList = [{'C'}, {'A'}, {'E'}, {'D'}, {'B'}, {'E', 'D'}, {'D', 'E', 'A'}, {'D', 'E', 'A', 'B'},
                  {'D', 'B', 'E', 'A',
                   'C'}]
-    T.createTestructure(clansList)  # Create a T-strcuture
+    edgesAtributtes = {('E', 'B'): 'red', ('B', 'A'): 'red', ('C', 'B'): 'black', ('D', 'A'): 'blue', ('D', 'E'): 'red',
+                       ('E', 'A'): 'blue', ('D', 'C'): 'black', ('D', 'B'): 'red', ('C', 'A'): 'black',
+                       ('C', 'E'): 'black'}
+    T.createTestructure(clansList, edgesAtributtes)  # Create a T-structure

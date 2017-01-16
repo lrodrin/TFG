@@ -5,42 +5,42 @@ A;
 E;
 D;
 B;
-subgraph cluster_ECADB {
-s_BADE [label=" ", fixedsize=True, width=0.2, fillcolor=white];
-s_C [label=" ", fixedsize=True, width=0.2, fillcolor=white];
+subgraph cluster_BACED {
+s_AEBD [label=" ", fillcolor=white, fixedsize=True, width=0.2];
+s_C [label=" ", fillcolor=white, fixedsize=True, width=0.2];
 subgraph  {
 rank=same;
-s_C -> s_BADE  [arrowhead=none];
+s_C -> s_AEBD  [arrowhead=none, color=black];
 }
 
 }
 
-subgraph cluster_BADE {
-s_EAD [label=" ", fixedsize=True, width=0.2, fillcolor=white];
-s_B [label=" ", fixedsize=True, width=0.2, fillcolor=white];
+subgraph cluster_AEBD {
+s_AED [label=" ", fillcolor=white, fixedsize=True, width=0.2];
+s_B [label=" ", fillcolor=white, fixedsize=True, width=0.2];
 subgraph  {
 rank=same;
-s_B -> s_EAD  [arrowhead=none];
+s_B -> s_AED  [arrowhead=none, color=black];
 }
 
 }
 
-subgraph cluster_EAD {
-s_ED [label=" ", fixedsize=True, width=0.2, fillcolor=white];
-s_A [label=" ", fixedsize=True, width=0.2, fillcolor=white];
+subgraph cluster_AED {
+s_DE [label=" ", fillcolor=white, fixedsize=True, width=0.2];
+s_A [label=" ", fillcolor=white, fixedsize=True, width=0.2];
 subgraph  {
 rank=same;
-s_A -> s_ED  [arrowhead=none];
+s_A -> s_DE  [arrowhead=none, color=blue];
 }
 
 }
 
-subgraph cluster_ED {
-s_E [label=" ", fixedsize=True, width=0.2, fillcolor=white];
-s_D [label=" ", fixedsize=True, width=0.2, fillcolor=white];
+subgraph cluster_DE {
+s_D [label=" ", fillcolor=white, fixedsize=True, width=0.2];
+s_E [label=" ", fillcolor=white, fixedsize=True, width=0.2];
 subgraph  {
 rank=same;
-s_E -> s_D  [arrowhead=none];
+s_D -> s_E  [arrowhead=none, color=blue];
 }
 
 }
@@ -50,7 +50,7 @@ s_A -> A  [arrowhead=none];
 s_E -> E  [arrowhead=none];
 s_D -> D  [arrowhead=none];
 s_B -> B  [arrowhead=none];
-s_BADE -> s_EAD  [arrowhead=none, lhead=cluster_BADE];
-s_EAD -> s_ED  [arrowhead=none, lhead=cluster_EAD];
-s_ED -> s_E  [arrowhead=none, lhead=cluster_ED];
+s_AEBD -> s_AED  [arrowhead=none, lhead=cluster_AEBD];
+s_AED -> s_DE  [arrowhead=none, lhead=cluster_AED];
+s_DE -> s_D  [arrowhead=none, lhead=cluster_DE];
 }

@@ -9,7 +9,7 @@ G = nx.random_graphs.powerlaw_cluster_graph(300, 1, .4)
 
 # Drawing
 part = community.best_partition(G)
-values = [part.get(node) for node in G.nodes()]
+values = [part.getColor(node) for node in G.nodes()]
 
 nx.draw_spring(G, cmap=plt.get_cmap('jet'), node_color=values, node_size=30, with_labels=False)
 mod = community.modularity(part, G)

@@ -15,10 +15,11 @@ __license__ = 'MIT'
 
 class T(object):
     @staticmethod
-    def createTestructure(clansList):
+    def createTestructure(clansList, graphEdgesAtributtes):
         """
             Create a T-strcuture from a list of clans
 
+        :param graphEdgesAtributtes: List of edges atributtes from a Graph
         :param clansList: List of clans
         :type clansList: list of sets
         :return: DOT file
@@ -37,16 +38,18 @@ class T(object):
         while i >= 0:  # Run list of clans in reverse mode
             cluster = pydot.Cluster("".join(internal[i]))  # Create a cluster cluster
             internalSubgraph = pydot.Subgraph(rank="same")  # Create a subgraph from cluster cluster
+            diff = "".join(internal[i].difference(internal[j]))
             if i != 0:
                 cluster.add_node(
                     pydot.Node("s_%s" % "".join(internal[j]), label=" ", fillcolor="white", fixedsize=True,
                                width=0.2))  # Add actual node/clan to cluster
-                cluster.add_node(pydot.Node("s_%s" % "".join(internal[i].difference(internal[j])), label=" ",
+                cluster.add_node(pydot.Node("s_%s" % diff, label=" ",
                                             fillcolor="white", fixedsize=True, width=0.2))  # Add actual node/clan
                 # difference from internal actual clan and internal previous clan to cluster
                 internalSubgraph.add_edge(
-                    pydot.Edge("s_%s" % "".join(internal[i].difference(internal[j])), "s_%s" % "".join(internal[j]),
-                               arrowhead="none"))  # Add edge from second node/clan to first node/clan in
+                    pydot.Edge("s_%s" % diff, "s_%s" % "".join(internal[j]),
+                               arrowhead="none", color=T.getColor(graphEdgesAtributtes, diff)))  # Add edge from
+                # second node/clan to first node/clan in
                 # internalSubgraph difference from internal actual clan and internal previous clan to cluster
             else:  # Last iteration
                 internal_i_aux = internal[i].copy()  # Copy from actual clan
@@ -61,7 +64,7 @@ class T(object):
                 # Add edge for nodes from the last clan in internals
                 internalSubgraph.add_edge(
                     pydot.Edge("s_%s" % "".join(internal_i_aux2.pop()), "s_%s" % "".join(internal_i_aux2),
-                               arrowhead="none"))
+                               arrowhead="none", color=T.getColor(graphEdgesAtributtes, "".join(internal_i_aux2))))
 
             cluster.add_subgraph(internalSubgraph)  # Add subgraph to cluster
             callgraph.add_subgraph(cluster)  # Add cluster to file
@@ -91,3 +94,9 @@ class T(object):
             j -= 1
 
         callgraph.write('T.dot')  # Write a DOT file with previous information
+
+    @staticmethod
+    def getColor(graphEdgesAtributtes, elem):
+        for k, v in graphEdgesAtributtes.items():
+            if elem in k:
+                return v

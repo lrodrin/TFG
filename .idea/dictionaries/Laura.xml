@@ -7,11 +7,13 @@
       <w>decab</w>
       <w>fixedsize</w>
       <w>lhead</w>
+      <w>nnequivalences</w>
       <w>sedcond</w>
       <w>subgraph</w>
       <w>subgraphs</w>
       <w>testructure</w>
       <w>tsubgraph</w>
+      <w>visualitzation</w>
     </words>
   </dictionary>
 </component>

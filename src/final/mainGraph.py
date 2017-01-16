@@ -22,4 +22,6 @@ if __name__ == "__main__":
         print("Ups! It is not a valid number. The number of colors may not be greater than 9! Try it again ...")
         ncolors = int(input("Please enter a number of colors: "))
 
-    g.Graph.creating_and_coloring_graph(nnodes=nnodes, nequivalences=ncolors, colorList=colorList)
+    G = g.Graph.creating_and_coloring_graph(nnodes=nnodes, nequivalences=ncolors, colorList=colorList)
+    g.Graph.view(G)
+    print(g.Graph.create_dict_from_graph(G))

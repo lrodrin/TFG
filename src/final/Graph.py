@@ -25,10 +25,33 @@ class Graph(object):
             :type nnodes: int
             :type nequivalences: int
             :type colorList: list
-            :return: Graph in Graphviz dot format
-            :rtype: dot
+            :return: Complete NetworkX's Graph with nnodes and nnequivalences
+            :rtype: nx.Graph
         """
         G = nx.nx.complete_graph(nnodes)    # Graph generator
         for (u, v) in G.edges():  # For each edge of Graph the color attribute is assigned randomly
             G.edge[u][v]['color'] = random.choice(colorList[0:nequivalences])
-        nx.nx_pydot.write_dot(G, 'graph.dot')  # export Graph in Graphviz dot format
+        return G
+
+    @staticmethod
+    def view(graph):
+        """
+            Create Tree visualitzation for a Graph
+
+        :param graph: NetworkX's Graph
+        :type graph: nx.Graph
+        :return: Graph in Graphviz dot format
+        :rtype: dot file
+        """
+        nx.nx_pydot.write_dot(graph, 'graph.dot')  # export Graph in Graphviz dot format
+
+    @staticmethod
+    def create_dict_from_graph(graph):
+        """
+            Retun a dictionary of attributes keyed by edge from a Graph
+        :param graph:
+        :return dictionary
+        :rtype: dict
+        """
+        dictionary = nx.get_edge_attributes(graph, 'color')
+        return dictionary

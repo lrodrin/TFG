@@ -12,6 +12,7 @@ import src.final.Clan as c
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
+# TODO com tractar els colors
 
 class T(object):
     @staticmethod

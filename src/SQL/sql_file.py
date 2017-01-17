@@ -19,8 +19,8 @@ file = open('C:/Users/Laura/PycharmProjects/TFG/src/SQL/dades.txt', 'r')
 lines = file.readlines()
 file.close()
 
-c.execute('''CREATE TABLE IF NOT EXISTS test (ROWID INTEGER PRIMARY KEY, outlook, temperature, humidity, windy,
-play)''')  # TODO crear nom columnes des de dades.txt
+c.execute('''CREATE TABLE IF NOT EXISTS test (outlook, temperature, humidity, windy,play)''')
+# TODO crear nom columnes des de dades.txt
 
 for ns in lines:
     d = re.split('\s+', ns, 4)

@@ -1,5 +1,5 @@
 """
-This module implements ...
+This module implements a table for a database
 
 Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 
@@ -20,7 +20,6 @@ lines = file.readlines()
 file.close()
 
 c.execute('''CREATE TABLE IF NOT EXISTS test (outlook, temperature, humidity, windy, play)''')
-# TODO crear nom columnes des de dades.txt
 
 for ns in lines:
     d = re.split('\s+', ns, 4)

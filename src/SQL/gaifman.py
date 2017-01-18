@@ -1,5 +1,5 @@
 """
-This module implements ...
+This module implements a Gaifman graph
 
 Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 
@@ -13,21 +13,30 @@ from matplotlib import pyplot as plt
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
-conn = sqlite3.connect('C:/Users/Laura/PycharmProjects/TFG/src/SQL/ex_py_s.db')
-c = conn.cursor()
-c.execute('SELECT * FROM test')
-names = [description[0] for description in c.description]
-rows = c.fetchall()
+connection = sqlite3.connect('C:/Users/Laura/PycharmProjects/TFG/src/SQL/ex_py_s.db')
+cur = connection.cursor()
+cur.execute('SELECT * FROM test')
+
+colNames = [description[0] for description in cur.description]
+rows = cur.fetchall()
 
 G = nx.Graph()
 for row in rows:
-    G.add_node("%s:%s" % (names[0], row[0]))
-    G.add_node("%s:%s" % (names[1], row[1]))
-    G.add_node("%s:%s" % (names[2], row[2]))
-    G.add_node("%s:%s" % (names[3], row[3]))
-    G.add_node("%s:%s" % (names[4], row[4]))
+    G.add_node("%s:%s" % (colNames[0], row[0]))
+    G.add_node("%s:%s" % (colNames[1], row[1]))
+    G.add_node("%s:%s" % (colNames[2], row[2]))
+    G.add_node("%s:%s" % (colNames[3], row[3]))
+    G.add_node("%s:%s" % (colNames[4], row[4]))
 
-nx.draw(G, pos=nx.spring_layout(G), with_labels=True)
+# pintar blaus mateixa columna
+# si name [i] == name [i+1] and value
+
+
+# tots amb tots
+# per a cada node si estan repetits en la mataixa fila vermell i sinó blau
+
+nx.draw(G, pos=nx.spring_layout(G), with_labels=True, node_size=11000)
 plt.show()
-c.close()
-conn.close()
+
+cur.close()
+connection.close()

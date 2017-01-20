@@ -18,4 +18,4 @@ if __name__ == "__main__":
     edgesAtributtes = {('E', 'B'): 'red', ('B', 'A'): 'red', ('C', 'B'): 'black', ('D', 'A'): 'blue', ('D', 'E'): 'red',
                        ('E', 'A'): 'blue', ('D', 'C'): 'black', ('D', 'B'): 'red', ('C', 'A'): 'black',
                        ('C', 'E'): 'black'}
-    T.createTestructure(clansList, edgesAtributtes)  # Create a T-structure
+      # Create a T-structureT.createTestructure(clansList, edgesAtributtes)

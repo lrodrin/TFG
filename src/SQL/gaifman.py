@@ -9,6 +9,9 @@ Distributed under MIT license
 import itertools
 import sqlite3
 import networkx as nx
+from src.final.T import T
+import src.iter_subsets as it
+import src.final.Clan as c
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
@@ -32,7 +35,7 @@ for i in range(0, len(colNames)):
 # ignorar repetits
 # inicialitzacio
 for (u, v) in itertools.combinations(G.nodes(), 2):
-    G.add_edge(u, v, color='gray')
+    G.add_edge(u, v, color='white')
 
 for row in rows:
     for (u, v) in itertools.combinations(row, 2):
@@ -53,13 +56,25 @@ for row in rows:
             G.edge[u][v]['label'] = 1
 
 
-colors = {0: 'blue', 1: 'brown', 2: 'cyan', 3: 'green', 4: 'magenta', 5: 'orange', 6: 'purple', 7: 'red', 8: 'yellow'}
+colors = {0: 'white', 1: 'black', 2: 'cyan', 3: 'green', 4: 'magenta', 5: 'orange', 6: 'purple', 7: 'red', 8: 'yellow', 9: 'brown'}
 for key, value in colors.items():
     for u, v in G.edges():
         if 'label' in G[u][v] and key == G[u][v]['label']:
             G[u][v]['color'] = value
 
 nx.nx_pydot.write_dot(G, 'gaifman.dot')
+
+
+clansList = []
+for s in it.powerset_generator(set(G.nodes())):  # Subset iterator of each subsetNodes
+    if c.Clan.isAClan(G, s):  # If s is a clan of G
+        clansList.append(s)  # Add s to the list
+
+edgesAtributtes = nx.get_edge_attributes(G,'color')
+print(edgesAtributtes)
+print(clansList)
+T.createTestructure(clansList, edgesAtributtes)
+
 
 cur.close()
 connection.close()

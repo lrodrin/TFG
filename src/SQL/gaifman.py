@@ -8,7 +8,6 @@ Distributed under MIT license
 """
 import itertools
 import sqlite3
-
 import networkx as nx
 
 __author__ = 'Laura Rodriguez Navas'
@@ -39,6 +38,22 @@ for row in rows:
     for (u, v) in itertools.combinations(row, 2):
         G.add_edge(u, v, color='black')
 
+# no ignorem repetits
+# comptem quants repetits
+
+# arestes
+d = dict()
+for row in rows:
+    for (u, v) in itertools.combinations(row, 2):
+        if (u, v) in d.keys():
+            d[(u, v)] = d.get((u, v)) + 1
+            G.edge[u][v]['label'] += 1
+        else:
+            d[(u, v)] = 1
+            G.edge[u][v]['label'] = 1
+
+print(d)
 nx.nx_pydot.write_dot(G, 'gaifman.dot')
+
 cur.close()
 connection.close()

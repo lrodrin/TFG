@@ -6,7 +6,7 @@ for i in range(0, len(colNames)):
     	G.add_node("%s:%s" % (colNames[i], rows[i]))
 
 # arestes
-for (u, v) in itertools.combinations(G.nodes(), 2):  # For each pair (x, y) in the subset combinations
+for (u, v) in itertools.combinations(G.nodes(), 2):  
 	G.edge(u, v, color='white')
 
 for row in rows:

@@ -27,3 +27,12 @@ for row in rows:
 	else:
 		cont += 1
 		d[tuple(u, v)] = cont
+
+# llista per a l'estadística.
+for num in d:
+	if num == 0:
+	elif num == 1:
+	elif num == 2:
+	elif 3 <= num <= 4:
+	elif 5 <= num <= 8:
+	elif 8 <= num <= 16:

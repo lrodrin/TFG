@@ -54,7 +54,10 @@ for row in rows:
 
 
 colors = {0: 'blue', 1: 'brown', 2: 'cyan', 3: 'green', 4: 'magenta', 5: 'orange', 6: 'purple', 7: 'red', 8: 'yellow'}
-
+for key, value in colors.items():
+    for u, v in G.edges():
+        if 'label' in G[u][v] and key == G[u][v]['label']:
+            G[u][v]['color'] = value
 
 nx.nx_pydot.write_dot(G, 'gaifman.dot')
 

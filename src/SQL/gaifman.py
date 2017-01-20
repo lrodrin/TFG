@@ -52,7 +52,10 @@ for row in rows:
             d[(u, v)] = 1
             G.edge[u][v]['label'] = 1
 
-print(d)
+
+colors = {0: 'blue', 1: 'brown', 2: 'cyan', 3: 'green', 4: 'magenta', 5: 'orange', 6: 'purple', 7: 'red', 8: 'yellow'}
+
+
 nx.nx_pydot.write_dot(G, 'gaifman.dot')
 
 cur.close()

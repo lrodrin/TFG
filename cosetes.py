@@ -1,6 +1,8 @@
 # ignorem repetits
 
 # nodes
+import itertools
+
 for i in range(0, len(colNames)):
 	for row in rows:
     	G.add_node("%s:%s" % (colNames[i], rows[i]))
@@ -10,7 +12,7 @@ for (u, v) in itertools.combinations(G.nodes(), 2):
 	G.edge(u, v, color='white')
 
 for row in rows:
-	for (u, v) in intertools.combinations(row, 2)
+	for (u, v) in itertools.combinations(row, 2):
 		G.add_edge(u, v, color='black')
 
 

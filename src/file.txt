@@ -13,17 +13,17 @@ strict digraph  {
 	subgraph cluster_DBEA {
 		s_DEA [label=" ",fillcolor=white,fixedsize=true,width=0.2];
 		s_B [label=" ",fillcolor=white,fixedsize=true,width=0.2];
-		{rank="same"; s_B -> s_DEA [arrowhead=none, color=black]; }
+		{rank="same"; s_B -> s_DEA [arrowhead=none, color=red]; }
 	}
 	subgraph cluster_DEA {
 		s_DE [label=" ",fillcolor=white,fixedsize=true,width=0.2];
 		s_A [label=" ",fillcolor=white,fixedsize=true,width=0.2];
-		{rank="same"; s_A -> s_DE [arrowhead=none, color=black]; }
+		{rank="same"; s_A -> s_DE [arrowhead=none, color=blue]; }
 	}
 	subgraph cluster_DE {
 		s_D [label=" ",fillcolor=white,fixedsize=true,width=0.2];
 		s_E [label=" ",fillcolor=white,fixedsize=true,width=0.2];
-		{rank="same"; s_D -> s_E [arrowhead=none, color=black]; }
+		{rank="same"; s_D -> s_E [arrowhead=none, color=red]; }
 	}
 	s_C -> C [arrowhead="none"];
 	s_A -> A [arrowhead="none"];

@@ -6,6 +6,7 @@ Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
+import itertools
 import networkx as nx
 import src.iter_subsets as it
 import src.final.Clan as c
@@ -45,11 +46,16 @@ if __name__ == "__main__":
 
     # print("Complete list of primal clans:\n", c.Clan.primalClans(clansList_2))
     # print("-" * 20)
-    print("Complete list of primal clans less trivial clans:\n", c.Clan.primalClans(clansList_2))
+    primalsList = c.Clan.primalClans(clansList_2)
+    print("Complete list of primal clans less trivial clans:\n", primalsList)
     print("-" * 20)
 
-    print(g.Graph.create_dict_from_graph(G))
+    grafDict = g.Graph.create_dict_from_graph(G)
+    print(grafDict)
+    print("-" * 20)
 
-    for key, value in g.Graph.create_dict_from_graph(G).items():
-        if c.Clan.clans(G, key):
-            print(value)
+    for primal in primalsList:
+        cont = 0
+        for n in itertools.combinations(primal, 2):
+            print(n, grafDict.get(n))
+        print("-" * 20)

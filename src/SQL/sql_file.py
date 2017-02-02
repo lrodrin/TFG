@@ -12,7 +12,7 @@ import re
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
-conn = sqlite3.connect('C:/Users/Laura/PycharmProjects/TFG/src/SQL/ex_py_s.db')
+conn = sqlite3.connect('C:/Users/Laura/PycharmProjects/TFG/src/SQL/ex_py_s.db')  # fer un input per l'usuari
 c = conn.cursor()
 
 file = open('C:/Users/Laura/PycharmProjects/TFG/src/SQL/dades.txt', 'r')

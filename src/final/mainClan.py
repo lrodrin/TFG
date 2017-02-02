@@ -49,3 +49,7 @@ if __name__ == "__main__":
     print("-" * 20)
 
     print(g.Graph.create_dict_from_graph(G))
+
+    for key, value in g.Graph.create_dict_from_graph(G).items():
+        if c.Clan.clans(G, key):
+            print(value)

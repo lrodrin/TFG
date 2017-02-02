@@ -14,7 +14,9 @@ import src.final.Graph as g
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
+
 if __name__ == "__main__":
+
     G = nx.Graph()  # Create an empty graph structure (a “null graph”) with no nodes and no edges
 
     # Adding edges and edges attributes
@@ -25,40 +27,25 @@ if __name__ == "__main__":
     subsetNodes = set(G.nodes())  # Subset of nodes from G
     cardinality = nx.graph_clique_number(G)  # A maximal cardinality matching in the graph
 
-    # clansList_1 = []
-    # for s in it.all_subsets(subsetNodes):  # Subset iterator of each subsetNodes
-    #     if c.Clan.isAClan(G, s):  # If s is a clan of G
-    #         clansList_1.append(s)  # Add s to the list
-    # print(sorted(clansList_1))  # Complete list of clans sorted by len
-    # print("-" * 20)
+    clansList = []
+    for s in it.powerset_generator(subsetNodes):  # Subset iterator of each subsetNodes
+        if c.Clan.clans(G, s):  # If s is a clan of G
+            clansList.append(s)  # Add s to the list
+    print("Complete list of clans:\n", sorted(clansList))  # Complete list of clans sorted by len
+    print("-" * 20)
 
     clansList_2 = []
     for s in it.powerset_generator(subsetNodes):  # Subset iterator of each subsetNodes
-        if c.Clan.isAClan(G, s):  # If s is a clan of G
-            clansList_2.append(s)  # Add s to the list
-    print("Complete list of clans:\n", sorted(clansList_2))  # Complete list of clans sorted by len
-    print("-" * 20)
-
-    # clansList_3 = []
-    # for s in it.all_subsets(subsetNodes):  # Subset iterator of each subsetNodes
-    #     if c.Clan.isAClan(G, s) and not c.Clan.isATrivialClan(s, cardinality):
-    #         # If s is a clan of G and isn't a trivial clan
-    #         clansList_3.append(s)  # Add s to the list
-    # print(sorted(clansList_3))  # Complete list of clans less trivial clans sorted by len
-    # print("-" * 20)
-
-    clansList_4 = []
-    for s in it.powerset_generator(subsetNodes):  # Subset iterator of each subsetNodes
-        if c.Clan.isAClan(G, s) and not c.Clan.isATrivialClan(s, cardinality):
+        if c.Clan.clans(G, s) and not c.Clan.trivialClans(s, cardinality):
             # If s is a clan of G and isn't a trivial clan
-            clansList_4.append(s)  # Add s to the list
-    print("Complete list of clans less trivial clans:\n", sorted(clansList_4))  # Complete list of clans less trivial
+            clansList_2.append(s)  # Add s to the list
+    print("Complete list of clans less trivial clans:\n", sorted(clansList_2))  # Complete list of clans less trivial
     #  clans sorted by len
     print("-" * 20)
 
     # print("Complete list of primal clans:\n", c.Clan.primalClans(clansList_2))
     # print("-" * 20)
-    print("Complete list of primal clans less trivial clans:\n", c.Clan.primalClans(clansList_4))
+    print("Complete list of primal clans less trivial clans:\n", c.Clan.primalClans(clansList_2))
     print("-" * 20)
 
     print(g.Graph.create_dict_from_graph(G))

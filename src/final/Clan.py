@@ -15,7 +15,7 @@ __license__ = 'MIT'
 
 class Clan(object):
     @staticmethod
-    def isAClan(Graph, subSet):
+    def clans(Graph, subSet):
         """
         Checks if subset of the graph is a clan
 
@@ -36,7 +36,7 @@ class Clan(object):
         return b
 
     @staticmethod
-    def isATrivialClan(subSet, cardinality):
+    def trivialClans(subSet, cardinality):
         """
         Checks if clan is trivial
 

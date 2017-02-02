@@ -20,8 +20,6 @@ rank=same;
 s_sunny -> s_mildnormalhotnohighFALSETRUEyesovercastcoolrainy  [color, arrowhead=none];
 }
 
-}
-
 s_sunny -> sunny  [arrowhead=none];
 s_overcast -> overcast  [arrowhead=none];
 s_mild -> mild  [arrowhead=none];

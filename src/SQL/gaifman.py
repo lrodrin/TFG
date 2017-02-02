@@ -67,7 +67,7 @@ nx.nx_pydot.write_dot(G, 'gaifman.dot')
 
 clansList = []
 for s in it.powerset_generator(set(G.nodes())):  # Subset iterator of each subsetNodes
-    if c.Clan.isAClan(G, s):  # If s is a clan of G
+    if c.Clan.clans(G, s):  # If s is a clan of G
         clansList.append(s)  # Add s to the list
 
 edgesAtributtes = nx.get_edge_attributes(G,'color')

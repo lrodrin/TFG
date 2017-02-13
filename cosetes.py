@@ -2,7 +2,7 @@ import itertools
 import sqlite3
 import networkx as nx
 
-connection = sqlite3.connect('C:/Users/Laura/PycharmProjects/TFG/src/SQL/ex_py_s.db')
+connection = sqlite3.connect('C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db')
 cur = connection.cursor()
 cur.execute('SELECT * FROM test')
 

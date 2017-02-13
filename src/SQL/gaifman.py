@@ -16,7 +16,7 @@ import src.final.Clan as c
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
-connection = sqlite3.connect('C:/Users/Laura/PycharmProjects/TFG/src/SQL/ex_py_s.db')
+connection = sqlite3.connect('C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db')
 cur = connection.cursor()
 cur.execute('SELECT * FROM test')
 

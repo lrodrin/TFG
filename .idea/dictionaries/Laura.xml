@@ -13,9 +13,11 @@
       <w>graphviz</w>
       <w>imdb</w>
       <w>lhead</w>
+      <w>meteo</w>
       <w>movread</w>
       <w>nnequivalences</w>
       <w>sedcond</w>
+      <w>sqlite</w>
       <w>stdin</w>
       <w>subgraph</w>
       <w>subgraphs</w>

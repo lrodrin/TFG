@@ -10,7 +10,7 @@ from __future__ import (absolute_import, division, print_function,
 import six
 
 import numpy as np
-import matplotlib.pyplot as plt
+from matplotlib.pyplot import show, subplots
 from matplotlib import colors
 
 
@@ -41,7 +41,7 @@ n = len(sorted_colors)
 ncols = 4
 nrows = int(np.ceil(1. * n / ncols))
 
-fig, ax = plt.subplots()
+fig, ax = subplots()
 
 X, Y = fig.get_dpi() * fig.get_size_inches()
 
@@ -75,10 +75,10 @@ ax.set_axis_off()
 fig.subplots_adjust(left=0, right=1,
                     top=1, bottom=0,
                     hspace=0, wspace=0)
-plt.show()
+show()
 
 l = []
-for name, hex in colors_:
+for name, hexa in colors_:
     l.append(name)
 
 print(l)

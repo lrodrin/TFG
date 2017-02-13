@@ -27,13 +27,16 @@ class Clan(object):
         """
         diff = set(Graph.nodes()).difference(subSet)  # Subset formed by all nodes of G less subset passed as argument
         b = True
+        d = {}
         for external in diff:  # For each subset of diff
             for (x, y) in itertools.combinations(subSet, 2):  # For each pair (x, y) in the subset combinations
                 color_x = Graph.edge[external][x]['color']
                 color_y = Graph.edge[external][y]['color']
                 if color_x != color_y:  # Pair (x, y) not the same colored
                     b = False
-        return b
+                else:
+                    d[(x, y)] = color_x
+        return b, d
 
     @staticmethod
     def trivialClans(subSet, cardinality):

@@ -1,6 +1,6 @@
 digraph G {
-compound=true;
 fontname=Verdana;
+compound=true;
 subgraph cluster_foo {
 label=foo;
 foo_method_1 [label=method_1];
@@ -11,5 +11,5 @@ label=Component1;
 bar_method_a;
 }
 
-foo_method_1 -> bar_method_a  [ltail=cluster_foo, lhead=cluster_bar];
+foo_method_1 -> bar_method_a  [lhead=cluster_bar, ltail=cluster_foo];
 }

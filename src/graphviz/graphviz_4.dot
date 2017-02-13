@@ -1,0 +1,31 @@
+strict digraph "" {
+"frozenset({'A', 'B', 'C', 'E', 'D'})";
+"frozenset({'C'})";
+"frozenset({'A', 'E', 'D'})";
+"frozenset({'A'})";
+"frozenset({'A', 'B', 'E', 'D'})";
+"frozenset({'E'})";
+"frozenset({'D'})";
+"frozenset({'D', 'E'})";
+"frozenset({'B'})";
+"frozenset({'A', 'B', 'C', 'E', 'D'})" -> "frozenset({'A', 'E', 'D'})";
+"frozenset({'A', 'B', 'C', 'E', 'D'})" -> "frozenset({'D'})";
+"frozenset({'A', 'B', 'C', 'E', 'D'})" -> "frozenset({'C'})";
+"frozenset({'A', 'B', 'C', 'E', 'D'})" -> "frozenset({'A'})";
+"frozenset({'A', 'B', 'C', 'E', 'D'})" -> "frozenset({'A', 'B', 'E', 'D'})";
+"frozenset({'A', 'B', 'C', 'E', 'D'})" -> "frozenset({'E'})";
+"frozenset({'A', 'B', 'C', 'E', 'D'})" -> "frozenset({'D', 'E'})";
+"frozenset({'A', 'B', 'C', 'E', 'D'})" -> "frozenset({'B'})";
+"frozenset({'A', 'E', 'D'})" -> "frozenset({'E'})";
+"frozenset({'A', 'E', 'D'})" -> "frozenset({'D'})";
+"frozenset({'A', 'E', 'D'})" -> "frozenset({'D', 'E'})";
+"frozenset({'A', 'E', 'D'})" -> "frozenset({'A'})";
+"frozenset({'A', 'B', 'E', 'D'})" -> "frozenset({'D'})";
+"frozenset({'A', 'B', 'E', 'D'})" -> "frozenset({'A', 'E', 'D'})";
+"frozenset({'A', 'B', 'E', 'D'})" -> "frozenset({'A'})";
+"frozenset({'A', 'B', 'E', 'D'})" -> "frozenset({'E'})";
+"frozenset({'A', 'B', 'E', 'D'})" -> "frozenset({'D', 'E'})";
+"frozenset({'A', 'B', 'E', 'D'})" -> "frozenset({'B'})";
+"frozenset({'D', 'E'})" -> "frozenset({'D'})";
+"frozenset({'D', 'E'})" -> "frozenset({'E'})";
+}

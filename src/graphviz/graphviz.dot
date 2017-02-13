@@ -1,0 +1,19 @@
+strict digraph "" {
+"frozenset({'B', 'E', 'A', 'D'})";
+"frozenset({'D'})";
+"frozenset({'D', 'E'})";
+"frozenset({'A'})";
+"frozenset({'E', 'A', 'D'})";
+"frozenset({'E'})";
+"frozenset({'C'})";
+"frozenset({'B'})";
+"frozenset({'B', 'E', 'C', 'A', 'D'})";
+"frozenset({'B', 'E', 'A', 'D'})" -> "frozenset({'E', 'A', 'D'})";
+"frozenset({'B', 'E', 'A', 'D'})" -> "frozenset({'B'})";
+"frozenset({'D', 'E'})" -> "frozenset({'E'})";
+"frozenset({'D', 'E'})" -> "frozenset({'A'})";
+"frozenset({'E', 'A', 'D'})" -> "frozenset({'D'})";
+"frozenset({'E', 'A', 'D'})" -> "frozenset({'D', 'E'})";
+"frozenset({'B', 'E', 'C', 'A', 'D'})" -> "frozenset({'B', 'E', 'A', 'D'})";
+"frozenset({'B', 'E', 'C', 'A', 'D'})" -> "frozenset({'C'})";
+}

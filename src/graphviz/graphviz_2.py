@@ -1,9 +1,5 @@
 import pydot
 
-
-__author__ = "\"Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>"""
-
-
 node1 = pydot.Node(1)
 node2 = pydot.Node(2)
 node3 = pydot.Node(3)

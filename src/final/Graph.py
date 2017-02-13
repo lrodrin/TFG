@@ -17,7 +17,7 @@ class Graph(object):
     @staticmethod
     def creating_and_coloring_graph(nnodes=None, nequivalences=None, colorList=None):
         """
-            Create and give color to complete Graph
+            Create and give colors to complete Graph
 
             :param nnodes: The number of nodes
             :param nequivalences: The number of colors assigned for edges
@@ -34,21 +34,22 @@ class Graph(object):
         return G
 
     @staticmethod
-    def view(graph):
+    def create_dot_file_from_graph(graph):
         """
-            Create Tree visualitzation for a Graph
+            Create DOT file for a Graph
 
         :param graph: NetworkX's Graph
         :type graph: nx.Graph
         :return: Graph in Graphviz dot format
         :rtype: dot file
         """
-        nx.nx_pydot.write_dot(graph, 'graph.dot')  # export Graph in Graphviz dot format
+        nx.nx_pydot.write_dot(graph, 'Graph.dot')  # export Graph in Graphviz dot format
 
     @staticmethod
     def create_dict_from_graph(graph):
         """
-            Retun a dictionary of attributes keyed by edge from a Graph
+            Return a dictionary of attributes keyed by edge from a Graph
+
         :param graph:
         :return dictionary
         :rtype: dict

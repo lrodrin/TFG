@@ -25,7 +25,7 @@ class T(object):
         :type clansList: list of sets
         :return: DOT file
         """
-        external, internal = c.Clan.division(clansList)
+        external, internal = c.Clan.listClansDivision(clansList)
 
         callgraph = pydot.Dot(graph_type='digraph', compound=True)
 

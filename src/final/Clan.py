@@ -27,19 +27,16 @@ class Clan(object):
         """
         diff = set(Graph.nodes()).difference(subSet)  # Subset formed by all nodes of G less subset passed as argument
         b = True
-        d = {}
         for external in diff:  # For each subset of diff
             for (x, y) in itertools.combinations(subSet, 2):  # For each pair (x, y) in the subset combinations
                 color_x = Graph.edge[external][x]['color']
                 color_y = Graph.edge[external][y]['color']
                 if color_x != color_y:  # Pair (x, y) not the same colored
                     b = False
-                else:
-                    d[(x, y)] = color_x
-        return b, d
+        return b
 
     @staticmethod
-    def trivialClans(subSet, cardinality):
+    def trivialClan(subSet, cardinality):
         """
         Checks if clan is trivial
 
@@ -63,7 +60,7 @@ class Clan(object):
             :param listClans: List of clans
             :type listClans: list of sets
             :return: primals
-            :rtype: list sorted by length
+            :rtype: list
         """
         potential_primals = defaultdict(bool)  # Creates and initializes a dictionary from a list of clans
         primals = []  # Empty list
@@ -78,10 +75,10 @@ class Clan(object):
         for key, value in potential_primals.items():  # Creates a list with a primal clans of potential_primals
             if potential_primals[key]:  # If is a primal clan
                 primals.append(key)  # Add clan to primals list
-        return sorted(primals)
+        return primals
 
     @staticmethod
-    def division(listClans):
+    def listClansDivision(listClans):
         """
             Divided the list into two lists:
                 List_1 - clans with len() == 1

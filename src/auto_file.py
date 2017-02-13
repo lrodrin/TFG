@@ -14,7 +14,7 @@ __license__ = 'MIT'
 
 clansList = [{'C'}, {'A'}, {'E'}, {'D'}, {'B'}, {'E', 'D'}, {'D', 'E', 'A'}, {'D', 'E', 'A', 'B'}, {'D', 'B', 'E', 'A',
                                                                                                     'C'}]
-external, internal = c.Clan.division(clansList)
+external, internal = c.Clan.listClansDivision(clansList)
 
 callgraph = pydot.Dot(graph_type='digraph', compound=True)
 

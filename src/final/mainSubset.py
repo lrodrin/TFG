@@ -12,19 +12,17 @@ import src.final.Subset as it
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
-
 if __name__ == "__main__":
 
     G = nx.Graph()  # Create an empty graph structure (a “null graph”) with no nodes and no edges
-
     # Adding edges and edges attributes
     G.add_edges_from([('A', 'B'), ('B', 'D'), ('B', 'E'), ('D', 'E')], color='red')
     G.add_edges_from([('A', 'C'), ('B', 'C'), ('C', 'D'), ('C', 'E')], color='black')
     G.add_edges_from([('A', 'D'), ('A', 'E')], color='blue')
+    setNodes = set(G.nodes())  # Set of nodes from G
 
-    subsetNodes = set(G.nodes())  # Subset of nodes from G
-
-    subsetList = []
-    for s in it.Subset.powerset_generator(subsetNodes):  # Subset iterator of each subsetNodes
-            subsetList.append(s)  # Add s to the list
-    print(sorted(subsetList))  # Complete list of subsets
+    subsetList = []  # Empty clans list
+    for subset in it.Subset.powerset_generator(setNodes):  # Subset iterator of each set in setNodes
+        subsetList.append(subset)  # Add subset to the list
+    print("List of subsets from graph:\n", subsetList)
+    print("-" * 20)

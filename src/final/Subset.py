@@ -16,7 +16,7 @@ class Subset(object):
     @staticmethod
     def powerset_generator(aset):
         """
-        Iterator on powerset: all subsets of aset
+            Iterator on powerset: all subsets of aset
 
         :param aset: Subset of nodes from NetworkX graph
         :type aset: set

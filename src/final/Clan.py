@@ -12,6 +12,7 @@ from collections import defaultdict
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
+# TODO com tractar els colors
 
 class Clan(object):
     @staticmethod

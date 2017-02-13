@@ -1,5 +1,5 @@
 """
-This module implements the T class
+This module implements the Estructura class
 
 Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 
@@ -12,20 +12,22 @@ import src.final.Clan as c
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
+
 # TODO com tractar els colors
 
-class T(object):
+class Estructura(object):
     @staticmethod
-    def createTestructure(clansList, graphEdgesAtributtes):
+    def create_2structure(clansList, graphEdgesAtributtes):
         """
-            Create a T-strcuture from a list of clans
+            Create a 2-structure from a list of clans
 
         :param graphEdgesAtributtes: List of edges atributtes from a Graph
         :param clansList: List of clans
         :type clansList: list of sets
         :return: DOT file
         """
-        external, internal = c.Clan.listClansDivision(clansList)
+        external, internal = c.Clan.listClansDivision(clansList)  # clansList divided into two lists
+        print(external, internal)
 
         callgraph = pydot.Dot(graph_type='digraph', compound=True)
 
@@ -49,9 +51,9 @@ class T(object):
                 # difference from internal actual clan and internal previous clan to cluster
                 internalSubgraph.add_edge(
                     pydot.Edge("s_%s" % diff, "s_%s" % "".join(internal[j]),
-                               arrowhead="none", color=T.getColor(graphEdgesAtributtes, diff)))  # Add edge from
-                # second node/clan to first node/clan in
-                # internalSubgraph difference from internal actual clan and internal previous clan to cluster
+                               arrowhead="none", color=Estructura.getColor(graphEdgesAtributtes, diff)))
+                # Add edge from second node/clan to first node/clan in internalSubgraph difference from
+                # internal actual clan and internal previous clan to cluster
             else:  # Last iteration
                 internal_i_aux = internal[i].copy()  # Copy from actual clan
                 internal_i_aux2 = internal[i].copy()  # A sedcond copy from actual clan
@@ -65,7 +67,8 @@ class T(object):
                 # Add edge for nodes from the last clan in internals
                 internalSubgraph.add_edge(
                     pydot.Edge("s_%s" % "".join(internal_i_aux2.pop()), "s_%s" % "".join(internal_i_aux2),
-                               arrowhead="none", color=T.getColor(graphEdgesAtributtes, "".join(internal_i_aux2))))
+                               arrowhead="none",
+                               color=Estructura.getColor(graphEdgesAtributtes, "".join(internal_i_aux2))))
 
             cluster.add_subgraph(internalSubgraph)  # Add subgraph to cluster
             callgraph.add_subgraph(cluster)  # Add cluster to file
@@ -94,7 +97,7 @@ class T(object):
             i -= 1
             j -= 1
 
-        callgraph.write('T.dot')  # Write a DOT file with previous information
+        callgraph.write('Estructura.dot')  # Write a DOT file with previous information
 
     @staticmethod
     def getColor(graphEdgesAtributtes, elem):

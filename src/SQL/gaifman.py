@@ -9,7 +9,7 @@ Distributed under MIT license
 import itertools
 import sqlite3
 import networkx as nx
-from src.final.T import T
+from src.final.Estructura import T
 import src.iter_subsets as it
 import src.final.Clan as c
 
@@ -73,7 +73,7 @@ for s in it.powerset_generator(set(G.nodes())):  # Subset iterator of each subse
 edgesAtributtes = nx.get_edge_attributes(G,'color')
 print(edgesAtributtes)
 print(clansList)
-T.createTestructure(clansList, edgesAtributtes)
+T.create_2structure(clansList, edgesAtributtes)
 
 
 cur.close()

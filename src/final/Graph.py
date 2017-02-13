@@ -41,7 +41,7 @@ class Graph(object):
         :param graph: NetworkX's Graph
         :type graph: nx.Graph
         :return: Graph in Graphviz dot format
-        :rtype: dot file
+        :rtype: DOT file
         """
         nx.nx_pydot.write_dot(graph, 'Graph.dot')  # export Graph in Graphviz dot format
 

@@ -1,5 +1,5 @@
 """
-This module implements ...
+This module implements a Erdös-Rényi Graph with color sequence and labels
 
 Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 
@@ -62,4 +62,4 @@ nx.draw(G, edge_color=edge_color_list, with_labels=nx.spring_layout(G))
 plt.suptitle("Erdös-Rényi Graph with color sequence and labels", fontsize=11)
 plt.show()
 
-nx.nx_pydot.write_dot(G, 'erdos_renyi_color_test.dot')
+nx.nx_pydot.write_dot(G, 'erdos_renyi_Graphviz_colors.dot')

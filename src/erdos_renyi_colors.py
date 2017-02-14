@@ -34,4 +34,4 @@ plt.suptitle("Erdös-Rényi Graph with color sequence and labels", fontsize=11)
 plt.show()
 
 
-nx.nx_pydot.write_dot(G, 'erdos_renyi.dot')
+nx.nx_pydot.write_dot(G, 'erdos_renyi_colors.dot')

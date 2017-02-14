@@ -1,0 +1,23 @@
+strict graph "gnp_random_graph(10,0.3)" {
+0;
+1;
+2;
+3;
+4;
+5;
+6;
+7;
+8;
+9;
+0 -- 8  [color=green];
+1 -- 8  [color=cyan];
+1 -- 6  [color=cyan];
+2 -- 3  [color=red];
+2 -- 5  [color=blue];
+3 -- 5  [color=red];
+4 -- 8  [color=red];
+4 -- 9  [color=cyan];
+5 -- 8  [color=green];
+5 -- 9  [color=red];
+5 -- 6  [color=red];
+}

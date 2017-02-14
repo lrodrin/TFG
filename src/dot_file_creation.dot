@@ -1,0 +1,56 @@
+digraph G {
+compound=True;
+A;
+B;
+D;
+C;
+E;
+subgraph cluster_DCBEA {
+s_DBEA [fillcolor=white, fixedsize=True, label=" ", width=0.2];
+s_C [fillcolor=white, fixedsize=True, label=" ", width=0.2];
+subgraph  {
+rank=same;
+s_C -> s_DBEA  [arrowhead=none];
+}
+
+}
+
+subgraph cluster_DBEA {
+s_DEA [fillcolor=white, fixedsize=True, label=" ", width=0.2];
+s_B [fillcolor=white, fixedsize=True, label=" ", width=0.2];
+subgraph  {
+rank=same;
+s_B -> s_DEA  [arrowhead=none];
+}
+
+}
+
+subgraph cluster_DEA {
+s_DE [fillcolor=white, fixedsize=True, label=" ", width=0.2];
+s_A [fillcolor=white, fixedsize=True, label=" ", width=0.2];
+subgraph  {
+rank=same;
+s_A -> s_DE  [arrowhead=none];
+}
+
+}
+
+subgraph cluster_DE {
+s_D [fillcolor=white, fixedsize=True, label=" ", width=0.2];
+s_E [fillcolor=white, fixedsize=True, label=" ", width=0.2];
+subgraph  {
+rank=same;
+s_D -> s_E  [arrowhead=none];
+}
+
+}
+
+s_A -> A  [arrowhead=none];
+s_B -> B  [arrowhead=none];
+s_D -> D  [arrowhead=none];
+s_C -> C  [arrowhead=none];
+s_E -> E  [arrowhead=none];
+s_DBEA -> s_DEA  [lhead=cluster_DBEA, arrowhead=none];
+s_DEA -> s_DE  [lhead=cluster_DEA, arrowhead=none];
+s_DE -> s_D  [lhead=cluster_DE, arrowhead=none];
+}

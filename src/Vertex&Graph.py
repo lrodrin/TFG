@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
-This module implements Vertex and Graph final
+This module implements Vertex and Graph class
 """
 __all__ = ["add_neighbor", "get_connections", "get_id", "get_weight", "add_vertex", "get_vertex", "add_edge",
            "get_vertices"]

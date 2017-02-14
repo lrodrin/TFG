@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 """
-This module implements Graph final
+This module implements Graph class
 """
 __all__ = ["vertices", "edges", "add_vertex", "add_edge"]
 __author__ = "\"Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>"""

@@ -1,5 +1,5 @@
 """
-This module implements ...
+This module implements the file creation
 
 Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 
@@ -11,12 +11,12 @@ import src.final.Clan as c
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
-file = open("/Users/laura/PycharmProjects/graphs-edges-equivalences-code/src/file.txt", "w")
+file = open("C:/Users/Laura/PycharmProjects/TFG/src/file_creation.txt", "w")
 file.write("strict digraph "" {\n")
 file.write("\tcompound=true;\n")
 
-clansList = [{'C'}, {'A'}, {'E'}, {'D'}, {'B'}, {'E', 'D'}, {'D', 'E', 'A'}, {'D', 'E', 'A', 'B'}, {'D', 'B', 'E', 'A',
-                                                                                                    'C'}]
+clansList = [{'A'}, {'B'}, {'D'}, {'C'}, {'E'}, {'E', 'D'}, {'A', 'D', 'E'}, {'A', 'B', 'D', 'E'},
+             {'A', 'B', 'D', 'C', 'E'}]  # List of clan
 external, internal = c.Clan.listClansDivision(clansList)
 
 # nodes

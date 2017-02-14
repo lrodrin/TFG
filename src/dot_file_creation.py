@@ -1,5 +1,5 @@
 """
-This module implements ...
+This module implements the DOT file creation
 
 Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 
@@ -12,8 +12,9 @@ import src.final.Clan as c
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
-clansList = [{'C'}, {'A'}, {'E'}, {'D'}, {'B'}, {'E', 'D'}, {'D', 'E', 'A'}, {'D', 'E', 'A', 'B'}, {'D', 'B', 'E', 'A',
-                                                                                                    'C'}]
+
+clansList = [{'A'}, {'B'}, {'D'}, {'C'}, {'E'}, {'E', 'D'}, {'A', 'D', 'E'}, {'A', 'B', 'D', 'E'},
+             {'A', 'B', 'D', 'C', 'E'}]  # List of clans
 external, internal = c.Clan.listClansDivision(clansList)
 
 callgraph = pydot.Dot(graph_type='digraph', compound=True)
@@ -68,4 +69,4 @@ while i >= 0:
     i -= 1
     j -= 1
 
-callgraph.write('auto_file.dot')
+callgraph.write('dot_file_creation.dot')

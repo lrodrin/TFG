@@ -1,3 +1,4 @@
+outlook temperature humidity windy play
 outlook:sunny temperature:hot humidity:high windy:FALSE play:no
 outlook:sunny temperature:hot humidity:high windy:TRUE play:no
 outlook:overcast temperature:hot humidity:high windy:FALSE play:yes

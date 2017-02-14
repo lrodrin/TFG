@@ -1,0 +1,47 @@
+digraph G {
+compound=True;
+overcast;
+normal;
+sunny;
+yes
+;
+cool;
+TRUE;
+no;
+FALSE;
+no
+;
+hot;
+high;
+mild;
+rainy;
+subgraph cluster_overcastsunnynormalyes
+coolTRUEnoFALSEno
+hothighmildrainy {
+s_overcast [width=0.2, label=" ", fillcolor=white, fixedsize=True];
+"s_sunnynormalyes\ncoolTRUEnoFALSEno\nhothighmildrainy" [width=0.2, label=" ", fillcolor=white, fixedsize=True];
+subgraph  {
+rank=same;
+s_overcast -> "s_sunnynormalyes\ncoolTRUEnoFALSEno\nhothighmildrainy"  [arrowhead=none, color];
+}
+
+}
+
+s_overcast -> overcast  [arrowhead=none];
+s_normal -> normal  [arrowhead=none];
+s_sunny -> sunny  [arrowhead=none];
+s_yes
+ -> yes
+  [arrowhead=none];
+s_cool -> cool  [arrowhead=none];
+s_TRUE -> TRUE  [arrowhead=none];
+s_no -> no  [arrowhead=none];
+s_FALSE -> FALSE  [arrowhead=none];
+s_no
+ -> no
+  [arrowhead=none];
+s_hot -> hot  [arrowhead=none];
+s_high -> high  [arrowhead=none];
+s_mild -> mild  [arrowhead=none];
+s_rainy -> rainy  [arrowhead=none];
+}

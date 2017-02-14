@@ -6,6 +6,7 @@
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/src/SQL/BD.db</jdbc-url>
+      <default-dialect>SQLite</default-dialect>
     </data-source>
   </component>
 </project>

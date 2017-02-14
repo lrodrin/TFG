@@ -1,80 +1,119 @@
 strict graph "" {
-sunny;
-mild;
-hot;
-no;
-high;
-FALSE;
-yes;
-TRUE;
 overcast;
 normal;
-rainy;
+yes
+;
 cool;
-sunny -- cool  [color=black, label=1];
-sunny -- FALSE  [color=green, label=3];
-sunny -- mild  [color=cyan, label=2];
-sunny -- TRUE  [color=cyan, label=2];
-sunny -- normal  [color=cyan, label=2];
-sunny -- hot  [color=cyan, label=2];
-sunny -- no  [color=green, label=3];
-sunny -- rainy  [color=white];
-sunny -- high  [color=green, label=3];
-sunny -- overcast  [color=white];
-sunny -- yes  [color=cyan, label=2];
-mild -- FALSE  [color=green, label=3];
-mild -- yes  [color=magenta, label=4];
-mild -- TRUE  [color=green, label=3];
-mild -- normal  [color=cyan, label=2];
-mild -- cool  [color=white];
-mild -- hot  [color=white];
-mild -- no  [color=cyan, label=2];
-mild -- rainy  [color=green, label=3];
-mild -- high  [color=magenta, label=4];
-mild -- overcast  [color=black, label=1];
-hot -- FALSE  [color=green, label=3];
-hot -- TRUE  [color=black, label=1];
-hot -- normal  [color=black, label=1];
-hot -- cool  [color=white];
-hot -- yes  [color=cyan, label=2];
-hot -- no  [color=cyan, label=2];
-hot -- rainy  [color=white];
-hot -- high  [color=green, label=3];
-hot -- overcast  [color=cyan, label=2];
-no -- FALSE  [color=cyan, label=2];
-no -- TRUE  [color=green, label=3];
-no -- cool  [color=black, label=1];
-no -- normal  [color=black, label=1];
-no -- rainy  [color=cyan, label=2];
-no -- high  [color=magenta, label=4];
-no -- overcast  [color=white];
-no -- yes  [color=white];
-high -- FALSE  [color=magenta, label=4];
-high -- TRUE  [color=green, label=3];
-high -- cool  [color=white];
-high -- rainy  [color=cyan, label=2];
-high -- normal  [color=white];
-high -- overcast  [color=cyan, label=2];
-high -- yes  [color=green, label=3];
-FALSE -- yes  [color=purple, label=6];
-FALSE -- TRUE  [color=white];
-FALSE -- normal  [color=magenta, label=4];
-FALSE -- cool  [color=cyan, label=2];
-FALSE -- rainy  [color=green, label=3];
-FALSE -- overcast  [color=cyan, label=2];
-yes -- TRUE  [color=green, label=3];
-yes -- normal  [color=purple, label=6];
-yes -- cool  [color=green, label=3];
-yes -- rainy  [color=green, label=3];
-yes -- overcast  [color=magenta, label=4];
-TRUE -- cool  [color=cyan, label=2];
-TRUE -- normal  [color=green, label=3];
-TRUE -- rainy  [color=cyan, label=2];
-TRUE -- overcast  [color=cyan, label=2];
+TRUE;
+FALSE;
+no
+;
+high;
+hot;
+sunny;
+mild;
+no;
+rainy;
 overcast -- normal  [color=cyan, label=2];
 overcast -- cool  [color=black, label=1];
+overcast -- yes
+  [color=magenta, label=4];
+overcast -- no  [color=white];
+overcast -- FALSE  [color=cyan, label=2];
+overcast -- sunny  [color=white];
+overcast -- no
+  [color=white];
+overcast -- hot  [color=cyan, label=2];
+overcast -- high  [color=cyan, label=2];
+overcast -- mild  [color=black, label=1];
+overcast -- TRUE  [color=cyan, label=2];
 overcast -- rainy  [color=white];
+normal -- sunny  [color=cyan, label=2];
 normal -- cool  [color=magenta, label=4];
+normal -- yes
+  [color=purple, label=6];
+normal -- no  [color=white];
+normal -- FALSE  [color=magenta, label=4];
+normal -- no
+  [color=black, label=1];
+normal -- hot  [color=black, label=1];
+normal -- high  [color=white];
+normal -- mild  [color=cyan, label=2];
+normal -- TRUE  [color=green, label=3];
 normal -- rainy  [color=green, label=3];
-rainy -- cool  [color=cyan, label=2];
+yes
+ -- cool  [color=green, label=3];
+yes
+ -- TRUE  [color=green, label=3];
+yes
+ -- FALSE  [color=purple, label=6];
+yes
+ -- sunny  [color=cyan, label=2];
+yes
+ -- no
+  [color=white];
+yes
+ -- hot  [color=cyan, label=2];
+yes
+ -- high  [color=green, label=3];
+yes
+ -- mild  [color=magenta, label=4];
+yes
+ -- no  [color=white];
+yes
+ -- rainy  [color=green, label=3];
+cool -- TRUE  [color=cyan, label=2];
+cool -- FALSE  [color=cyan, label=2];
+cool -- sunny  [color=black, label=1];
+cool -- no
+  [color=black, label=1];
+cool -- hot  [color=white];
+cool -- high  [color=white];
+cool -- mild  [color=white];
+cool -- no  [color=white];
+cool -- rainy  [color=cyan, label=2];
+TRUE -- no  [color=black, label=1];
+TRUE -- FALSE  [color=white];
+TRUE -- sunny  [color=cyan, label=2];
+TRUE -- no
+  [color=cyan, label=2];
+TRUE -- hot  [color=black, label=1];
+TRUE -- high  [color=green, label=3];
+TRUE -- mild  [color=green, label=3];
+TRUE -- rainy  [color=cyan, label=2];
+FALSE -- no  [color=white];
+FALSE -- sunny  [color=green, label=3];
+FALSE -- no
+  [color=cyan, label=2];
+FALSE -- hot  [color=green, label=3];
+FALSE -- high  [color=magenta, label=4];
+FALSE -- mild  [color=green, label=3];
+FALSE -- rainy  [color=green, label=3];
+no
+ -- sunny  [color=green, label=3];
+no
+ -- hot  [color=cyan, label=2];
+no
+ -- high  [color=green, label=3];
+no
+ -- mild  [color=black, label=1];
+no
+ -- no  [color=white];
+no
+ -- rainy  [color=black, label=1];
+high -- no  [color=black, label=1];
+high -- hot  [color=green, label=3];
+high -- sunny  [color=green, label=3];
+high -- mild  [color=magenta, label=4];
+high -- rainy  [color=cyan, label=2];
+hot -- no  [color=white];
+hot -- sunny  [color=cyan, label=2];
+hot -- mild  [color=white];
+hot -- rainy  [color=white];
+sunny -- no  [color=white];
+sunny -- mild  [color=cyan, label=2];
+sunny -- rainy  [color=white];
+mild -- no  [color=black, label=1];
+mild -- rainy  [color=green, label=3];
+no -- rainy  [color=black, label=1];
 }

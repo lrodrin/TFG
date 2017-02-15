@@ -17,16 +17,16 @@ __license__ = 'MIT'
 
 class Estructura(object):
     @staticmethod
-    def create_2structure(clansList, graphEdgesAtributtes):
+    def create_2structure(primalsList, graphEdgesAtributtes):
         """
             Create a 2-structure from a list of clans
 
         :param graphEdgesAtributtes: List of edges atributtes from a Graph
-        :param clansList: List of clans
-        :type clansList: list of sets
+        :param primalsList: List of clans
+        :type primalsList: list of sets
         :return: DOT file
         """
-        external, internal = c.Clan.listClansDivision(clansList)  # clansList divided into two lists
+        external, internal = c.Clan.listClansDivision(primalsList)  # primalsList divided into two lists
         print(external, internal)
 
         callgraph = pydot.Dot(graph_type='digraph', compound=True)
@@ -41,16 +41,17 @@ class Estructura(object):
         while i >= 0:  # Run list of clans in reverse mode
             cluster = pydot.Cluster("".join(internal[i]))  # Create a cluster cluster
             internalSubgraph = pydot.Subgraph(rank="same")  # Create a subgraph from cluster cluster
-            diff = "".join(internal[i].difference(internal[j]))
+            diff = sorted(internal[i].difference(internal[j]))
+            # diff = "".join(internal[i].difference(internal[j]))
             if i != 0:
                 cluster.add_node(
                     pydot.Node("s_%s" % "".join(internal[j]), label=" ", fillcolor="white", fixedsize=True,
                                width=0.2))  # Add actual node/clan to cluster
-                cluster.add_node(pydot.Node("s_%s" % diff, label=" ",
+                cluster.add_node(pydot.Node("s_%s" % "".join(diff), label=" ",
                                             fillcolor="white", fixedsize=True, width=0.2))  # Add actual node/clan
                 # difference from internal actual clan and internal previous clan to cluster
                 internalSubgraph.add_edge(
-                    pydot.Edge("s_%s" % diff, "s_%s" % "".join(internal[j]),
+                    pydot.Edge("s_%s" % "".join(diff), "s_%s" % "".join(internal[j]),
                                arrowhead="none", color=Estructura.getColor(graphEdgesAtributtes, diff)))
                 # Add edge from second node/clan to first node/clan in internalSubgraph difference from
                 # internal actual clan and internal previous clan to cluster
@@ -100,7 +101,26 @@ class Estructura(object):
         callgraph.write('Estructura.dot')  # Write a DOT file with previous information
 
     @staticmethod
-    def getColor(graphEdgesAtributtes, elem):
+    def getColor(graphEdgesAtributtes, clan):
         for k, v in graphEdgesAtributtes.items():
-            if elem in k:
+            if clan in k:
                 return v
+
+    @staticmethod
+    def npi(graphEdgesAtributtes, clan1, clan2):
+        for k, v in graphEdgesAtributtes.items():
+            if (k[0] in clan1 and k[1] in clan2) or (k[1] in clan1 and k[1] in clan2):
+                return v
+
+    @staticmethod
+    def nose(primalsList):
+        l = []
+        for i in range(len(primalsList) - 1, -1, -1):
+            for j in range(i - 1, -1, -1):
+                if primalsList[j].issubset(primalsList[i]):
+                    for k in range(j + 1, i - 1):
+                        if primalsList[k].issubset(primalsList[i]):
+                            # print(primalsList[j], primalsList[i], primalsList[j], primalsList[k])
+                            l.append(primalsList[j])
+
+        print(l)

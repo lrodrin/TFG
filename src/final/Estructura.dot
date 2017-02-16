@@ -5,52 +5,12 @@ B;
 D;
 C;
 E;
-subgraph cluster_CBEDA {
-s_BEDA [label=" ", fillcolor=white, fixedsize=True, width=0.2];
-s_C [label=" ", fillcolor=white, fixedsize=True, width=0.2];
-subgraph  {
-rank=same;
-s_C -> s_BEDA  [arrowhead=none, color];
-}
-
-}
-
-subgraph cluster_BEDA {
-s_EDA [label=" ", fillcolor=white, fixedsize=True, width=0.2];
-s_B [label=" ", fillcolor=white, fixedsize=True, width=0.2];
-subgraph  {
-rank=same;
-s_B -> s_EDA  [arrowhead=none, color];
-}
-
-}
-
-subgraph cluster_EDA {
-s_ED [label=" ", fillcolor=white, fixedsize=True, width=0.2];
-s_A [label=" ", fillcolor=white, fixedsize=True, width=0.2];
-subgraph  {
-rank=same;
-s_A -> s_ED  [arrowhead=none, color];
-}
-
-}
-
-subgraph cluster_ED {
-s_E [label=" ", fillcolor=white, fixedsize=True, width=0.2];
-s_D [label=" ", fillcolor=white, fixedsize=True, width=0.2];
-subgraph  {
-rank=same;
-s_E -> s_D  [arrowhead=none, color=blue];
-}
-
-}
-
 s_A -> A  [arrowhead=none];
 s_B -> B  [arrowhead=none];
 s_D -> D  [arrowhead=none];
 s_C -> C  [arrowhead=none];
 s_E -> E  [arrowhead=none];
-s_BEDA -> s_EDA  [arrowhead=none, lhead=cluster_BEDA];
+s_EDBA -> s_EDA  [arrowhead=none, lhead=cluster_EDBA];
 s_EDA -> s_ED  [arrowhead=none, lhead=cluster_EDA];
 s_ED -> s_E  [arrowhead=none, lhead=cluster_ED];
 }

@@ -45,7 +45,8 @@ class Estructura(object):
                                             fixedsize=True, width=0.2))  # Add a node to cluster
 
             for c in itertools.combinations(value, 2):
-                internalSubgraph.add_edge(pydot.Edge("s_%s" % "".join(c[0]), "s_%s" % "".join(c[1]), arrowhead="none"))
+                internalSubgraph.add_edge(pydot.Edge("s_%s" % "".join(c[0]), "s_%s" % "".join(c[1]), arrowhead="none",
+                                                     color=Estructura.getColor(graphEdgesAtributtes, c[0], c[1])))
             cluster.add_subgraph(internalSubgraph)  # Add subgraph to cluster
             callgraph.add_subgraph(cluster)  # Add cluster to file
 

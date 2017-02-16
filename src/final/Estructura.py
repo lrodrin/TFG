@@ -50,9 +50,7 @@ class Estructura(object):
             cluster.add_subgraph(internalSubgraph)  # Add subgraph to cluster
             callgraph.add_subgraph(cluster)  # Add cluster to file
 
-
-
-        #         # difference from internal actual clan and internal previous clan to cluster
+        # # difference from internal actual clan and internal previous clan to cluster
         #         internalSubgraph.add_edge(
         #             pydot.Edge("s_%s" % "".join(diff), "s_%s" % "".join(internal[j]),
         #                        arrowhead="none", color=Estructura.getColor(graphEdgesAtributtes, diff)))
@@ -80,7 +78,6 @@ class Estructura(object):
                 if len(elem) == 1:
                     callgraph.add_edge(
                         pydot.Edge("s_%s" % "".join(elem), "".join(elem), arrowhead="none"))
-
 
         # Add edge from internal node/clan in subgraph to cluster
         # callgraph.add_edge(

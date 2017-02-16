@@ -29,12 +29,13 @@ class Estructura(object):
         :return: DOT file
         """
         external, internal = c.Clan.listClansDivision(primalsList)  # primalsList divided into two lists
-
         callgraph = pydot.Dot(graph_type='digraph', compound=True)
 
         # creating nodes
-        for external_nodes in external:  # For each clan that len() == 1
-            callgraph.add_node(pydot.Node("".join(external_nodes)))  # Add external node to file
+        for value in primalsDict.values():  # For each primal clan that len() == 1
+            for elem in value:
+                if len(elem) == 1:
+                    callgraph.add_node(pydot.Node("".join(elem)))  # Add external nodes to file
 
         # creating subgraphs
         # for x in combinations....
@@ -79,9 +80,11 @@ class Estructura(object):
         #     j -= 1
 
         # creating links for nodes and subgraphs
-        for external_nodes in external:  # For each clan that len() == 1
-            callgraph.add_edge(pydot.Edge("s_%s" % "".join(external_nodes), "".join(external_nodes), arrowhead="none"))
-            # Add edge from subgraph node/clan to external node/clan
+        for value in primalsDict.values():  # For each primal clan that len() == 1
+            for elem in value:
+                if len(elem) == 1:
+                    callgraph.add_edge(
+                        pydot.Edge("s_%s" % "".join(elem), "".join(elem), arrowhead="none"))
 
         i = len(internal) - 2
         j = i - 1

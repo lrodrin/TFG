@@ -1,16 +1,53 @@
 digraph G {
 compound=True;
+C;
+B;
+A;
 E;
 D;
-A;
-B;
-C;
+subgraph cluster_BEADC {
+s_BEDA [fixedsize=True, width=0.2, label=" ", fillcolor=white];
+s_C [fixedsize=True, width=0.2, label=" ", fillcolor=white];
+subgraph  {
+rank=same;
+s_BEDA -> s_C  [arrowhead=none];
+}
+
+}
+
+subgraph cluster_BEDA {
+s_EDA [fixedsize=True, width=0.2, label=" ", fillcolor=white];
+s_B [fixedsize=True, width=0.2, label=" ", fillcolor=white];
+subgraph  {
+rank=same;
+s_EDA -> s_B  [arrowhead=none];
+}
+
+}
+
+subgraph cluster_EDA {
+s_ED [fixedsize=True, width=0.2, label=" ", fillcolor=white];
+s_A [fixedsize=True, width=0.2, label=" ", fillcolor=white];
+subgraph  {
+rank=same;
+s_ED -> s_A  [arrowhead=none];
+}
+
+}
+
+subgraph cluster_ED {
+s_E [fixedsize=True, width=0.2, label=" ", fillcolor=white];
+s_D [fixedsize=True, width=0.2, label=" ", fillcolor=white];
+subgraph  {
+rank=same;
+s_E -> s_D  [arrowhead=none];
+}
+
+}
+
+s_C -> C  [arrowhead=none];
+s_B -> B  [arrowhead=none];
+s_A -> A  [arrowhead=none];
 s_E -> E  [arrowhead=none];
 s_D -> D  [arrowhead=none];
-s_A -> A  [arrowhead=none];
-s_B -> B  [arrowhead=none];
-s_C -> C  [arrowhead=none];
-s_ABED -> s_AED  [lhead=cluster_ABED, arrowhead=none];
-s_AED -> s_ED  [lhead=cluster_AED, arrowhead=none];
-s_ED -> s_E  [lhead=cluster_ED, arrowhead=none];
 }

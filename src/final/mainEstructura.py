@@ -24,10 +24,10 @@ if __name__ == "__main__":
                                 ('D', 'C'): 'black', ('B', 'C'): 'black'}
     # Dictionary that contains the edges atributtes from a graph Graph
 
-    print(e.Estructura.nose(primalsList))
-    primalsDict = OrderedDict(sorted(e.Estructura.nose(primalsList).items(), key=itemgetter(1)))
+    primalsDict = OrderedDict(reversed(sorted(e.Estructura.nose(primalsList).items(), key=itemgetter(1))))
+    # print(primalsDict)
 
     # print(e.Estructura.nose(primalsList2))
 
     # print("Creating a 2-structure...")
-    e.Estructura.create_2structure(primalsList, edgesAtributtesfromGraph, primalsDict)
+    e.Estructura.create_2structure(edgesAtributtesfromGraph, primalsDict)

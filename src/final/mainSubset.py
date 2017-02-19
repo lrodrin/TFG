@@ -21,8 +21,6 @@ if __name__ == "__main__":
     G.add_edges_from([('A', 'D'), ('A', 'E')], color='blue')
     setNodes = set(G.nodes())  # Set of nodes from G
 
-    subsetList = []  # Empty clans list
-    for subset in it.Subset.powerset_generator(setNodes):  # Subset iterator of each set in setNodes
-        subsetList.append(subset)  # Add subset to the list
-    print("List of subsets from graph:\n", subsetList)
+    subsetList = it.Subset.powerset_list(setNodes)
+    print("List of subsets from G:\n", subsetList)
     print("-" * 20)

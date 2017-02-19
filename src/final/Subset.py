@@ -25,3 +25,17 @@ class Subset(object):
         """
         for subset in chain.from_iterable(combinations(aset, r) for r in range(1, len(aset) + 1)):
             yield set(subset)
+
+    @staticmethod
+    def powerset_list(setNodes):
+        """
+            Return a list that contains all subsets from a Graph
+        :param setNodes: Set of nodes from a graph
+        :type setNodes: set
+        :return: List of all subsets from a graph
+        :rtype: list
+        """
+        subsetList = []  # Empty list
+        for subset in Subset.powerset_generator(setNodes):  # Subset iterator of each set in setNodes
+            subsetList.append(subset)  # Add subset to the list
+        return subsetList

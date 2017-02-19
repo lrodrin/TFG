@@ -60,7 +60,7 @@ class Clan(object):
             Return a list of clans from a Graph sorted by length
 
         :param Graph: Networkx's Graph
-        :param setNodes: # Set of nodes from Graph
+        :param setNodes: Set of nodes from Graph
         :type Graph: nx.Graph
         :type setNodes: set
         :return: List of clans
@@ -77,7 +77,7 @@ class Clan(object):
         """
             Return a list of trivial clans from a Graph sorted by length
 
-        :param setNodes: # Set of nodes from a graph
+        :param setNodes: Set of nodes from a graph
         :param cardinality: A maximal cardinality matching in the graph
         :type setNodes: set
         :type cardinality: int

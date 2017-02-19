@@ -30,6 +30,7 @@ class Subset(object):
     def powerset_list(setNodes):
         """
             Return a list that contains all subsets from a Graph
+
         :param setNodes: Set of nodes from a graph
         :type setNodes: set
         :return: List of all subsets from a graph

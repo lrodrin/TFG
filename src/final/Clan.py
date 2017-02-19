@@ -67,7 +67,8 @@ class Clan(object):
         :rtype: list
         """
         clansList = []  # Empty list
-        for subset in it.Subset.powerset_generator(setNodes):  # Subset iterator of each set in setNodes
+        listNodes = it.Subset.powerset_list(setNodes)
+        for subset in listNodes:    # For each subset in listNodes
             if Clan.isClan(Graph, subset):  # If subset is a clan of Graph
                 clansList.append(subset)  # Add subset to the clans list
         return sorted(clansList)
@@ -85,7 +86,8 @@ class Clan(object):
         :rtype: list
         """
         trivialClansList = []  # Empty list
-        for subset in it.Subset.powerset_generator(setNodes):  # Subset iterator of each set in setNodes
+        listNodes = it.Subset.powerset_list(setNodes)
+        for subset in listNodes:  # For each subset in listNodes
             if Clan.isTrivialClan(subset, cardinality):  # If subset is a clan of Graph G
                 trivialClansList.append(subset)  # Add subset to the clans list
         return sorted(trivialClansList)

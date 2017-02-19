@@ -16,10 +16,10 @@ __license__ = 'MIT'
 if __name__ == "__main__":
     primalsList_1 = [frozenset({'B'}), frozenset({'A'}), frozenset({'D'}), frozenset({'C'}), frozenset({'E'}),
                      frozenset({'E', 'D'}), frozenset({'A', 'E', 'D'}), frozenset({'A', 'E', 'D', 'B'}),
-                     frozenset({'A', 'E', 'D', 'C', 'B'})]  # First primal clans list
+                     frozenset({'A', 'E', 'D', 'C', 'B'})]
     primalsList_2 = [frozenset({'C'}), frozenset({'A'}), frozenset({'D'}), frozenset({'F'}), frozenset({'E'}),
                      frozenset({'B'}), frozenset({'D', 'C'}), frozenset({'B', 'A'}),
-                     frozenset({'D', 'B', 'E', 'F', 'C', 'A'})]  # Second primal clans list
+                     frozenset({'D', 'B', 'E', 'F', 'C', 'A'})]
 
     edgesAtributtesfromGraph_1 = {('C', 'B'): 'black', ('B', 'A'): 'red', ('D', 'A'): 'blue', ('E', 'A'): 'blue',
                                   ('C', 'A'): 'black', ('E', 'C'): 'black', ('D', 'B'): 'red', ('E', 'B'): 'red',
@@ -45,7 +45,7 @@ if __name__ == "__main__":
                                                                    {'A', 'B'}, {'F'})))
     print("-" * 20)
 
-    # print("Creating a 2-structure...")
-    # e.Estructura.create_2structure(edgesAtributtesfromGraph_1, primalsDict_1, 'Estructura.dot')
+    print("Creating a 2-structure...")
+    e.Estructura.create_2structure(edgesAtributtesfromGraph_1, primalsDict_1, 'Estructura.dot')
     print("Creating a 2-structure...")
     e.Estructura.create_2structure(edgesAtributtesfromGraph_2, primalsDict_2, 'Estructura_2.dot')

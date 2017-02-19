@@ -8,7 +8,7 @@ Distributed under MIT license
 """
 import networkx as nx
 import src.final.Clan as c
-import src.final.Subset as it
+import src.final.Graph as g
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
@@ -24,20 +24,17 @@ if __name__ == "__main__":
     setNodes = set(G.nodes())  # Set of nodes from G
     cardinality = nx.graph_clique_number(G)  # A maximal cardinality matching in the graph
 
-    clansList = []  # Empty clans list
-    for subset in it.Subset.powerset_generator(setNodes):  # Subset iterator of each set in setNodes
-        if c.Clan.clans(G, subset):  # If subset is a clan of graph G
-            clansList.append(subset)  # Add subset to the clans list
+    clansList = c.Clan.clans(G, setNodes)
     print("List of clans:\n", clansList)
     print("-" * 20)
 
-    clansList_2 = []    # Empty clans list
-    for subset in it.Subset.powerset_generator(setNodes):  # Subset iterator of each set in setNodes
-        if c.Clan.trivialClan(subset, cardinality):  # If subset is a trivial clan of G
-            clansList_2.append(subset)  # Add subset to the list
-    print("List of trivial clans:\n", clansList_2)
+    trivialClansList = c.Clan.trivialClans(setNodes, cardinality)
+    print("List of clans:\n", trivialClansList)
     print("-" * 20)
 
     primalsList = c.Clan.primalClans(clansList)
     print("List of primal clans:\n", primalsList)
+    print("-" * 20)
+
+    print("Dictionary of the graph:\n", g.Graph.create_dict_from_graph(G))
     print("-" * 20)

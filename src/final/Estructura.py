@@ -24,7 +24,7 @@ class Estructura(object):
         :param graphEdgesAtributtes: Dictionary of edges atributtes from a Graph
         :param primalsDict: List of primal clans
         :type graphEdgesAtributtes: dict
-        :type primalsDict: dict
+        :type primalsDict: dict of frozenset
         :return: A 2-structure
         :rtype: DOT file
         """
@@ -81,7 +81,8 @@ class Estructura(object):
         :rtype: str
         """
         for key, value in graphEdgesAtributtes.items():  # For each primal clan
-            if (key[0] in primalClan_1 and key[1] in primalClan_2) or (key[1] in primalClan_1 and key[0] in primalClan_2):
+            if (key[0] in primalClan_1 and key[1] in primalClan_2) or (key[1] in primalClan_1 and key[0] in
+            primalClan_2):
                 return value
 
     @staticmethod

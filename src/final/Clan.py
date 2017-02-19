@@ -8,6 +8,7 @@ Distributed under MIT license
 """
 import itertools
 from collections import defaultdict
+import src.final.Subset as it
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
@@ -15,12 +16,13 @@ __license__ = 'MIT'
 
 class Clan(object):
     @staticmethod
-    def clans(Graph, subSet):
+    def isClan(Graph, subSet):
         """
         Checks if subset of the graph is a clan
 
         :param Graph: Networkx's Graph
         :param subSet: Subset from Graph
+        :type Graph: nx.Graph
         :type subSet: set
         :return: b
         :rtype: True if successful, False otherwise
@@ -36,7 +38,7 @@ class Clan(object):
         return b
 
     @staticmethod
-    def trivialClan(subSet, cardinality):
+    def isTrivialClan(subSet, cardinality):
         """
         Checks if clan is trivial
 
@@ -53,9 +55,45 @@ class Clan(object):
             return False
 
     @staticmethod
+    def clans(Graph, setNodes):
+        """
+            Return a list of clans from a Graph sorted by length
+
+        :param Graph: Networkx's Graph
+        :param setNodes: # Set of nodes from Graph
+        :type Graph: nx.Graph
+        :type setNodes: set
+        :return: List of clans
+        :rtype: list
+        """
+        clansList = []  # Empty list
+        for subset in it.Subset.powerset_generator(setNodes):  # Subset iterator of each set in setNodes
+            if Clan.isClan(Graph, subset):  # If subset is a clan of Graph
+                clansList.append(subset)  # Add subset to the clans list
+        return sorted(clansList)
+
+    @staticmethod
+    def trivialClans(setNodes, cardinality):
+        """
+            Return a list of trivial clans from a Graph sorted by length
+
+        :param setNodes: # Set of nodes from a graph
+        :param cardinality: A maximal cardinality matching in the graph
+        :type setNodes: set
+        :type cardinality: int
+        :return: List of trivial clans
+        :rtype: list
+        """
+        trivialClansList = []  # Empty list
+        for subset in it.Subset.powerset_generator(setNodes):  # Subset iterator of each set in setNodes
+            if Clan.isTrivialClan(subset, cardinality):  # If subset is a clan of Graph G
+                trivialClansList.append(subset)  # Add subset to the clans list
+        return sorted(trivialClansList)
+
+    @staticmethod
     def primalClans(listClans):
         """
-            Returns a list with the primal clans
+            Returns a list with the primal clans sorted by length
 
             :param listClans: List of clans
             :type listClans: list of sets
@@ -75,4 +113,4 @@ class Clan(object):
         for key, value in potential_primals.items():  # Creates a list with a primal clans of potential_primals
             if potential_primals[key]:  # If is a primal clan
                 primals.append(key)  # Add clan to primals list
-        return primals
+        return sorted(primals)

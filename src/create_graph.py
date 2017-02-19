@@ -9,6 +9,7 @@ Distributed under MIT license
 import networkx as nx
 import src.final.Subset as it
 import src.final.Clan as c
+import src.final.Graph as g
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
@@ -27,15 +28,18 @@ if __name__ == "__main__":
 
     nx.nx_pydot.write_dot(G, 'create_graph.dot')  # Return a pydot graph from G
 
-    # setNodes = set(G.nodes())  # Set of nodes from G
-    # cardinality = nx.graph_clique_number(G)  # A maximal cardinality matching in the graph
-    #
-    # clansList = []  # Empty clans list
-    # for subset in it.Subset.powerset_generator(setNodes):  # Subset iterator of each set in setNodes
-    #     if c.Clan.clans(G, subset):  # If subset is a clan of graph G
-    #         clansList.append(subset)  # Add subset to the clans list
-    # print("List of clans:\n", clansList)
-    # print("-" * 20)
-    #
-    # primalsList = c.Clan.primalClans(clansList)
-    # print("List of primal clans:\n", primalsList)
+    setNodes = set(G.nodes())  # Set of nodes from G
+    cardinality = nx.graph_clique_number(G)  # A maximal cardinality matching in the graph
+
+    clansList = []  # Empty clans list
+    for subset in it.Subset.powerset_generator(setNodes):  # Subset iterator of each set in setNodes
+        if c.Clan.isClan(G, subset):  # If subset is a clan of graph G
+            clansList.append(subset)  # Add subset to the clans list
+    print("List of clans:\n", clansList)
+    print("-" * 20)
+
+    primalsList = c.Clan.primalClans(clansList)
+    print("List of primal clans:\n", primalsList)
+
+    print("Dictionary of the graph:\n", g.Graph.create_dict_from_graph(G))
+    print("-" * 20)

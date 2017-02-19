@@ -1,23 +1,23 @@
 strict graph "" {
 A;
-D;
-E;
-C;
 B;
+D;
+C;
 F;
+E;
 A -- C  [color=black];
-A -- B  [color=black];
-A -- E  [color=black];
-A -- D  [color=black];
 A -- F  [color=green];
-D -- C  [color=red];
-D -- B  [color=black];
-D -- E  [color=orange];
-D -- F  [color=blue];
-E -- C  [color=orange];
-E -- B  [color=black];
-E -- F  [color=red];
-C -- B  [color=black];
-C -- F  [color=blue];
+A -- E  [color=black];
+A -- B  [color=black];
+A -- D  [color=black];
+B -- C  [color=black];
 B -- F  [color=green];
+B -- E  [color=black];
+B -- D  [color=black];
+D -- C  [color=red];
+D -- F  [color=blue];
+D -- E  [color=orange];
+C -- F  [color=blue];
+C -- E  [color=orange];
+F -- E  [color=red];
 }

@@ -7,37 +7,44 @@ Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
 from collections import OrderedDict
-from operator import itemgetter
 import src.final.Estructura as e
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 if __name__ == "__main__":
-    primalsList = [{'E'}, {'C'}, {'A'}, {'B'}, {'D'}, {'E', 'D'}, {'E', 'D', 'A'}, {'E', 'D', 'B', 'A'},
-                   {'E', 'C', 'D', 'B', 'A'}]
-    primalsListFrozen = [frozenset({'E', 'D', 'A'}), frozenset({'A'}), frozenset({'B'}),
-                         frozenset({'E', 'C', 'D', 'B', 'A'}), frozenset({'C'}), frozenset({'E', 'D'}),
-                         frozenset({'D'}), frozenset({'E', 'D', 'B', 'A'}), frozenset({'E'})]
 
-    edgesAtributtesfromGraph = {('C', 'B'): 'black', ('B', 'A'): 'red', ('D', 'A'): 'blue', ('E', 'A'): 'blue',
-                                ('C', 'A'): 'black', ('E', 'C'): 'black', ('D', 'B'): 'red', ('E', 'B'): 'red',
-                                ('E', 'D'): 'red', ('C', 'D'): 'black'}
-    print(sorted(primalsList))
-    primalsDict = OrderedDict(reversed(sorted(e.Estructura.primalSubsets(sorted(primalsList)).items(), key=itemgetter(1))))
-    primalsDictFrozen = OrderedDict(reversed(sorted(e.Estructura.primalSubsets(sorted(primalsListFrozen)).items(),
-                                                    key=itemgetter(1))))
-    print(primalsDict)
-    print(primalsDictFrozen)
-    # print("-" * 20)
+    primalsList_1 = [frozenset({'B'}), frozenset({'A'}), frozenset({'D'}), frozenset({'C'}), frozenset({'E'}),
+                     frozenset({'E', 'D'}), frozenset({'A', 'E', 'D'}), frozenset({'A', 'E', 'D', 'B'}),
+                     frozenset({'A', 'E', 'D', 'C', 'B'})]
+    primalsList_2 = [frozenset({'C'}), frozenset({'A'}), frozenset({'D'}), frozenset({'F'}), frozenset({'E'}),
+                     frozenset({'B'}), frozenset({'D', 'C'}), frozenset({'B', 'A'}),
+                     frozenset({'D', 'B', 'E', 'F', 'C', 'A'})]
 
-    # print("Get color from {'E', 'A', 'D', 'B'} and {'C'}:", (e.Estructura.getColorClans(edgesAtributtesfromGraph,
-    #                                                                                     {'E', 'A', 'D', 'B'}, {'C'})))
-    # print("Get color from {'A', 'B'} and {'F'}:", (e.Estructura.getColorClans(edgesAtributtesfromGraph2,
-    #                                                                           {'A', 'B'}, {'F'})))
-    # print("-" * 20)
+    edgesAtributtesfromGraph_1 = {('C', 'B'): 'black', ('B', 'A'): 'red', ('D', 'A'): 'blue', ('E', 'A'): 'blue',
+                                  ('C', 'A'): 'black', ('E', 'C'): 'black', ('D', 'B'): 'red', ('E', 'B'): 'red',
+                                  ('E', 'D'): 'red', ('C', 'D'): 'black'}
+    edgesAtributtesfromGraph_2 = {('D', 'C'): 'red', ('B', 'C'): 'black', ('F', 'C'): 'blue', ('D', 'A'): 'black',
+                                  ('E', 'A'): 'black', ('B', 'A'): 'black', ('D', 'B'): 'black', ('B', 'E'): 'black',
+                                  ('A', 'C'): 'black', ('E', 'C'): 'orange', ('D', 'E'): 'orange', ('D', 'F'): 'blue',
+                                  ('A', 'F'): 'green', ('E', 'F'): 'red', ('B', 'F'): 'green'}
 
-    print("Creating a 2-structure...")
-    e.Estructura.create_2structure(edgesAtributtesfromGraph, primalsDict)
+    primalsDict_1 = OrderedDict(reversed(sorted(e.Estructura.primalSubsets(primalsList_1).items(),
+                                                key=lambda t: len(t[0]))))
+    print("First primals list:\n", primalsDict_1)
+
+    primalsDict_2 = OrderedDict(reversed(sorted(e.Estructura.primalSubsets(primalsList_2).items(),
+                                                key=lambda t: len(t[0]))))
+    print("Second primals list:\n", primalsDict_2)
+    print("-" * 20)
+
+    print("Get color from {'E', 'A', 'D', 'B'} and {'C'}:", (e.Estructura.getColorClans(edgesAtributtesfromGraph_1,
+                                                                                        {'E', 'A', 'D', 'B'}, {'C'})))
+    print("Get color from {'A', 'B'} and {'F'}:", (e.Estructura.getColorClans(edgesAtributtesfromGraph_2,
+                                                                              {'A', 'B'}, {'F'})))
+    print("-" * 20)
+
     # print("Creating a 2-structure...")
-    # e.Estructura.create_2structure(edgesAtributtesfromGraph2, primalsDict2)
+    # e.Estructura.create_2structure(edgesAtributtesfromGraph_1, primalsDict_1, 'Estructura.dot')
+    print("Creating a 2-structure...")
+    e.Estructura.create_2structure(edgesAtributtesfromGraph_2, primalsDict_2, 'Estructura_2.dot')

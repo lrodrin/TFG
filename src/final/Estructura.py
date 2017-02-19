@@ -17,7 +17,7 @@ __license__ = 'MIT'
 
 class Estructura(object):
     @staticmethod
-    def create_2structure(graphEdgesAtributtes, primalsDict):
+    def create_2structure(graphEdgesAtributtes, primalsDict, filename):
         """
             Create a 2-structure from a list of clans
 
@@ -59,12 +59,12 @@ class Estructura(object):
                         pydot.Edge("s_%s" % "".join(elem), "".join(elem), arrowhead="none"))  # Add primal clan
                     # values as a edge
 
-        # Add edge from internal node/clan in subgraph to cluster
-        # callgraph.add_edge(
-        #     pydot.Edge("s_%s" % "".join(internal[i]), "s_%s" % "".join(internal[j]), arrowhead="none",
-        #                lhead="cluster_%s" % "".join(internal[i])))
+        for i, (key, value) in enumerate(primalsDict.items()):
+            if i != 0:
+                callgraph.add_edge(pydot.Edge("s_%s" % "".join(key), "s_%s" % "".join(value[0]),
+                                              arrowhead="none", lhead="cluster_%s" % "".join(key)))
 
-        callgraph.write('Estructura.dot')  # Write a DOT file with all previous information
+        callgraph.write(filename)  # Write a DOT file with all previous information
 
     @staticmethod
     def getColorClans(graphEdgesAtributtes, primalClan_1, primalClan_2):

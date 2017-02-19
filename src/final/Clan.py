@@ -115,4 +115,4 @@ class Clan(object):
         for key, value in potential_primals.items():  # Creates a list with a primal clans of potential_primals
             if potential_primals[key]:  # If is a primal clan
                 primals.append(key)  # Add clan to primals list
-        return sorted(primals)
+        return sorted(primals, key=len)

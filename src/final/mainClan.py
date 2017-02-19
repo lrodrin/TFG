@@ -32,7 +32,7 @@ if __name__ == "__main__":
     print("List of clans:\n", trivialClansList)
     print("-" * 20)
 
-    primalsList = c.Clan.primalClans(clansList)
+    primalsList = c.Clan.primalClans(sorted(clansList))
     print("List of primal clans:\n", primalsList)
     print("-" * 20)
 

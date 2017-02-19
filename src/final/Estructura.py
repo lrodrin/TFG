@@ -14,6 +14,8 @@ import pydot
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
+# TODO modificar la mida del cluster y los redondeles redondos en vez de elípticos
+
 
 class Estructura(object):
     @staticmethod

@@ -5,42 +5,42 @@ B;
 A;
 E;
 D;
-subgraph cluster_BCEAD {
-s_BEAD [label=" ", fixedsize=True, fillcolor=white, width=0.2];
-s_C [label=" ", fixedsize=True, fillcolor=white, width=0.2];
+subgraph cluster_BDCAE {
+s_ADBE [label=" ", fixedsize=True, width=0.2, fillcolor=white];
+s_C [label=" ", fixedsize=True, width=0.2, fillcolor=white];
 subgraph  {
 rank=same;
-s_BEAD -> s_C  [arrowhead=none, color=black];
+s_ADBE -> s_C  [color=black, arrowhead=none];
 }
 
 }
 
-subgraph cluster_BEAD {
-s_EAD [label=" ", fixedsize=True, fillcolor=white, width=0.2];
-s_B [label=" ", fixedsize=True, fillcolor=white, width=0.2];
+subgraph cluster_ADBE {
+s_DAE [label=" ", fixedsize=True, width=0.2, fillcolor=white];
+s_B [label=" ", fixedsize=True, width=0.2, fillcolor=white];
 subgraph  {
 rank=same;
-s_EAD -> s_B  [arrowhead=none, color=red];
+s_DAE -> s_B  [color=red, arrowhead=none];
 }
 
 }
 
-subgraph cluster_EAD {
-s_ED [label=" ", fixedsize=True, fillcolor=white, width=0.2];
-s_A [label=" ", fixedsize=True, fillcolor=white, width=0.2];
+subgraph cluster_DAE {
+s_ED [label=" ", fixedsize=True, width=0.2, fillcolor=white];
+s_A [label=" ", fixedsize=True, width=0.2, fillcolor=white];
 subgraph  {
 rank=same;
-s_ED -> s_A  [arrowhead=none, color=blue];
+s_ED -> s_A  [color=blue, arrowhead=none];
 }
 
 }
 
 subgraph cluster_ED {
-s_E [label=" ", fixedsize=True, fillcolor=white, width=0.2];
-s_D [label=" ", fixedsize=True, fillcolor=white, width=0.2];
+s_E [label=" ", fixedsize=True, width=0.2, fillcolor=white];
+s_D [label=" ", fixedsize=True, width=0.2, fillcolor=white];
 subgraph  {
 rank=same;
-s_E -> s_D  [arrowhead=none, color=red];
+s_E -> s_D  [color=red, arrowhead=none];
 }
 
 }

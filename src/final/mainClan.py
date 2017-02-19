@@ -8,7 +8,6 @@ Distributed under MIT license
 """
 import networkx as nx
 import src.final.Clan as c
-import src.final.Graph as g
 import src.final.Subset as it
 
 __author__ = 'Laura Rodriguez Navas'
@@ -41,12 +40,4 @@ if __name__ == "__main__":
 
     primalsList = c.Clan.primalClans(clansList)
     print("List of primal clans:\n", primalsList)
-    print("-" * 20)
-
-    print("Lists of clans division:\n", c.Clan.listClansDivision(clansList))
-    print("-" * 20)
-
-    # TODO com tractar els colors
-    grafDict = g.Graph.create_dict_from_graph(G)
-    print(grafDict)
     print("-" * 20)

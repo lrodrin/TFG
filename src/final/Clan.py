@@ -12,7 +12,6 @@ from collections import defaultdict
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
-# TODO com tractar els colors
 
 class Clan(object):
     @staticmethod
@@ -77,24 +76,3 @@ class Clan(object):
             if potential_primals[key]:  # If is a primal clan
                 primals.append(key)  # Add clan to primals list
         return primals
-
-    @staticmethod
-    def listClansDivision(listClans):
-        """
-            Divided the list into two lists:
-                List_1 - clans with len() == 1
-                List_2 - clans with len() > 1
-
-        :param listClans: List of clans
-        :type listClans: list of sets
-        :return: list_1 and list_2
-        :rtype: list
-        """
-        list_1 = []
-        list_2 = []
-        for c in listClans:
-            if len(c) == 1:
-                list_1.append(c)
-            else:
-                list_2.append(c)
-        return list_1, list_2

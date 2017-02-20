@@ -95,7 +95,7 @@ class Data:
                 values += "'%s'," % col.split(":")[1]  # Extract and save the values
             try:
                 query = 'INSERT INTO {0} ({1}) VALUES ({2});'.format(str(tableName), str(colNames[0:-2]),
-                                                                     str(values[0:-1]))
+                                                                     str(values[0:-1]).replace('\n', ''))
                 # SQL query
                 cursor.execute(query)
                 print("Row[%d] inserted" % i)

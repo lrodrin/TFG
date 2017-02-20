@@ -7,29 +7,28 @@ Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
 import itertools
-import sqlite3
+from collections import OrderedDict
+
 import networkx as nx
-import src.final.Estructura as e
-import src.iter_subsets as it
+
 import src.final.Clan as c
+import src.final.Data as d
+import src.final.Estructura as e
+import src.final.Graph as g
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
-pathBD = str(input("Please enter a path from database file input: "))
-connection = sqlite3.connect(pathBD)
-# connection = sqlite3.connect('C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db')
+pathBD = str(input("Please enter a path from database file: "))
+# C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db
+connection = d.Data.connection(pathBD)
 cursor = connection.cursor()
 
-# TODO creating table test
-cursor.execute('SELECT * FROM test')
-
+cursor.execute('SELECT * FROM test2')
 colNames = [description[0] for description in cursor.description]
-print(colNames)
 rows = cursor.fetchall()
 
 G = nx.Graph()
-
 # nodes
 for i in range(0, len(colNames)):
     for row in rows:
@@ -60,7 +59,6 @@ for row in rows:
             d[(u, v)] = 1
             G.edge[u][v]['label'] = 1
 
-
 colors = {0: 'white', 1: 'black', 2: 'cyan', 3: 'green', 4: 'magenta', 5: 'orange', 6: 'purple', 7: 'red', 8: 'yellow',
           9: 'brown'}
 for key, value in colors.items():
@@ -70,17 +68,19 @@ for key, value in colors.items():
 
 nx.nx_pydot.write_dot(G, 'gaifman.dot')
 
+clansList = c.Clan.clans(G, set(G.nodes()))
+print("List of clans:\n", clansList)
+print("-" * 20)
 
-clansList = []
-for s in it.powerset_generator(set(G.nodes())):  # Subset iterator of each subsetNodes
-    if c.Clan.isClan(G, s):  # If s is a clan of G
-        clansList.append(s)  # Add s to the list
+primalsList = c.Clan.primalClans(clansList)
+print("List of primal clans:\n", primalsList)
+print("-" * 20)
 
-edgesAtributtes = nx.get_edge_attributes(G, 'color')
-print(edgesAtributtes)
-print(clansList)
-e.Estructura.create_2structure(clansList, edgesAtributtes)
-
+edgesAtributtesfromGraph = g.Graph.create_dict_from_graph(G)
+primalsDict = OrderedDict(reversed(sorted(e.primalSubsets(primalsList).items(),
+                                          key=lambda t: len(t[0]))))  # dictionary sorted by length of the
+# key string
+e.Estructura.create_2structure(edgesAtributtesfromGraph, primalsDict, 'Estructura.dot')
 
 cursor.close()
 connection.close()

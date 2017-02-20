@@ -8,41 +8,61 @@
     </schema>
     <table id="3" parent="2" name="test"/>
     <table id="4" parent="2" name="test2"/>
-    <column id="5" parent="3" name="outlook">
+    <table id="5" parent="2" name="test3"/>
+    <column id="6" parent="3" name="outlook">
       <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="6" parent="3" name="temperature">
+    <column id="7" parent="3" name="temperature">
       <Position>1</Position>
       <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="7" parent="3" name="humidity">
+    <column id="8" parent="3" name="humidity">
       <Position>2</Position>
       <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="8" parent="3" name="windy">
+    <column id="9" parent="3" name="windy">
       <Position>3</Position>
       <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="9" parent="3" name="play">
+    <column id="10" parent="3" name="play">
       <Position>4</Position>
       <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="10" parent="4" name="outlook">
+    <column id="11" parent="4" name="outlook">
       <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="11" parent="4" name="temperature">
+    <column id="12" parent="4" name="temperature">
       <Position>1</Position>
       <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="12" parent="4" name="humidity">
+    <column id="13" parent="4" name="humidity">
       <Position>2</Position>
       <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="13" parent="4" name="windy">
+    <column id="14" parent="4" name="windy">
       <Position>3</Position>
       <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="14" parent="4" name="play">
+    <column id="15" parent="4" name="play">
+      <Position>4</Position>
+      <DataType>(0,-1)|12</DataType>
+    </column>
+    <column id="16" parent="5" name="outlook">
+      <DataType>(0,-1)|12</DataType>
+    </column>
+    <column id="17" parent="5" name="temperature">
+      <Position>1</Position>
+      <DataType>(0,-1)|12</DataType>
+    </column>
+    <column id="18" parent="5" name="humidity">
+      <Position>2</Position>
+      <DataType>(0,-1)|12</DataType>
+    </column>
+    <column id="19" parent="5" name="windy">
+      <Position>3</Position>
+      <DataType>(0,-1)|12</DataType>
+    </column>
+    <column id="20" parent="5" name="play">
       <Position>4</Position>
       <DataType>(0,-1)|12</DataType>
     </column>

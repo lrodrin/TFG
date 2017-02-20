@@ -30,41 +30,40 @@ try:
     file = open('C:/Users/Laura/PycharmProjects/TFG/src/SQL/meteo.txt', 'r')  # Open data file
     # pathFile = str(input("Please enter a path from data file: "))
     # file = open(pathFile, 'r')
-except sqlite3.Error as e:  # TODO de FILES!!!!
+except IOError as e:
     print("Error:", e)
 
 lines = file.readlines()  # Keep all lines from data file into lines
-header = lines[0]  # Extract the header from data file
+header = lines[0]  # Extract the header from lines
 colNames = ""
-colCounter = 0  # Counter to count the number of columns from data file
-for word in header.split(" "):  # For each word from header, keep a column in colNames
-    colNames += word + ", "  # Adding a column
-    colCounter += 1  # Increase the number of columns
+for word in header.split(" "):  # For each word from header
+    colNames += word + ", "  # Adding a column into colNames
 
 file.close()
 
 try:
     tableName = str(input("Please enter a name for the database table: "))
-    query = "CREATE TABLE %s (%s);" % (str(tableName), str(colNames[0:-2]))  # Create the table if not exists
-    print(query)
-    # cur.execute(query)
+    query = "CREATE TABLE %s (%s);" % (str(tableName), str(colNames[0:-2]))  # Create a table
+    # print(query)
+    cur.execute(query)
+    print("Created table %s..." % tableName)
 except sqlite3.Error as e:
     print("Error:", e)
 
-l = ""
-for i in range(1, len(lines)):
-    for j in lines[i].split(" "):
-        # l += j.split(":")[1] + ", "
-        l += "'%s'," % j.split(":")[1]
-    # print(l[0:-2])
-    query = 'INSERT INTO {0} ({1}) VALUES ({2});'.format(str(tableName), str(colNames[0:-2]), str(l[0:-1]))
-    # cur.execute('INSERT OR IGNORE INTO test ( outlook, temperature, humidity, windy, play) VALUES (?, ?, ?, ? , ?)',
-    #             (d[0].split(':')[1], d[1].split(':')[1], d[2].split(':')[1], d[3].split(':')[1], d[4].split(':')[1]))
-    print(query)
-    cur.execute(query)
-    l = ""
-    connection.commit()
+values = ""
+for i in range(1, len(lines)):  # For each row from data file
+    for col in lines[i].split(" "):   # For each column in lines[i]
+        values += "'%s'," % col.split(":")[1]   # Extract and save the value
+    try:
+        query = 'INSERT INTO {0} ({1}) VALUES ({2});'.format(str(tableName), str(colNames[0:-2]), str(values[0:-1]))
+        # Insert values to table
+        # print(query)
+        cur.execute(query)
+        connection.commit()
+        print("Inserted row number %d" % i)
+    except sqlite3.Error as e:
+        print("Error:", e)
+    values = ""
 
 cur.close()
 connection.close()
-# TODO fusionar amb gaifman

@@ -102,7 +102,7 @@ plt.show()
 a = np.random.choice(lt, 30, replace=True)
 D.add_edges_from([(a[i], a[i + 1]) for i in range(0, len(a) - 1)])
 nx.draw_networkx(D)
-plt.title("Graf D - afegim 15 arestes entre nodes a l'atzar")
+plt.title("Graf D - afegim 15 arestes entre nodes a values'atzar")
 plt.show()
 
 # nombre de nodes d'un graf

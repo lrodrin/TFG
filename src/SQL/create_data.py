@@ -39,8 +39,6 @@ colNames = ""
 for word in header.split(" "):  # For each word from header
     colNames += word + ", "  # Adding a column into colNames
 
-file.close()
-
 try:
     tableName = str(input("Please enter a name for the database table: "))
     query = "CREATE TABLE %s (%s);" % (str(tableName), str(colNames[0:-2]))  # Create a table
@@ -65,5 +63,6 @@ for i in range(1, len(lines)):  # For each row from data file
         print("Error:", e)
     values = ""
 
+file.close()
 cur.close()
 connection.close()

@@ -12,4 +12,5 @@ __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 
-os.startfile('C:/Users/Laura/Downloads/test.dot')
+# os.startfile('graphviz.dot')
+os.startfile('C:/Users/Laura/Dropbox/test.dot')

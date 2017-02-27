@@ -5,29 +5,29 @@ B;
 A;
 E;
 D;
-subgraph cluster_BEACD {
-s_BEAD [label=" ", width=0.2, fixedsize=True, fillcolor=white];
-s_C [label=" ", width=0.2, fixedsize=True, fillcolor=white];
+subgraph cluster_EBDAC {
+s_EBDA [fixedsize=True, fillcolor=white, width=0.2, label=" "];
+s_C [fixedsize=True, fillcolor=white, width=0.2, label=" "];
 subgraph  {
 rank=same;
-s_BEAD -> s_C  [color=black, arrowhead=none];
+s_EBDA -> s_C  [color=black, arrowhead=none];
 }
 
 }
 
-subgraph cluster_BEAD {
-s_EAD [label=" ", width=0.2, fixedsize=True, fillcolor=white];
-s_B [label=" ", width=0.2, fixedsize=True, fillcolor=white];
+subgraph cluster_EBDA {
+s_EDA [fixedsize=True, fillcolor=white, width=0.2, label=" "];
+s_B [fixedsize=True, fillcolor=white, width=0.2, label=" "];
 subgraph  {
 rank=same;
-s_EAD -> s_B  [color=red, arrowhead=none];
+s_EDA -> s_B  [color=red, arrowhead=none];
 }
 
 }
 
-subgraph cluster_EAD {
-s_ED [label=" ", width=0.2, fixedsize=True, fillcolor=white];
-s_A [label=" ", width=0.2, fixedsize=True, fillcolor=white];
+subgraph cluster_EDA {
+s_ED [fixedsize=True, fillcolor=white, width=0.2, label=" "];
+s_A [fixedsize=True, fillcolor=white, width=0.2, label=" "];
 subgraph  {
 rank=same;
 s_ED -> s_A  [color=blue, arrowhead=none];
@@ -36,8 +36,8 @@ s_ED -> s_A  [color=blue, arrowhead=none];
 }
 
 subgraph cluster_ED {
-s_E [label=" ", width=0.2, fixedsize=True, fillcolor=white];
-s_D [label=" ", width=0.2, fixedsize=True, fillcolor=white];
+s_E [fixedsize=True, fillcolor=white, width=0.2, label=" "];
+s_D [fixedsize=True, fillcolor=white, width=0.2, label=" "];
 subgraph  {
 rank=same;
 s_E -> s_D  [color=red, arrowhead=none];
@@ -50,7 +50,7 @@ s_B -> B  [arrowhead=none];
 s_A -> A  [arrowhead=none];
 s_E -> E  [arrowhead=none];
 s_D -> D  [arrowhead=none];
-s_BEAD -> s_EAD  [arrowhead=none, lhead=cluster_BEAD];
-s_EAD -> s_ED  [arrowhead=none, lhead=cluster_EAD];
-s_ED -> s_E  [arrowhead=none, lhead=cluster_ED];
+s_EBDA -> s_EDA  [lhead=cluster_EBDA, arrowhead=none];
+s_EDA -> s_ED  [lhead=cluster_EDA, arrowhead=none];
+s_ED -> s_E  [lhead=cluster_ED, arrowhead=none];
 }

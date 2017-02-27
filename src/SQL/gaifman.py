@@ -126,7 +126,7 @@ print("List of primal clans:\n", primalsList)
 print("-" * 20)
 
 edgesAtributtesfromGraph = g.Graph.create_dict_from_graph(G)
-primalsDict = OrderedDict(reversed(sorted(e.primalSubsets(primalsList).items(),
+primalsDict = OrderedDict(reversed(sorted(e.Estructura.primalSubsets(primalsList).items(),
                                           key=lambda t: len(t[0]))))  # dictionary sorted by length of the
 # key string
 e.Estructura.create_2structure(edgesAtributtesfromGraph, primalsDict, 'Estructura.dot')

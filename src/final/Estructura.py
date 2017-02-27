@@ -50,7 +50,7 @@ class Estructura(object):
 
             for pair in itertools.combinations(value, 2):  # For each pair of combinations from primal clan values
                 subgraph.add_edge(pydot.Edge("s_%s" % "".join(pair[0]), "s_%s" % "".join(pair[1]), arrowhead="none",
-                                             color=getColorClans(graphEdgesAtributtes, pair[0], pair[1])))
+                                             color=Estructura.getColorClans(graphEdgesAtributtes, pair[0], pair[1])))
                 #  Add edge into subgraph
             cluster.add_subgraph(subgraph)  # Add subgraph to cluster
             callgraph.add_subgraph(cluster)  # Add cluster to DOT file
@@ -71,41 +71,41 @@ class Estructura(object):
 
         callgraph.write(filename)  # Write a DOT file with all previous information
 
+    @staticmethod
+    def primalSubsets(primalsList):
+        """
+            Return a dictionary with all subsets from a primal clans list
 
-def primalSubsets(primalsList):
-    """
-        Return a dictionary with all subsets from a primal clans list
+        :param primalsList: List of primal clans
+        :type primalsList: list
+        :return: A dictionary with the subsets from primalsList
+        :rtype: dict
+        """
+        dictionary = defaultdict(list)  # Empty dictionary
+        for i in range(len(primalsList) - 1, 0, -1):
+            for j in range(i - 1, -1, -1):
+                if primalsList[j].issubset(primalsList[i]):
+                    for k in range(j + 1, i):
+                        if primalsList[k].issubset(primalsList[i]) and primalsList[j].issubset(primalsList[k]):
+                            break
+                    else:
+                        dictionary[frozenset(primalsList[i])].append(primalsList[j])
+        return dictionary
 
-    :param primalsList: List of primal clans
-    :type primalsList: list
-    :return: A dictionary with the subsets from primalsList
-    :rtype: dict
-    """
-    dictionary = defaultdict(list)  # Empty dictionary
-    for i in range(len(primalsList) - 1, 0, -1):
-        for j in range(i - 1, -1, -1):
-            if primalsList[j].issubset(primalsList[i]):
-                for k in range(j + 1, i):
-                    if primalsList[k].issubset(primalsList[i]) and primalsList[j].issubset(primalsList[k]):
-                        break
-                else:
-                    dictionary[frozenset(primalsList[i])].append(primalsList[j])
-    return dictionary
+    @staticmethod
+    def getColorClans(graphEdgesAtributtes, primalClan_1, primalClan_2):
+        """
+            Get the color edge between two primal clans
 
-
-def getColorClans(graphEdgesAtributtes, primalClan_1, primalClan_2):
-    """
-        Get the color edge between two primal clans
-
-    :param graphEdgesAtributtes: Dictionary of edges atributtes from a Graph
-    :param primalClan_1: Primal clan
-    :param primalClan_2: Primal clan
-    :type graphEdgesAtributtes: dict
-    :type primalClan_1: set
-    :type primalClan_2: set
-    :return: Color edge between primalClan_1 and primalClan_2
-    :rtype: str
-    """
-    for key, value in graphEdgesAtributtes.items():  # For each primal clan
-        if (key[0] in primalClan_1 and key[1] in primalClan_2) or (key[1] in primalClan_1 and key[0] in primalClan_2):
-            return value
+        :param graphEdgesAtributtes: Dictionary of edges atributtes from a Graph
+        :param primalClan_1: Primal clan
+        :param primalClan_2: Primal clan
+        :type graphEdgesAtributtes: dict
+        :type primalClan_1: set
+        :type primalClan_2: set
+        :return: Color edge between primalClan_1 and primalClan_2
+        :rtype: str
+        """
+        for key, value in graphEdgesAtributtes.items():  # For each primal clan
+            if (key[0] in primalClan_1 and key[1] in primalClan_2) or (key[1] in primalClan_1 and key[0] in primalClan_2):
+                return value

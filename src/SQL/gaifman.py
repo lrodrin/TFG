@@ -1,5 +1,5 @@
 """
-This module implements a Gaifman graph
+This module implements a Gaifman graph from database and create a 2-structure of this graph
 
 Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 

@@ -74,6 +74,7 @@ for i in range(1, len(lines)):  # For each row from data file
 
 cur.execute('SELECT * FROM test2')
 colNames = [description[0] for description in cur.description]
+print(colNames)
 rows = cur.fetchall()
 
 G = nx.Graph()

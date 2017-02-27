@@ -6,6 +6,8 @@ Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
+import os
+
 import src.final.Data as d
 
 __author__ = 'Laura Rodriguez Navas'
@@ -26,4 +28,6 @@ if __name__ == "__main__":
     tableName = str(input("Please enter a name for the database table: "))
     d.Data.create_table(cursor, tableName, colNames)    # Create table
     d.Data.insert(tableName, colNames, lines, cursor, connection)   # Insert data to table
+    ############################## GAIFMAN METHODS ##################################
+    # os.startfile('Estructura.dot')  # Launch Graphviz program that is associated with this file
     d.Data.close(file, cursor, connection)

@@ -1,5 +1,5 @@
 """
-This module implements the call for Graphviz program
+This module implements the call for Graphviz program that is associated with a file
 
 Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 

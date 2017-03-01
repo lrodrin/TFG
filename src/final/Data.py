@@ -99,6 +99,7 @@ class Data:
                 # SQL query
                 cursor.execute(query)
                 print("Row[%d] inserted" % i)
+                print(query)
                 connection.commit()
             except sqlite3.Error as e:
                 print("Error:", e)
@@ -126,3 +127,17 @@ class Data:
             print("Connection closed")
         except IOError as e:
             print("Error:", e)
+
+    @staticmethod
+    def select(tableName, cursor):
+        """
+            Select values from a table specified by tableName
+
+        :param tableName: Table name
+        :param cursor: Connection cursor
+        :return: Column names and all the rows from tableName
+        """
+        cursor.execute("SELECT * FROM %s" % tableName)
+        colNames = [description[0] for description in cursor.description]
+        rows = cursor.fetchall()
+        return colNames, rows

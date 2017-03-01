@@ -6,8 +6,8 @@
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
-    <table id="3" parent="2" name="test"/>
-    <table id="4" parent="2" name="test2"/>
+    <table id="3" parent="2" name="test2"/>
+    <table id="4" parent="2" name="test3"/>
     <column id="5" parent="3" name="outlook">
       <DataType>(0,-1)|12</DataType>
     </column>

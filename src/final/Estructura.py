@@ -6,13 +6,17 @@ Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
+import os
 from collections import defaultdict
-
 import itertools
 import pydot
+import sys
+
+import subprocess
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
+
 
 # TODO modificar la mida del cluster y los redondeles redondos en vez de elípticos
 
@@ -107,5 +111,19 @@ class Estructura(object):
         :rtype: str
         """
         for key, value in graphEdgesAtributtes.items():  # For each primal clan
-            if (key[0] in primalClan_1 and key[1] in primalClan_2) or (key[1] in primalClan_1 and key[0] in primalClan_2):
+            if (key[0] in primalClan_1 and key[1] in primalClan_2) or (
+                    key[1] in primalClan_1 and key[0] in primalClan_2):
                 return value
+
+    @staticmethod
+    def openGraphviz(program, filename):
+        """
+            Call the Graphviz program that is associated with a 2-structure file
+
+        :param program: Path to Graphviz program
+        :param filename: Path to 2-structure file
+        """
+        if sys.platform == 'win32':  # Windows platform
+            os.startfile(filename)
+        else:  # Linux platform
+            subprocess.run(['open', '-a', program, filename])

@@ -37,6 +37,7 @@
         <list>
           <option value="types.StringType" />
           <option value="networkx.nxgraphviz_layout" />
+          <option value="os.startfile" />
         </list>
       </option>
     </inspection_tool>

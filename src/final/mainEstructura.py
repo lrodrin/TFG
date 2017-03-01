@@ -6,9 +6,7 @@ Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
-import os
 from collections import OrderedDict
-
 import src.final.Estructura as e
 
 __author__ = 'Laura Rodriguez Navas'
@@ -51,5 +49,6 @@ if __name__ == "__main__":
     # print("Creating a 2-structure...")
     # e.Estructura.create_2structure(edgesAtributtesfromGraph_2, primalsDict_2, 'Estructura_2.dot')
 
-    os.startfile('Estructura.dot')  # Launch Graphviz program that is associated with this file
-    os.startfile('Estructura_2.dot')  # Launch Graphviz program that is associated with this file
+    print("Open Graphviz program...")
+    e.Estructura.openGraphviz('/Applications/Graphviz.app', 'Estructura.dot')  # OS X
+    # e.Estructura.openGraphviz('', 'Estructura.dot')  # WINDOWS

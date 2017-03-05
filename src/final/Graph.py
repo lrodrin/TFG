@@ -6,79 +6,82 @@ Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
-import networkx as nx
 import itertools
-from numpy import random
+import networkx as nx
+from src.final.Data import *
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 
 class Graph:
-    G = nx.Graph()
+    @staticmethod
+    def graphInitialization(fileDB, tableName):
+        """
+        Create and initializes a Graph from SQLite database source
+
+        :param fileDB: SQLite database file
+        :param tableName: Table name from fileDB
+        """
+        connection = Data.connection(fileDB)  # Connection to SQLite database
+        cursor = connection.cursor()
+        # TODO tableName = Data.getTableName(fileDB)
+        columnNames, rows = Data.select(tableName, cursor)  # Select data from SQLite database
+        Graph.addNodes(nx.Graph(), columnNames, rows)  # Adding nodes to a Graph
+        for (u, v) in itertools.combinations(nx.Graph().nodes(), 2):  # All the edges are painted white
+            nx.Graph().add_edge(u, v, color='white')
 
     @staticmethod
-    def creating_and_coloring_graph(nnodes=None, nequivalences=None, colorList=None):
+    def exportGraphDOT(graph, filename):
         """
-            Create and give colors to complete Graph
+        Export graph to Graphviz DOT format
 
-            :param nnodes: The number of nodes
-            :param nequivalences: The number of colors assigned for edges
-            :param colorList: List of possible colors for each edge
-            :type nnodes: int
-            :type nequivalences: int
-            :type colorList: list
-            :return: Complete NetworkX's Graph with nnodes and nnequivalences
-            :rtype: nx.Graph
-        """
-        G = nx.nx.complete_graph(nnodes)    # Graph generator
-        for (u, v) in G.edges():  # For each edge of Graph the color attribute is assigned randomly
-            G.edge[u][v]['color'] = random.choice(colorList[0:nequivalences])
-        return G
-
-    @staticmethod
-    def create_dot_file_from_graph(graph, name):
-        """
-            Create DOT file for a Graph
-
-        :param name: Name for DOT file
-        :param graph: NetworkX's Graph
+        :param graph: NetworkX's graph
+        :param filename: File name for a DOT file
         :type graph: nx.Graph
-        :type name: str
-        :return: Graph in Graphviz dot format
+        :type filename: str
+        :return: Graph to Graphviz DOT format
         :rtype: DOT file
         """
-        nx.nx_pydot.write_dot(graph, name)  # export Graph in Graphviz dot format
+        nx.nx_pydot.write_dot(graph, filename)
 
     @staticmethod
     def createDictFromGraph(graph):
         """
-            Return a dictionary of attributes keyed by edge from a Graph
+        Return a dictionary of attributes keyed by edge from graph
 
-        :param graph:
-        :return dictionary
+        :param graph: NetworkX's graph
+        :type graph: nx.Graph
+        :return graphDict
         :rtype: dict
         """
-        dictionary = nx.get_edge_attributes(graph, 'color')
-        return dictionary
+        graphDict = nx.get_edge_attributes(graph, 'color')
+        return graphDict
 
     @staticmethod
-    def addNodes(graph, colNames, rows):
-        for i in range(0, len(colNames)):
-            for row in rows:
-                graph.add_node(row[i])
+    def addNodes(graph, columnNames, rows):
+        """
+        Add nodes to graph through SQLite database data source
+
+        :param graph: NetworkX's graph
+        :param columnNames: Column names from tableName
+        :param rows: Rows from tableName
+        :type graph: nx.Graph
+        """
+        for i in range(0, len(columnNames)):  # For each column from tableName
+            for row in rows:  # For each row from tableName
+                graph.add_node(row[i])  # Add node to graph
 
     @staticmethod
     def initialization(graph):
-        for (u, v) in itertools.combinations(graph.nodes(), 2):
-            graph.add_edge(u, v, color='white')
+        pass
 
     @staticmethod
-    def planarGraph(graph, rows):
+    def createPlanarGraph(graph, rows):
         for row in rows:
             for (u, v) in itertools.combinations(row, 2):
                 graph.add_edge(u, v, color='black')
-        return graph, Graph.create_dot_file_from_graph(graph, 'planar.dot')
+        return graph, Graph.exportGraphDOT(graph, 'planarGraph.dot')
 
     @staticmethod
     def linearGraph(graph, rows):
@@ -103,7 +106,7 @@ class Graph:
                     graph[u][v]['color'] = value
 
         # TODO s'han d'amagar els labels
-        return graph, Graph.create_dot_file_from_graph(graph, 'linear.dot')
+        return graph, Graph.exportGraphDOT(graph, 'linear.dot')
 
     @staticmethod
     def exponentialGraph(graph, rows):

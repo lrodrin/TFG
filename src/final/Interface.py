@@ -14,7 +14,7 @@ __license__ = 'MIT'
 @staticmethod
 def graphOptions(option, graph, rows):
     if option == 1:
-        g.Graph.planarGraph(graph, rows)
+        g.Graph.createPlanarGraph(graph, rows)
     elif option == 2:
         g.Graph.linearGraph(graph, rows)
     elif option == 3:

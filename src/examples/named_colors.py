@@ -11,7 +11,6 @@ import numpy as np
 from matplotlib.pyplot import show, subplots
 from matplotlib import colors
 
-
 colors_ = list(six.iteritems(colors.cnames))
 
 # Add the single letter colors.

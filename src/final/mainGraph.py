@@ -13,7 +13,6 @@ __license__ = 'MIT'
 
 
 if __name__ == "__main__":
-
     # Data input from STDIN
     nnodes = int(input("Please enter a number of nodes: "))
     ncolors = int(input("Please enter a number of colors: "))

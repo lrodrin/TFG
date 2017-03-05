@@ -30,15 +30,15 @@ if __name__ == "__main__":
     setNodes = set(G.nodes())  # Set of nodes from G
     cardinality = nx.graph_clique_number(G)  # A maximal cardinality matching in the graph
 
-    clansList = c.Clan.clans(G, setNodes)
+    clansList = clans(G, setNodes)
     print("List of clans:\n", clansList)
     print("-" * 20)
 
-    trivialClansList = c.Clan.trivialClans(setNodes, cardinality)
+    trivialClansList = trivialClans(setNodes, cardinality)
     print("List of clans:\n", trivialClansList)
     print("-" * 20)
 
-    primalsList = c.Clan.primalClans(clansList)
+    primalsList = primalClans(clansList)
     print("List of primal clans:\n", primalsList)
     print("-" * 20)
 

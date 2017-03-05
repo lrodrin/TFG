@@ -15,7 +15,6 @@ __license__ = 'MIT'
 
 
 if __name__ == "__main__":
-
     G = nx.Graph()  # Create an empty graph structure (a “null graph”) with no nodes and no edges
     # Adding edges and edges attributes
     G.add_edges_from([('A', 'B'), ('B', 'D'), ('B', 'E'), ('D', 'E')], color='red')

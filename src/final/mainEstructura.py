@@ -12,6 +12,7 @@ import src.final.Estructura as e
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
+
 if __name__ == "__main__":
     primalsList_1 = [frozenset({'B'}), frozenset({'A'}), frozenset({'D'}), frozenset({'C'}), frozenset({'E'}),
                      frozenset({'E', 'D'}), frozenset({'A', 'E', 'D'}), frozenset({'A', 'E', 'D', 'B'}),

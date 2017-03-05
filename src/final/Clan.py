@@ -14,7 +14,7 @@ __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 
-class Clan(object):
+class Clan:
     @staticmethod
     def isClan(Graph, subSet):
         """

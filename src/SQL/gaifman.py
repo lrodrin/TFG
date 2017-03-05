@@ -113,12 +113,12 @@ for key, value in colors.items():
 nx.nx_pydot.write_dot(G, 'gaifman.dot')
 
 # clans
-clansList = c.Clan.clans(G, set(G.nodes()))
+clansList = clans(G, set(G.nodes()))
 print("List of clans:\n", clansList)
 print("-" * 20)
 
 # clans primers
-primalsList = c.Clan.primalClans(clansList)
+primalsList = primalClans(clansList)
 print("List of primal clans:\n", primalsList)
 print("-" * 20)
 

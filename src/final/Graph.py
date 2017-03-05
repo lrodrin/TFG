@@ -13,7 +13,7 @@ __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 
-class Graph(object):
+class Graph:
     @staticmethod
     def creating_and_coloring_graph(nnodes=None, nequivalences=None, colorList=None):
         """
@@ -56,3 +56,15 @@ class Graph(object):
         """
         dictionary = nx.get_edge_attributes(graph, 'color')
         return dictionary
+
+    @staticmethod
+    def planar():
+        pass
+
+    @staticmethod
+    def linear():
+        pass
+
+    @staticmethod
+    def exponential():
+        pass

@@ -15,7 +15,7 @@ __license__ = 'MIT'
 
 class TestClan(unittest.TestCase):
     def test_isATrivialClan(self):
-        self.assertTrue(c.Clan.isTrivialClan({'A'}, 1))
+        self.assertTrue(isTrivialClan({'A'}, 1))
 
 
 if __name__ == '__main__':

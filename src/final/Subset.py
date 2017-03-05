@@ -12,7 +12,7 @@ __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 
-class Subset(object):
+class Subset:
     @staticmethod
     def powerset_generator(aset):
         """

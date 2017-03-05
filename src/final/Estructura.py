@@ -80,11 +80,18 @@ class Estructura:
         EdgesAtributtes = Graph.createDictFromGraph(planarGraph)
         primalClansDict = OrderedDict(reversed(sorted(Clan.primalClansSubsets(primalClansList).items(),
                                                       key=lambda t: len(t[0]))))
-        return Estructura.create2structure(EdgesAtributtes, primalClansDict, 'planar2structure.dot')
+        print(clansList, primalClansList, EdgesAtributtes, primalClansDict)
+        Estructura.create2structure(EdgesAtributtes, primalClansDict, 'planar2structure.dot')
 
     @staticmethod
     def linear2structure(linearGraph, nodes):
-        pass
+        clansList = Clan.clans(linearGraph, nodes)
+        primalClansList = Clan.primalClans(clansList)
+        EdgesAtributtes = Graph.createDictFromGraph(linearGraph)
+        primalClansDict = OrderedDict(reversed(sorted(Clan.primalClansSubsets(primalClansList).items(),
+                                                      key=lambda t: len(t[0]))))
+        print(clansList, primalClansList, EdgesAtributtes, primalClansDict)
+        Estructura.create2structure(EdgesAtributtes, primalClansDict, 'linear2structure.dot')
 
     @staticmethod
     def exponential2structure(exponentialGraph, nodes):

@@ -16,3 +16,5 @@ __license__ = 'MIT'
 tableName = str(input("Please enter a name for the database table: "))
 graph, rows = Graph.graphInitialization('C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db', tableName)
 Graph.createPlanarGraph(graph, rows)
+Graph.linearGraph(graph, rows)
+Graph.exponentialGraph(graph, rows)

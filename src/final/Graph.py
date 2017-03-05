@@ -105,7 +105,7 @@ class Graph:
                     graph[u][v]['color'] = value
 
         # TODO s'han d'amagar els labels
-        return graph, Graph.exportGraphDOT(graph, 'linear.dot')
+        return graph, Graph.exportGraphDOT(graph, 'linearGraph.dot')
 
     @staticmethod
     def exponentialGraph(graph, rows):

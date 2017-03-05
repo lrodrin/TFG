@@ -39,3 +39,8 @@ if __name__ == "__main__":
     Estructura.create2structure(edgesAtributtesfromGraph_2, primalsDict_2, 'Estructura2.dot')
 
     # TODO proves planar2structure, linear2structure i exponential2structure
+    tableName = str(input("Please enter a name for the database table: "))
+    planarGraph, rows = Graph.graphInitialization('C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db', tableName)
+    linearGraph, rows = Graph.graphInitialization('C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db', tableName)
+    Estructura.planar2structure(planarGraph, planarGraph.nodes())
+    Estructura.linear2structure(linearGraph, linearGraph.nodes())

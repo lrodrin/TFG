@@ -13,7 +13,6 @@ import src.final.Graph as g
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
-
 if __name__ == "__main__":
     pathBD = str(input("Please enter a path from database file: "))
     # TODO s'ha de canviar perque nomes accepti el nom del fitxer, pero per les proves de moment no
@@ -24,7 +23,7 @@ if __name__ == "__main__":
 
     pathFile = str(input("Please enter a path from data file: "))
     # TODO s'ha de canviar perque nomes accepti el nom del fitxer, pero per les proves de moment no
-    # TODO ARFF format
+    # TODO ARFF format def fileType() a Data
     # C:/Users/Laura/PycharmProjects/TFG/src/SQL/meteo.txt
     # /Users/laura/PycharmProjects/TFG/src/SQL/meteo.txt
     file = d.Data.open_file(pathFile)  # Open data file
@@ -35,20 +34,15 @@ if __name__ == "__main__":
 
     # d.Data.create_table(cursor, tableName, colNames)  # Create tableName
     # d.Data.insert(tableName, colNames, lines, cursor, connection)  # Insert data to tableName
-    d.Data.select(tableName, cursor)    # Select data from tableName
+    colNames, rows = d.Data.select(tableName, cursor)  # Select data from tableName
 
-    graphTypes = str(input("Please enter the option of graph you want to create:\n [1] = planar\n [2] = linear\n [3] "
-                           "= exponential"))
-
-    def graphOptions(option):   # TODO s'ha de moure a Graph.py quan es cre-hi el graf des d'alla
-        if option == 1:
-            g.Graph.planar()
-        elif option == 2:
-            g.Graph.linear()
-        elif option == 3:
-            g.Graph.exponential()
+    graphType = int(input("Please enter the option of graph you want to create:\n [1] = planar\n [2] = linear\n [3] "
+                          "= exponential\n"))
+    graph = g.Graph.G
+    g.Graph.addNodes(graph, colNames, rows)  # add nodes
+    d.Data.graphOptions(graphType, graph, rows)
 
     print("Open Graphviz program...")
-    e.Estructura.openGraphviz('/Applications/Graphviz.app', 'Estructura.dot')  # OS X
-    # e.Estructura.openGraphviz('', 'Estructura.dot')  # WINDOWS
+    # e.Estructura.openGraphviz('/Applications/Graphviz.app', 'Estructura.dot')  # OS X
+    e.Estructura.openGraphviz('', 'Estructura.dot')  # WINDOWS
     d.Data.close(file, cursor, connection)

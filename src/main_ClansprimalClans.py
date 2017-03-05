@@ -12,7 +12,7 @@ if __name__ == "__main__":
     G.add_edges_from([('A', 'B'), ('B', 'D'), ('B', 'E'), ('D', 'E')], color='red')
     G.add_edges_from([('A', 'C'), ('B', 'C'), ('C', 'D'), ('C', 'E')], color='black')
     G.add_edges_from([('A', 'D'), ('A', 'E')], color='blue')
-    subsetNodes = set(G.nodes())  # Subset of nodes from G
+    subsetNodes = set(G.nodes())  # Subset of nodes from graph
 
     subset_isClan = {'D', 'E'}
     subset_notClan = {'A', 'B'}
@@ -26,38 +26,38 @@ if __name__ == "__main__":
 
     clansList1 = []
     for s in it.all_subsets(subsetNodes):  # Subset iterator of each subsetNodes
-        if c.isAClan(G, s):  # If s is a clan of G
+        if c.isAClan(G, s):  # If s is a clan of graph
             clansList1.append(s)  # Add s to the list
     print(sorted(clansList1))  # Complete list of clans
 
     clansList2 = []
     for s in it.all_proper_subsets(subsetNodes):  # Subset iterator of each subsetNodes
-        if c.isAClan(G, s):  # If s is a clan of G
+        if c.isAClan(G, s):  # If s is a clan of graph
             clansList2.append(s)  # Add s to the list
     print(sorted(clansList2))  # Complete list of clans
 
     clansList3 = []
     for s in it.powerset_generator(subsetNodes):  # Subset iterator of each subsetNodes
-        if c.isAClan(G, s):  # If s is a clan of G
+        if c.isAClan(G, s):  # If s is a clan of graph
             clansList3.append(s)  # Add s to the list
     print(sorted(clansList3))  # Complete list of clans
     print("-" * 20)
 
     clansList = []
     for s in it.all_subsets(subsetNodes):  # Subset iterator of each subsetNodes
-        if c.isAClan(G, s) and not c.isATrivialClan(s):  # If s is a clan of G and isn't a trivial clan
+        if c.isAClan(G, s) and not c.isATrivialClan(s):  # If s is a clan of graph and isn't a trivial clan
             clansList.append(s)  # Add s to the list
     print(sorted(clansList))  # Complete list of clans less trivial clans
 
     clansList = []
     for s in it.all_proper_subsets(subsetNodes):  # Subset iterator of each subsetNodes
-        if c.isAClan(G, s) and not c.isATrivialClan(s):  # If s is a clan of G and isn't a trivial clan
+        if c.isAClan(G, s) and not c.isATrivialClan(s):  # If s is a clan of graph and isn't a trivial clan
             clansList.append(s)  # Add s to the list
     print(sorted(clansList))  # Complete list of clans less trivial clans
 
     clansList = []
     for s in it.powerset_generator(subsetNodes):  # Subset iterator of each subsetNodes
-        if c.isAClan(G, s) and not c.isATrivialClan(s):  # If s is a clan of G and isn't a trivial clan
+        if c.isAClan(G, s) and not c.isATrivialClan(s):  # If s is a clan of graph and isn't a trivial clan
             clansList.append(s)  # Add s to the list
     print(sorted(clansList))  # Complete list of clans less trivial clans
     print("-" * 20)

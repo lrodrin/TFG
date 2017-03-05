@@ -17,8 +17,8 @@ mitjanes = []
 # Erdos-renyi
 for nnodes in nodes:
     p = log(nnodes) / nnodes
-    # G = nx.erdos_renyi_graph(nnodes, p)
-    # G = nx.fast_gnp_random_graph(nodes, p)
+    # graph = nx.erdos_renyi_graph(nnodes, p)
+    # graph = nx.fast_gnp_random_graph(nodes, p)
     d = nx.floyd_warshall(nx.erdos_renyi_graph(nnodes, p))
     l = []
     for v in d:
@@ -77,7 +77,7 @@ G.add_nodes_from(range(100, 110))
 # afegim una aresta
 G.add_edge(1, 2)
 nx.draw_networkx(G)
-plt.title('Graf G - nodes [2,3,100-110] - arestes[2,3]')
+plt.title('Graf graph - nodes [2,3,100-110] - arestes[2,3]')
 plt.show()
 
 # afegim mes arestes
@@ -86,7 +86,7 @@ H = nx.Graph()
 H.add_path([100, 101, 102, 103, 104, 105, 106, 107, 108, 109])
 G.add_edges_from(H.edges())
 nx.draw_networkx(G)
-plt.title('Graf G - afegim arestes')
+plt.title('Graf graph - afegim arestes')
 plt.show()
 
 # atributs dels grafs, nodes i arestes
@@ -118,10 +118,10 @@ G.edges()
 H = nx.connected_component_subgraphs(G)
 print(len(H), "components")
 nx.draw_networkx(H[0])
-plt.title("Graf H - primer component del graf G")
+plt.title("Graf H - primer component del graf graph")
 plt.show()
 nx.draw_networkx(H[1])
-plt.title("Graf H - segon component del graf G")
+plt.title("Graf H - segon component del graf graph")
 plt.show()
 
 # guardar la imatge d'un graf

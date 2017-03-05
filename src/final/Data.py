@@ -8,6 +8,8 @@ Distributed under MIT license
 """
 import sqlite3
 
+from src.final import Graph as g
+
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
@@ -141,3 +143,12 @@ class Data:
         colNames = [description[0] for description in cursor.description]
         rows = cursor.fetchall()
         return colNames, rows
+
+    @staticmethod
+    def graphOptions(option, graph, rows):
+        if option == 1:
+            g.Graph.planarGraph(graph, rows)
+        elif option == 2:
+            g.Graph.linearGraph(graph, rows)
+        elif option == 3:
+            g.Graph.exponentialGraph(graph, rows)

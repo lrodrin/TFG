@@ -9,4 +9,4 @@ G.add_edges_from([('A', 'B'), ('B', 'D'), ('B', 'E'), ('D', 'E')], color='red')
 G.add_edges_from([('A', 'C'), ('B', 'C'), ('C', 'D'), ('C', 'E')], color='black')
 G.add_edges_from([('A', 'D'), ('A', 'E')], color='blue')
 
-nx.nx_pydot.write_dot(G, 'write_dot.dot')    # Return a pydot graph from G
+nx.nx_pydot.write_dot(G, 'write_dot.dot')    # Return a pydot graph from graph

@@ -19,8 +19,8 @@ if __name__ == "__main__":
     G.add_edges_from([('A', 'B'), ('B', 'D'), ('B', 'E'), ('D', 'E')], color='red')
     G.add_edges_from([('A', 'C'), ('B', 'C'), ('C', 'D'), ('C', 'E')], color='black')
     G.add_edges_from([('A', 'D'), ('A', 'E')], color='blue')
-    setNodes = set(G.nodes())  # Set of nodes from G
+    setNodes = set(G.nodes())  # Set of nodes from graph
 
     subsetList = it.Subset.powerset_list(setNodes)
-    print("List of subsets from G:\n", subsetList)
+    print("List of subsets from graph:\n", subsetList)
     print("-" * 20)

@@ -25,9 +25,9 @@ if __name__ == "__main__":
     G.add_edges_from([('A', 'F'), ('B', 'F')], color='green')
     G.add_edges_from([('C', 'E'), ('D', 'E')], color='orange')
 
-    nx.nx_pydot.write_dot(G, 'create_example_graph.dot')  # Return a pydot graph from G
+    nx.nx_pydot.write_dot(G, 'create_example_graph.dot')  # Return a pydot graph from graph
 
-    setNodes = set(G.nodes())  # Set of nodes from G
+    setNodes = set(G.nodes())  # Set of nodes from graph
     cardinality = nx.graph_clique_number(G)  # A maximal cardinality matching in the graph
 
     clansList = clans(G, setNodes)

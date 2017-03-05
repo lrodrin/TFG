@@ -27,7 +27,7 @@ class Clan:
         :return: b
         :rtype: True if successful, False otherwise
         """
-        diff = set(Graph.nodes()).difference(subSet)  # Subset formed by all nodes of G less subset passed as argument
+        diff = set(Graph.nodes()).difference(subSet)  # Subset formed by all nodes of graph less subset passed as argument
         b = True
         for external in diff:  # For each subset of diff
             for (x, y) in itertools.combinations(subSet, 2):  # For each pair (x, y) in the subset combinations
@@ -88,7 +88,7 @@ class Clan:
         trivialClansList = []  # Empty list
         listNodes = it.Subset.powerset_list(setNodes)
         for subset in listNodes:  # For each subset in listNodes
-            if Clan.isTrivialClan(subset, cardinality):  # If subset is a clan of Graph G
+            if Clan.isTrivialClan(subset, cardinality):  # If subset is a clan of Graph graph
                 trivialClansList.append(subset)  # Add subset to the clans list
         return sorted(trivialClansList)
 

@@ -78,7 +78,7 @@ class Graph:
         for row in rows:
             for (u, v) in itertools.combinations(row, 2):
                 graph.add_edge(u, v, color='black')
-        return Graph.create_dot_file_from_graph(graph, 'planar.dot')
+        return graph, Graph.create_dot_file_from_graph(graph, 'planar.dot')
 
     @staticmethod
     def linearGraph(graph, rows):
@@ -103,7 +103,7 @@ class Graph:
                     graph[u][v]['color'] = value
 
         # TODO s'han d'amagar els labels
-        Graph.create_dot_file_from_graph(graph, 'linear.dot')
+        return graph, Graph.create_dot_file_from_graph(graph, 'linear.dot')
 
     @staticmethod
     def exponentialGraph(graph, rows):

@@ -8,7 +8,7 @@ Distributed under MIT license
 """
 import itertools
 from collections import defaultdict
-import src.final.Subset as it
+from src.final import Subset
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
@@ -27,7 +27,8 @@ class Clan:
         :return: b
         :rtype: True if successful, False otherwise
         """
-        diff = set(Graph.nodes()).difference(subSet)  # Subset formed by all nodes of graph less subset passed as argument
+        diff = set(Graph.nodes()).difference(subSet)  # Subset formed by all nodes of graph less subset passed as
+        # argument
         b = True
         for external in diff:  # For each subset of diff
             for (x, y) in itertools.combinations(subSet, 2):  # For each pair (x, y) in the subset combinations
@@ -67,7 +68,7 @@ class Clan:
         :rtype: list
         """
         clansList = []  # Empty list
-        listNodes = it.Subset.powerset_list(setNodes)
+        listNodes = Subset.powerset_list(setNodes)
         for subset in listNodes:    # For each subset in listNodes
             if Clan.isClan(Graph, subset):  # If subset is a clan of Graph
                 clansList.append(subset)  # Add subset to the clans list
@@ -86,7 +87,7 @@ class Clan:
         :rtype: list
         """
         trivialClansList = []  # Empty list
-        listNodes = it.Subset.powerset_list(setNodes)
+        listNodes = Subset.powerset_list(setNodes)
         for subset in listNodes:  # For each subset in listNodes
             if Clan.isTrivialClan(subset, cardinality):  # If subset is a clan of Graph graph
                 trivialClansList.append(subset)  # Add subset to the clans list

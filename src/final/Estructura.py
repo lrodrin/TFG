@@ -7,12 +7,15 @@ Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
 import os
+from collections import OrderedDict
 from collections import defaultdict
 import itertools
 import pydot
 import sys
 
 import subprocess
+import src.final.Clan as c
+import src.final.Graph as g
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
@@ -126,3 +129,12 @@ class Estructura:
             os.startfile(filename)
         else:  # Linux platform
             subprocess.run(['open', '-a', program, filename])
+
+    @staticmethod
+    def planarStructure(graph, setNodes):
+        clansList = c.Clan.clans(graph, setNodes)
+        primalsList = c.Clan.primalClans(clansList)
+        edgesAttr = g.Graph.create_dict_from_graph(graph)
+        primalsDict = OrderedDict(reversed(sorted(Estructura.primalSubsets(primalsList).items(),
+                                                    key=lambda t: len(t[0]))))
+        return Estructura.create_2structure(edgesAttr, primalsDict, 'planar-structure.dot')

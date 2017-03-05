@@ -117,3 +117,44 @@ class Clan:
             if potentialPrimals[key]:  # If subset is a primal clan
                 primalClansList.append(key)  # Add clan to primal clans list
         return sorted(primalClansList, key=len)
+
+    @staticmethod
+    def primalClansSubsets(primalClansList):
+        """
+        Groups together the primal clans
+
+        :param primalClansList: List of primal clans
+        :type primalClansList: list
+        :return: A primalClansSubsets with the primal clans combinations are subsets
+        :rtype: dict
+        """
+        primalClansSubsets = defaultdict(list)
+        for i in range(len(primalClansList) - 1, 0, -1):
+            for j in range(i - 1, -1, -1):
+                if primalClansList[j].issubset(primalClansList[i]):
+                    for k in range(j + 1, i):
+                        if primalClansList[k].issubset(primalClansList[i]) and primalClansList[j].issubset(
+                                primalClansList[k]):
+                            break
+                    else:
+                        primalClansSubsets[frozenset(primalClansList[i])].append(primalClansList[j])
+        return primalClansSubsets
+
+    @staticmethod
+    def getColorClans(EdgesAtributtes, primalClan_1, primalClan_2):
+        """
+        Get the color edge from a graph between two primal clans
+
+        :param EdgesAtributtes: Edges atributtes from a graph
+        :param primalClan_1: One primal clan
+        :param primalClan_2: Second primal clan
+        :type EdgesAtributtes: dict
+        :type primalClan_1: set
+        :type primalClan_2: set
+        :return: Color edge between primalClan_1 and primalClan_2
+        :rtype: str
+        """
+        for key, color in EdgesAtributtes.items():  # For each primal clan and color
+            if (key[0] in primalClan_1 and key[1] in primalClan_2) or (
+                            key[1] in primalClan_1 and key[0] in primalClan_2):
+                return color

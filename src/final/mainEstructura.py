@@ -29,12 +29,12 @@ if __name__ == "__main__":
                                   ('A', 'C'): 'black', ('E', 'C'): 'orange', ('D', 'E'): 'orange', ('D', 'F'): 'blue',
                                   ('A', 'F'): 'green', ('E', 'F'): 'red', ('B', 'F'): 'green'}
 
-    primalsDict_1 = OrderedDict(reversed(sorted(e.Estructura.primalSubsets(primalsList_1).items(),
+    primalsDict_1 = OrderedDict(reversed(sorted(e.Estructura.primalClansSubsets(primalsList_1).items(),
                                                 key=lambda t: len(t[0]))))  # dictionary sorted by length of the
     # key string
     print("First primals list:\n", primalsDict_1)
 
-    primalsDict_2 = OrderedDict(reversed(sorted(e.Estructura.primalSubsets(primalsList_2).items(),
+    primalsDict_2 = OrderedDict(reversed(sorted(e.Estructura.primalClansSubsets(primalsList_2).items(),
                                                 key=lambda t: len(t[0]))))
     print("Second primals list:\n", primalsDict_2)
     print("-" * 20)
@@ -46,7 +46,7 @@ if __name__ == "__main__":
     print("-" * 20)
 
     print("Creating a 2-structure...")
-    e.Estructura.create_2structure(edgesAtributtesfromGraph_1, primalsDict_1, 'Estructura.dot')
+    e.Estructura.create2structure(edgesAtributtesfromGraph_1, primalsDict_1, 'Estructura.dot')
     # print("Creating a 2-structure...")
     # e.Estructura.create_2structure(edgesAtributtesfromGraph_2, primalsDict_2, 'Estructura_2.dot')
 

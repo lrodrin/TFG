@@ -28,3 +28,6 @@ if __name__ == "__main__":
 
     primalClansList = Clan.primalClans(clansList)
     print("List of primal clans:\n", primalClansList)
+
+    primalClansSubsets = Clan.primalClansSubsets(primalClansList)
+    print("List of primal clans subsets:\n", primalClansSubsets)

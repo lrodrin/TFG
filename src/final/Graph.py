@@ -23,13 +23,16 @@ class Graph:
         :param fileDB: SQLite database file
         :param tableName: Table name from fileDB
         """
+        graph = nx.Graph()
         connection = Data.connection(fileDB)  # Connection to SQLite database
         cursor = connection.cursor()
         # TODO tableName = Data.getTableName(fileDB)
         columnNames, rows = Data.select(tableName, cursor)  # Select data from SQLite database
         Graph.addNodes(nx.Graph(), columnNames, rows)  # Adding nodes to a Graph
-        for (u, v) in itertools.combinations(nx.Graph().nodes(), 2):  # All the edges are painted white
-            nx.Graph().add_edge(u, v, color='white')
+        for (u, v) in itertools.combinations(graph.nodes(), 2):  # All the edges are painted white
+            graph.add_edge(u, v, color='white')
+
+        return graph, rows
 
     @staticmethod
     def exportGraphDOT(graph, filename):
@@ -71,10 +74,6 @@ class Graph:
         for i in range(0, len(columnNames)):  # For each column from tableName
             for row in rows:  # For each row from tableName
                 graph.add_node(row[i])  # Add node to graph
-
-    @staticmethod
-    def initialization(graph):
-        pass
 
     @staticmethod
     def createPlanarGraph(graph, rows):

@@ -9,3 +9,13 @@ Distributed under MIT license
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
+
+
+@staticmethod
+def graphOptions(option, graph, rows):
+    if option == 1:
+        g.Graph.planarGraph(graph, rows)
+    elif option == 2:
+        g.Graph.linearGraph(graph, rows)
+    elif option == 3:
+        g.Graph.exponentialGraph(graph, rows)

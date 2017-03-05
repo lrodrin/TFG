@@ -14,7 +14,7 @@ import pydot
 import sys
 
 import subprocess
-import src.final.Clan as c
+from src.final import Clan
 import src.final.Graph as g
 
 __author__ = 'Laura Rodriguez Navas'
@@ -84,7 +84,7 @@ class Estructura:
 
         :param primalsList: List of primal clans
         :type primalsList: list
-        :return: A dictionary with the subsets from primalsList
+        :return: A dictionary with the subsets from primalClansList
         :rtype: dict
         """
         dictionary = defaultdict(list)  # Empty dictionary
@@ -132,8 +132,8 @@ class Estructura:
 
     @staticmethod
     def planarStructure(graph, setNodes):
-        clansList = c.Clan.clans(graph, setNodes)
-        primalsList = c.Clan.primalClans(clansList)
+        clansList = Clan.clans(graph, setNodes)
+        primalsList = Clan.primalClans(clansList)
         edgesAttr = g.Graph.create_dict_from_graph(graph)
         primalsDict = OrderedDict(reversed(sorted(Estructura.primalSubsets(primalsList).items(),
                                                     key=lambda t: len(t[0]))))

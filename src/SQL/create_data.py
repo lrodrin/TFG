@@ -28,8 +28,8 @@ cur = connection.cursor()
 
 try:
     file = open('C:/Users/Laura/PycharmProjects/TFG/src/SQL/meteo.txt', 'r')  # Open data file
-    # pathFile = str(input("Please enter a path from data file: "))
-    # file = open(pathFile, 'r')
+    # dataFile = str(input("Please enter a path from data file: "))
+    # file = open(dataFile, 'r')
 except IOError as e:
     print("Error:", e)
 
@@ -37,7 +37,7 @@ lines = file.readlines()  # Keep all lines from data file into lines
 header = lines[0]  # Extract the header from lines
 colNames = ""
 for word in header.split(" "):  # For each word from header
-    colNames += word + ", "  # Adding a column into colNames
+    colNames += word + ", "  # Adding a column into columnNames
 
 try:
     tableName = str(input("Please enter a name for the database table: "))

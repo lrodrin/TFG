@@ -6,43 +6,26 @@ Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
-import src.final.Data as d
-import src.final.Estructura as e
-import src.final.Graph as g
+from src.final.Data import *
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 if __name__ == "__main__":
-    pathBD = str(input("Please enter a path from database file: "))
-    # TODO s'ha de canviar perque nomes accepti el nom del fitxer, pero per les proves de moment no
-    # C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db
-    # /Users/laura/PycharmProjects/TFG/src/SQL/BD.db
-    connection = d.Data.connection(pathBD)  # Connection to database
+    fileDB = str(input("Please enter a database SQLite file:\n"))
+    # C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db  WINDOWS
+    # /Users/laura/PycharmProjects/TFG/src/SQL/BD.db    OS X
+    connection = Data.connection(fileDB)  # Connection to SQLite database
     cursor = connection.cursor()
 
-    pathFile = str(input("Please enter a path from data file: "))
-    # TODO s'ha de canviar perque nomes accepti el nom del fitxer, pero per les proves de moment no
-    # TODO ARFF format def fileType() a Data
-    # C:/Users/Laura/PycharmProjects/TFG/src/SQL/meteo.txt
-    # /Users/laura/PycharmProjects/TFG/src/SQL/meteo.txt
-    file = d.Data.open_file(pathFile)  # Open data file
+    dataFile = str(input("Please enter data file:\n"))
+    # TODO ARFF format
+    # C:/Users/Laura/PycharmProjects/TFG/src/SQL/meteo.txt  WINDOWS
+    # /Users/laura/PycharmProjects/TFG/src/SQL/meteo.txt    OS X
+    file = Data.openFile(dataFile)  # Open data file
+    columnNames, lines = Data.getDataFile(file)  # Get column names and lines from file
 
-    colNames, lines = d.Data.get_data_from_file(file)  # Keep column names and lines from data file
-
-    tableName = str(input("Please enter a name for the database table: "))
-
-    # d.Data.create_table(cursor, tableName, colNames)  # Create tableName
-    # d.Data.insert(tableName, colNames, lines, cursor, connection)  # Insert data to tableName
-    colNames, rows = d.Data.select(tableName, cursor)  # Select data from tableName
-
-    graphType = int(input("Please enter the option of graph you want to create:\n [1] = planar\n [2] = linear\n [3] "
-                          "= exponential\n"))
-    graph = g.Graph.G
-    g.Graph.addNodes(graph, colNames, rows)  # add nodes
-    d.Data.graphOptions(graphType, graph, rows)
-
-    print("Open Graphviz program...")
-    # e.Estructura.openGraphviz('/Applications/Graphviz.app', 'Estructura.dot')  # OS X
-    e.Estructura.openGraphviz('', 'Estructura.dot')  # WINDOWS
-    d.Data.close(file, cursor, connection)
+    tableName = str(input("Table name: \n"))
+    Data.createTable(cursor, tableName, columnNames)  # Create table tableName
+    Data.insert(tableName, columnNames, lines, cursor, connection)  # Insert data to tableName
+    columnNames, rows = Data.select(tableName, cursor)  # Select column names and rows from tableName

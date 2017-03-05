@@ -37,11 +37,11 @@ except IOError as e:
 # lines = file.readlines()  # Keep all lines from data file into lines
 # header = lines[0]  # Extract the header from lines
 # for word in header.split(" "):  # For each word from header
-#     colNames += word + ", "  # Adding a column into colNames
+#     columnNames += word + ", "  # Adding a column into columnNames
 
 tableName = str(input("Please enter a name for the database table: "))
 # try:
-#     query = "CREATE TABLE %s (%s);" % (str(tableName), str(colNames[0:-2]))  # Create a table
+#     query = "CREATE TABLE %s (%s);" % (str(tableName), str(columnNames[0:-2]))  # Create a table
 #     cur.execute(query)
 #     print("Created table %s..." % tableName)
 # except sqlite3.Error as e:
@@ -51,7 +51,7 @@ tableName = str(input("Please enter a name for the database table: "))
 #     for col in lines[i].split(" "):  # For each column in lines[i]
 #         values += "'%s'," % col.split(":")[1]  # Extract and save the value
 #     try:
-#         query = 'INSERT INTO {0} ({1}) VALUES ({2});'.format(str(tableName), str(colNames[0:-2]),
+#         query = 'INSERT INTO {0} ({1}) VALUES ({2});'.format(str(tableName), str(columnNames[0:-2]),
 #                                                              str(values[0:-1]).replace('\n', ''))
 #
 #         # Insert values to table

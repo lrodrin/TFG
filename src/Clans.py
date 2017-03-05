@@ -13,7 +13,7 @@ def isAClan(Graph, subSet):
     :return: b
     :rtype: True if successful, False otherwise
     """
-    diff = set(Graph.nodes()).difference(subSet)  # Subset formed by all nodes of G less subset passed as argument
+    diff = set(Graph.nodes()).difference(subSet)  # Subset formed by all nodes of graph less subset passed as argument
     b = True
     for external in diff:  # For each subset of diff
         for (x, y) in itertools.combinations(subSet, 2):  # For each pair (x, y) in the subset combinations

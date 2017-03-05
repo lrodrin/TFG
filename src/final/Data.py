@@ -8,24 +8,22 @@ Distributed under MIT license
 """
 import sqlite3
 
-from src.final import Graph as g
-
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 
 class Data:
     @staticmethod
-    def connection(db_file):
+    def connection(fileDB):
         """
-            Create a database connection to the SQLite database specified by db_file
+        Create a database connection to the SQLite database specified by fileDB
 
-        :param db_file: Database file
+        :param fileDB: Database SQLite file
         :return: Connection object or None
         """
         try:
-            connection = sqlite3.connect(db_file)
-            print("Connection performed to", db_file)
+            connection = sqlite3.connect(fileDB)
+            print("Connection successful to", fileDB)
             return connection
         except sqlite3.Error as e:
             print("Error:", e)
@@ -33,16 +31,16 @@ class Data:
         return None
 
     @staticmethod
-    def open_file(path):
+    def openFile(dataFile):
         """
-            Open a file from path specified by path
+        Open data file specified by dataFile
 
-        :param path: Path to file
+        :param dataFile: Data file
         :return: File object or None
         """
         try:
-            file = open(path, 'r')
-            print("File opened from", path)
+            file = open(dataFile, 'r')
+            print("File opened from", dataFile)
             return file
         except IOError as e:
             print("Error:", e)
@@ -50,74 +48,88 @@ class Data:
         return None
 
     @staticmethod
-    def get_data_from_file(file):
+    def getDataFile(dataFile):  # TODO per ARFF, 2 funcions diferents o modificar aquesta
         """
-            Get column names and all lines from file
+        Get column names and all lines from file specified by dataFile
 
-        :param file: File
-        :return: Column names and lines
+        :param dataFile: Data file
+        :return: Column names and lines from dataFile
         """
-        colNames = ""
-        lines = file.readlines()  # Keep all lines from data file into lines
-        header = lines[0]  # Extract the header from lines
-        for word in header.split(" "):  # For each word from header
-            colNames += word + ", "  # Adding a column into colNames
-        return colNames, lines
+        columnNames = ""
+        lines = dataFile.readlines()  # Keep all lines from dataFile into lines
+        header = lines[0]  # Extract the header line from dataFile
+        for word in header.split(" "):  # For each word in header
+            columnNames += word + ", "  # Adding column name into columnNames
+        return columnNames, lines
 
     @staticmethod
-    def create_table(cursor, tableName, colNames):
+    def createTable(cursor, tableName, columnNames):
         """
-            Create a table for SQLite database
+        Create a table specified by tableName in SQLite database
 
-        :param cursor: Connection cursor to database
+        :param cursor: Connection cursor
         :param tableName: Table name
-        :param colNames: Column names
+        :param columnNames: Column names
         """
         try:
-            query = "CREATE TABLE %s (%s);" % (str(tableName), str(colNames[0:-2]))  # SQL query
+            query = "CREATE TABLE %s (%s);" % (str(tableName), str(columnNames[0:-2]))  # SQLite query
             cursor.execute(query)
-            print("Table %s created" % tableName)
+            print("Table %s was created" % tableName)
         except sqlite3.Error as e:
             print("Error:", e)
 
     @staticmethod
-    def insert(tableName, colNames, lines, cursor, connection):
+    def insert(tableName, columnNames, lines, cursor, connection):
         """
-            Insert values to table tableName for SQLite database
+        Insert values to table specified by tableName in SQLite database
 
         :param tableName: Table name
-        :param colNames: Column names
-        :param lines: Lines from data file
+        :param columnNames: Column names
+        :param lines: Lines from a data file
         :param cursor: Connection cursor
         :param connection: Connection object
         """
         values = ""
-        for i in range(1, len(lines)):  # For each row from data file
-            for col in lines[i].split(" "):  # For each column in lines[i]
-                values += "'%s'," % col.split(":")[1]  # Extract and save the values
+        for line in range(1, len(lines)):  # For each line from data file
+            for column in lines[line].split(" "):  # For each column in lines[line]
+                values += "'%s'," % column.split(":")[1]  # Extract and keep values in values
             try:
-                query = 'INSERT INTO {0} ({1}) VALUES ({2});'.format(str(tableName), str(colNames[0:-2]),
+                query = 'INSERT INTO {0} ({1}) VALUES ({2});'.format(str(tableName), str(columnNames[0:-2]),
                                                                      str(values[0:-1]).replace('\n', ''))
-                # SQL query
+                # SQLite query
                 cursor.execute(query)
-                print("Row[%d] inserted" % i)
-                print(query)
                 connection.commit()
+                print("Row[%d] %s inserted" % (line, query))
             except sqlite3.Error as e:
                 print("Error:", e)
+
             values = ""
 
     @staticmethod
-    def close(file, cursor, connection):
+    def select(tableName, cursor):
         """
-            Close the open file, cursor and connection database
-        :param file: File
+        Select rows from a table specified by tableName in SQLite database
+
+        :param tableName: Table name
+        :param cursor: Connection cursor
+        :return: Column names and all rows from tableName
+        """
+        cursor.execute("SELECT * FROM %s" % tableName)
+        columnNames = [description[0] for description in cursor.description]
+        rows = cursor.fetchall()
+        return columnNames, rows
+
+    @staticmethod
+    def close(dataFile, cursor, connection):
+        """
+        Close opened data file, cursor connection and connection to SQLite database
+
+        :param dataFile: Data file
         :param cursor: Connection cursor
         :param connection: Connection object
         """
         try:
-            file.close()
-            print("File closed")
+            dataFile.close()
         except IOError as e:
             print("Error:", e)
         try:
@@ -126,29 +138,5 @@ class Data:
             print("Error:", e)
         try:
             connection.close()
-            print("Connection closed")
         except IOError as e:
             print("Error:", e)
-
-    @staticmethod
-    def select(tableName, cursor):
-        """
-            Select values from a table specified by tableName
-
-        :param tableName: Table name
-        :param cursor: Connection cursor
-        :return: Column names and all the rows from tableName
-        """
-        cursor.execute("SELECT * FROM %s" % tableName)
-        colNames = [description[0] for description in cursor.description]
-        rows = cursor.fetchall()
-        return colNames, rows
-
-    @staticmethod
-    def graphOptions(option, graph, rows):
-        if option == 1:
-            g.Graph.planarGraph(graph, rows)
-        elif option == 2:
-            g.Graph.linearGraph(graph, rows)
-        elif option == 3:
-            g.Graph.exponentialGraph(graph, rows)

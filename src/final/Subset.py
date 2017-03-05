@@ -32,7 +32,7 @@ class Subset:
             Return a list that contains all subsets from a Graph
 
         :param setNodes: Set of nodes from a graph
-        :type setNodes: set
+        :type setNodes: list
         :return: List of all subsets from a graph
         :rtype: list
         """

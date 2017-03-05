@@ -6,11 +6,8 @@ Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
-import os
-import subprocess
-import sys
-import pydot
 from collections import OrderedDict
+import pydot
 from src.final.Clan import *
 from src.final.Graph import *
 
@@ -54,7 +51,7 @@ class Estructura:
 
             for pair in itertools.combinations(value, 2):  # For each pair of combinations from primal clan values
                 subgraph.add_edge(pydot.Edge("s_%s" % "".join(pair[0]), "s_%s" % "".join(pair[1]), arrowhead="none",
-                                             color=Estructura.getColorClans(EdgesAtributtes, pair[0], pair[1])))
+                                             color=Clan.getColorClans(EdgesAtributtes, pair[0], pair[1])))
                 #  Add edge into subgraph
             cluster.add_subgraph(subgraph)  # Add subgraph to cluster
             callgraph.add_subgraph(cluster)  # Add cluster to DOT file
@@ -74,27 +71,21 @@ class Estructura:
                 # values as a edge
 
         callgraph.write(filename)  # Write a DOT file with all previous information
-
-
-
-    @staticmethod
-    def openGraphviz(program, filename):
-        """
-            Call the Graphviz program that is associated with a 2-structure file
-
-        :param program: Path to Graphviz program
-        :param filename: Path to 2-structure file
-        """
-        if sys.platform == 'win32':  # Windows platform
-            os.startfile(filename)
-        else:  # Linux platform
-            subprocess.run(['open', '-a', program, filename])
+        print("2-structure %s was created" % filename)
 
     @staticmethod
-    def planarStructure(graph, setNodes):
-        clansList = Clan.clans(graph, setNodes)
-        primalsList = Clan.primalClans(clansList)
-        edgesAttr = g.Graph.create_dict_from_graph(graph)
-        primalsDict = OrderedDict(reversed(sorted(Estructura.primalClansSubsets(primalsList).items(),
-                                                  key=lambda t: len(t[0]))))
-        return Estructura.create2structure(edgesAttr, primalsDict, 'planar-structure.dot')
+    def planar2structure(planarGraph, nodes):
+        clansList = Clan.clans(planarGraph, nodes)
+        primalClansList = Clan.primalClans(clansList)
+        EdgesAtributtes = Graph.createDictFromGraph(planarGraph)
+        primalClansDict = OrderedDict(reversed(sorted(Clan.primalClansSubsets(primalClansList).items(),
+                                                      key=lambda t: len(t[0]))))
+        return Estructura.create2structure(EdgesAtributtes, primalClansDict, 'planar2structure.dot')
+
+    @staticmethod
+    def linear2structure(linearGraph, nodes):
+        pass
+
+    @staticmethod
+    def exponential2structure(exponentialGraph, nodes):
+        pass

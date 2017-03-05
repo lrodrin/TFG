@@ -42,5 +42,5 @@ if __name__ == "__main__":
     print("List of primal clans:\n", primalsList)
     print("-" * 20)
 
-    print("Dictionary of the graph:\n", g.Graph.create_dict_from_graph(G))
+    print("Dictionary of the graph:\n", g.Graph.createDictFromGraph(G))
     print("-" * 20)

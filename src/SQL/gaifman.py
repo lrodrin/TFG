@@ -80,7 +80,7 @@ linearGraph, linearDOT = g.Graph.linearGraph(graph, rows)
 # exponentialGraph, exponentialDOT = g.Graph.exponentialGraph(graph, rows)
 
 # planar structure
-e.Estructura.planarStructure(planarGraph, set(planarGraph.nodes()))
+e.Estructura.planar2structure(planarGraph, set(planarGraph.nodes()))
 # linear structure
 # exponential structure
 

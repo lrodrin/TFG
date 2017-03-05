@@ -51,7 +51,7 @@ class Graph:
         nx.nx_pydot.write_dot(graph, name)  # export Graph in Graphviz dot format
 
     @staticmethod
-    def create_dict_from_graph(graph):
+    def createDictFromGraph(graph):
         """
             Return a dictionary of attributes keyed by edge from a Graph
 

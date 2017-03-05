@@ -25,5 +25,5 @@ if __name__ == "__main__":
     G = g.Graph.creating_and_coloring_graph(nnodes=nnodes, nequivalences=ncolors, colorList=colorList)
     print("Create dot file from graph...")
     g.Graph.create_dot_file_from_graph(G, 'Graph.dot')
-    print("Dictionary of the graph:\n", g.Graph.create_dict_from_graph(G))
+    print("Dictionary of the graph:\n", g.Graph.createDictFromGraph(G))
     print("-" * 20)

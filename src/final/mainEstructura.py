@@ -6,12 +6,10 @@ Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
-from collections import OrderedDict
-import src.final.Estructura as e
+from src.final.Estructura import *
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
-
 
 if __name__ == "__main__":
     primalsList_1 = [frozenset({'B'}), frozenset({'A'}), frozenset({'D'}), frozenset({'C'}), frozenset({'E'}),
@@ -29,27 +27,15 @@ if __name__ == "__main__":
                                   ('A', 'C'): 'black', ('E', 'C'): 'orange', ('D', 'E'): 'orange', ('D', 'F'): 'blue',
                                   ('A', 'F'): 'green', ('E', 'F'): 'red', ('B', 'F'): 'green'}
 
-    primalsDict_1 = OrderedDict(reversed(sorted(e.Estructura.primalClansSubsets(primalsList_1).items(),
-                                                key=lambda t: len(t[0]))))  # dictionary sorted by length of the
-    # key string
-    print("First primals list:\n", primalsDict_1)
-
-    primalsDict_2 = OrderedDict(reversed(sorted(e.Estructura.primalClansSubsets(primalsList_2).items(),
+    primalsDict_1 = OrderedDict(reversed(sorted(Clan.primalClansSubsets(primalsList_1).items(),
                                                 key=lambda t: len(t[0]))))
+    primalsDict_2 = OrderedDict(reversed(sorted(Clan.primalClansSubsets(primalsList_2).items(),
+                                                key=lambda t: len(t[0]))))
+
+    print("First primals list:\n", primalsDict_1)
     print("Second primals list:\n", primalsDict_2)
-    print("-" * 20)
 
-    print("Get color from {'E', 'A', 'D', 'B'} and {'C'}:", (e.Estructura.getColorClans(edgesAtributtesfromGraph_1,
-                                                                                        {'E', 'A', 'D', 'B'}, {'C'})))
-    print("Get color from {'A', 'B'} and {'F'}:", (e.Estructura.getColorClans(edgesAtributtesfromGraph_2,
-                                                                              {'A', 'B'}, {'F'})))
-    print("-" * 20)
+    Estructura.create2structure(edgesAtributtesfromGraph_1, primalsDict_1, 'Estructura.dot')
+    Estructura.create2structure(edgesAtributtesfromGraph_2, primalsDict_2, 'Estructura2.dot')
 
-    print("Creating a 2-structure...")
-    e.Estructura.create2structure(edgesAtributtesfromGraph_1, primalsDict_1, 'Estructura.dot')
-    # print("Creating a 2-structure...")
-    # e.Estructura.create_2structure(edgesAtributtesfromGraph_2, primalsDict_2, 'Estructura_2.dot')
-
-    print("Open Graphviz program...")
-    e.Estructura.openGraphviz('/Applications/Graphviz.app', 'Estructura.dot')  # OS X
-    # e.Estructura.openGraphviz('', 'Estructura.dot')  # WINDOWS
+    # TODO proves planar2structure, linear2structure i exponential2structure

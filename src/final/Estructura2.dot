@@ -1,0 +1,54 @@
+digraph G {
+compound=True;
+E;
+F;
+B;
+A;
+D;
+C;
+subgraph cluster_FEBCAD {
+s_AB [fillcolor=white, fixedsize=True, width=0.2, label=" "];
+s_DC [fillcolor=white, fixedsize=True, width=0.2, label=" "];
+s_E [fillcolor=white, fixedsize=True, width=0.2, label=" "];
+s_F [fillcolor=white, fixedsize=True, width=0.2, label=" "];
+subgraph  {
+rank=same;
+s_AB -> s_DC  [arrowhead=none, color=black];
+s_AB -> s_E  [arrowhead=none, color=black];
+s_AB -> s_F  [arrowhead=none, color=green];
+s_DC -> s_E  [arrowhead=none, color=orange];
+s_DC -> s_F  [arrowhead=none, color=blue];
+s_E -> s_F  [arrowhead=none, color=red];
+}
+
+}
+
+subgraph cluster_AB {
+s_B [fillcolor=white, fixedsize=True, width=0.2, label=" "];
+s_A [fillcolor=white, fixedsize=True, width=0.2, label=" "];
+subgraph  {
+rank=same;
+s_B -> s_A  [arrowhead=none, color=black];
+}
+
+}
+
+subgraph cluster_DC {
+s_D [fillcolor=white, fixedsize=True, width=0.2, label=" "];
+s_C [fillcolor=white, fixedsize=True, width=0.2, label=" "];
+subgraph  {
+rank=same;
+s_D -> s_C  [arrowhead=none, color=red];
+}
+
+}
+
+s_E -> E  [arrowhead=none];
+s_F -> F  [arrowhead=none];
+s_B -> B  [arrowhead=none];
+s_A -> A  [arrowhead=none];
+s_D -> D  [arrowhead=none];
+s_C -> C  [arrowhead=none];
+s_AB -> s_B  [arrowhead=none, lhead=cluster_AB];
+s_DC -> s_D  [arrowhead=none, lhead=cluster_DC];
+}

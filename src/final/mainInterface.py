@@ -20,3 +20,7 @@ graphType = int(input("Please enter the option of graph you want to create:\n [1
     # e.Estructura.openGraphviz('/Applications/Graphviz.app', 'Estructura.dot')  # OS X
     e.Estructura.openGraphviz('', 'Estructura.dot')  # WINDOWS
     d.Data.close(file, cursor, connection)
+
+print("Open Graphviz program...")
+    e.Estructura.openGraphviz('/Applications/Graphviz.app', 'Estructura.dot')  # OS X
+    # e.Estructura.openGraphviz('', 'Estructura.dot')  # WINDOWS

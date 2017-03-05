@@ -19,3 +19,17 @@ def graphOptions(option, graph, rows):
         g.Graph.linearGraph(graph, rows)
     elif option == 3:
         g.Graph.exponentialGraph(graph, rows)
+
+
+@staticmethod
+    def openGraphviz(program, filename):
+        """
+            Call the Graphviz program that is associated with a 2-structure file
+
+        :param program: Path to Graphviz program
+        :param filename: Path to 2-structure file
+        """
+        if sys.platform == 'win32':  # Windows platform
+            os.startfile(filename)
+        else:  # Linux platform
+            subprocess.run(['open', '-a', program, filename])

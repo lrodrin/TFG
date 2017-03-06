@@ -44,3 +44,8 @@ if __name__ == "__main__":
     graph, rows = Graph.createGraph('C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db', 'test')
     plainGraph = Graph.createPlainGraph(graph, rows)
     edgesAtributtesfromGraph = Graph.createDictFromGraph(plainGraph)
+    clansList = Clan.clans(plainGraph, plainGraph.nodes())
+    primalClansList = Clan.primalClans(clansList)
+    primalsDict = OrderedDict(reversed(sorted(Clan.primalClansSubsets(primalClansList).items(),
+                                              key=lambda t: len(t[0]))))
+    Estructura.create2structure(edgesAtributtesfromGraph, primalsDict, 'plain2structure.dot')

@@ -33,10 +33,11 @@ class Clan:
         b = True
         for external in diff:  # For each subset of diff
             for (x, y) in itertools.combinations(subSet, 2):  # For each pair (x, y) in the subset combinations
-                colorX = graph.edge[external][x]['color']
-                colorY = graph.edge[external][y]['color']
-                if colorX != colorY:  # Pair (x, y) not the same colored
-                    b = False
+                if graph.has_edge(external, x) and graph.has_edge(external, y):
+                    colorX = graph.edge[external][x]['color']
+                    colorY = graph.edge[external][y]['color']
+                    if colorX != colorY:  # Pair (x, y) not the same colored
+                        b = False
         return b
 
     @staticmethod

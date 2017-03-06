@@ -82,7 +82,6 @@ class Estructura:
         EdgesAtributtes = Graph.createDictFromGraph(plainGraph)
         primalClansDict = OrderedDict(reversed(sorted(Clan.primalClansSubsets(primalClansList).items(),
                                                       key=lambda t: len(t[0]))))
-        print(clansList, primalClansList, EdgesAtributtes, primalClansDict)
         Estructura.create2structure(EdgesAtributtes, primalClansDict, 'plain2structure.dot')
 
     @staticmethod

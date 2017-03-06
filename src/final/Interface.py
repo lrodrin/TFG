@@ -20,21 +20,25 @@ class Interface:
     def graphOptions(option, graph, rows):
         if option == 1:
             Graph.createPlanarGraph(graph, rows)
-            Interface.openGraphviz('', 'planarGraph.dot')
+            Interface.openGraphviz(sys.platform, 'planarGraph.dot')
         elif option == 2:
             Graph.createLinearGraph(graph, rows)
+            Interface.openGraphviz(sys.platform, 'linearGraph.dot')
         elif option == 3:
             Graph.createExponentialGraph(graph, rows)
+            Interface.openGraphviz(sys.platform, 'exponentialGraph.dot')
 
     @staticmethod
-    def openGraphviz(program, filename):
+    def openGraphviz(sysPlatform, filename):
         """
         Call the Graphviz program that is associated with a DOT file
 
-        :param program:
-        :param filename:
+        :param sysPlatform:
+        :param filename: DOT file
+        :type sysPlatform: str
+        :type filename: str
         """
         if sys.platform == 'win32':  # Windows platform
             os.startfile(filename)
         else:  # Linux platform
-            subprocess.run(['open', '-a', program, filename])
+            subprocess.run(['open', '-a', sysPlatform, filename])

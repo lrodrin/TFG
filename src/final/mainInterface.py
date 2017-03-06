@@ -22,5 +22,3 @@ if __name__ == '__main__':
                        "= exponential\n"))
 
     Interface.graphOptions(option, graph, rows)
-    # Interface.openGraphviz('/Applications/Graphviz.app', 'Estructura.dot')  # OS X
-    # Interface.openGraphviz('', 'planarGraph.dot')  # WINDOWS

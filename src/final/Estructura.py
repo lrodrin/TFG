@@ -76,10 +76,10 @@ class Estructura:
         print("2-structure %s was created" % filename)
 
     @staticmethod
-    def plain2structure(planarGraph, nodes):
-        clansList = Clan.clans(planarGraph, nodes)
+    def plain2structure(plainGraph, nodes):
+        clansList = Clan.clans(plainGraph, nodes)
         primalClansList = Clan.primalClans(clansList)
-        EdgesAtributtes = Graph.createDictFromGraph(planarGraph)
+        EdgesAtributtes = Graph.createDictFromGraph(plainGraph)
         primalClansDict = OrderedDict(reversed(sorted(Clan.primalClansSubsets(primalClansList).items(),
                                                       key=lambda t: len(t[0]))))
         print(clansList, primalClansList, EdgesAtributtes, primalClansDict)

@@ -27,7 +27,7 @@ except sqlite3.Error as e:
 cur = connection.cursor()
 
 try:
-    file = open('C:/Users/Laura/PycharmProjects/TFG/src/SQL/meteo.txt', 'r')  # Open data file
+    file = open('C:/Users/Laura/PycharmProjects/TFG/src/SQL/weather.txt', 'r')  # Open data file
     # dataFile = str(input("Please enter a path from data file: "))
     # file = open(dataFile, 'r')
 except IOError as e:

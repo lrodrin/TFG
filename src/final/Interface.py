@@ -10,7 +10,7 @@ import os
 import subprocess
 import sys
 
-from src.final.Graph import *
+from src.final.Estructura import *
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
@@ -30,8 +30,13 @@ class Interface:
             Interface.openGraphviz(sys.platform, 'exponentialGraph.dot')
 
     @staticmethod
-    def structureOptions(option):
-        pass
+    def structureOptions(option, graph, primalClansDict):
+        if option == 1:
+            Estructura.create2structure(Graph.createDictFromGraph(graph), primalClansDict, 'plain2structure.dot')
+        elif option == 2:
+            Estructura.create2structure(Graph.createDictFromGraph(graph), primalClansDict, 'linear2structure.dot')
+        elif option == 3:
+            Estructura.create2structure(Graph.createDictFromGraph(graph), primalClansDict, 'exponential2structure.dot')
 
     @staticmethod
     def openGraphviz(sysPlatform, filename):

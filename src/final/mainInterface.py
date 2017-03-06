@@ -15,7 +15,8 @@ __license__ = 'MIT'
 if __name__ == '__main__':
     # 'C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db'  # WINDOWS
     # '/Users/laura/PycharmProjects/TFG/src/SQL/BD.db'    # OS X
-    graph, rows = Graph.createGraph('C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db', 'test')
+    tableName = str(input("Please enter a name for the database table: "))
+    graph, rows = Graph.createGraph('C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db', tableName)
 
     option = int(input("Please enter the option of graph you want to create:\n [1] = planar\n [2] = linear\n [3] "
                        "= exponential\n"))

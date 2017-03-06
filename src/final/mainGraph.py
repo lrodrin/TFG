@@ -15,6 +15,12 @@ __license__ = 'MIT'
 # connection = sqlite3.connect('/Users/laura/PycharmProjects/TFG/src/SQL/BD.db')    # OS X
 tableName = str(input("Please enter a name for the database table: "))
 graph, rows = Graph.createGraph('C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db', tableName)
-Graph.createPlanarGraph(graph, rows)
-Graph.createLinearGraph(graph, rows)
-Graph.createExponentialGraph(graph, rows)
+
+option = int(input("Please enter the option of graph you want to create:\n [1] = planar\n [2] = linear\n [3] "
+                   "= exponential\n"))
+if option == 1:
+    Graph.createPlanarGraph(graph, rows)
+elif option == 2:
+    Graph.createLinearGraph(graph, rows)
+elif option == 3:
+    Graph.createExponentialGraph(graph, rows)

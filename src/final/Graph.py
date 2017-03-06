@@ -109,4 +109,4 @@ class Graph:
 
     @staticmethod
     def createExponentialGraph(graph, rows):
-        pass
+        return graph, Graph.exportGraphDOT(graph, 'exponentialGraph.dot')

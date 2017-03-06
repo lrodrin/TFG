@@ -20,7 +20,7 @@ class Interface:
     def graphOptions(option, graph, rows):
         if option == 1:
             Graph.createPlainGraph(graph, rows)
-            Interface.openGraphviz(sys.platform, 'planarGraph.dot')
+            Interface.openGraphviz(sys.platform, 'plainGraph.dot')
         elif option == 2:
             Graph.createLinearGraph(graph, rows)
             Interface.openGraphviz(sys.platform, 'linearGraph.dot')

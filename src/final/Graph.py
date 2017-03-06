@@ -97,8 +97,7 @@ class Graph:
 
         # painting edges by label
         colors = {0: 'white', 1: 'black', 2: 'cyan', 3: 'green', 4: 'magenta', 5: 'orange', 6: 'purple', 7: 'red',
-                  8: 'yellow',
-                  9: 'brown'}
+                  8: 'yellow', 9: 'brown'}
         for key, value in colors.items():
             for u, v in graph.edges():
                 if 'label' in graph[u][v] and key == graph[u][v]['label']:
@@ -109,4 +108,28 @@ class Graph:
 
     @staticmethod
     def createExponentialGraph(graph, rows):
+        Graph.createLinearGraph(graph, rows)
+        # painting edges by label
+        for (u, v) in graph.edges():
+            if 0 <= graph[u][v]['label'] < 1:
+                graph[u][v]['color'] = 'white'
+            elif 1 <= graph[u][v]['label'] < 2:
+                graph[u][v]['color'] = 'black'
+            elif 2 <= graph[u][v]['label'] < 4:
+                graph[u][v]['color'] = 'cyan'
+            elif 4 <= graph[u][v]['label'] < 8:
+                graph[u][v]['color'] = 'green'
+            elif 8 <= graph[u][v]['label'] < 16:
+                graph[u][v]['color'] = 'magenta'
+            elif 16 <= graph[u][v]['label'] < 32:
+                graph[u][v]['color'] = 'orange'
+            elif 32 <= graph[u][v]['label'] < 64:
+                graph[u][v]['color'] = 'purple'
+            elif 64 <= graph[u][v]['label'] < 128:
+                graph[u][v]['color'] = 'red'
+            elif 128 <= graph[u][v]['label'] < 256:
+                graph[u][v]['color'] = 'yellow'
+            else: graph[u][v]['color'] = 'brown'
+
+        # TODO s'han d'amagar els labels
         return graph, Graph.exportGraphDOT(graph, 'exponentialGraph.dot')

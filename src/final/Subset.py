@@ -16,9 +16,9 @@ class Subset:
     @staticmethod
     def powerset_generator(aset):
         """
-            Iterator on powerset: all subsets of aset
+        Iterator on powerset: all subsets of aset
 
-        :param aset: Subset of nodes from NetworkX graph
+        :param aset: Subsets from NetworkX's graph
         :type aset: set
         :return: subset
         :rtype: set
@@ -27,16 +27,16 @@ class Subset:
             yield set(subset)
 
     @staticmethod
-    def powerset_list(setNodes):
+    def powerset_list(nodes):
         """
-            Return a list that contains all subsets from a Graph
+        Return a list that contains all subsets from a graph
 
-        :param setNodes: Set of nodes from a graph
-        :type setNodes: list
+        :param nodes: Nodes from a graph
+        :type nodes: list
         :return: List of all subsets from a graph
         :rtype: list
         """
-        subsetList = []  # Empty list
-        for subset in Subset.powerset_generator(setNodes):  # Subset iterator of each set in setNodes
+        subsetList = []
+        for subset in Subset.powerset_generator(nodes):  # Subset iterator of each set in nodes
             subsetList.append(subset)  # Add subset to the list
         return subsetList

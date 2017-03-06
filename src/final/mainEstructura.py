@@ -40,7 +40,7 @@ if __name__ == "__main__":
 
     # TODO proves planar2structure, linear2structure i exponential2structure
     tableName = str(input("Please enter a name for the database table: "))
-    planarGraph, rows = Graph.graphInitialization('C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db', tableName)
-    linearGraph, rows = Graph.graphInitialization('C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db', tableName)
+    planarGraph, rows = Graph.createGraph('C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db', tableName)
+    linearGraph, rows = Graph.createGraph('C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db', tableName)
     Estructura.planar2structure(planarGraph, planarGraph.nodes())
     Estructura.linear2structure(linearGraph, linearGraph.nodes())

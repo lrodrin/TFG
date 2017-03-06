@@ -14,7 +14,7 @@ __license__ = 'MIT'
 # connection = sqlite3.connect('C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db')  # WINDOWS
 # connection = sqlite3.connect('/Users/laura/PycharmProjects/TFG/src/SQL/BD.db')    # OS X
 tableName = str(input("Please enter a name for the database table: "))
-graph, rows = Graph.graphInitialization('C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db', tableName)
+graph, rows = Graph.createGraph('C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db', tableName)
 Graph.createPlanarGraph(graph, rows)
-Graph.linearGraph(graph, rows)
-Graph.exponentialGraph(graph, rows)
+Graph.createLinearGraph(graph, rows)
+Graph.createExponentialGraph(graph, rows)

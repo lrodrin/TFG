@@ -16,7 +16,7 @@ __license__ = 'MIT'
 
 class Graph:
     @staticmethod
-    def graphInitialization(fileDB, tableName):
+    def createGraph(fileDB, tableName):
         """
         Create and initializes a Graph from SQLite database source
 
@@ -83,7 +83,7 @@ class Graph:
         return graph, Graph.exportGraphDOT(graph, 'planarGraph.dot')
 
     @staticmethod
-    def linearGraph(graph, rows):
+    def createLinearGraph(graph, rows):
         # labeling edges
         d = dict()
         for row in rows:
@@ -93,7 +93,7 @@ class Graph:
                     graph.edge[u][v]['label'] += 1
                 else:
                     d[(u, v)] = 1
-                    graph.edge[u][v]['label'] = 1
+                    graph.add_edge(u, v, label=1)
 
         # painting edges by label
         colors = {0: 'white', 1: 'black', 2: 'cyan', 3: 'green', 4: 'magenta', 5: 'orange', 6: 'purple', 7: 'red',
@@ -108,5 +108,5 @@ class Graph:
         return graph, Graph.exportGraphDOT(graph, 'linearGraph.dot')
 
     @staticmethod
-    def exponentialGraph(graph, rows):
+    def createExponentialGraph(graph, rows):
         pass

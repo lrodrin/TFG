@@ -21,4 +21,5 @@ def open_graphviz(program, filename):
     else:
         subprocess.run(['open', '-a', program, filename])
 
+
 open_graphviz('/Applications/Graphviz.app', 'graphviz.dot')

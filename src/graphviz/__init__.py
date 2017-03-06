@@ -1,1 +1,0 @@
-__author__ = "\"Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>"""

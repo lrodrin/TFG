@@ -1,7 +1,8 @@
-from matplotlib import pyplot as plt
+from math import log
+
 import networkx as nx
 import numpy as np
-from math import log
+from matplotlib import pyplot as plt
 
 
 def drange(start, stop, step):

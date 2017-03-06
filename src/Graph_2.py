@@ -6,8 +6,9 @@ Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
-import networkx as nx
 import itertools
+
+import networkx as nx
 from numpy import random
 
 __author__ = 'Laura Rodriguez Navas'
@@ -31,7 +32,7 @@ class Graph:
             :return: Complete NetworkX's Graph with nnodes and nnequivalences
             :rtype: nx.Graph
         """
-        G = nx.nx.complete_graph(nnodes)    # Graph generator
+        G = nx.nx.complete_graph(nnodes)  # Graph generator
         for (u, v) in G.edges():  # For each edge of Graph the color attribute is assigned randomly
             G.edge[u][v]['color'] = random.choice(colorList[0:nequivalences])
         return G

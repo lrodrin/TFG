@@ -7,7 +7,9 @@ Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
 import itertools
+
 import networkx as nx
+
 from src.final.Data import *
 
 __author__ = 'Laura Rodriguez Navas'
@@ -129,7 +131,8 @@ class Graph:
                 graph[u][v]['color'] = 'red'
             elif 128 <= graph[u][v]['label'] < 256:
                 graph[u][v]['color'] = 'yellow'
-            else: graph[u][v]['color'] = 'brown'
+            else:
+                graph[u][v]['color'] = 'brown'
 
         # TODO s'han d'amagar els labels
         return graph, Graph.exportGraphDOT(graph, 'exponentialGraph.dot')

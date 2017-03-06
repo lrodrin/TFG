@@ -6,6 +6,8 @@ This module implements Vertex and Graph class
 __all__ = ["add_neighbor", "get_connections", "get_id", "get_weight", "add_vertex", "get_vertex", "add_edge",
            "get_vertices"]
 __author__ = "\"Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>"""
+
+
 #    Copyright (C) 2016 by
 #    Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 #    All rights reserved

@@ -7,15 +7,13 @@ Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
 import networkx as nx
-import src.final.Clan as c
+
 import src.final.Graph as g
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
-
 if __name__ == "__main__":
-
     G = nx.Graph()  # Create an empty graph structure (a “null graph”) with no nodes and no edges
     # Adding edges and edges attributes
     G.add_edges_from([('A', 'B'), ('A', 'C'), ('A', 'D'), ('A', 'E'), ('B', 'C'), ('B', 'D'), ('B', 'E')],

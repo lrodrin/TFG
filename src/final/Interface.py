@@ -9,6 +9,7 @@ Distributed under MIT license
 import os
 import subprocess
 import sys
+
 from src.final.Graph import *
 
 __author__ = 'Laura Rodriguez Navas'
@@ -27,6 +28,10 @@ class Interface:
         elif option == 3:
             Graph.createExponentialGraph(graph, rows)
             Interface.openGraphviz(sys.platform, 'exponentialGraph.dot')
+
+    @staticmethod
+    def structureOptions(option):
+        pass
 
     @staticmethod
     def openGraphviz(sysPlatform, filename):

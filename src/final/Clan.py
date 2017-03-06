@@ -7,8 +7,9 @@ Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
 import itertools
-from src.final.Subset import *
 from collections import defaultdict
+
+from src.final.Subset import *
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'

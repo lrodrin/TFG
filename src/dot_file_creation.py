@@ -7,11 +7,11 @@ Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
 import pydot
+
 import src.final.Clan as c
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
-
 
 clansList = [{'A'}, {'B'}, {'D'}, {'C'}, {'E'}, {'E', 'D'}, {'A', 'D', 'E'}, {'A', 'B', 'D', 'E'},
              {'A', 'B', 'D', 'C', 'E'}]  # List of clans

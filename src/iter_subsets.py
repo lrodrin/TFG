@@ -43,5 +43,5 @@ def powerset_generator(aset):
     """
         iterator on powerset: all subsets of aset
     """
-    for subset in chain.from_iterable(combinations(aset, r) for r in range(1, len(aset)+1)):
+    for subset in chain.from_iterable(combinations(aset, r) for r in range(1, len(aset) + 1)):
         yield set(subset)

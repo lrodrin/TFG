@@ -7,11 +7,11 @@ Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
 import networkx as nx
+
 import src.final.Subset as it
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
-
 
 if __name__ == "__main__":
     G = nx.Graph()  # Create an empty graph structure (a “null graph”) with no nodes and no edges

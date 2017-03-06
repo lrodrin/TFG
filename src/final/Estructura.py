@@ -7,7 +7,9 @@ Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
 from collections import OrderedDict
+
 import pydot
+
 from src.final.Clan import *
 from src.final.Graph import *
 
@@ -81,7 +83,7 @@ class Estructura:
         primalClansDict = OrderedDict(reversed(sorted(Clan.primalClansSubsets(primalClansList).items(),
                                                       key=lambda t: len(t[0]))))
         print(clansList, primalClansList, EdgesAtributtes, primalClansDict)
-        Estructura.create2structure(EdgesAtributtes, primalClansDict, 'planar2structure.dot')
+        Estructura.create2structure(EdgesAtributtes, primalClansDict, 'plain2structure.dot')
 
     @staticmethod
     def linear2structure(linearGraph, nodes):

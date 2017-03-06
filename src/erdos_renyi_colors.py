@@ -1,4 +1,5 @@
 import random
+
 import networkx as nx
 from matplotlib import pyplot as plt
 
@@ -32,6 +33,5 @@ edge_color_list = [G[u][v]['color'] for (u, v) in G.edges()]
 nx.draw(G, edge_color=edge_color_list, with_labels=nx.spring_layout(G))
 plt.suptitle("Erdös-Rényi Graph with color sequence and labels", fontsize=11)
 plt.show()
-
 
 nx.nx_pydot.write_dot(G, 'erdos_renyi_colors.dot')

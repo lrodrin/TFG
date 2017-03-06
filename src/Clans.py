@@ -33,7 +33,7 @@ def isATrivialClan(subSet):
     :return: b
     :rtype: True if successful, False otherwise
     """
-    if len(subSet) == 0 or len(subSet) == 1:    # Empty clan or clan that contains one element
+    if len(subSet) == 0 or len(subSet) == 1:  # Empty clan or clan that contains one element
         return True
     else:
         return False

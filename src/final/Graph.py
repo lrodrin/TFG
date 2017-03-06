@@ -76,11 +76,11 @@ class Graph:
                 graph.add_node(row[i])  # Add node to graph
 
     @staticmethod
-    def createPlanarGraph(graph, rows):
+    def createPlainGraph(graph, rows):
         for row in rows:
             for (u, v) in itertools.combinations(row, 2):
                 graph.add_edge(u, v, color='black')
-        return graph, Graph.exportGraphDOT(graph, 'planarGraph.dot')
+        return graph, Graph.exportGraphDOT(graph, 'plainGraph.dot')
 
     @staticmethod
     def createLinearGraph(graph, rows):

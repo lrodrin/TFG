@@ -42,5 +42,5 @@ if __name__ == "__main__":
     tableName = str(input("Please enter a name for the database table: "))
     planarGraph, rows = Graph.createGraph('C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db', tableName)
     linearGraph, rows = Graph.createGraph('C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db', tableName)
-    Estructura.planar2structure(planarGraph, planarGraph.nodes())
+    Estructura.plain2structure(planarGraph, planarGraph.nodes())
     Estructura.linear2structure(linearGraph, linearGraph.nodes())

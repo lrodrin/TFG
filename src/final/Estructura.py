@@ -74,7 +74,7 @@ class Estructura:
         print("2-structure %s was created" % filename)
 
     @staticmethod
-    def planar2structure(planarGraph, nodes):
+    def plain2structure(planarGraph, nodes):
         clansList = Clan.clans(planarGraph, nodes)
         primalClansList = Clan.primalClans(clansList)
         EdgesAtributtes = Graph.createDictFromGraph(planarGraph)

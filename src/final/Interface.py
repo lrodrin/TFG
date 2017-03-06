@@ -19,7 +19,7 @@ class Interface:
     @staticmethod
     def graphOptions(option, graph, rows):
         if option == 1:
-            Graph.createPlanarGraph(graph, rows)
+            Graph.createPlainGraph(graph, rows)
             Interface.openGraphviz(sys.platform, 'planarGraph.dot')
         elif option == 2:
             Graph.createLinearGraph(graph, rows)

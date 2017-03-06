@@ -21,7 +21,7 @@ if __name__ == '__main__':
                        "= exponential\n"))
 
     if option == 1:
-        Graph.createPlanarGraph(graph, rows)
+        Graph.createPlainGraph(graph, rows)
     elif option == 2:
         Graph.createLinearGraph(graph, rows)
     elif option == 3:

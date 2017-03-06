@@ -74,7 +74,7 @@ class Graph:
             graph.add_edge(u, v, color='white')
 
     @staticmethod
-    def planarGraph(graph, rows):
+    def plainGraph(graph, rows):
         for row in rows:
             for (u, v) in itertools.combinations(row, 2):
                 graph.add_edge(u, v, color='black')

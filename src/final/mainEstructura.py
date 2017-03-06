@@ -7,6 +7,7 @@ Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
 from src.final.Estructura import *
+from src.final.Clan import *
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
@@ -39,8 +40,7 @@ if __name__ == "__main__":
     Estructura.create2structure(edgesAtributtesfromGraph_2, primalsDict_2, 'Estructura2.dot')
 
     # TODO proves planar2structure, linear2structure i exponential2structure
-    tableName = str(input("Please enter a name for the database table: "))
-    planarGraph, rows = Graph.createGraph('C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db', tableName)
-    linearGraph, rows = Graph.createGraph('C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db', tableName)
-    Estructura.plain2structure(planarGraph, planarGraph.nodes())
-    Estructura.linear2structure(linearGraph, linearGraph.nodes())
+    # tableName = str(input("Please enter a name for the database table: "))
+    graph, rows = Graph.createGraph('C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db', 'test')
+    plainGraph = Graph.createPlainGraph(graph, rows)
+    edgesAtributtesfromGraph = Graph.createDictFromGraph(plainGraph)

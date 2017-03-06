@@ -24,6 +24,8 @@ class Graph:
 
         :param fileDB: SQLite database file
         :param tableName: Table name from fileDB
+        :return: Graph and all rows from from SQLite database source
+        :rtype: nx.Graph
         """
         graph = nx.Graph()
         connection = Data.connection(fileDB)  # Connection to SQLite database
@@ -79,13 +81,31 @@ class Graph:
 
     @staticmethod
     def createPlainGraph(graph, rows):
+        """
+        Create a plain graph from rows
+
+        :param graph: NetworkX's graph
+        :param rows: Rows from a tableName
+        :type graph: nx.Graph
+        :return: Plain graph
+        :rtype: nx.Graph
+        """
         for row in rows:
             for (u, v) in itertools.combinations(row, 2):
                 graph.add_edge(u, v, color='black')
-        return graph, Graph.exportGraphDOT(graph, 'plainGraph.dot')
+        return graph
 
     @staticmethod
     def createLinearGraph(graph, rows):
+        """
+        Create a linear graph from rows
+
+        :param graph: NetworkX's graph
+        :param rows: Rows from a tableName
+        :type graph: nx.Graph
+        :return: Linear graph
+        :rtype: nx.Graph
+        """
         # labeling edges
         d = dict()
         for row in rows:
@@ -106,10 +126,19 @@ class Graph:
                     graph[u][v]['color'] = value
 
         # TODO s'han d'amagar els labels
-        return graph, Graph.exportGraphDOT(graph, 'linearGraph.dot')
+        return graph
 
     @staticmethod
     def createExponentialGraph(graph, rows):
+        """
+        Create a exponential graph starting from linear graph
+
+        :param graph: NetworkX's graph
+        :param rows: Rows from a tableName
+        :type graph: nx.Graph
+        :return: Linear graph
+        :rtype: nx.Graph
+        """
         Graph.createLinearGraph(graph, rows)
         # painting edges by label
         for (u, v) in graph.edges():
@@ -135,4 +164,4 @@ class Graph:
                 graph[u][v]['color'] = 'brown'
 
         # TODO s'han d'amagar els labels
-        return graph, Graph.exportGraphDOT(graph, 'exponentialGraph.dot')
+        return graph

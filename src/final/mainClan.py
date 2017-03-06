@@ -6,9 +6,8 @@ Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
-import networkx as nx
-
 from src.final.Clan import *
+from src.final.Graph import *
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
@@ -20,10 +19,10 @@ if __name__ == "__main__":
     graph.add_edges_from([('A', 'C'), ('B', 'C'), ('C', 'D'), ('C', 'E')], color='black')
     graph.add_edges_from([('A', 'D'), ('A', 'E')], color='blue')
 
-    clansList = Clan.clans(graph, set(graph.nodes()))
+    clansList = Clan.clans(graph, graph.nodes())
     print("List of clans:\n", clansList)
 
-    trivialClansList = Clan.trivialClans(set(graph.nodes()), nx.graph_clique_number(graph))
+    trivialClansList = Clan.trivialClans(graph.nodes(), nx.graph_clique_number(graph))
     print("List of trivial clans:\n", trivialClansList)
 
     primalClansList = Clan.primalClans(clansList)
@@ -31,3 +30,8 @@ if __name__ == "__main__":
 
     primalClansSubsets = Clan.primalClansSubsets(primalClansList)
     print("List of primal clans subsets:\n", primalClansSubsets)
+
+    graph, rows = Graph.createGraph('C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db', 'test')
+    plainGraph = Graph.createPlainGraph(graph, rows)
+    clansList = Clan.clans(plainGraph, plainGraph.nodes())
+    print("List of clans:\n", clansList)

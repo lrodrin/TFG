@@ -21,8 +21,11 @@ if __name__ == '__main__':
                        "= exponential\n"))
 
     if option == 1:
-        Graph.createPlainGraph(graph, rows)
+        plainGraph = Graph.createPlainGraph(graph, rows)
+        Graph.exportGraphDOT(graph, 'plainGraph.dot')
     elif option == 2:
-        Graph.createLinearGraph(graph, rows)
+        linearGraph = Graph.createLinearGraph(graph, rows)
+        Graph.exportGraphDOT(graph, 'linearGraph.dot')
     elif option == 3:
-        Graph.createExponentialGraph(graph, rows)
+        exponentialGraph = Graph.createExponentialGraph(graph, rows)
+        Graph.exportGraphDOT(graph, 'exponentialGraph.dot')

@@ -21,13 +21,19 @@ class Interface:
     def graphOptions(option, graph, rows):
         if option == 1:
             Graph.createPlainGraph(graph, rows)
-            Interface.openGraphviz(sys.platform, 'plainGraph.dot')
+            filename = 'plainGraph.dot'
+            Graph.exportGraphDOT(graph, filename)
+            Interface.openGraphviz(sys.platform, filename)
         elif option == 2:
             Graph.createLinearGraph(graph, rows)
-            Interface.openGraphviz(sys.platform, 'linearGraph.dot')
+            filename = 'linearGraph.dot'
+            Graph.exportGraphDOT(graph, filename)
+            Interface.openGraphviz(sys.platform, filename)
         elif option == 3:
             Graph.createExponentialGraph(graph, rows)
-            Interface.openGraphviz(sys.platform, 'exponentialGraph.dot')
+            filename = 'exponentialGraph.dot'
+            Graph.exportGraphDOT(graph, filename)
+            Interface.openGraphviz(sys.platform, filename)
 
     @staticmethod
     def structureOptions(option, graph, primalClansDict):

@@ -34,11 +34,11 @@ if __name__ == "__main__":
     graph, rows = Graph.createGraph('C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db', 'test')
     plainGraph = Graph.createPlainGraph(graph, rows)
 
-    clansList = Clan.clans(plainGraph, set(plainGraph.nodes()))
-    print("List of clans:\n", clansList)
+    clansList = Clan.clans(plainGraph, plainGraph.nodes())
+    # print("List of clans:\n", clansList)
 
-    trivialClansList = Clan.trivialClans(set(plainGraph.nodes()), nx.graph_clique_number(plainGraph))
-    print("List of trivial clans:\n", trivialClansList)
+    # trivialClansList = Clan.trivialClans(plainGraph.nodes(), nx.graph_clique_number(plainGraph))
+    # print("List of trivial clans:\n", trivialClansList)
 
     primalClansList = Clan.primalClans(clansList)
     print("List of primal clans:\n", primalClansList)

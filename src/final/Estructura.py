@@ -7,9 +7,7 @@ Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
 from collections import OrderedDict
-
 import pydot
-
 from src.final.Clan import *
 from src.final.Graph import *
 

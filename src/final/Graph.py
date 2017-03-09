@@ -141,28 +141,28 @@ class Graph:
         """
         # painting edges by label
         graph = Graph.createLinearGraph(linearGraph, rows)
-        edgesAttr = nx.get_edge_attributes(graph, 'label')
-        for key, value in edgesAttr.items():
-            if 0 <= value < 1:
-                edgesAttr[key]['color'] = 'white'
-            elif 1 <= value < 2:
-                edgesAttr[key]['color'] = 'black'
-            elif 2 <= value < 4:
-                edgesAttr[key]['color'] = 'cyan'
-            elif 4 <= value < '8':
-                edgesAttr[key]['color'] = 'green'
-            elif 8 <= value < 16:
-                edgesAttr[key]['color'] = 'magenta'
-            elif 16 <= value < 32:
-                edgesAttr[key]['color'] = 'orange'
-            elif 32 <= value < 64:
-                edgesAttr[value]['color'] = 'purple'
-            elif 64 <= value < 128:
-                edgesAttr[key]['color'] = 'red'
-            elif 128 <= value < 256:
-                edgesAttr[key]['color'] = 'yellow'
+        labels = nx.get_edge_attributes(graph, 'label')
+        for (u, v), label in labels.items():
+            if 0 <= label < 1:
+                graph[u][v]['color'] = 'white'
+            elif 1 <= label < 2:
+                graph[u][v]['color'] = 'black'
+            elif 2 <= label < 4:
+                graph[u][v]['color'] = 'cyan'
+            elif 4 <= label < 8:
+                graph[u][v]['color'] = 'green'
+            elif 8 <= label < 16:
+                graph[u][v]['color'] = 'magenta'
+            elif 16 <= label < 32:
+                graph[u][v]['color'] = 'orange'
+            elif 32 <= label < 64:
+                graph[u][v]['color'] = 'purple'
+            elif 64 <= label < 128:
+                graph[u][v]['color'] = 'red'
+            elif 128 <= label < 256:
+                graph[u][v]['color'] = 'yellow'
             else:
-                edgesAttr[key]['color'] = 'brown'
+                graph[u][v]['color'] = 'brown'
 
         # TODO s'han d'amagar els labels
         return graph

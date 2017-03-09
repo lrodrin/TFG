@@ -45,13 +45,10 @@ if __name__ == "__main__":
     graph, rows = Graph.createGraph('/Users/laura/PycharmProjects/TFG/src/SQL/BD.db', 'test')
     if option == 1:
         plainGraph = Graph.createPlainGraph(graph, rows)
-        edgesAtributtesfromGraph = Graph.createDictFromGraph(plainGraph)
         Estructura.plain2structure(plainGraph, plainGraph.nodes())
     elif option == 2:
         linearGraph = Graph.createLinearGraph(graph, rows)
-        edgesAtributtesfromGraph = Graph.createDictFromGraph(linearGraph)
         Estructura.linear2structure(linearGraph, linearGraph.nodes())
     elif option == 3:
         exponentialGraph = Graph.createExponentialGraph(graph, rows)
-        edgesAtributtesfromGraph = Graph.createDictFromGraph(exponentialGraph)
         Estructura.exponential2structure(exponentialGraph, exponentialGraph.nodes())

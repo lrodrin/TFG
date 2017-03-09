@@ -13,7 +13,7 @@ __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 if __name__ == "__main__":
-    graph = nx.Graph()  # Create an empty graph structure (a “null graph”) with no nodes and no edges
+    graph = nx.Graph()  # Create an empty graph structure (a null graph) with no nodes and no edges
     # Adding edges and edges attributes
     graph.add_edges_from([('A', 'B'), ('B', 'D'), ('B', 'E'), ('D', 'E')], color='white')
     graph.add_edges_from([('A', 'C'), ('B', 'C'), ('C', 'D'), ('C', 'E')], color='black')
@@ -31,7 +31,7 @@ if __name__ == "__main__":
     primalClansSubsets = Clan.primalClansSubsets(primalClansList)
     print("List of primal clans subsets:\n", primalClansSubsets)
 
-    graph, rows = Graph.createGraph('C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db', 'test')
+    graph, rows = Graph.createGraph('/Users/laura/PycharmProjects/TFG/src/SQL/BD.db', 'test')
     plainGraph = Graph.createPlainGraph(graph, rows)
 
     clansList = Clan.clans(plainGraph, plainGraph.nodes())

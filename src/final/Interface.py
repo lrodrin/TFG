@@ -18,7 +18,7 @@ __license__ = 'MIT'
 
 class Interface:
     @staticmethod
-    def graphOptions(option, graph, rows):
+    def graphOptions(option, graph, rows, sysPlatform):
         if option == 1:
             Graph.createPlainGraph(graph, rows)
             filename = 'plainGraph.dot'
@@ -36,13 +36,19 @@ class Interface:
             Interface.openGraphviz(sys.platform, filename)
 
     @staticmethod
-    def structureOptions(option, graph, primalClansDict):
+    def structureOptions(option, graph, rows, sysPlatform):
         if option == 1:
-            Estructura.create2structure(Graph.createDictFromGraph(graph), primalClansDict, 'plain2structure.dot')
+            plainGraph = Graph.createPlainGraph(graph, rows)
+            Estructura.plain2structure(plainGraph, plainGraph.nodes())
+            Interface.openGraphviz(sys.platform, 'plain2structure.dot')
         elif option == 2:
-            Estructura.create2structure(Graph.createDictFromGraph(graph), primalClansDict, 'linear2structure.dot')
+            linearGraph = Graph.createLinearGraph(graph, rows)
+            Estructura.linear2structure(linearGraph, linearGraph.nodes())
+            Interface.openGraphviz(sys.platform, 'linear2structure.dot')
         elif option == 3:
-            Estructura.create2structure(Graph.createDictFromGraph(graph), primalClansDict, 'exponential2structure.dot')
+            exponentialGraph = Graph.createExponentialGraph(graph, rows)
+            Estructura.exponential2structure(exponentialGraph, exponentialGraph.nodes())
+            Interface.openGraphviz(sys.platform, 'exponential2structure.dot')
 
     @staticmethod
     def openGraphviz(sysPlatform, filename):
@@ -57,4 +63,4 @@ class Interface:
         if sys.platform == 'win32':  # Windows platform
             os.startfile(filename)
         else:  # Linux platform
-            subprocess.run(['open', '-a', sysPlatform, filename])
+            subprocess.run(['open', '-a', 'Graphviz.app', filename])

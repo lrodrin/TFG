@@ -129,40 +129,40 @@ class Graph:
         return graph
 
     @staticmethod
-    def createExponentialGraph(graph, rows):
+    def createExponentialGraph(linearGraph, rows):
         """
         Create a exponential graph starting from linear graph
 
-        :param graph: NetworkX's graph
+        :param linearGraph: NetworkX's graph
         :param rows: Rows from a tableName
-        :type graph: nx.Graph
+        :type linearGraph: nx.Graph
         :return: Linear graph
         :rtype: nx.Graph
         """
-        Graph.createLinearGraph(graph, rows)
         # painting edges by label
+        graph = Graph.createLinearGraph(linearGraph, rows)
         edgesAttr = nx.get_edge_attributes(graph, 'label')
         for key, value in edgesAttr.items():
             if 0 <= value < 1:
-                graph[key]['color'] = 'white'
+                edgesAttr[key]['color'] = 'white'
             elif 1 <= value < 2:
-                graph[key]['color'] = 'black'
+                edgesAttr[key]['color'] = 'black'
             elif 2 <= value < 4:
-                graph[key]['color'] = 'cyan'
+                edgesAttr[key]['color'] = 'cyan'
             elif 4 <= value < '8':
-                graph[key]['color'] = 'green'
+                edgesAttr[key]['color'] = 'green'
             elif 8 <= value < 16:
-                graph[key]['color'] = 'magenta'
+                edgesAttr[key]['color'] = 'magenta'
             elif 16 <= value < 32:
-                graph[key]['color'] = 'orange'
+                edgesAttr[key]['color'] = 'orange'
             elif 32 <= value < 64:
-                graph[value]['color'] = 'purple'
+                edgesAttr[value]['color'] = 'purple'
             elif 64 <= value < 128:
-                graph[key]['color'] = 'red'
+                edgesAttr[key]['color'] = 'red'
             elif 128 <= value < 256:
-                graph[key]['color'] = 'yellow'
+                edgesAttr[key]['color'] = 'yellow'
             else:
-                graph[key]['color'] = 'brown'
+                edgesAttr[key]['color'] = 'brown'
 
         # TODO s'han d'amagar els labels
         return graph

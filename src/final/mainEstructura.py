@@ -39,13 +39,19 @@ if __name__ == "__main__":
     Estructura.create2structure(edgesAtributtesfromGraph_1, primalsDict_1, 'Estructura.dot')
     Estructura.create2structure(edgesAtributtesfromGraph_2, primalsDict_2, 'Estructura2.dot')
 
-    # TODO proves planar2structure, linear2structure i exponential2structure
-    # tableName = str(input("Please enter a name for the database table: "))
-    graph, rows = Graph.createGraph('C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db', 'test')
-    plainGraph = Graph.createPlainGraph(graph, rows)
-    edgesAtributtesfromGraph = Graph.createDictFromGraph(plainGraph)
-    clansList = Clan.clans(plainGraph, plainGraph.nodes())
-    primalClansList = Clan.primalClans(clansList)
-    primalsDict = OrderedDict(reversed(sorted(Clan.primalClansSubsets(primalClansList).items(),
-                                              key=lambda t: len(t[0]))))
-    Estructura.create2structure(edgesAtributtesfromGraph, primalsDict, 'plain2structure.dot')
+    option = int(input("Please enter the option of graph you want to create:\n [1] = plain\n [2] = linear\n [3] "
+                       "= exponential\n"))
+
+    graph, rows = Graph.createGraph('/Users/laura/PycharmProjects/TFG/src/SQL/BD.db', 'test')
+    if option == 1:
+        plainGraph = Graph.createPlainGraph(graph, rows)
+        edgesAtributtesfromGraph = Graph.createDictFromGraph(plainGraph)
+        Estructura.plain2structure(plainGraph, plainGraph.nodes())
+    elif option == 2:
+        linearGraph = Graph.createLinearGraph(graph, rows)
+        edgesAtributtesfromGraph = Graph.createDictFromGraph(linearGraph)
+        Estructura.linear2structure(linearGraph, linearGraph.nodes())
+    elif option == 3:
+        exponentialGraph = Graph.createExponentialGraph(graph, rows)
+        edgesAtributtesfromGraph = Graph.createDictFromGraph(exponentialGraph)
+        Estructura.exponential2structure(exponentialGraph, exponentialGraph.nodes())

@@ -76,24 +76,25 @@ class Estructura:
         print("2-structure %s was created" % filename)
 
     @staticmethod
-    def plain2structure(plainGraph, nodes):
-        clansList = Clan.clans(plainGraph, nodes)
+    def noNameYet(graph, nodes):
+        clansList = Clan.clans(graph, nodes)
         primalClansList = Clan.primalClans(clansList)
-        EdgesAtributtes = Graph.createDictFromGraph(plainGraph)
+        EdgesAtributtes = Graph.createDictFromGraph(graph)
         primalClansDict = OrderedDict(reversed(sorted(Clan.primalClansSubsets(primalClansList).items(),
                                                       key=lambda t: len(t[0]))))
+        return EdgesAtributtes, primalClansDict
+
+    @staticmethod
+    def plain2structure(plainGraph, nodes):
+        EdgesAtributtes, primalClansDict = Estructura.noNameYet(plainGraph, nodes)
         Estructura.create2structure(EdgesAtributtes, primalClansDict, 'plain2structure.dot')
 
     @staticmethod
     def linear2structure(linearGraph, nodes):
-        clansList = Clan.clans(linearGraph, nodes)
-        primalClansList = Clan.primalClans(clansList)
-        EdgesAtributtes = Graph.createDictFromGraph(linearGraph)
-        primalClansDict = OrderedDict(reversed(sorted(Clan.primalClansSubsets(primalClansList).items(),
-                                                      key=lambda t: len(t[0]))))
-        print(clansList, primalClansList, EdgesAtributtes, primalClansDict)
+        EdgesAtributtes, primalClansDict = Estructura.noNameYet(linearGraph, nodes)
         Estructura.create2structure(EdgesAtributtes, primalClansDict, 'linear2structure.dot')
 
     @staticmethod
     def exponential2structure(exponentialGraph, nodes):
-        pass
+        EdgesAtributtes, primalClansDict = Estructura.noNameYet(exponentialGraph, nodes)
+        Estructura.create2structure(EdgesAtributtes, primalClansDict, 'exponential2structure.dot')

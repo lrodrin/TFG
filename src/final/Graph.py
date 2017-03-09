@@ -32,7 +32,7 @@ class Graph:
         cursor = connection.cursor()
         # TODO tableName = Data.getTableName(fileDB)
         columnNames, rows = Data.select(tableName, cursor)  # Select data from SQLite database
-        Graph.addNodes(nx.Graph(), columnNames, rows)  # Adding nodes to a Graph
+        Graph.addNodes(graph, columnNames, rows)  # Adding nodes to a Graph
         for (u, v) in itertools.combinations(graph.nodes(), 2):  # All the edges are painted white
             graph.add_edge(u, v, color='white')
 
@@ -141,27 +141,28 @@ class Graph:
         """
         Graph.createLinearGraph(graph, rows)
         # painting edges by label
-        for (u, v) in graph.edges():
-            if 0 <= graph[u][v]['label'] < 1:
-                graph[u][v]['color'] = 'white'
-            elif 1 <= graph[u][v]['label'] < 2:
-                graph[u][v]['color'] = 'black'
-            elif 2 <= graph[u][v]['label'] < 4:
-                graph[u][v]['color'] = 'cyan'
-            elif 4 <= graph[u][v]['label'] < 8:
-                graph[u][v]['color'] = 'green'
-            elif 8 <= graph[u][v]['label'] < 16:
-                graph[u][v]['color'] = 'magenta'
-            elif 16 <= graph[u][v]['label'] < 32:
-                graph[u][v]['color'] = 'orange'
-            elif 32 <= graph[u][v]['label'] < 64:
-                graph[u][v]['color'] = 'purple'
-            elif 64 <= graph[u][v]['label'] < 128:
-                graph[u][v]['color'] = 'red'
-            elif 128 <= graph[u][v]['label'] < 256:
-                graph[u][v]['color'] = 'yellow'
+        edgesAttr = nx.get_edge_attributes(graph, 'label')
+        for key, value in edgesAttr.items():
+            if 0 <= value < 1:
+                graph[key]['color'] = 'white'
+            elif 1 <= value < 2:
+                graph[key]['color'] = 'black'
+            elif 2 <= value < 4:
+                graph[key]['color'] = 'cyan'
+            elif 4 <= value < '8':
+                graph[key]['color'] = 'green'
+            elif 8 <= value < 16:
+                graph[key]['color'] = 'magenta'
+            elif 16 <= value < 32:
+                graph[key]['color'] = 'orange'
+            elif 32 <= value < 64:
+                graph[value]['color'] = 'purple'
+            elif 64 <= value < 128:
+                graph[key]['color'] = 'red'
+            elif 128 <= value < 256:
+                graph[key]['color'] = 'yellow'
             else:
-                graph[u][v]['color'] = 'brown'
+                graph[key]['color'] = 'brown'
 
         # TODO s'han d'amagar els labels
         return graph

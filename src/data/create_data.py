@@ -18,7 +18,7 @@ query = ""
 tableName = ""
 
 try:
-    connection = sqlite3.connect('C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db')  # Connection to database
+    connection = sqlite3.connect('C:/Users/Laura/PycharmProjects/TFG/src/data/BD.db')  # Connection to database
     # pathBD = str(input("Please enter a path from database file: "))
     # connection = sqlite3.connect(pathBD)
 except sqlite3.Error as e:
@@ -27,7 +27,7 @@ except sqlite3.Error as e:
 cur = connection.cursor()
 
 try:
-    file = open('C:/Users/Laura/PycharmProjects/TFG/src/SQL/weather.txt', 'r')  # Open data file
+    file = open('C:/Users/Laura/PycharmProjects/TFG/src/data/weather.txt', 'r')  # Open data file
     # dataFile = str(input("Please enter a path from data file: "))
     # file = open(dataFile, 'r')
 except IOError as e:

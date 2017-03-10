@@ -42,7 +42,7 @@ if __name__ == "__main__":
     option = int(input("Please enter the option of graph you want to create:\n [1] = plain\n [2] = linear\n [3] "
                        "= exponential\n"))
 
-    graph, rows = Graph.createGraph('/Users/laura/PycharmProjects/TFG/src/SQL/BD.db', 'test')
+    graph, rows = Graph.createGraph('/Users/laura/PycharmProjects/TFG/src/data/BD.db', 'test')
     if option == 1:
         plainGraph = Graph.createPlainGraph(graph, rows)
         Estructura.plain2structure(plainGraph, plainGraph.nodes())

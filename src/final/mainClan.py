@@ -31,7 +31,7 @@ if __name__ == "__main__":
     primalClansSubsets = Clan.primalClansSubsets(primalClansList)
     print("List of primal clans subsets:\n", primalClansSubsets)
 
-    graph, rows = Graph.createGraph('/Users/laura/PycharmProjects/TFG/src/SQL/BD.db', 'test')
+    graph, rows = Graph.createGraph('/Users/laura/PycharmProjects/TFG/src/data/BD.db', 'test')
     plainGraph = Graph.createPlainGraph(graph, rows)
 
     clansList = Clan.clans(plainGraph, plainGraph.nodes())

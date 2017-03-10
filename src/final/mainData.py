@@ -13,15 +13,15 @@ __license__ = 'MIT'
 
 if __name__ == "__main__":
     fileDB = str(input("Please enter a database SQLite file:\n"))
-    # C:/Users/Laura/PycharmProjects/TFG/src/SQL/BD.db  WINDOWS
-    # /Users/laura/PycharmProjects/TFG/src/SQL/BD.db    OS X
+    # C:/Users/Laura/PycharmProjects/TFG/src/data/BD.db  WINDOWS
+    # /Users/laura/PycharmProjects/TFG/src/data/BD.db    OS X
     connection = Data.connection(fileDB)  # Connection to SQLite database
     cursor = connection.cursor()
 
     dataFile = str(input("Please enter data file:\n"))
     # TODO ARFF format
-    # C:/Users/Laura/PycharmProjects/TFG/src/SQL/meteo.txt  WINDOWS
-    # /Users/laura/PycharmProjects/TFG/src/SQL/meteo.txt    OS X
+    # C:/Users/Laura/PycharmProjects/TFG/src/data/meteo.txt  WINDOWS
+    # /Users/laura/PycharmProjects/TFG/src/data/meteo.txt    OS X
     file = Data.openFile(dataFile)  # Open data file
     columnNames, lines = Data.getDataFile(file)  # Get column names and lines from file
 

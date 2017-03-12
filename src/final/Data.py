@@ -29,7 +29,7 @@ class Data:
             print("Connection successful to", fileDB)
             return connection, cursor
         except sqlite3.Error as e:
-            print("Error:", e)
+            print("Error connection:", e)
 
         return None
 
@@ -46,7 +46,7 @@ class Data:
             print("File opened from", dataFile)
             return file
         except IOError as e:
-            print("Error:", e)
+            print("Error open:", e)
 
         return None
 
@@ -66,6 +66,21 @@ class Data:
         return columnNames, lines
 
     @staticmethod
+    def getDataARFFile(dataFile):
+        """
+        Get column names and all lines from file specified by dataFile
+
+        :param dataFile: Data file
+        :return: Column names and lines from dataFile
+        """
+        lines = dataFile.readlines()
+        columnNames = str()
+        for line in lines:
+            if line.startswith("@attribute"):
+                columnNames += line.split(" ")[1] + ", "
+        return columnNames, lines
+
+    @staticmethod
     def createTable(cursor, tableName, columnNames):
         """
         Create a table specified by tableName in SQLite database
@@ -79,7 +94,23 @@ class Data:
             cursor.execute(query)
             print("Table %s was created" % tableName)
         except sqlite3.Error as e:
-            print("Error:", e)
+            print("Error create:", e)
+
+    @staticmethod
+    def createTableARFF(cursor, tableName, columnNames):
+        """
+        Create a table specified by tableName in SQLite database
+
+        :param cursor: Connection cursor
+        :param tableName: Table name
+        :param columnNames: Column names
+        """
+        try:
+            query = "CREATE TABLE %s (%s);" % (str(tableName), str(columnNames[0:-2]))
+            cursor.execute(query)
+            print("Table %s was created" % tableName)
+        except sqlite3.Error as e:
+            print("Error create:", e)
 
     @staticmethod
     def insert(tableName, columnNames, lines, cursor, connection):
@@ -104,8 +135,35 @@ class Data:
                 connection.commit()
                 print("Row[%d] %s inserted" % (line, query))
             except sqlite3.Error as e:
-                print("Error:", e)
+                print("Error insert:", e)
             values = ""
+
+    @staticmethod
+    def insertARFF(tableName, columnNames, lines, cursor, connection):
+        """
+        Insert values to table specified by tableName in SQLite database
+
+        :param tableName: Table name
+        :param columnNames: Column names
+        :param lines: Lines from a data file
+        :param cursor: Connection cursor
+        :param connection: Connection object
+        """
+        values = str()
+        for line in lines:
+            if not line.startswith("@") and not line.startswith("\n"):
+                for word in line.split(","):
+                    word = "'{0}'".format(word.replace('\n', ''))
+                    values += word + ','
+                try:
+                    query = 'INSERT INTO {0} ({1}) VALUES ({2})'.format(str(tableName), str(columnNames[0:-2]),
+                                                                        str(values[0:-1]).replace('\n', ''))
+                    cursor.execute(query)
+                    connection.commit()
+                    print("Row %s inserted" % query)
+                    values = str()
+                except sqlite3.Error as e:
+                    print("Error insert:", e)
 
     @staticmethod
     def select(tableName, cursor):
@@ -116,10 +174,15 @@ class Data:
         :param cursor: Connection cursor
         :return: Column names and all rows from tableName
         """
-        cursor.execute("SELECT * FROM %s" % tableName)
-        columnNames = [description[0] for description in cursor.description]
-        rows = cursor.fetchall()
-        return columnNames, rows
+        try:
+            cursor.execute("SELECT * FROM %s" % tableName)
+            columnNames = [description[0] for description in cursor.description]
+            rows = cursor.fetchall()
+            return columnNames, rows
+        except sqlite3.Error as e:
+            print("Error select:", e)
+
+        return None
 
     @staticmethod
     def close(dataFile, cursor, connection):
@@ -130,15 +193,16 @@ class Data:
         :param cursor: Connection cursor
         :param connection: Connection object
         """
+        error = "Error close:"
         try:
             dataFile.close()
         except IOError as e:
-            print("Error:", e)
+            print(error, e)
         try:
             cursor.close()
         except sqlite3.Error as e:
-            print("Error:", e)
+            print(error, e)
         try:
             connection.close()
         except sqlite3.Error as e:
-            print("Error:", e)
+            print(error, e)

@@ -1,5 +1,5 @@
 """
-This module implements a table for a database
+This module implements a table for a database from txt file
 
 Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/src/data/create_data.py" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/src/data/create_data_fom_arff.py" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/src/data/create_data_from_txt.py" dialect="SQLite" />
     <file url="file://$PROJECT_DIR$/src/final/Data.py" dialect="SQLite" />
     <file url="file://$PROJECT_DIR$/src/final/mainGraph.py" dialect="SQLite" />
   </component>

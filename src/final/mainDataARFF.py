@@ -1,0 +1,28 @@
+"""
+This module implements the main for Data class
+
+Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
+
+Distributed under MIT license
+[https://opensource.org/licenses/MIT]
+"""
+from src.final.Data import *
+
+__author__ = 'Laura Rodriguez Navas'
+__license__ = 'MIT'
+
+if __name__ == "__main__":
+    fileDB = str(input("Please enter a database SQLite file:\n"))
+    # C:/Users/Laura/PycharmProjects/TFG/src/data/BD.db  WINDOWS
+    # /Users/laura/PycharmProjects/TFG/src/data/BD.db    OS X
+    connection, cursor = Data.connection(fileDB)  # Connection to SQLite database
+
+    dataFile = str(input("Please enter data file:\n"))
+    # C:/Users/Laura/PycharmProjects/TFG/src/data/weather.arff  WINDOWS
+    # /Users/laura/PycharmProjects/TFG/src/data/weather.arff    OS X
+    file = Data.openFile(dataFile)  # Open data file
+    columnNames, lines = Data.getDataARFFile(file)  # Get column names and lines from file
+
+    tableName = str(input("Table name: \n"))
+    Data.createTableARFF(cursor, tableName, columnNames)  # Create table tableName
+    Data.insertARFF(tableName, columnNames, lines, cursor, connection)  # Insert data to tableName

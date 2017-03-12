@@ -18,8 +18,10 @@ if __name__ == '__main__':
     tableName = str(input("Table name: \n"))
     graph, rows = Graph.initializeGraph(fileDB, tableName)
 
+    # option = int(input("Please enter the option of graph you want to create:\n [1] = plain\n [2] = linear\n [3] "
+    # "= exponential\n [4] = plain with threshold\n")) Interface.graphOptions(option, graph, rows) option = int(
+    # input("Please enter the option of 2-structure you want to create:\n [1] = plain\n [2] = linear\n [3] " "=
+    # exponential\n")) Interface.structureOptions(option, graph, rows)
     option = int(input("Please enter the option of graph and structure you want to create:\n [1] = plain\n [2] = "
                        "linear\n [3] = exponential\n"))
-
-    # Interface.graphOptions(option, graph, rows)
-    # Interface.structureOptions(option, graph, rows)
+    Interface.graphAndstructureOptions(option, graph, rows)

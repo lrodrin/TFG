@@ -44,7 +44,7 @@ if __name__ == "__main__":
     tableName = str(input("Table name: \n"))
     graph, rows = Graph.initializeGraph(fileDB, tableName)
 
-    option = int(input("Please enter the option of graph you want to create:\n [1] = plain\n [2] = linear\n [3] "
+    option = int(input("Please enter the option of 2-structure you want to create:\n [1] = plain\n [2] = linear\n [3] "
                        "= exponential\n"))
     if option == 1:
         optionPlain = int(input("Please enter the option of plain graph you want to create:\n [1] = plain\n [2] = "

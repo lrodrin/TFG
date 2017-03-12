@@ -25,19 +25,19 @@ class Clan:
         :param subSet: Subset from graph
         :type graph: nx.Graph
         :type subSet: set
-        :return: b == True if successful, b == False otherwise
+        :return: isClan == True if successful, isClan == False otherwise
         :rtype: bool
         """
         diff = set(graph.nodes()).difference(subSet)  # Subset formed by all nodes of graph less subset passed as
         # argument
-        b = True
+        isClan = True
         for external in diff:  # For each subset of diff
             for (x, y) in itertools.combinations(subSet, 2):  # For each pair (x, y) in the subset combinations
                 colorX = graph.edge[external][x]['color']
                 colorY = graph.edge[external][y]['color']
                 if colorX != colorY:  # Pair (x, y) not the same colored
-                    b = False
-        return b
+                    isClan = False
+        return isClan
 
     @staticmethod
     def isTrivialClan(subSet, cardinality):
@@ -68,7 +68,7 @@ class Clan:
         :return: List of clans
         :rtype: list
         """
-        clansList = []
+        clansList = list()
         listNodes = Subset.powerset_list(nodes)
         for subset in listNodes:  # For each subset in listNodes
             if Clan.isClan(graph, subset):  # If subset is a clan of graph
@@ -87,7 +87,7 @@ class Clan:
         :return: List of trivial clans
         :rtype: list
         """
-        trivialClansList = []
+        trivialClansList = list()
         listNodes = Subset.powerset_list(nodes)  # List that contains all subsets from a graph
         for subset in listNodes:  # For each subset in listNodes
             if Clan.isTrivialClan(subset, cardinality):  # If subset is a trivial clan of a graph
@@ -105,7 +105,7 @@ class Clan:
         :rtype: list
         """
         potentialPrimals = defaultdict(bool)  # Creates and initializes a dictionary from a list of clans
-        primalClansList = []
+        primalClansList = list()
         for i, key in enumerate(clansList):  # For each elem in clansList
             for j in range(i + 1, len(clansList)):
                 intersection = clansList[i] & clansList[j]  # clansList[i] ∩ clansList[j]

@@ -18,7 +18,7 @@ __license__ = 'MIT'
 
 class Graph:
     @staticmethod
-    def createGraph(fileDB, tableName):
+    def initializeGraph(fileDB, tableName):
         """
         Create and initializes a Graph from SQLite database source
 

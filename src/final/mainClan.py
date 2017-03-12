@@ -31,14 +31,18 @@ if __name__ == "__main__":
     primalClansSubsets = Clan.primalClansSubsets(primalClansList)
     print("List of primal clans subsets:\n", primalClansSubsets)
 
-    graph, rows = Graph.createGraph('/Users/laura/PycharmProjects/TFG/src/data/BD.db', 'test')
+    fileDB = str(input("Please enter a database SQLite file:\n"))
+    # C:/Users/Laura/PycharmProjects/TFG/src/data/BD.db  WINDOWS
+    # /Users/laura/PycharmProjects/TFG/src/data/BD.db    OS X
+    tableName = str(input("Table name: \n"))
+    graph, rows = Graph.initializeGraph(fileDB, tableName)
     plainGraph = Graph.createPlainGraph(graph, rows)
 
     clansList = Clan.clans(plainGraph, plainGraph.nodes())
-    # print("List of clans:\n", clansList)
+    print("List of clans:\n", clansList)
 
-    # trivialClansList = Clan.trivialClans(plainGraph.nodes(), nx.graph_clique_number(plainGraph))
-    # print("List of trivial clans:\n", trivialClansList)
+    trivialClansList = Clan.trivialClans(plainGraph.nodes(), nx.graph_clique_number(plainGraph))
+    print("List of trivial clans:\n", trivialClansList)
 
     primalClansList = Clan.primalClans(clansList)
     print("List of primal clans:\n", primalClansList)

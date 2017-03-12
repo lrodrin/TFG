@@ -15,7 +15,7 @@ if __name__ == '__main__':
     # 'C:/Users/Laura/PycharmProjects/TFG/src/data/BD.db'  # WINDOWS
     # '/Users/laura/PycharmProjects/TFG/src/data/BD.db'    # OS X
     tableName = str(input("Please enter a name for the database table: "))
-    graph, rows = Graph.createGraph('/Users/laura/PycharmProjects/TFG/src/data/BD.db', tableName)
+    graph, rows = Graph.initializeGraph('/Users/laura/PycharmProjects/TFG/src/data/BD.db', tableName)
 
     option = int(input("Please enter the option of graph you want to create:\n [1] = plain\n [2] = linear\n [3] "
                        "= exponential\n"))

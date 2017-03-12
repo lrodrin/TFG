@@ -18,46 +18,56 @@ __license__ = 'MIT'
 
 class Interface:
     @staticmethod
-    def graphOptions(option, graph, rows, sysPlatform):
+    def graphOptions(option, graph, rows):
         if option == 1:
             Graph.createPlainGraph(graph, rows)
             filename = 'plainGraph.dot'
             Graph.exportGraphDOT(graph, filename)
-            Interface.openGraphviz(sys.platform, filename)
+            Interface.openGraphviz(filename)
         elif option == 2:
             Graph.createLinearGraph(graph, rows)
             filename = 'linearGraph.dot'
             Graph.exportGraphDOT(graph, filename)
-            Interface.openGraphviz(sys.platform, filename)
+            Interface.openGraphviz(filename)
         elif option == 3:
             Graph.createExponentialGraph(graph, rows)
             filename = 'exponentialGraph.dot'
             Graph.exportGraphDOT(graph, filename)
-            Interface.openGraphviz(sys.platform, filename)
+            Interface.openGraphviz(filename)
+        elif option == 4:
+            threshold = int(input("Please enter the k constant for the threshold:\n"))
+            Graph.createPlainGraphWithThreshold(graph, rows, threshold)
+            filename = 'plainGraphWithThreshold.dot'
+            Graph.exportGraphDOT(graph, filename)
+            Interface.openGraphviz(filename)
 
     @staticmethod
-    def structureOptions(option, graph, rows, sysPlatform):
+    def structureOptions(option, graph, rows):
         if option == 1:
-            plainGraph = Graph.createPlainGraph(graph, rows)
+            optionPlain = int(input("Please enter the option of plain graph you want to create:\n [1] = plain\n [2] = "
+                                    "plain with threshold\n"))
+            if optionPlain == 1:
+                plainGraph = Graph.createPlainGraph(graph, rows)
+            elif optionPlain == 2:
+                threshold = int(input("Please enter the k constant for the threshold:\n"))
+                plainGraph = Graph.createPlainGraphWithThreshold(graph, rows, threshold)
             Estructura.plain2structure(plainGraph, plainGraph.nodes())
-            Interface.openGraphviz(sys.platform, 'plain2structure.dot')
+            Interface.openGraphviz('plain2-structure.dot')
         elif option == 2:
             linearGraph = Graph.createLinearGraph(graph, rows)
             Estructura.linear2structure(linearGraph, linearGraph.nodes())
-            Interface.openGraphviz(sys.platform, 'linear2structure.dot')
+            Interface.openGraphviz('linear2-structure.dot')
         elif option == 3:
             exponentialGraph = Graph.createExponentialGraph(graph, rows)
             Estructura.exponential2structure(exponentialGraph, exponentialGraph.nodes())
-            Interface.openGraphviz(sys.platform, 'exponential2structure.dot')
+            Interface.openGraphviz('exponential2-structure.dot')
 
     @staticmethod
-    def openGraphviz(sysPlatform, filename):
+    def openGraphviz(filename):
         """
         Call the Graphviz program that is associated with a DOT file
 
-        :param sysPlatform:
         :param filename: DOT file
-        :type sysPlatform: str
         :type filename: str
         """
         if sys.platform == 'win32':  # Windows platform

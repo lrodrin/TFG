@@ -12,13 +12,14 @@ __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 if __name__ == '__main__':
-    # 'C:/Users/Laura/PycharmProjects/TFG/src/data/BD.db'  # WINDOWS
-    # '/Users/laura/PycharmProjects/TFG/src/data/BD.db'    # OS X
-    tableName = str(input("Please enter a name for the database table: "))
-    graph, rows = Graph.initializeGraph('/Users/laura/PycharmProjects/TFG/src/data/BD.db', tableName)
+    fileDB = str(input("Please enter a database SQLite file:\n"))
+    # C:/Users/Laura/PycharmProjects/TFG/src/data/BD.db  WINDOWS
+    # /Users/laura/PycharmProjects/TFG/src/data/BD.db    OS X
+    tableName = str(input("Table name: \n"))
+    graph, rows = Graph.initializeGraph(fileDB, tableName)
 
-    option = int(input("Please enter the option of graph you want to create:\n [1] = plain\n [2] = linear\n [3] "
-                       "= exponential\n"))
+    option = int(input("Please enter the option of graph and structure you want to create:\n [1] = plain\n [2] = "
+                       "linear\n [3] = exponential\n"))
 
-    Interface.graphOptions(option, graph, rows, sys.platform)
-    Interface.structureOptions(option, graph, rows, sys.platform)
+    # Interface.graphOptions(option, graph, rows)
+    # Interface.structureOptions(option, graph, rows)

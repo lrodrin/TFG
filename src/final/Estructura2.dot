@@ -2,15 +2,15 @@ digraph G {
 compound=True;
 E;
 F;
-B;
-A;
 D;
 C;
-subgraph cluster_BFCDEA {
-s_BA [fixedsize=True, fillcolor=white, width=0.2, label=" "];
-s_CD [fixedsize=True, fillcolor=white, width=0.2, label=" "];
-s_E [fixedsize=True, fillcolor=white, width=0.2, label=" "];
-s_F [fixedsize=True, fillcolor=white, width=0.2, label=" "];
+B;
+A;
+subgraph cluster_CEFBDA {
+s_BA [label=" ", fillcolor=white, fixedsize=True, width=0.2];
+s_CD [label=" ", fillcolor=white, fixedsize=True, width=0.2];
+s_E [label=" ", fillcolor=white, fixedsize=True, width=0.2];
+s_F [label=" ", fillcolor=white, fixedsize=True, width=0.2];
 subgraph  {
 rank=same;
 s_BA -> s_CD  [arrowhead=none, color=black];
@@ -23,19 +23,9 @@ s_E -> s_F  [arrowhead=none, color=red];
 
 }
 
-subgraph cluster_BA {
-s_B [fixedsize=True, fillcolor=white, width=0.2, label=" "];
-s_A [fixedsize=True, fillcolor=white, width=0.2, label=" "];
-subgraph  {
-rank=same;
-s_B -> s_A  [arrowhead=none, color=black];
-}
-
-}
-
 subgraph cluster_CD {
-s_D [fixedsize=True, fillcolor=white, width=0.2, label=" "];
-s_C [fixedsize=True, fillcolor=white, width=0.2, label=" "];
+s_D [label=" ", fillcolor=white, fixedsize=True, width=0.2];
+s_C [label=" ", fillcolor=white, fixedsize=True, width=0.2];
 subgraph  {
 rank=same;
 s_D -> s_C  [arrowhead=none, color=red];
@@ -43,12 +33,22 @@ s_D -> s_C  [arrowhead=none, color=red];
 
 }
 
+subgraph cluster_BA {
+s_B [label=" ", fillcolor=white, fixedsize=True, width=0.2];
+s_A [label=" ", fillcolor=white, fixedsize=True, width=0.2];
+subgraph  {
+rank=same;
+s_B -> s_A  [arrowhead=none, color=black];
+}
+
+}
+
 s_E -> E  [arrowhead=none];
 s_F -> F  [arrowhead=none];
-s_B -> B  [arrowhead=none];
-s_A -> A  [arrowhead=none];
 s_D -> D  [arrowhead=none];
 s_C -> C  [arrowhead=none];
-s_BA -> s_B  [arrowhead=none, lhead=cluster_BA];
+s_B -> B  [arrowhead=none];
+s_A -> A  [arrowhead=none];
 s_CD -> s_D  [arrowhead=none, lhead=cluster_CD];
+s_BA -> s_B  [arrowhead=none, lhead=cluster_BA];
 }

@@ -7,7 +7,9 @@ Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
 from collections import OrderedDict
+
 import pydot
+
 from src.final.Clan import *
 from src.final.Graph import *
 
@@ -15,7 +17,7 @@ __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 
-# TODO modificar la mida de cada cluster "y los redondeles redondos en vez de elipticos"
+# TODO modificar la mida de cada cluster i els nodes
 
 
 class Estructura:
@@ -74,7 +76,7 @@ class Estructura:
         print("2-structure %s was created" % filename)
 
     @staticmethod
-    def noNameYet(graph, nodes):
+    def decomposition(graph, nodes):
         clansList = Clan.clans(graph, nodes)
         primalClansList = Clan.primalClans(clansList)
         EdgesAtributtes = Graph.createDictFromGraph(graph)
@@ -84,15 +86,15 @@ class Estructura:
 
     @staticmethod
     def plain2structure(plainGraph, nodes):
-        EdgesAtributtes, primalClansDict = Estructura.noNameYet(plainGraph, nodes)
-        Estructura.create2structure(EdgesAtributtes, primalClansDict, 'plain2structure.dot')
+        EdgesAtributtes, primalClansDict = Estructura.decomposition(plainGraph, nodes)
+        Estructura.create2structure(EdgesAtributtes, primalClansDict, 'plain2-structure.dot')
 
     @staticmethod
     def linear2structure(linearGraph, nodes):
-        EdgesAtributtes, primalClansDict = Estructura.noNameYet(linearGraph, nodes)
-        Estructura.create2structure(EdgesAtributtes, primalClansDict, 'linear2structure.dot')
+        EdgesAtributtes, primalClansDict = Estructura.decomposition(linearGraph, nodes)
+        Estructura.create2structure(EdgesAtributtes, primalClansDict, 'linear2-structure.dot')
 
     @staticmethod
     def exponential2structure(exponentialGraph, nodes):
-        EdgesAtributtes, primalClansDict = Estructura.noNameYet(exponentialGraph, nodes)
-        Estructura.create2structure(EdgesAtributtes, primalClansDict, 'exponential2structure.dot')
+        EdgesAtributtes, primalClansDict = Estructura.decomposition(exponentialGraph, nodes)
+        Estructura.create2structure(EdgesAtributtes, primalClansDict, 'exponential2-structure.dot')

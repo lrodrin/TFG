@@ -19,7 +19,7 @@ if __name__ == '__main__':
     graph, rows = Graph.initializeGraph(fileDB, tableName)
 
     option = int(input("Please enter the option of graph you want to create:\n [1] = plain\n [2] = linear\n [3] "
-                       "= exponential\n"))
+                       "= exponential\n [4] = plain with threshold\n"))
     if option == 1:
         plainGraph = Graph.createPlainGraph(graph, rows)
         Graph.exportGraphDOT(graph, 'plainGraph.dot')
@@ -29,3 +29,7 @@ if __name__ == '__main__':
     elif option == 3:
         exponentialGraph = Graph.createExponentialGraph(graph, rows)
         Graph.exportGraphDOT(graph, 'exponentialGraph.dot')
+    elif option == 4:
+        threshold = int(input("Please enter the k constant for the threshold:\n"))
+        plainGraph = Graph.createPlainGraphWithThreshold(graph, rows, threshold)
+        Graph.exportGraphDOT(graph, 'plainGraphWithThreshold.dot')

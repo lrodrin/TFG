@@ -47,7 +47,13 @@ if __name__ == "__main__":
     option = int(input("Please enter the option of graph you want to create:\n [1] = plain\n [2] = linear\n [3] "
                        "= exponential\n"))
     if option == 1:
-        plainGraph = Graph.createPlainGraph(graph, rows)
+        optionPlain = int(input("Please enter the option of plain graph you want to create:\n [1] = plain\n [2] = "
+                                "plain with threshold\n"))
+        if optionPlain == 1:
+            plainGraph = Graph.createPlainGraph(graph, rows)
+        elif optionPlain == 2:
+            threshold = int(input("Please enter the k constant for the threshold:\n"))
+            plainGraph = Graph.createPlainGraphWithThreshold(graph, rows, threshold)
         Estructura.plain2structure(plainGraph, plainGraph.nodes())
     elif option == 2:
         linearGraph = Graph.createLinearGraph(graph, rows)

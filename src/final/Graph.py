@@ -95,6 +95,40 @@ class Graph:
         return graph
 
     @staticmethod
+    def createPlainGraphWithThreshold(graph, rows, k):
+        """
+        Create a plain graph from rows
+
+        :param graph: NetworkX's graph
+        :param rows: Rows from a tableName
+        :param k: Threshold
+        :type graph: nx.Graph
+        :type k: int
+        :return: Plain graph
+        :rtype: nx.Graph
+        """
+        # labeling edges
+        dictionary = dict()
+        for row in rows:
+            for (u, v) in itertools.combinations(row, 2):
+                if (u, v) in dictionary.keys():
+                    dictionary[(u, v)] = dictionary.get((u, v)) + 1
+                    graph.edge[u][v]['label'] += 1
+                else:
+                    dictionary[(u, v)] = 1
+                    graph.add_edge(u, v, label=1)
+
+        # painting edges by label
+        labels = nx.get_edge_attributes(graph, 'label')
+        for (u, v), label in labels.items():
+            if label < k:
+                graph[u][v]['color'] = 'white'
+            else:
+                graph[u][v]['color'] = 'black'
+        # TODO s'han d'amagar els labels
+        return graph
+
+    @staticmethod
     def createLinearGraph(graph, rows):
         """
         Create a linear graph from rows
@@ -106,14 +140,14 @@ class Graph:
         :rtype: nx.Graph
         """
         # labeling edges
-        d = dict()
+        dictionary = dict()
         for row in rows:
             for (u, v) in itertools.combinations(row, 2):
-                if (u, v) in d.keys():
-                    d[(u, v)] = d.get((u, v)) + 1
+                if (u, v) in dictionary.keys():
+                    dictionary[(u, v)] = dictionary.get((u, v)) + 1
                     graph.edge[u][v]['label'] += 1
                 else:
-                    d[(u, v)] = 1
+                    dictionary[(u, v)] = 1
                     graph.add_edge(u, v, label=1)
 
         # painting edges by label

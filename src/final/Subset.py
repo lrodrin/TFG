@@ -36,7 +36,7 @@ class Subset:
         :return: List of all subsets from a graph
         :rtype: list
         """
-        subsetList = []
+        subsetList = list()
         for subset in Subset.powerset_generator(nodes):  # Subset iterator of each set in nodes
             subsetList.append(subset)  # Add subset to the list
         return subsetList

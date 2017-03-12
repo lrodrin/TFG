@@ -19,6 +19,15 @@ __license__ = 'MIT'
 class Interface:
     @staticmethod
     def graphOptions(option, graph, rows):
+        """
+        Create and display different types of graphs: plain, plain with threshold, linear and exponential
+
+        :param option: Option graph
+        :param graph: NetworkX's Graph
+        :param rows: Rows from a table
+        :type option: int
+        :type graph: nx.Graph
+        """
         if option == 1:
             Graph.createPlainGraph(graph, rows)
             filename = 'plainGraph.dot'
@@ -43,6 +52,15 @@ class Interface:
 
     @staticmethod
     def structureOptions(option, graph, rows):
+        """
+        Create and display different types of 2-structures: plain, linear and exponential
+
+        :param option: Option graph
+        :param graph: NetworkX's Graph
+        :param rows: Rows from a table
+        :type option: int
+        :type graph: nx.Graph
+        """
         if option == 1:
             optionPlain = int(input("Please enter the option of plain graph you want to create:\n [1] = plain\n [2] = "
                                     "plain with threshold\n"))

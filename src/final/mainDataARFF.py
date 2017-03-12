@@ -12,17 +12,19 @@ __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 if __name__ == "__main__":
-    fileDB = str(input("Please enter a database SQLite file:\n"))
-    # C:/Users/Laura/PycharmProjects/TFG/src/data/BD.db  WINDOWS
-    # /Users/laura/PycharmProjects/TFG/src/data/BD.db    OS X
-    connection, cursor = Data.connection(fileDB)  # Connection to SQLite database
-
-    dataFile = str(input("Please enter data file:\n"))
-    # C:/Users/Laura/PycharmProjects/TFG/src/data/weather.arff  WINDOWS
-    # /Users/laura/PycharmProjects/TFG/src/data/weather.arff    OS X
-    file = Data.openFile(dataFile)  # Open data file
-    columnNames, lines = Data.getDataARFFile(file)  # Get column names and lines from file
+    fileOption = int(input("Please enter the option for the file you provide:\n [1] = .arff\n [2] = .db\n"))
+    if fileOption == 1:
+        file = str(input("Please enter the name from ARFF data file:\n"))
+        name = file[0:-5]
+        connection, cursor = Data.connection(name + ".db")  # Connection to SQLite database
+        file = Data.openFile(file)  # Open data file
+        columnNames, lines = Data.getDataARFFile(file)  # Get column names and lines from file
+        Data.createTableARFF(cursor, name, columnNames)  # Create table tableName
+        Data.insertARFF(name, columnNames, lines, cursor, connection)  # Insert data to tableName
+    elif fileOption == 2:
+        file = str(input("Please enter the name from DB SQLite file:\n"))
+        connection, cursor = Data.connection(file)  # Connection to SQLite database
 
     tableName = str(input("Table name: \n"))
-    Data.createTableARFF(cursor, tableName, columnNames)  # Create table tableName
-    Data.insertARFF(tableName, columnNames, lines, cursor, connection)  # Insert data to tableName
+    Data.select(tableName,cursor)
+

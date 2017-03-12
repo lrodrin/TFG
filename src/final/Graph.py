@@ -18,7 +18,7 @@ __license__ = 'MIT'
 
 class Graph:
     @staticmethod
-    def initializeGraph(fileDB, tableName):
+    def initializeGraph(tableName, cursor):
         """
         Create and initializes a Graph from SQLite database source
 
@@ -28,7 +28,6 @@ class Graph:
         :rtype: nx.Graph
         """
         graph = nx.Graph()
-        connection, cursor = Data.connection(fileDB)  # Connection to SQLite database
         # TODO tableNames = Data.getTableNames(fileDB)
         columnNames, rows = Data.select(tableName, cursor)  # Select data from SQLite database
         Graph.addNodes(graph, columnNames, rows)  # Adding nodes to a Graph

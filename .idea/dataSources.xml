@@ -8,5 +8,11 @@
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/src/data/BD.db</jdbc-url>
       <default-dialect>SQLite</default-dialect>
     </data-source>
+    <data-source source="LOCAL" name="weather.db" uuid="1271cbaf-fc57-4122-9c80-24229b465184">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/src/final/weather.db</jdbc-url>
+    </data-source>
   </component>
 </project>

@@ -122,6 +122,22 @@ class Interface:
             Interface.openGraphviz('exponential2-structure.dot')
 
     @staticmethod
+    def fileOptions(option):
+        if option == 1:
+            file = str(input("Please enter the name from ARFF data file:\n"))
+            name = file[0:-5]
+            connection, cursor = Data.connection(name + ".db")  # Connection to SQLite database
+            file = Data.openFile(file)  # Open data file
+            columnNames, lines = Data.getDataARFFile(file)  # Get column names and lines from file
+            # Data.createTableARFF(cursor, name, columnNames)  # Create table tableName
+            # Data.insertARFF(name, columnNames, lines, cursor, connection)  # Insert data to tableName
+        elif option == 2:
+            file = str(input("Please enter the name from DB SQLite file:\n"))
+            connection, cursor = Data.connection(file)  # Connection to SQLite database
+
+        return cursor
+
+    @staticmethod
     def openGraphviz(filename):
         """
         Call the Graphviz program that is associated with a DOT file

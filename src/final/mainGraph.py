@@ -12,14 +12,14 @@ __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 if __name__ == '__main__':
-    # connection = sqlite3.connect('C:/Users/Laura/PycharmProjects/TFG/src/data/BD.db')  # WINDOWS
-    # connection = sqlite3.connect('/Users/laura/PycharmProjects/TFG/src/data/BD.db')    # OS X
-    tableName = str(input("Please enter a name for the database table: "))
-    graph, rows = Graph.initializeGraph('/Users/laura/PycharmProjects/TFG/src/data/BD.db', tableName)
+    fileDB = str(input("Please enter a database SQLite file:\n"))
+    # C:/Users/Laura/PycharmProjects/TFG/src/data/BD.db  WINDOWS
+    # /Users/laura/PycharmProjects/TFG/src/data/BD.db    OS X
+    tableName = str(input("Table name: \n"))
+    graph, rows = Graph.initializeGraph(fileDB, tableName)
 
     option = int(input("Please enter the option of graph you want to create:\n [1] = plain\n [2] = linear\n [3] "
                        "= exponential\n"))
-
     if option == 1:
         plainGraph = Graph.createPlainGraph(graph, rows)
         Graph.exportGraphDOT(graph, 'plainGraph.dot')

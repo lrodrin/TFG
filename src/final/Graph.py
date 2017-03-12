@@ -29,7 +29,7 @@ class Graph:
         """
         graph = nx.Graph()
         connection, cursor = Data.connection(fileDB)  # Connection to SQLite database
-        # TODO tableName = Data.getTableName(fileDB)
+        # TODO tableNames = Data.getTableNames(fileDB)
         columnNames, rows = Data.select(tableName, cursor)  # Select data from SQLite database
         Graph.addNodes(graph, columnNames, rows)  # Adding nodes to a Graph
         for (u, v) in itertools.combinations(graph.nodes(), 2):  # All the edges are painted white

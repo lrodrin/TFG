@@ -12,6 +12,8 @@ __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 
+# TODO canvis pel format ARFF
+
 class Data:
     @staticmethod
     def connection(fileDB):
@@ -23,8 +25,9 @@ class Data:
         """
         try:
             connection = sqlite3.connect(fileDB)
+            cursor = connection.cursor()
             print("Connection successful to", fileDB)
-            return connection
+            return connection, cursor
         except sqlite3.Error as e:
             print("Error:", e)
 
@@ -48,7 +51,7 @@ class Data:
         return None
 
     @staticmethod
-    def getDataFile(dataFile):  # TODO per ARFF, 2 funcions diferents o modificar aquesta
+    def getDataFile(dataFile):
         """
         Get column names and all lines from file specified by dataFile
 
@@ -102,7 +105,6 @@ class Data:
                 print("Row[%d] %s inserted" % (line, query))
             except sqlite3.Error as e:
                 print("Error:", e)
-
             values = ""
 
     @staticmethod
@@ -134,9 +136,9 @@ class Data:
             print("Error:", e)
         try:
             cursor.close()
-        except IOError as e:
+        except sqlite3.Error as e:
             print("Error:", e)
         try:
             connection.close()
-        except IOError as e:
+        except sqlite3.Error as e:
             print("Error:", e)

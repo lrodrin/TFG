@@ -37,6 +37,8 @@ if __name__ == "__main__":
     tableName = str(input("Table name: \n"))
     graph, rows = Graph.initializeGraph(fileDB, tableName)
     plainGraph = Graph.createPlainGraph(graph, rows)
+    # linearGraph = Graph.createLinearGraph(graph, rows)
+    # exponentialGraph = Graph.createExponentialGraph(graph, rows)
 
     clansList = Clan.clans(plainGraph, plainGraph.nodes())
     print("List of clans:\n", clansList)

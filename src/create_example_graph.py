@@ -6,9 +6,9 @@ Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
-import networkx as nx
 
-import src.final.Graph as g
+from src.final.Clan import *
+from src.final.Graph import *
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
@@ -28,17 +28,17 @@ if __name__ == "__main__":
     setNodes = set(G.nodes())  # Set of nodes from graph
     cardinality = nx.graph_clique_number(G)  # A maximal cardinality matching in the graph
 
-    clansList = clans(G, setNodes)
+    clansList = Clan.clans(G, setNodes)
     print("List of clans:\n", clansList)
     print("-" * 20)
 
-    trivialClansList = trivialClans(setNodes, cardinality)
+    trivialClansList = Clan.trivialClans(setNodes, cardinality)
     print("List of clans:\n", trivialClansList)
     print("-" * 20)
 
-    primalsList = primalClans(clansList)
+    primalsList = Clan.primalClans(clansList)
     print("List of primal clans:\n", primalsList)
     print("-" * 20)
 
-    print("Dictionary of the graph:\n", g.Graph.createDictFromGraph(G))
+    print("Dictionary of the graph:\n", Graph.createDictFromGraph(G))
     print("-" * 20)

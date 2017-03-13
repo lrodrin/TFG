@@ -12,7 +12,7 @@ __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 
-# TODO canvis pel format ARFF
+# TODO el nom de la taula es podria treure amb el @relation
 
 class Data:
     @staticmethod
@@ -151,7 +151,7 @@ class Data:
         """
         values = str()
         for line in lines:
-            if not line.startswith("@") and not line.startswith("\n"):
+            if not line.startswith("@") and not line.startswith("\n") and not line.startswith("%"):
                 for word in line.split(","):
                     word = "'{0}'".format(word.replace('\n', ''))
                     values += word + ','
@@ -206,3 +206,13 @@ class Data:
             connection.close()
         except sqlite3.Error as e:
             print(error, e)
+
+    @staticmethod
+    def getTableNameARFF(lines):
+        for line in lines:
+            if line.startswith("@relation"):
+                if "'" in line:
+                    line = line.split(" ")[1]
+                    return line[1:-2]
+                else:
+                    return line.split(" ")[1]

@@ -22,13 +22,13 @@ class Graph:
         """
         Create and initializes a Graph from SQLite database source
 
-        :param fileDB: SQLite database file
         :param tableName: Table name from fileDB
+        :param cursor:
+        :type tableName: str
         :return: Graph and all rows from from SQLite database source
         :rtype: nx.Graph
         """
         graph = nx.Graph()
-        # TODO tableNames = Data.getTableNames(fileDB)
         columnNames, rows = Data.select(tableName, cursor)  # Select data from SQLite database
         Graph.addNodes(graph, columnNames, rows)  # Adding nodes to a Graph
         for (u, v) in itertools.combinations(graph.nodes(), 2):  # All the edges are painted white

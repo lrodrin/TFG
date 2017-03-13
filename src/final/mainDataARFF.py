@@ -28,3 +28,6 @@ if __name__ == "__main__":
 
     tableName = str(input("Table name: \n"))
     Data.select(tableName, cursor)
+
+    tables = Data.geTablesNames(cursor)
+    print(tables)

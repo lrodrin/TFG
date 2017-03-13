@@ -216,3 +216,13 @@ class Data:
                     return line[1:-2]
                 else:
                     return line.split(" ")[1]
+
+    @staticmethod
+    def geTablesNames(cursor):
+        tablesNameList = list()
+        query = "SELECT name FROM sqlite_master WHERE type='table' ORDER BY Name"
+        cursor.execute(query)
+        tables = map(lambda t: t[0], cursor.fetchall())
+        for table in tables:
+            tablesNameList.append(table)
+        return tablesNameList

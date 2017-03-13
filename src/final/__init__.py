@@ -1,5 +1,5 @@
 """
-This module implements ...
+This module implements the code _init_.py
 
 Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 

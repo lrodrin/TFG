@@ -50,8 +50,8 @@ except sqlite3.Error as e:
 
 values = ""
 for i in range(1, len(lines)):  # For each row from data file
-    for col in lines[i].split(" "):   # For each column in lines[i]
-        values += "'%s'," % col.split(":")[1]   # Extract and save the value
+    for col in lines[i].split(" "):  # For each column in lines[i]
+        values += "'%s'," % col.split(":")[1]  # Extract and save the value
     try:
         query = 'INSERT INTO {0} ({1}) VALUES ({2});'.format(str(tableName), str(colNames[0:-2]),
                                                              str(values[0:-1]).replace('\n', ''))

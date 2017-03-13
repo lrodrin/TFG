@@ -41,12 +41,13 @@ if __name__ == "__main__":
     fileOption = int(input("Please enter the option for the file you provide:\n [1] = .arff\n [2] = .db\n"))
     if fileOption == 1:
         file = str(input("Please enter the name from ARFF data file:\n"))
-        name = file[0:-5]
-        connection, cursor = Data.connection(name + ".db")  # Connection to SQLite database
-        file = Data.openFile(file)  # Open data file
-        columnNames, lines = Data.getDataARFFile(file)  # Get column names and lines from file
-        # Data.createTableARFF(cursor, name, columnNames)  # Create table tableName
-        # Data.insertARFF(name, columnNames, lines, cursor, connection)  # Insert data to tableName
+        # connection, cursor = Data.connection(file[0:-5] + ".db")  # Connection to SQLite database
+        # connection, cursor = Data.connection("DB" + ".db")  # Connection to SQLite database
+        # file = Data.openFile(file)  # Open data file
+        # columnNames, lines = Data.getDataARFFile(file)  # Get column names and lines from file
+        # tableName = Data.getTableNameARFF(lines)
+        # Data.createTableARFF(cursor, tableName, columnNames)  # Create table tableName
+        # Data.insertARFF(tableName, columnNames, lines, cursor, connection)  # Insert data to tableName
     elif fileOption == 2:
         file = str(input("Please enter the name from DB SQLite file:\n"))
         connection, cursor = Data.connection(file)  # Connection to SQLite database

@@ -31,11 +31,12 @@ if __name__ == "__main__":
     primalClansSubsets = Clan.primalClansSubsets(primalClansList)
     print("List of primal clans subsets:\n", primalClansSubsets)
 
-    fileDB = str(input("Please enter a database SQLite file:\n"))
-    # C:/Users/Laura/PycharmProjects/TFG/src/data/BD.db  WINDOWS
-    # /Users/laura/PycharmProjects/TFG/src/data/BD.db    OS X
+    file = str(input("Please enter the name from DB SQLite file:\n"))
+    connection, cursor = Data.connection(file)  # Connection to SQLite database
+    # C:/Users/Laura/PycharmProjects/TFG/src/final/DB.db  WINDOWS
+    # /Users/laura/PycharmProjects/TFG/src/final/DB.db    OS X
     tableName = str(input("Table name: \n"))
-    graph, rows = Graph.initializeGraph(fileDB, tableName)
+    graph, rows = Graph.initializeGraph(tableName, cursor)
     plainGraph = Graph.createPlainGraph(graph, rows)
     # linearGraph = Graph.createLinearGraph(graph, rows)
     # exponentialGraph = Graph.createExponentialGraph(graph, rows)

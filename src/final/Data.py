@@ -106,7 +106,7 @@ class Data:
         :param columnNames: Column names
         """
         try:
-            query = "CREATE TABLE %s (%s);" % (str(tableName), str(columnNames[0:-2]))
+            query = 'CREATE TABLE {0} ({1});'.format(str(tableName), str(columnNames[0:-2]))
             cursor.execute(query)
             print("Table %s was created" % tableName)
         except sqlite3.Error as e:
@@ -175,7 +175,8 @@ class Data:
         :return: Column names and all rows from tableName
         """
         try:
-            cursor.execute("SELECT * FROM %s" % tableName)
+            query = 'SELECT * FROM {0};'.format(str(tableName))
+            cursor.execute(query)
             columnNames = [description[0] for description in cursor.description]
             rows = cursor.fetchall()
             return columnNames, rows

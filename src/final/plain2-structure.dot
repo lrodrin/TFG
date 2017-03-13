@@ -1,92 +1,92 @@
 digraph G {
 compound=True;
-yes;
 mild;
 sunny;
-high;
+yes;
+no;
 normal;
+rainy;
 cool;
 hot;
-rainy;
-no;
+high;
 overcast;
 FALSE;
 TRUE;
-subgraph cluster_rainynormalhotmildTRUEnocoolhighFALSEyesovercastsunny {
-s_rainynormalhotmildcoolhighnoyesovercastsunny [fillcolor=white, width=0.2, label=" ", fixedsize=True];
-s_TRUEFALSE [fillcolor=white, width=0.2, label=" ", fixedsize=True];
+subgraph cluster_TRUEovercastcoolsunnyFALSEnormalhighhotnorainymildyes {
+s_overcastcoolsunnyhighnormalhotnorainymildyes [width=0.2, label=" ", fixedsize=True, fillcolor=white];
+s_FALSETRUE [width=0.2, label=" ", fixedsize=True, fillcolor=white];
 subgraph  {
 rank=same;
-s_rainynormalhotmildcoolhighnoyesovercastsunny -> s_TRUEFALSE  [color=black, arrowhead=none];
+s_overcastcoolsunnyhighnormalhotnorainymildyes -> s_FALSETRUE  [color=black, arrowhead=none];
 }
 
 }
 
-subgraph cluster_rainynormalhotmildcoolhighnoyesovercastsunny {
-s_yes [fillcolor=white, width=0.2, label=" ", fixedsize=True];
-s_mild [fillcolor=white, width=0.2, label=" ", fixedsize=True];
-s_sunny [fillcolor=white, width=0.2, label=" ", fixedsize=True];
-s_high [fillcolor=white, width=0.2, label=" ", fixedsize=True];
-s_normal [fillcolor=white, width=0.2, label=" ", fixedsize=True];
-s_cool [fillcolor=white, width=0.2, label=" ", fixedsize=True];
-s_hot [fillcolor=white, width=0.2, label=" ", fixedsize=True];
-s_rainy [fillcolor=white, width=0.2, label=" ", fixedsize=True];
-s_no [fillcolor=white, width=0.2, label=" ", fixedsize=True];
-s_overcast [fillcolor=white, width=0.2, label=" ", fixedsize=True];
+subgraph cluster_overcastcoolsunnyhighnormalhotnorainymildyes {
+s_mild [width=0.2, label=" ", fixedsize=True, fillcolor=white];
+s_sunny [width=0.2, label=" ", fixedsize=True, fillcolor=white];
+s_yes [width=0.2, label=" ", fixedsize=True, fillcolor=white];
+s_no [width=0.2, label=" ", fixedsize=True, fillcolor=white];
+s_normal [width=0.2, label=" ", fixedsize=True, fillcolor=white];
+s_rainy [width=0.2, label=" ", fixedsize=True, fillcolor=white];
+s_cool [width=0.2, label=" ", fixedsize=True, fillcolor=white];
+s_hot [width=0.2, label=" ", fixedsize=True, fillcolor=white];
+s_high [width=0.2, label=" ", fixedsize=True, fillcolor=white];
+s_overcast [width=0.2, label=" ", fixedsize=True, fillcolor=white];
 subgraph  {
 rank=same;
-s_yes -> s_mild  [color=black, arrowhead=none];
-s_yes -> s_sunny  [color=black, arrowhead=none];
-s_yes -> s_high  [color=black, arrowhead=none];
-s_yes -> s_normal  [color=black, arrowhead=none];
-s_yes -> s_cool  [color=black, arrowhead=none];
-s_yes -> s_hot  [color=black, arrowhead=none];
-s_yes -> s_rainy  [color=black, arrowhead=none];
-s_yes -> s_no  [color=white, arrowhead=none];
-s_yes -> s_overcast  [color=black, arrowhead=none];
 s_mild -> s_sunny  [color=black, arrowhead=none];
-s_mild -> s_high  [color=black, arrowhead=none];
+s_mild -> s_yes  [color=black, arrowhead=none];
+s_mild -> s_no  [color=black, arrowhead=none];
 s_mild -> s_normal  [color=black, arrowhead=none];
+s_mild -> s_rainy  [color=black, arrowhead=none];
 s_mild -> s_cool  [color=white, arrowhead=none];
 s_mild -> s_hot  [color=white, arrowhead=none];
-s_mild -> s_rainy  [color=black, arrowhead=none];
-s_mild -> s_no  [color=black, arrowhead=none];
+s_mild -> s_high  [color=black, arrowhead=none];
 s_mild -> s_overcast  [color=black, arrowhead=none];
-s_sunny -> s_high  [color=black, arrowhead=none];
+s_sunny -> s_yes  [color=black, arrowhead=none];
+s_sunny -> s_no  [color=black, arrowhead=none];
 s_sunny -> s_normal  [color=black, arrowhead=none];
+s_sunny -> s_rainy  [color=white, arrowhead=none];
 s_sunny -> s_cool  [color=black, arrowhead=none];
 s_sunny -> s_hot  [color=black, arrowhead=none];
-s_sunny -> s_rainy  [color=white, arrowhead=none];
-s_sunny -> s_no  [color=black, arrowhead=none];
+s_sunny -> s_high  [color=black, arrowhead=none];
 s_sunny -> s_overcast  [color=white, arrowhead=none];
-s_high -> s_normal  [color=white, arrowhead=none];
-s_high -> s_cool  [color=white, arrowhead=none];
-s_high -> s_hot  [color=black, arrowhead=none];
-s_high -> s_rainy  [color=black, arrowhead=none];
-s_high -> s_no  [color=black, arrowhead=none];
-s_high -> s_overcast  [color=black, arrowhead=none];
+s_yes -> s_no  [color=white, arrowhead=none];
+s_yes -> s_normal  [color=black, arrowhead=none];
+s_yes -> s_rainy  [color=black, arrowhead=none];
+s_yes -> s_cool  [color=black, arrowhead=none];
+s_yes -> s_hot  [color=black, arrowhead=none];
+s_yes -> s_high  [color=black, arrowhead=none];
+s_yes -> s_overcast  [color=black, arrowhead=none];
+s_no -> s_normal  [color=black, arrowhead=none];
+s_no -> s_rainy  [color=black, arrowhead=none];
+s_no -> s_cool  [color=black, arrowhead=none];
+s_no -> s_hot  [color=black, arrowhead=none];
+s_no -> s_high  [color=black, arrowhead=none];
+s_no -> s_overcast  [color=white, arrowhead=none];
+s_normal -> s_rainy  [color=black, arrowhead=none];
 s_normal -> s_cool  [color=black, arrowhead=none];
 s_normal -> s_hot  [color=black, arrowhead=none];
-s_normal -> s_rainy  [color=black, arrowhead=none];
-s_normal -> s_no  [color=black, arrowhead=none];
+s_normal -> s_high  [color=white, arrowhead=none];
 s_normal -> s_overcast  [color=black, arrowhead=none];
-s_cool -> s_hot  [color=white, arrowhead=none];
-s_cool -> s_rainy  [color=black, arrowhead=none];
-s_cool -> s_no  [color=black, arrowhead=none];
-s_cool -> s_overcast  [color=black, arrowhead=none];
-s_hot -> s_rainy  [color=white, arrowhead=none];
-s_hot -> s_no  [color=black, arrowhead=none];
-s_hot -> s_overcast  [color=black, arrowhead=none];
-s_rainy -> s_no  [color=black, arrowhead=none];
+s_rainy -> s_cool  [color=black, arrowhead=none];
+s_rainy -> s_hot  [color=white, arrowhead=none];
+s_rainy -> s_high  [color=black, arrowhead=none];
 s_rainy -> s_overcast  [color=white, arrowhead=none];
-s_no -> s_overcast  [color=white, arrowhead=none];
+s_cool -> s_hot  [color=white, arrowhead=none];
+s_cool -> s_high  [color=white, arrowhead=none];
+s_cool -> s_overcast  [color=black, arrowhead=none];
+s_hot -> s_high  [color=black, arrowhead=none];
+s_hot -> s_overcast  [color=black, arrowhead=none];
+s_high -> s_overcast  [color=black, arrowhead=none];
 }
 
 }
 
-subgraph cluster_TRUEFALSE {
-s_FALSE [fillcolor=white, width=0.2, label=" ", fixedsize=True];
-s_TRUE [fillcolor=white, width=0.2, label=" ", fixedsize=True];
+subgraph cluster_FALSETRUE {
+s_FALSE [width=0.2, label=" ", fixedsize=True, fillcolor=white];
+s_TRUE [width=0.2, label=" ", fixedsize=True, fillcolor=white];
 subgraph  {
 rank=same;
 s_FALSE -> s_TRUE  [color=white, arrowhead=none];
@@ -94,18 +94,18 @@ s_FALSE -> s_TRUE  [color=white, arrowhead=none];
 
 }
 
-s_yes -> yes  [arrowhead=none];
 s_mild -> mild  [arrowhead=none];
 s_sunny -> sunny  [arrowhead=none];
-s_high -> high  [arrowhead=none];
+s_yes -> yes  [arrowhead=none];
+s_no -> no  [arrowhead=none];
 s_normal -> normal  [arrowhead=none];
+s_rainy -> rainy  [arrowhead=none];
 s_cool -> cool  [arrowhead=none];
 s_hot -> hot  [arrowhead=none];
-s_rainy -> rainy  [arrowhead=none];
-s_no -> no  [arrowhead=none];
+s_high -> high  [arrowhead=none];
 s_overcast -> overcast  [arrowhead=none];
 s_FALSE -> FALSE  [arrowhead=none];
 s_TRUE -> TRUE  [arrowhead=none];
-s_rainynormalhotmildcoolhighnoyesovercastsunny -> s_yes  [lhead=cluster_rainynormalhotmildcoolhighnoyesovercastsunny, arrowhead=none];
-s_TRUEFALSE -> s_FALSE  [lhead=cluster_TRUEFALSE, arrowhead=none];
+s_overcastcoolsunnyhighnormalhotnorainymildyes -> s_mild  [lhead=cluster_overcastcoolsunnyhighnormalhotnorainymildyes, arrowhead=none];
+s_FALSETRUE -> s_FALSE  [lhead=cluster_FALSETRUE, arrowhead=none];
 }

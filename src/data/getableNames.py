@@ -7,7 +7,6 @@ Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
 from src.final.Data import *
-import numpy as np
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'

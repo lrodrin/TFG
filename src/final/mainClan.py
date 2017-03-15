@@ -37,14 +37,16 @@ if __name__ == "__main__":
     # /Users/laura/PycharmProjects/TFG/src/final/DB.db    OS X
     tableName = str(input("Table name: \n"))
     graph, rows = Graph.initializeGraph(tableName, cursor)
+    print("init")
     plainGraph = Graph.createPlainGraph(graph, rows)
+    print("graph")
     # linearGraph = Graph.createLinearGraph(graph, rows)
     # exponentialGraph = Graph.createExponentialGraph(graph, rows)
 
-    clansList = Clan.clans(plainGraph, plainGraph.nodes())
+    clansList = Clan.clans(plainGraph, set(plainGraph.nodes()))
     print("List of clans:\n", clansList)
 
-    trivialClansList = Clan.trivialClans(plainGraph.nodes(), nx.graph_clique_number(plainGraph))
+    trivialClansList = Clan.trivialClans(set(plainGraph.nodes()), nx.graph_clique_number(plainGraph))
     print("List of trivial clans:\n", trivialClansList)
 
     primalClansList = Clan.primalClans(clansList)

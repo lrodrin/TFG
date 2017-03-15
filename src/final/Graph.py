@@ -90,7 +90,9 @@ class Graph:
         """
         for row in rows:
             for (u, v) in itertools.combinations(row, 2):
-                graph.add_edge(u, v, color='black')
+                # graph.add_edge(u, v, color='black')
+                if graph.has_edge(u, v):
+                    graph.edge[u][v]['color'] = 'black'
         return graph
 
     @staticmethod

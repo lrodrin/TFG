@@ -8,7 +8,7 @@ Distributed under MIT license
 """
 import networkx as nx
 
-import src.final.Subset as it
+from src.final.Subset import *
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
@@ -21,6 +21,5 @@ if __name__ == "__main__":
     G.add_edges_from([('A', 'D'), ('A', 'E')], color='blue')
     nodes = set(G.nodes())  # Nodes from graph
 
-    subsetList = it.Subset.powerset_list(nodes)
-    print("List of subsets from graph:\n", subsetList)
-    print("-" * 20)
+    for subset in Subset.powerset_generator(nodes):
+        print(subset)

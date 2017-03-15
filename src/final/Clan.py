@@ -69,8 +69,7 @@ class Clan:
         :rtype: list
         """
         clansList = list()
-        listNodes = Subset.powerset_list(nodes)
-        for subset in listNodes:  # For each subset in listNodes
+        for subset in Subset.powerset_generator(nodes):  # For each subset in listNodes
             if Clan.isClan(graph, subset):  # If subset is a clan of graph
                 clansList.append(subset)  # Add subset to the clans list
         return sorted(clansList)
@@ -88,8 +87,7 @@ class Clan:
         :rtype: list
         """
         trivialClansList = list()
-        listNodes = Subset.powerset_list(nodes)  # List that contains all subsets from a graph
-        for subset in listNodes:  # For each subset in listNodes
+        for subset in Subset.powerset_generator(nodes):  # For each subset in listNodes
             if Clan.isTrivialClan(subset, cardinality):  # If subset is a trivial clan of a graph
                 trivialClansList.append(subset)  # Add subset to the trivial clans list
         return sorted(trivialClansList)

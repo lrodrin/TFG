@@ -1,5 +1,5 @@
 """
-This module implements ...
+This module obtain the names from SQLite database tables
 
 Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 

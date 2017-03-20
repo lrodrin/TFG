@@ -1,5 +1,5 @@
 """
-This module implements a table for a database from txt file
+This module creates a table for a SQLite database from txt
 
 Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 

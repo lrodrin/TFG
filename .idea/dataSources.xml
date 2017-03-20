@@ -14,11 +14,5 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/src/final/DB.db</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="Northwind_small.sqlite" uuid="24464b13-be90-4b5f-b147-ace11e202bb6">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/src/final/Northwind_small.sqlite</jdbc-url>
-    </data-source>
   </component>
 </project>

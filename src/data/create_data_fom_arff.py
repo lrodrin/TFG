@@ -20,7 +20,7 @@ connection, cursor = Data.connection('C:/Users/Laura/PycharmProjects/TFG/src/dat
 # dataFile = str(input("Please enter data file:\n"))
 # C:/Users/Laura/PycharmProjects/TFG/src/data/weather.arff  WINDOWS
 # /Users/laura/PycharmProjects/TFG/src/data/weather.arff    OS X
-file = Data.openFile('C:/Users/Laura/PycharmProjects/TFG/src/data/iris.arff')  # Open data file
+file = Data.openFile('C:/Users/Laura/PycharmProjects/TFG/src/data/contact-lenses.arff')  # Open data file
 
 # get data
 lines = file.readlines()

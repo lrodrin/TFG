@@ -23,4 +23,3 @@ if __name__ == "__main__":
 
     for subset in Subset.powerset_generator(nodes):
         print(subset)
-

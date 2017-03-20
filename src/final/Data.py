@@ -12,8 +12,6 @@ __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 
-# TODO el nom de la taula es podria treure amb el @relation
-
 class Data:
     @staticmethod
     def connection(fileDB):
@@ -21,15 +19,16 @@ class Data:
         Create a database connection to the SQLite database specified by fileDB
 
         :param fileDB: Database SQLite file
-        :return: Connection object or None
+        :return: Connection object and cursor object or None
         """
         try:
             connection = sqlite3.connect(fileDB)
             cursor = connection.cursor()
             print("Connection successful to", fileDB)
             return connection, cursor
+
         except sqlite3.Error as e:
-            print("Error connection:", e)
+            print("Error to connection:", e)
 
         return None
 
@@ -43,136 +42,146 @@ class Data:
         """
         try:
             file = open(dataFile, 'r')
-            print("File opened from", dataFile)
+            print("File %s opened" % dataFile)
             return file
+
         except IOError as e:
-            print("Error open:", e)
+            print("Error to open:", e)
 
         return None
 
     @staticmethod
     def getDataFile(dataFile):
         """
-        Get column names and all lines from file specified by dataFile
+        Get data from dataFile
 
         :param dataFile: Data file
         :return: Column names and lines from dataFile
+        :rtype: str
         """
-        columnNames = ""
-        lines = dataFile.readlines()  # Keep all lines from dataFile into lines
+        columnNames = str()
+        lines = dataFile.readlines()  # Extract all the lines from dataFile
         header = lines[0]  # Extract the header line from dataFile
         for word in header.split(" "):  # For each word in header
             columnNames += word + ", "  # Adding column name into columnNames
+
         return columnNames, lines
 
     @staticmethod
     def getDataARFFile(dataFile):
         """
-        Get column names and all lines from file specified by dataFile
+        Get data from dataFile
 
         :param dataFile: Data file
         :return: Column names and lines from dataFile
+        :rtype: str
         """
-        lines = dataFile.readlines()
         columnNames = str()
-        for line in lines:
-            if line.startswith("@attribute"):
-                columnNames += line.split(" ")[1] + ", "
+        lines = dataFile.readlines()  # Extract all the lines from dataFile
+        for line in lines:  # For each line in lines
+            if line.startswith("@attribute"):  # If is an attribute
+                columnNames += line.split(" ")[1] + ", "  # Adding column name into columnNames
+
         return columnNames, lines
 
     @staticmethod
     def createTable(cursor, tableName, columnNames):
         """
-        Create a table specified by tableName in SQLite database
+        Create a table specified name by tableName in a SQLite database
 
         :param cursor: Connection cursor
         :param tableName: Table name
         :param columnNames: Column names
+        :type tableName: str
+        :type columnNames: str
         """
         try:
-            query = "CREATE TABLE %s (%s);" % (str(tableName), str(columnNames[0:-2]))  # SQLite query
+            query = "CREATE TABLE %s (%s);" % (str(tableName), str(columnNames[0:-2]))
             cursor.execute(query)
-            print("Table %s was created" % tableName)
         except sqlite3.Error as e:
-            print("Error create:", e)
+            print("Error to create table:", e)
 
     @staticmethod
     def createTableARFF(cursor, tableName, columnNames):
         """
-        Create a table specified by tableName in SQLite database
+        Create a table specified name by tableName in a SQLite database
 
         :param cursor: Connection cursor
         :param tableName: Table name
         :param columnNames: Column names
+        :type tableName: str
+        :type columnNames: str
         """
         try:
             query = 'CREATE TABLE {0} ({1});'.format(str(tableName), str(columnNames[0:-2]))
             cursor.execute(query)
-            print("Table %s was created" % tableName)
         except sqlite3.Error as e:
-            print("Error create:", e)
+            print("Error to create table:", e)
 
     @staticmethod
     def insert(tableName, columnNames, lines, cursor, connection):
         """
-        Insert values to table specified by tableName in SQLite database
+        Insert values to a table specified by tableName in SQLite database
 
         :param tableName: Table name
         :param columnNames: Column names
         :param lines: Lines from a data file
-        :param cursor: Connection cursor
+        :param cursor: Cursor object
         :param connection: Connection object
+        :type tableName: str
+        :type columnNames: str
         """
-        values = ""
-        for line in range(1, len(lines)):  # For each line from data file
+        values = str()
+        for line in range(1, len(lines)):  # For each line in lines
             for column in lines[line].split(" "):  # For each column in lines[line]
-                values += "'%s'," % column.split(":")[1]  # Extract and keep values in values
+                values += "'%s'," % column.split(":")[1]  # Extract values
             try:
                 query = 'INSERT INTO {0} ({1}) VALUES ({2});'.format(str(tableName), str(columnNames[0:-2]),
                                                                      str(values[0:-1]).replace('\n', ''))
-                # SQLite query
                 cursor.execute(query)
                 connection.commit()
-                print("Row[%d] %s inserted" % (line, query))
+                values = str()
             except sqlite3.Error as e:
-                print("Error insert:", e)
-            values = ""
+                print("Error to insert:", e)
 
     @staticmethod
     def insertARFF(tableName, columnNames, lines, cursor, connection):
         """
-        Insert values to table specified by tableName in SQLite database
+        Insert values to a table specified by tableName in SQLite database
 
         :param tableName: Table name
         :param columnNames: Column names
         :param lines: Lines from a data file
-        :param cursor: Connection cursor
+        :param cursor: Cursor object
         :param connection: Connection object
+        :type tableName: str
+        :type columnNames: str
         """
         values = str()
-        for line in lines:
-            if not line.startswith("@") and not line.startswith("\n") and not line.startswith("%"):
-                for word in line.split(","):
-                    word = "'{0}'".format(word.replace('\n', ''))
-                    values += word + ','
+        for line in lines:  # For each line in lines
+            if not line.startswith("@") and not line.startswith("\n") and not line.startswith("%"):  # Parse init line
+                for word in line.split(","):  # For each word in line parsed
+                    word = "'{0}'".format(word.replace('\n', ''))  # Quit end of line from word
+                    values += word + ','  # Add word to values
                 try:
                     query = 'INSERT INTO {0} ({1}) VALUES ({2})'.format(str(tableName), str(columnNames[0:-2]),
                                                                         str(values[0:-1]).replace('\n', ''))
                     cursor.execute(query)
                     connection.commit()
-                    print("Row %s inserted" % query)
                     values = str()
                 except sqlite3.Error as e:
-                    print("Error insert:", e)
+                    print("Error to insert:", e)
 
     @staticmethod
     def select(tableName, cursor):
         """
-        Select rows from a table specified by tableName in SQLite database
+        Select all the rows from a table specified by tableName in SQLite database
 
         :param tableName: Table name
-        :param cursor: Connection cursor
-        :return: Column names and all rows from tableName
+        :param cursor: Cursor object
+        :type tableName: str
+        :return: Column names and all rows from tableName or None
+        :rtype: str
         """
         try:
             query = 'SELECT * FROM {0};'.format(str(tableName))
@@ -180,50 +189,41 @@ class Data:
             columnNames = [description[0] for description in cursor.description]
             rows = cursor.fetchall()
             return columnNames, rows
+
         except sqlite3.Error as e:
-            print("Error select:", e)
+            print("Error to select:", e)
 
         return None
 
     @staticmethod
-    def close(dataFile, cursor, connection):
+    def getTableNameFromARFFFile(lines):
         """
-        Close opened data file, cursor connection and connection to SQLite database
+        Return the table name from data arff file
 
-        :param dataFile: Data file
-        :param cursor: Connection cursor
-        :param connection: Connection object
+        :param lines: Lines from a data file
+        :return: A Table name
         """
-        error = "Error close:"
-        try:
-            dataFile.close()
-        except IOError as e:
-            print(error, e)
-        try:
-            cursor.close()
-        except sqlite3.Error as e:
-            print(error, e)
-        try:
-            connection.close()
-        except sqlite3.Error as e:
-            print(error, e)
-
-    @staticmethod
-    def getTableNameARFF(lines):
         for line in lines:
-            if line.startswith("@relation"):
-                if "'" in line:
-                    line = line.split(" ")[1]
+            if line.startswith("@relation"):  # Parse line
+                if "'" in line:  # If table name contains "'"
+                    line = line.split(" ")[1]  # Quit "'"
                     return line[1:-2]
                 else:
                     return line.split(" ")[1]
 
     @staticmethod
-    def geTablesNames(cursor):
+    def getTablesNames(cursor):
+        """
+        Return a list of all the table names from a SQLite database
+        :param cursor: Cursor object
+        :return: List of table names
+        :rtype: list
+        """
         tablesNameList = list()
         query = "SELECT name FROM sqlite_master WHERE type='table' ORDER BY Name"
         cursor.execute(query)
         tables = map(lambda t: t[0], cursor.fetchall())
         for table in tables:
             tablesNameList.append(table)
+
         return tablesNameList

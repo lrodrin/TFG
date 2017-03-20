@@ -129,7 +129,7 @@ class Interface:
             connection, cursor = Data.connection("DB" + ".db")  # Connection to SQLite database
             file = Data.openFile(file)  # Open data file
             columnNames, lines = Data.getDataARFFile(file)  # Get column names and lines from file
-            tableName = Data.getTableNameARFF(lines)
+            tableName = Data.getTableNameFromARFFFile(lines)
             Data.createTableARFF(cursor, tableName, columnNames)  # Create table tableName
             Data.insertARFF(tableName, columnNames, lines, cursor, connection)  # Insert data to tableName
         elif option == 2:

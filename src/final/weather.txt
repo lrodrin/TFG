@@ -1,0 +1,15 @@
+outlook temperature humidity windy play
+outlook:sunny temperature:hot humidity:high windy:FALSE play:no
+outlook:sunny temperature:hot humidity:high windy:TRUE play:no
+outlook:overcast temperature:hot humidity:high windy:FALSE play:yes
+outlook:rainy temperature:mild humidity:high windy:FALSE play:yes
+outlook:rainy temperature:cool humidity:normal windy:FALSE play:yes
+outlook:rainy temperature:cool humidity:normal windy:TRUE play:no
+outlook:overcast temperature:cool humidity:normal windy:TRUE play:yes
+outlook:sunny temperature:mild humidity:high windy:FALSE play:no
+outlook:sunny temperature:cool humidity:normal windy:FALSE play:yes
+outlook:rainy temperature:mild humidity:normal windy:FALSE play:yes
+outlook:sunny temperature:mild humidity:normal windy:TRUE play:yes
+outlook:overcast temperature:mild humidity:high windy:TRUE play:yes
+outlook:overcast temperature:hot humidity:normal windy:FALSE play:yes
+outlook:rainy temperature:mild humidity:high windy:TRUE play:no

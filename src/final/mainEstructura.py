@@ -27,9 +27,9 @@ if __name__ == "__main__":
     #                               ('A', 'C'): 'black', ('E', 'C'): 'orange', ('D', 'E'): 'orange', ('D', 'F'): 'blue',
     #                               ('A', 'F'): 'green', ('E', 'F'): 'red', ('B', 'F'): 'green'}
     #
-    # primalsDict_1 = OrderedDict(reversed(sorted(Clan.primalClansSubsets(primalsList_1).items(),
+    # primalsDict_1 = OrderedDict(reversed(sorted(Clan.primalClansDict(primalsList_1).items(),
     #                                             key=lambda t: len(t[0]))))
-    # primalsDict_2 = OrderedDict(reversed(sorted(Clan.primalClansSubsets(primalsList_2).items(),
+    # primalsDict_2 = OrderedDict(reversed(sorted(Clan.primalClansDict(primalsList_2).items(),
     #                                             key=lambda t: len(t[0]))))
     #
     # print("First primals list:\n", primalsDict_1)

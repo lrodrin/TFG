@@ -80,7 +80,7 @@ class Estructura:
         clansList = Clan.clans(graph, nodes)
         primalClansList = Clan.primalClans(clansList)
         EdgesAtributtes = Graph.createDictFromGraph(graph)
-        primalClansDict = OrderedDict(reversed(sorted(Clan.primalClansSubsets(primalClansList).items(),
+        primalClansDict = OrderedDict(reversed(sorted(Clan.primalClansDict(primalClansList).items(),
                                                       key=lambda t: len(t[0]))))
         return EdgesAtributtes, primalClansDict
 

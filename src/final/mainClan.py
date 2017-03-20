@@ -28,26 +28,25 @@ if __name__ == "__main__":
     primalClansList = Clan.primalClans(clansList)
     print("List of primal clans:\n", primalClansList)
 
-    primalClansSubsets = Clan.primalClansSubsets(primalClansList)
-    print("List of primal clans subsets:\n", primalClansSubsets)
+    primalClansDict = Clan.primalClansDict(primalClansList)
+    print("Dictionary of primal clans:\n", primalClansDict)
 
-    file = str(input("Please enter the name from DB SQLite file:\n"))
+    file = str(input("Please enter the name from SQLite file:\n"))
     connection, cursor = Data.connection(file)  # Connection to SQLite database
-    # C:/Users/Laura/PycharmProjects/TFG/src/final/DB.db  WINDOWS
-    # /Users/laura/PycharmProjects/TFG/src/final/DB.db    OS X
-    tableName = str(input("Table name: \n"))
-    graph, rows = Graph.initializeGraph(tableName, cursor)
-    print("init")
-    plainGraph = Graph.createPlainGraph(graph, rows)
-    print("graph")
-    # linearGraph = Graph.createLinearGraph(graph, rows)
-    # exponentialGraph = Graph.createExponentialGraph(graph, rows)
+    tableName = str(input("Please enter the table name: \n"))
+    graph, rows = Graph.initializeGraph(tableName, cursor)  # Initialize the graph
+    plainGraph = Graph.createPlainGraph(graph, rows)  # Create plain graph
+    # linearGraph = Graph.createLinearGraph(graph, rows)    # Create linear graph
+    # exponentialGraph = Graph.createExponentialGraph(graph, rows)  # Create exponential graph
 
-    clansList = Clan.clans(plainGraph, set(plainGraph.nodes()))
+    clansList = Clan.clans(plainGraph, plainGraph.nodes())
     print("List of clans:\n", clansList)
 
-    trivialClansList = Clan.trivialClans(set(plainGraph.nodes()), nx.graph_clique_number(plainGraph))
+    trivialClansList = Clan.trivialClans(plainGraph.nodes(), nx.graph_clique_number(plainGraph))
     print("List of trivial clans:\n", trivialClansList)
 
     primalClansList = Clan.primalClans(clansList)
     print("List of primal clans:\n", primalClansList)
+
+    primalClansDict = Clan.primalClansDict(primalClansList)
+    print("Dictionary of primal clans:\n", primalClansDict)

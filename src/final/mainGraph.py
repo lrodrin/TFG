@@ -34,13 +34,17 @@ if __name__ == '__main__':
     if option == 1:
         plainGraph = Graph.createPlainGraph(graph, rows)  # Create a plain graph
         Graph.exportGraphDOT(graph, 'plainGraph.dot')  # Export graph to Graphviz format
+        print("Plain graph was created")
     elif option == 2:
         threshold = int(input("Please enter the k constant for the threshold:\n"))
         plainGraph = Graph.createPlainGraphWithThreshold(graph, rows, threshold)  # Create a plain graph with threshold
         Graph.exportGraphDOT(graph, 'plainGraph with threshold.dot')  # Export graph to Graphviz format
+        print("Plain graph with threshold was created")
     elif option == 3:
         linearGraph = Graph.createLinearGraph(graph, rows)  # Create a linear graph
         Graph.exportGraphDOT(graph, 'linearGraph.dot')  # Export graph to Graphviz format
+        print("Linear graph was created")
     elif option == 4:
         exponentialGraph = Graph.createExponentialGraph(graph, rows)  # Create an exponential graph
         Graph.exportGraphDOT(graph, 'exponentialGraph.dot')  # Export graph to Graphviz format
+        print("Exponential graph was created")

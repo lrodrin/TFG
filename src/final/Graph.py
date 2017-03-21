@@ -92,7 +92,6 @@ class Graph:
             for (u, v) in itertools.combinations(row, 2):  # For each pair of rows
                 if graph.has_edge(u, v):  # If exists edge (u, v) in graph
                     graph.edge[u][v]['color'] = 'black'  # Edge painted black
-        print("Plain graph was created")
         return graph
 
     @staticmethod
@@ -118,7 +117,6 @@ class Graph:
                 graph[u][v]['color'] = 'black'  # Edge painted black
 
         # TODO s'han d'amagar els labels
-        print("Plain graph with threshold was created")
         return graph
 
     @staticmethod
@@ -164,7 +162,6 @@ class Graph:
                     graph[u][v]['color'] = color  # Add color to edge
 
         # TODO s'han d'amagar els labels
-        print("Linear graph was created")
         return graph
 
     @staticmethod
@@ -204,5 +201,4 @@ class Graph:
                 graph[u][v]['color'] = 'brown'
 
         # TODO s'han d'amagar els labels
-        print("Exponential graph was created")
         return graph

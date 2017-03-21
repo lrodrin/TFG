@@ -19,7 +19,6 @@ if __name__ == "__main__":
     G.add_edges_from([('A', 'B'), ('B', 'D'), ('B', 'E'), ('D', 'E')], color='red')
     G.add_edges_from([('A', 'C'), ('B', 'C'), ('C', 'D'), ('C', 'E')], color='black')
     G.add_edges_from([('A', 'D'), ('A', 'E')], color='blue')
-    nodes = set(G.nodes())  # Nodes from graph
 
-    for subset in Subset.powerset_generator(nodes):
+    for subset in Subset.powerset_generator(G.nodes()):
         print(subset)

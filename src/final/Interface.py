@@ -35,7 +35,7 @@ class Interface:
         elif option == 2:
             threshold = int(input("Please enter the k constant for the threshold:\n"))
             Graph.createPlainGraphWithThreshold(graph, rows, threshold)  # Create a plain graph with threshold
-            graphName = "plainGraphWithThreshold.dot"
+            graphName = "plainGraph with threshold.dot"
             Graph.exportGraphDOT(graph, graphName)  # Export graph to Graphviz format
         elif option == 3:
             Graph.createLinearGraph(graph, rows)  # Create a linear graph

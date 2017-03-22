@@ -8,6 +8,7 @@ Distributed under MIT license
 """
 from src.final.Clan import *
 from src.final.Graph import *
+import six
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
@@ -31,9 +32,9 @@ if __name__ == "__main__":
     primalClansDict = Clan.primalClansDict(primalClansList)
     print("Dictionary of primal clans:\n", primalClansDict)
 
-    file = str(input("Please enter the name from SQLite file:\n"))
+    file = str(six.moves.input("Please enter the name from SQLite file:\n"))
     connection, cursor = Data.connection(file)  # Connection to SQLite database
-    tableName = str(input("Please enter the table name: \n"))
+    tableName = str(six.moves.input("Please enter the table name: \n"))
     graph, rows = Graph.initializeGraph(tableName, cursor)  # Initialize the graph
     plainGraph = Graph.createPlainGraph(graph, rows)  # Create plain graph
     # linearGraph = Graph.createLinearGraph(graph, rows)    # Create linear graph

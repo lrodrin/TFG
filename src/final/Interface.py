@@ -10,6 +10,8 @@ import os
 import subprocess
 import sys
 
+import six
+
 from src.final.Estructura import *
 
 __author__ = 'Laura Rodriguez Navas'
@@ -33,7 +35,7 @@ class Interface:
             graphName = "plainGraph.dot"
             Graph.exportGraphDOT(graph, graphName)  # Export graph to Graphviz format
         elif option == 2:
-            threshold = int(input("Please enter the k constant for the threshold:\n"))
+            threshold = int(six.moves.input("Please enter the k constant for the threshold:\n"))
             Graph.createPlainGraphWithThreshold(graph, rows, threshold)  # Create a plain graph with threshold
             graphName = "plainGraph with threshold.dot"
             Graph.exportGraphDOT(graph, graphName)  # Export graph to Graphviz format
@@ -60,14 +62,14 @@ class Interface:
         :type graph: nx.Graph
         """
         if option == 1:
-            optionPlain = int(input(
+            optionPlain = int(six.moves.input(
                 "Please enter the option of graph you want to create:\n [1] = plain\n [2] = plain with threshold\n"))
             if optionPlain == 1:
                 structureName = "plain 2-structure.dot"
                 plainGraph = Graph.createPlainGraph(graph, rows)  # Create a plain graph
             elif optionPlain == 2:
                 structureName = "plain 2-structure with threshold.dot"
-                threshold = int(input("Please enter the k constant for the threshold:\n"))
+                threshold = int(six.moves.input("Please enter the k constant for the threshold:\n"))
                 plainGraph = Graph.createPlainGraphWithThreshold(graph, rows,
                                                                  threshold)  # Create a plain graph with threshold
 
@@ -88,7 +90,8 @@ class Interface:
     @staticmethod
     def graphANDstructureOptions(option, graph, rows):
         """
-        Create and display different types of graph and 2-structures: plain, plain with threshold, linear and exponential
+        Create and display different types of graph and 2-structures: plain, plain with threshold, linear and
+        exponential
 
         :param option: Option graph and 2-structure
         :param graph: Networkx's Graph
@@ -97,8 +100,8 @@ class Interface:
         :type graph: nx.Graph
         """
         if option == 1:
-            optionPlain = int(input(
-                "Please enter the option of graph you want to create:\n [1] = plain\n [2] = plain with threshold\n"))
+            optionPlain = int(six.moves.input(
+                "Please enter a plain option:\n [1] = plain\n [2] = plain with threshold\n"))
             if optionPlain == 1:
                 graphName = "plainGraph.dot"
                 structureName = "plain 2-structure.dot"
@@ -108,7 +111,7 @@ class Interface:
             elif optionPlain == 2:
                 graphName = "plainGraph with threshold.dot"
                 structureName = "plain 2-structure with threshold.dot"
-                threshold = int(input("Please enter the k constant for the threshold:\n"))
+                threshold = int(six.moves.input("Please enter the k constant for the threshold:\n"))
                 plainGraph = Graph.createPlainGraphWithThreshold(graph, rows, threshold)  # Create a plain graph with
                 #  threshold
                 Graph.exportGraphDOT(graph, graphName)  # Export graph to Graphviz format
@@ -127,13 +130,13 @@ class Interface:
             Graph.exportGraphDOT(graph, graphName)  # Export graph to Graphviz format
             Estructura.exponential2structure(exponentialGraph, exponentialGraph.nodes(), structureName)
 
-        Interface.openGraphviz(graphName)   # Open graph in Graphviz program
+        Interface.openGraphviz(graphName)  # Open graph in Graphviz program
         Interface.openGraphviz(structureName)  # Open 2-structure in Graphviz program
 
     @staticmethod
     def fileOptions(option):
         if option == 1:
-            file = str(input("Please enter the name from arff file:\n"))
+            file = str(six.moves.input("Please enter the name from arff file:\n"))
             connection, cursor = Data.connection(file[0:-5] + ".db")  # Connection to SQLite database
             file = Data.openFile(file)  # Open data file
             columnNames, lines = Data.getDataARFFile(file)  # Get column names and lines from data file
@@ -142,7 +145,7 @@ class Interface:
             Data.insertARFF(tableName, columnNames, lines, cursor, connection)  # Insert data values to tableName
 
         elif option == 2:
-            file = str(input("Please enter the name from SQLite file:\n"))
+            file = str(six.moves.input("Please enter the name from SQLite file:\n"))
             connection, cursor = Data.connection(file)  # Connection to SQLite database
 
         return cursor

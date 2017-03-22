@@ -161,4 +161,4 @@ class Interface:
         if sys.platform == 'win32':  # Windows platform
             os.startfile(filename)
         else:  # Linux platform
-            subprocess.run(['open', '-a', 'Graphviz.app', filename])
+            subprocess.call(['open', '-a', 'Graphviz.app', filename])

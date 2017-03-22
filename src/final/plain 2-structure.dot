@@ -12,17 +12,17 @@ overcast;
 sunny;
 TRUE;
 FALSE;
-subgraph cluster_rainynoovercastsunnycoolyesmildhighTRUEhotFALSEnormal {
-s_rainynoovercastsunnycoolyesmildhighhotnormal [label=" ", fillcolor=white, fixedsize=True, width=0.2];
+subgraph cluster_hotmildsunnyTRUEnohighcoolrainynormalFALSEovercastyes {
+s_hotmildsunnynohighcoolrainynormalovercastyes [label=" ", fillcolor=white, fixedsize=True, width=0.2];
 s_TRUEFALSE [label=" ", fillcolor=white, fixedsize=True, width=0.2];
 subgraph  {
 rank=same;
-s_rainynoovercastsunnycoolyesmildhighhotnormal -> s_TRUEFALSE  [arrowhead=none, color=black];
+s_hotmildsunnynohighcoolrainynormalovercastyes -> s_TRUEFALSE  [arrowhead=none, color=black];
 }
 
 }
 
-subgraph cluster_rainynoovercastsunnycoolyesmildhighhotnormal {
+subgraph cluster_hotmildsunnynohighcoolrainynormalovercastyes {
 s_yes [label=" ", fillcolor=white, fixedsize=True, width=0.2];
 s_no [label=" ", fillcolor=white, fixedsize=True, width=0.2];
 s_normal [label=" ", fillcolor=white, fixedsize=True, width=0.2];
@@ -106,6 +106,6 @@ s_overcast -> overcast  [arrowhead=none];
 s_sunny -> sunny  [arrowhead=none];
 s_TRUE -> TRUE  [arrowhead=none];
 s_FALSE -> FALSE  [arrowhead=none];
-s_rainynoovercastsunnycoolyesmildhighhotnormal -> s_yes  [arrowhead=none, lhead=cluster_rainynoovercastsunnycoolyesmildhighhotnormal];
+s_hotmildsunnynohighcoolrainynormalovercastyes -> s_yes  [arrowhead=none, lhead=cluster_hotmildsunnynohighcoolrainynormalovercastyes];
 s_TRUEFALSE -> s_TRUE  [arrowhead=none, lhead=cluster_TRUEFALSE];
 }

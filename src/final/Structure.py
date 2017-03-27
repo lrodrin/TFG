@@ -68,7 +68,7 @@ class Structure:
                 # value as a edge
 
         callgraph.write(filename)  # Write a Dot file with all previous information
-        print("2-structure %s was created" % filename)
+        print("A %s was created" % filename)
 
     @staticmethod
     def decomposition(graph, nodes):
@@ -107,34 +107,35 @@ class Structure:
         Structure.createGraphvizStructure(EdgesAtributtes, primalClansDict, filename)  # Create 2-structure
 
     @staticmethod
-    def linear2structure(linearGraph, nodes, filename):
+    def structureOptions(option, initGraph, rows):
         """
-        Create a linear 2-structure from a linear graph specified by linearGraph
+        Manages the creation of 2-structures (plain, plain with threshold, linear or exponential) specified by option
 
-        :param linearGraph: Networkx's graph
-        :param nodes: Nodes from graph
-        :param filename: Dot file name
-        :type linearGraph: nx.Graph
-        :type nodes: list
-        :type filename: str
-        :return: A linear 2-structure
+        :param option: Type of 2-structure option
+        :param initGraph: Initial graph
+        :param rows: Rows from a SQLite table
+        :type option: str
+        :type initGraph: nx.Graph
         """
-        EdgesAtributtes, primalClansDict = Structure.decomposition(linearGraph, nodes)  # Decomposition
-        Structure.createGraphvizStructure(EdgesAtributtes, primalClansDict, filename)  # Create 2-structure
+        if option == 1:
+            graph = Graph.createPlainGraph(initGraph, rows)  # Create a plain graph
+            graphStructure = "plain 2-structure.dot"
+            Structure.create2Structure(graph, graph.nodes(), graphStructure)  # Create a plain 2-structure
 
-    @staticmethod
-    def exponential2structure(exponentialGraph, nodes, filename):
-        """
-        Create an exponential 2-structure from a exponential graph specified by exponentialGraph
+        elif option == 2:
+            threshold = int(six.moves.input("Please enter the K constant for the threshold:\n"))
+            graph = Graph.createPlainGraphWithThreshold(initGraph, rows,
+                                                        threshold)  # Create a plain graph with threshold
+            graphStructure = "plain 2-structure with threshold.dot"
+            Structure.create2Structure(graph, graph.nodes(),
+                                       graphStructure)  # Create a plain 2-structure with threshold
 
-        :param exponentialGraph: Networkx's graph
-        :param nodes: Nodes from graph
-        :param filename: Dot file name
-        :type exponentialGraph: nx.Graph
-        :type nodes: list
-        :type filename: str
-        :return: A exponential 2-structure
-        """
-        EdgesAtributtes, primalClansDict = Structure.decomposition(exponentialGraph, nodes)  # Decomposition
-        Structure.createGraphvizStructure(EdgesAtributtes, primalClansDict, filename)  # Create
-        # 2-structure
+        elif option == 3:
+            graph = Graph.createLinearGraph(initGraph, rows)  # Create a linear graph
+            graphStructure = "linear 2-structure.dot"
+            Structure.create2Structure(graph, graph.nodes(), graphStructure)  # Create a linear 2-structure
+
+        elif option == 4:
+            graph = Graph.createExponentialGraph(initGraph, rows)  # Create an exponential graph
+            graphStructure = "exponential 2-structure.dot"
+            Structure.create2Structure(graph, graph.nodes(), graphStructure)  # Create an exponential 2-structure

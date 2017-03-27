@@ -204,6 +204,15 @@ class Graph:
 
     @staticmethod
     def graphOptions(option, initGraph, rows):
+        """
+        Manages the creation of graphs (plain, plain with threshold, linear or exponential) specified by option
+
+        :param option: Type of graphs option
+        :param initGraph: Initial graph
+        :param rows: Rows from a SQLite table
+        :type option: str
+        :type initGraph: nx.Graph
+        """
         if option == 1:
             graph = Graph.createPlainGraph(initGraph, rows)  # Create a plain graph
             graphName = "plainGraph.dot"
@@ -223,6 +232,6 @@ class Graph:
             graphName = "exponentialGraph.dot"
 
         Graph.exportGraph(graph, graphName)  # Export a type of graph to Graphviz format
-        print("%s was created" % graphName)
+        print("A graph %s was created" % graphName)
 
         return graph

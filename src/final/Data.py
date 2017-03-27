@@ -8,6 +8,8 @@ Distributed under MIT license
 """
 import sqlite3
 
+import six
+
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
@@ -206,3 +208,45 @@ class Data:
             tablesNameList.append(table)
 
         return tablesNameList
+
+    @staticmethod
+    def inputFileOptions(option):
+        """
+        Manages the type of data (ARFF, TXT or DB) entry specified by option
+
+        :param option: Type of data option
+        :type option: str
+        :return: The column names, rows and cursor generated for one type of data
+        """
+        if option == 1:
+            fileARFF = str(six.moves.input("Please enter the name from ARFF file:\n")) + ".arff"
+            # connection, cursor = Data.connection(fileARFF[0:-5] + ".arff")  # Connection to SQLite database
+            connection, cursor = Data.connection("DB")  # Connection to SQLite database
+            file = Data.openFile(fileARFF)  # Open data file
+            columnNames, lines = Data.getDataFile(file, "ARFF")  # Get column names and lines from data file
+            tableName = Data.getNameForTableNameFromARFF(lines)  # Get table name from data file
+            Data.createTable(cursor, tableName, columnNames)  # Create table tableName
+            Data.insertARFF(tableName, columnNames, lines, cursor, connection)  # Insert data values to tableName
+            columnNames, rows = Data.select(tableName, cursor)  # Select data from tableName
+
+        elif option == 2:
+            fileTXT = str(six.moves.input("Please enter the name from TXT file:\n")) + ".txt"
+            # connection, cursor = Data.connection(fileTXT[0:-4] + ".txt")  # Connection to SQLite database
+            connection, cursor = Data.connection("DB")  # Connection to SQLite database
+            file = Data.openFile(fileTXT)  # Open data file
+            columnNames, lines = Data.getDataFile(file, "TXT")  # Get column names and lines from file
+            tableName = str(
+                six.moves.input("Please enter the table name which to create the new SQLite table from file: \n"))
+            Data.createTable(cursor, tableName, columnNames)  # Create table tableName
+            Data.insertTXT(tableName, columnNames, lines, cursor, connection)  # Insert data values to tableName
+            columnNames, rows = Data.select(tableName, cursor)  # Select data from tableName
+
+        elif option == 3:
+            # fileDB = str(six.moves.input("Please enter the name from SQLite file:\n")) + ".db"
+            # connection, cursor = Data.connection(fileDB[0:-3] + ".db")  # Connection to SQLite database
+            connection, cursor = Data.connection("DB")  # Connection to SQLite database
+            tableName = str(
+                six.moves.input("Please enter the table name which to select from SQLite database: \n"))
+            columnNames, rows = Data.select(tableName, cursor)  # Select data from tableName
+
+        return columnNames, rows, cursor

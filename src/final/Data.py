@@ -7,7 +7,6 @@ Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
 import sqlite3
-
 import six
 
 __author__ = 'Laura Rodriguez Navas'

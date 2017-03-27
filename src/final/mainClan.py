@@ -16,7 +16,7 @@ __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 
-def printResults(graph):
+def printResults(g):
     """
     Print the results of the main execution:
         - A list of clans
@@ -24,11 +24,11 @@ def printResults(graph):
         - A list of primal clans
         - A dictionary of primal clans
 
-    :param graph: Networkx's graph
+    :param g: Networkx's graph
     """
-    clansList = Clan.clans(graph, graph.nodes())  # Create clans list
+    clansList = Clan.clans(g, g.nodes())  # Create clans list
     print("List of clans:\n", clansList)
-    trivialClansList = Clan.trivialClans(graph.nodes(), nx.graph_clique_number(graph))  # Create trivial clans list
+    trivialClansList = Clan.trivialClans(g.nodes(), nx.graph_clique_number(g))  # Create trivial clans list
     print("List of trivial clans:\n", trivialClansList)
     primalClansList = Clan.primalClans(clansList)  # Create primal clans list
     print("List of primal clans:\n", primalClansList)

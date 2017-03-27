@@ -13,16 +13,22 @@ __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 if __name__ == '__main__':
-    fileOption = int(six.moves.input("Please enter the option for the file you provide:\n [1] = .arff\n [2] = .db\n"))
-    cursor = Interface.fileOptions(fileOption)
+    # Simple graphs
+    # simpleGraph_1 = simpleGraph_1()  # Create a simple graph
+    # Structure.create2Structure(simpleGraph_1, simpleGraph_1.nodes(), 'Structure.dot')  # Create a 2-structure
+    #
+    # simpleGraph_2 = simpleGraph_2()  # Create a simple graph
+    # Structure.create2Structure(simpleGraph_2, simpleGraph_2.nodes(), 'Structure2.dot')  # Create a 2-structure
 
-    tableName = str(six.moves.input("Please enter the table name: \n"))
-    graph, rows = Graph.initGraph(tableName, cursor)  # Initialize the initGraph
+    optionData = int(six.moves.input("Please enter the option for the type of file you provide:\n [1] = ARFF\n [2] = "
+                                     "TXT\n [3] = DB\n"))
+    columnNames, rows, cursor, tableName = Interface.inputFileOptions(optionData)  # Manages the data entry
+    initGraph, rows = Graph.initGraph(tableName, cursor)  # Initialize the graph
 
-    # option = int(six.moves.input("Please enter the option of initGraph you want to create:\n [1] = plain\n [2] = plain
-    # with " "threshold\n [3] = linear\n [4] = exponential\n")) Interface.createGraphOptions(option, initGraph, rows)
-
-    option = int(six.moves.input("Please enter the option of 2-structure you want to create:\n [1] = plain\n [2] = "
-                                 "linear\n [3] = exponential\n"))
-    # Interface.structureOptions(option, initGraph, rows)
-    Interface.graphANDstructureOptions(option, graph, rows)
+    optionStructure = int(
+        six.moves.input("Please enter the option of 2-structure you want to create:\n [1] = plain\n [2] = plain "
+                        "with threshold\n [3] = linear\n [4] = exponential\n"))
+    graph, graphName = Interface.graphOptions(optionStructure, initGraph, rows)  # Create a type of graph
+    structureName = Interface.structureOptions(optionStructure, graph)  # Create 2-structure from a graph
+    Interface.openGraphviz(graphName)  # Open graph in Graphviz program
+    Interface.openGraphviz(structureName)  # Open 2-structure in Graphviz program

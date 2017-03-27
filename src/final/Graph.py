@@ -201,37 +201,3 @@ class Graph:
                 graph[u][v]['color'] = 'brown'
 
         return graph
-
-    @staticmethod
-    def graphOptions(option, initGraph, rows):
-        """
-        Manages the creation of graphs (plain, plain with threshold, linear or exponential) specified by option
-
-        :param option: Type of graphs option
-        :param initGraph: Initial graph
-        :param rows: Rows from a SQLite table
-        :type option: str
-        :type initGraph: nx.Graph
-        """
-        if option == 1:
-            graph = Graph.createPlainGraph(initGraph, rows)  # Create a plain graph
-            graphName = "plainGraph.dot"
-
-        elif option == 2:
-            threshold = int(six.moves.input("Please enter the K constant for the threshold:\n"))
-            graph = Graph.createPlainGraphWithThreshold(initGraph, rows,
-                                                        threshold)  # Create a plain graph with threshold
-            graphName = "plainGraph with threshold.dot"
-
-        elif option == 3:
-            graph = Graph.createLinearGraph(initGraph, rows)  # Create a linear graph
-            graphName = "linearGraph.dot"
-
-        elif option == 4:
-            graph = Graph.createExponentialGraph(initGraph, rows)  # Create an exponential graph
-            graphName = "exponentialGraph.dot"
-
-        Graph.exportGraph(graph, graphName)  # Export a type of graph to Graphviz format
-        print("A graph %s was created" % graphName)
-
-        return graph

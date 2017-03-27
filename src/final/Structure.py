@@ -7,6 +7,7 @@ Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
 from collections import OrderedDict
+
 import pydot
 
 from src.final.Clan import *
@@ -105,37 +106,3 @@ class Structure:
         """
         EdgesAtributtes, primalClansDict = Structure.decomposition(graph, nodes)  # Decomposition
         Structure.createGraphvizStructure(EdgesAtributtes, primalClansDict, filename)  # Create 2-structure
-
-    @staticmethod
-    def structureOptions(option, initGraph, rows):
-        """
-        Manages the creation of 2-structures (plain, plain with threshold, linear or exponential) specified by option
-
-        :param option: Type of 2-structure option
-        :param initGraph: Initial graph
-        :param rows: Rows from a SQLite table
-        :type option: str
-        :type initGraph: nx.Graph
-        """
-        if option == 1:
-            graph = Graph.createPlainGraph(initGraph, rows)  # Create a plain graph
-            graphStructure = "plain 2-structure.dot"
-            Structure.create2Structure(graph, graph.nodes(), graphStructure)  # Create a plain 2-structure
-
-        elif option == 2:
-            threshold = int(six.moves.input("Please enter the K constant for the threshold:\n"))
-            graph = Graph.createPlainGraphWithThreshold(initGraph, rows,
-                                                        threshold)  # Create a plain graph with threshold
-            graphStructure = "plain 2-structure with threshold.dot"
-            Structure.create2Structure(graph, graph.nodes(),
-                                       graphStructure)  # Create a plain 2-structure with threshold
-
-        elif option == 3:
-            graph = Graph.createLinearGraph(initGraph, rows)  # Create a linear graph
-            graphStructure = "linear 2-structure.dot"
-            Structure.create2Structure(graph, graph.nodes(), graphStructure)  # Create a linear 2-structure
-
-        elif option == 4:
-            graph = Graph.createExponentialGraph(initGraph, rows)  # Create an exponential graph
-            graphStructure = "exponential 2-structure.dot"
-            Structure.create2Structure(graph, graph.nodes(), graphStructure)  # Create an exponential 2-structure

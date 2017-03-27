@@ -12,7 +12,7 @@ hot;
 rainy;
 overcast;
 sunny;
-subgraph cluster_rainymildovercasthothighTRUEsunnynormalnoyescoolFALSE {
+subgraph cluster_TRUEnormalnorainyyessunnyhotcoolovercastmildFALSEhigh {
 s_yes [label=" ", fillcolor=white, fixedsize=True, width=0.2];
 s_no [label=" ", fillcolor=white, fixedsize=True, width=0.2];
 s_TRUE [label=" ", fillcolor=white, fixedsize=True, width=0.2];

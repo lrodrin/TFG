@@ -7,7 +7,9 @@ Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
 import itertools
+
 import networkx as nx
+
 from src.final.Data import *
 
 __author__ = 'Laura Rodriguez Navas'
@@ -18,31 +20,31 @@ __license__ = 'MIT'
 
 class Graph:
     @staticmethod
-    def initializeGraph(tableName, cursor):
+    def initGraph(tableName, cursor):
         """
-        Create and initializes a initGraph from SQLite database source
+        Create and initializes a graph from SQLite database source
 
         :param tableName: Table name
         :param cursor: Cursor object
         :type tableName: str
-        :return: A initGraph and all rows from tableName
+        :return: A graph and all rows from tableName
         :rtype: nx.Graph
         """
         graph = nx.Graph()
         columnNames, rows = Data.select(tableName, cursor)  # Select data from tableName
-        Graph.addNodes(graph, columnNames, rows)  # Adding nodes to initGraph
-        for (u, v) in itertools.combinations(graph.nodes(), 2):  # For initialization all the edges from initGraph are
+        Graph.addNodes(graph, columnNames, rows)  # Adding nodes to graph
+        for (u, v) in itertools.combinations(graph.nodes(), 2):  # For initialization all the edges from graph are
             # painted white
             graph.add_edge(u, v, color='white')
 
         return graph, rows
 
     @staticmethod
-    def exportGraphDOT(graph, filename):
+    def exportGraph(graph, filename):
         """
-        Export initGraph to Graphviz Dot format
+        Export a graph to Graphviz Dot format
 
-        :param graph: NetworkX's initGraph
+        :param graph: Networkx's graph
         :param filename: File name
         :type graph: nx.Graph
         :type filename: str
@@ -50,13 +52,13 @@ class Graph:
         nx.nx_pydot.write_dot(graph, filename)
 
     @staticmethod
-    def createDictFromGraph(graph):
+    def getAttributesFromGraph(graph):
         """
-        Return a dictionary of attributes from initGraph keyed by edge
+        Return a dictionary of attributes from graph keyed by edge
 
-        :param graph: Networkx's initGraph
+        :param graph: Networkx's graph
         :type graph: nx.Graph
-        :return A dictionary of attributes from initGraph
+        :return A dictionary of attributes from graph
         :rtype: dict
         """
         graphDict = nx.get_edge_attributes(graph, 'color')
@@ -65,9 +67,9 @@ class Graph:
     @staticmethod
     def addNodes(graph, columnNames, rows):
         """
-        Add nodes to initGraph through SQLite database data source
+        Add nodes to graph through SQLite database data source
 
-        :param graph: Networkx's initGraph
+        :param graph: Networkx's graph
         :param columnNames: Column names from a SQLite table
         :param rows: Rows from a SQLite table
         :type graph: nx.Graph
@@ -75,42 +77,42 @@ class Graph:
         """
         for i in range(0, len(columnNames)):  # For each column from a SQLite table
             for row in rows:  # For each row from a SQLite table
-                graph.add_node(row[i])  # Add node to initGraph
+                graph.add_node(row[i])  # Add node to graph
 
     @staticmethod
     def createPlainGraph(graph, rows):
         """
-        Create a plain initGraph from a SQLite rows specified by rows
+        Create a plain graph from a SQLite rows specified by rows
 
-        :param graph: Networkx's initGraph
+        :param graph: Networkx's graph
         :param rows: Rows from a SQLite table
         :type graph: nx.Graph
-        :return: A plain initGraph
+        :return: A plain graph
         :rtype: nx.Graph
         """
         for row in rows:  # For each row in rows
             for (u, v) in itertools.combinations(row, 2):  # For each pair of rows
-                if graph.has_edge(u, v):  # If exists edge (u, v) in initGraph
+                if graph.has_edge(u, v):  # If exists edge (u, v) in graph
                     graph.edge[u][v]['color'] = 'black'  # Edge painted black
         return graph
 
     @staticmethod
     def createPlainGraphWithThreshold(graph, rows, k):
         """
-        Create a plain initGraph from a SQLite rows specified by rows
+        Create a plain graph from a SQLite rows specified by rows
 
-        :param graph: Networkx's initGraph
+        :param graph: Networkx's graph
         :param rows: Rows from a SQLite table
         :param k: Threshold
         :type graph: nx.Graph
         :type k: int
-        :return: A Plain initGraph with threshold
+        :return: A Plain graph with threshold
         :rtype: nx.Graph
         """
         Graph.labelEdges(graph, rows)  # labeling edges
         # painting edges by label
-        labels = nx.get_edge_attributes(graph, 'label')  # Labels from initGraph
-        for (u, v), label in labels.items():  # For each label in initGraph
+        labels = nx.get_edge_attributes(graph, 'label')  # Labels from graph
+        for (u, v), label in labels.items():  # For each label in graph
             if label < k:  # If label is smaller than k constant
                 graph[u][v]['color'] = 'white'  # Edge white
             else:  # If label is equal or greater than k constant
@@ -121,9 +123,9 @@ class Graph:
     @staticmethod
     def labelEdges(graph, rows):
         """
-        Count the number of equivalences and label the edges from initGraph with this number
+        Count the number of equivalences and label the edges from graph with this number
 
-        :param graph: Networkx's initGraph
+        :param graph: Networkx's graph
         :param rows: Rows from a SQLite table
         :type graph: nx.Graph
         """
@@ -142,12 +144,12 @@ class Graph:
     @staticmethod
     def createLinearGraph(graph, rows):
         """
-        Create a linear initGraph from a SQLite rows specified by rows
+        Create a linear graph from a SQLite rows specified by rows
 
-        :param graph: Networkx's initGraph
+        :param graph: Networkx's graph
         :param rows: Rows from a SQLite table
         :type graph: nx.Graph
-        :return: A linear initGraph
+        :return: A linear graph
         :rtype: nx.Graph
         """
         Graph.labelEdges(graph, rows)  # labeling edges
@@ -155,8 +157,8 @@ class Graph:
         colors = {0: 'white', 1: 'black', 2: 'cyan', 3: 'green', 4: 'magenta', 5: 'orange', 6: 'purple', 7: 'red',
                   8: 'yellow', 9: 'brown'}  # Dictionary of possible labels and colours
         for label, color in colors.items():  # For each label and color
-            for (u, v) in graph.edges():  # For each pair of nodes from initGraph
-                if 'label' in graph[u][v] and label == graph[u][v]['label']:  # If label is labeled in initGraph and
+            for (u, v) in graph.edges():  # For each pair of nodes from graph
+                if 'label' in graph[u][v] and label == graph[u][v]['label']:  # If label is labeled in graph and
                     # label is the edge label
                     graph[u][v]['color'] = color  # Add color to edge
 
@@ -165,15 +167,15 @@ class Graph:
     @staticmethod
     def createExponentialGraph(linearGraph, rows):
         """
-        Create a exponential initGraph from a SQLite rows specified by rows
+        Create a exponential graph from a SQLite rows specified by rows
 
-        :param linearGraph: Networkx's initGraph
+        :param linearGraph: Networkx's graph
         :param rows: Rows from a SQLite table
         :type linearGraph: nx.Graph
-        :return: An exponential initGraph
+        :return: An exponential graph
         :rtype: nx.Graph
         """
-        graph = Graph.createLinearGraph(linearGraph, rows)  # Create a linear initGraph
+        graph = Graph.createLinearGraph(linearGraph, rows)  # Create a linear graph
         labels = nx.get_edge_attributes(graph, 'label')
         # painting edges by label
         for (u, v), label in labels.items():  # For each label
@@ -199,3 +201,26 @@ class Graph:
                 graph[u][v]['color'] = 'brown'
 
         return graph
+
+    @staticmethod
+    def graphOptions(option, initGraph, rows):
+        if option == 1:
+            graph = Graph.createPlainGraph(initGraph, rows)  # Create a plain graph
+            graphName = "plainGraph.dot"
+
+        elif option == 2:
+            threshold = int(six.moves.input("Please enter the K constant for the threshold:\n"))
+            graph = Graph.createPlainGraphWithThreshold(initGraph, rows,
+                                                        threshold)  # Create a plain graph with threshold
+            graphName = "plainGraph with threshold.dot"
+
+        elif option == 3:
+            graph = Graph.createLinearGraph(initGraph, rows)  # Create a linear graph
+            graphName = "linearGraph.dot"
+
+        elif option == 4:
+            graph = Graph.createExponentialGraph(initGraph, rows)  # Create an exponential graph
+            graphName = "exponentialGraph.dot"
+
+        Graph.exportGraph(graph, graphName)  # Export a type of graph to Graphviz format
+        print("%s was created" % graphName)

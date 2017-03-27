@@ -24,7 +24,7 @@ def printResults(graph):
         - A list of primal clans
         - A dictionary of primal clans
 
-    :param graph: Networkx's initGraph
+    :param graph: Networkx's graph
     """
     clansList = Clan.clans(graph, graph.nodes())  # Create clans list
     print("List of clans:\n", clansList)
@@ -37,13 +37,13 @@ def printResults(graph):
 
 
 if __name__ == "__main__":
-    initGraph = simpleGraph()  # Create a simple graph
-    printResults(initGraph)
+    graph = simpleGraph()  # Create a simple graph
+    printResults(graph)
 
     file = str(six.moves.input("Please enter the name from SQLite file:\n"))
     connection, cursor = Data.connection(file)  # Connection to SQLite database
     tableName = str(six.moves.input("Please enter the table name which to create graph: \n"))
-    initGraph, rows = Graph.initializeGraph(tableName, cursor)  # Initialize the initGraph
+    initGraph, rows = Graph.initGraph(tableName, cursor)  # Initialize the initGraph
 
     plainGraph = Graph.createPlainGraph(initGraph, rows)  # Create plain graph
     printResults(plainGraph)

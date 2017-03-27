@@ -13,7 +13,7 @@ def main():
     cluster_foo.add_node(pydot.Node('foo_method_2', label='method_2'))
     cluster_foo.add_node(pydot.Node('foo_method_3', label='method_3'))
 
-    # in order to get node in parent graph to point to
+    # in order to get node in parent initGraph to point to
     # subgraph, need to use Graph.add_subgraph()
     # calling Subgraph.add_parent() doesn't seem to do anything.
     callgraph.add_subgraph(cluster_foo)

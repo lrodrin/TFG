@@ -49,15 +49,15 @@ if c > len(colors_list):
 # Graph generator
 G = nx.erdos_renyi_graph(n, p)
 
-# For each edge of graph the color attribute is assigned randomly
+# For each edge of initGraph the color attribute is assigned randomly
 for (u, v) in G.edges():
     G.edge[u][v]['color'] = random.choice(colors_list[0:c])
 
-# Color sequence with the same length as graph.edges()
+# Color sequence with the same length as initGraph.edges()
 edge_color_list = [G[u][v]['color'] for (u, v) in G.edges()]
 
 # Drawing with the color sequence
-# nx.draw(graph, edge_color=edge_color_list)
+# nx.draw(initGraph, edge_color=edge_color_list)
 # plt.suptitle("Erdös-Rényi Graph with color sequence", fontsize=11)
 nx.draw(G, edge_color=edge_color_list, with_labels=nx.spring_layout(G))
 plt.suptitle("Erdös-Rényi Graph with color sequence and labels", fontsize=11)

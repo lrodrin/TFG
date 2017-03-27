@@ -57,7 +57,7 @@ if __name__ == "__main__":
         connection, cursor = Data.connection(file)  # Connection to SQLite database
 
     tableName = str(six.moves.input("Please enter the table name: \n"))
-    graph, rows = Graph.initializeGraph(tableName, cursor)  # Initialize the initGraph
+    graph, rows = Graph.initGraph(tableName, cursor)  # Initialize the initGraph
 
     option = int(
         six.moves.input("Please enter the option of 2-structure you want to create:\n [1] = plain\n [2] = linear\n [3] "

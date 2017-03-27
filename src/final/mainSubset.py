@@ -13,7 +13,7 @@ __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 if __name__ == "__main__":
-    initGraph = simpleGraph()  # Create a simple graph
+    initGraph = simpleGraph()  # Create a simple initGraph
 
     for subset in Subset.powersetGenerator(initGraph.nodes()):
         print(subset)

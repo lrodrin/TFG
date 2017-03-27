@@ -21,12 +21,12 @@ G = nx.erdos_renyi_graph(n, p)
 
 edge_labels = dict()
 
-# For each edge of graph the color attribute is assigned randomly
+# For each edge of initGraph the color attribute is assigned randomly
 for (u, v) in G.edges():
     G.edge[u][v]['color'] = random.choice(colors_list[0:c])
     edge_labels[(u, v)] = G.edge[u][v]['color']  # Label the edges with the selected color attribute
 
-# Color sequence with the same length as graph.edges()
+# Color sequence with the same length as initGraph.edges()
 edge_color_list = [G[u][v]['color'] for (u, v) in G.edges()]
 
 pos = nx.spring_layout(G)  # Establish the positions of nodes / edges / labels

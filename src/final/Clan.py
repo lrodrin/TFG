@@ -51,7 +51,8 @@ class Clan:
         :return: True if successful, False otherwise
         :rtype: bool
         """
-        if len(subSet) == 1 or cardinality == len(subSet):  # subSet that contains one element or all nodes from a initGraph
+        if len(subSet) == 1 or cardinality == len(subSet):  # subSet that contains one element or all nodes from a
+            # initGraph
             return True
         else:
             return False

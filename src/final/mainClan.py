@@ -7,6 +7,7 @@ Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
 import six
+
 from src.final.Clan import *
 from src.final.Graph import *
 from src.simple_graphs import *

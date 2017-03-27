@@ -11,7 +11,7 @@ from src.final.Data import *
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
-# fileDB = str(input("Please enter a database SQLite file:\n"))
+# file = str(input("Please enter a database SQLite file:\n"))
 # C:/Users/Laura/PycharmProjects/TFG/src/data/BD.db  WINDOWS
 # /Users/laura/PycharmProjects/TFG/src/data/BD.db    OS X
 connection, cursor = Data.connection('C:/Users/Laura/PycharmProjects/TFG/src/data/BD.db')  # Connection to SQLite
@@ -37,7 +37,7 @@ query = 'CREATE TABLE {0} ({1});'.format(str(tableName), str(columnNames[0:-2]))
 print(query)
 cursor.execute(query)
 
-# insert values into table
+# insertTXT values into table
 values = str()
 for line in lines:
     if not line.startswith("@") and not line.startswith("\n") and not line.startswith("%"):
@@ -52,5 +52,5 @@ for line in lines:
             print("Row %s inserted" % query)
             values = str()
         except sqlite3.Error as e:
-            print("Error insert:", e)
+            print("Error insertTXT:", e)
 Data.close(file, cursor, connection)

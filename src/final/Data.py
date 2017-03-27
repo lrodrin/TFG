@@ -16,7 +16,7 @@ class Data:
     @staticmethod
     def connection(fileDB):
         """
-        Create a database connection to the SQLite database specified by fileDB
+        Create a database connection to the SQLite database specified by file
 
         :param fileDB: Database SQLite file
         :return: Connection object and cursor object or None
@@ -38,6 +38,7 @@ class Data:
         Open data file specified by dataFile
 
         :param dataFile: Data file
+        :type dataFile: str
         :return: File object or None
         """
         try:
@@ -51,58 +52,32 @@ class Data:
         return None
 
     @staticmethod
-    def getDataFile(dataFile):
+    def getDataFile(dataFile, fileType):
         """
         Get data from dataFile
 
         :param dataFile: Data file
+        :param fileType: File type
+        :type fileType: str
         :return: Column names and lines from dataFile
         :rtype: str
         """
         columnNames = str()
         lines = dataFile.readlines()  # Extract all the lines from dataFile
-        header = lines[0]  # Extract the header line from dataFile
-        for word in header.split(" "):  # For each word in header
-            columnNames += word + ", "  # Adding column name into columnNames
-
-        return columnNames, lines
-
-    @staticmethod
-    def getDataARFFile(dataFile):
-        """
-        Get data from dataFile
-
-        :param dataFile: Data file
-        :return: Column names and lines from dataFile
-        :rtype: str
-        """
-        columnNames = str()
-        lines = dataFile.readlines()  # Extract all the lines from dataFile
-        for line in lines:  # For each line in lines
-            if line.startswith("@attribute"):  # If is an attribute
-                columnNames += line.split(" ")[1] + ", "  # Adding column name into columnNames
+        if fileType == "TXT":
+            header = lines[0].replace("\n", "")  # Extract the header line from dataFile
+            for word in header.split(" "):  # For each word in header
+                columnNames += word + ", "  # Adding column name into columnNames
+        elif fileType == "ARFF":
+            for line in lines:  # For each line in lines
+                if line.startswith("@attribute"):  # If is an attribute
+                    columnNames += line.split(" ")[1] + ", "  # Adding column name into columnNames
 
         return columnNames, lines
 
     @staticmethod
     def createTable(cursor, tableName, columnNames):
-        """
-        Create a table specified name by tableName in a SQLite database
-
-        :param cursor: Connection cursor
-        :param tableName: Table name
-        :param columnNames: Column names
-        :type tableName: str
-        :type columnNames: str
-        """
-        try:
-            query = "CREATE TABLE %s (%s);" % (str(tableName), str(columnNames[0:-2]))
-            cursor.execute(query)
-        except sqlite3.Error as e:
-            print("Error to create table:", e)
-
-    @staticmethod
-    def createTableARFF(cursor, tableName, columnNames):
+        # TODO com entrar tableName
         """
         Create a table specified name by tableName in a SQLite database
 
@@ -115,11 +90,12 @@ class Data:
         try:
             query = 'CREATE TABLE {0} ({1});'.format(str(tableName), str(columnNames[0:-2]))
             cursor.execute(query)
+
         except sqlite3.Error as e:
             print("Error to create table:", e)
 
     @staticmethod
-    def insert(tableName, columnNames, lines, cursor, connection):
+    def insertTXT(tableName, columnNames, lines, cursor, connection):
         """
         Insert values to a table specified by tableName in SQLite database
 
@@ -141,8 +117,9 @@ class Data:
                 cursor.execute(query)
                 connection.commit()
                 values = str()
+
             except sqlite3.Error as e:
-                print("Error to insert:", e)
+                print("Error to insertTXT:", e)
 
     @staticmethod
     def insertARFF(tableName, columnNames, lines, cursor, connection):
@@ -169,8 +146,9 @@ class Data:
                     cursor.execute(query)
                     connection.commit()
                     values = str()
+
                 except sqlite3.Error as e:
-                    print("Error to insert:", e)
+                    print("Error to insertTXT:", e)
 
     @staticmethod
     def select(tableName, cursor):
@@ -188,6 +166,7 @@ class Data:
             cursor.execute(query)
             columnNames = [description[0] for description in cursor.description]
             rows = cursor.fetchall()
+
             return columnNames, rows
 
         except sqlite3.Error as e:
@@ -196,7 +175,7 @@ class Data:
         return None
 
     @staticmethod
-    def getTableNameFromARFFFile(lines):
+    def getNameForTableNameFromARFF(lines):
         """
         Return the table name from data arff file
 
@@ -212,7 +191,7 @@ class Data:
                     return line.split(" ")[1]
 
     @staticmethod
-    def getTablesNames(cursor):
+    def getTablesNamesFromSQLiteDB(cursor):
         """
         Return a list of all the table names from a SQLite database
         :param cursor: Cursor object

@@ -19,7 +19,7 @@ if __name__ == '__main__':
         connection, cursor = Data.connection(file[0:-5] + ".db")  # Connection to SQLite database
         file = Data.openFile(file)  # Open data file
         columnNames, lines = Data.getDataARFFile(file)  # Get column names and lines from data file
-        tableName = Data.getTableNameFromARFFFile(lines)  # Get table name from data file
+        tableName = Data.getNameForTableNameFromARFF(lines)  # Get table name from data file
         Data.createTableARFF(cursor, tableName, columnNames)  # Create table tableName
         Data.insertARFF(tableName, columnNames, lines, cursor, connection)  # Insert data values to tableName
 

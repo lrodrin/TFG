@@ -22,7 +22,7 @@ class Data:
         :return: Connection object and cursor object or None
         """
         try:
-            connection = sqlite3.connect(fileDB)
+            connection = sqlite3.connect(fileDB + ".db")
             cursor = connection.cursor()
             print("Connection successful to", fileDB)
             return connection, cursor

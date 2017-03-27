@@ -16,14 +16,15 @@ __license__ = 'MIT'
 if __name__ == "__main__":
     fileDB = str(six.moves.input("Please enter the name from SQLite file:\n"))
     connection, cursor = Data.connection(fileDB)  # Connection to SQLite database
-    #
-    # dataFile = str(six.moves.input("Please enter the name from txt file:\n"))
-    # file = Data.openFile(dataFile)  # Open data file
-    # columnNames, lines = Data.getDataFile(file)  # Get column names and lines from file
-    #
-    tableName = str(six.moves.input("Please enter the table name: \n"))
-    # Data.createTable(cursor, tableName, columnNames)  # Create table tableName
-    # Data.insert(tableName, columnNames, lines, cursor, connection)  # Insert data values to tableName
+
+    dataFile = str(six.moves.input("Please enter the name from txt file:\n"))
+    file = Data.openFile(dataFile)  # Open data file
+    columnNames, lines = Data.getDataFile(file)  # Get column names and lines from file
+
+    tableName = str(six.moves.input("Please enter the table name which to create the SQLite table: \n"))
+    Data.createTable(cursor, tableName, columnNames)  # Create table tableName
+    Data.insert(tableName, columnNames, lines, cursor, connection)  # Insert data values to tableName
+
     columnNames, rows = Data.select(tableName, cursor)  # Select data from tableName
     print(columnNames)
     print(rows)

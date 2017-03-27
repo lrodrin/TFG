@@ -42,7 +42,7 @@ if __name__ == "__main__":
 
     file = str(six.moves.input("Please enter the name from SQLite file:\n"))
     connection, cursor = Data.connection(file)  # Connection to SQLite database
-    tableName = str(six.moves.input("Please enter the table name which to create initGraph: \n"))
+    tableName = str(six.moves.input("Please enter the table name which to create graph: \n"))
     initGraph, rows = Graph.initializeGraph(tableName, cursor)  # Initialize the initGraph
 
     plainGraph = Graph.createPlainGraph(initGraph, rows)  # Create plain graph

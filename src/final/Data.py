@@ -215,7 +215,7 @@ class Data:
 
         :param option: Type of data option
         :type option: str
-        :return: The column names, rows and cursor generated for one type of data
+        :return: The column names, rows, cursor and tableName generated for one type of data
         """
         if option == 1:
             fileARFF = str(six.moves.input("Please enter the name from ARFF file:\n")) + ".arff"
@@ -248,4 +248,4 @@ class Data:
                 six.moves.input("Please enter the table name which to select from SQLite database: \n"))
             columnNames, rows = Data.select(tableName, cursor)  # Select data from tableName
 
-        return columnNames, rows, cursor
+        return columnNames, rows, cursor, tableName

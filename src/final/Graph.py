@@ -7,14 +7,14 @@ Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
 import itertools
-
 import networkx as nx
-
 from src.final.Data import *
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
+
+# TODO Linies discontinues enlloc del color blanc
 
 class Graph:
     @staticmethod
@@ -116,7 +116,6 @@ class Graph:
             else:  # If label is equal or greater than k constant
                 graph[u][v]['color'] = 'black'  # Edge painted black
 
-        # TODO s'han d'amagar els labels
         return graph
 
     @staticmethod
@@ -161,7 +160,6 @@ class Graph:
                     # label is the edge label
                     graph[u][v]['color'] = color  # Add color to edge
 
-        # TODO s'han d'amagar els labels
         return graph
 
     @staticmethod
@@ -200,5 +198,4 @@ class Graph:
             else:
                 graph[u][v]['color'] = 'brown'
 
-        # TODO s'han d'amagar els labels
         return graph

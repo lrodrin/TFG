@@ -7,13 +7,13 @@ Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
 from src.final.Subset import *
-from src.simple_graphs import *
+from src.simpleGraphs import *
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 if __name__ == "__main__":
-    graph = simpleGraph()  # Create a simple graph
+    graph = simpleGraph_1()  # Create a simple graph
 
     for subset in Subset.powersetGenerator(graph.nodes()):
         print(subset)

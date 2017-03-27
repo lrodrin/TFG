@@ -12,7 +12,7 @@ import sys
 
 import six
 
-from src.final.Estructura import *
+from src.final.Structure import *
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
@@ -73,17 +73,17 @@ class Interface:
                 plainGraph = Graph.createPlainGraphWithThreshold(graph, rows,
                                                                  threshold)  # Create a plain initGraph with threshold
 
-            Estructura.plain2structure(plainGraph, plainGraph.nodes(), structureName)  # Create a plain 2-structure
+            Structure.create2Structure(plainGraph, plainGraph.nodes(), structureName)  # Create a plain 2-structure
 
         elif option == 2:
             structureName = "linear 2-structure.dot"
             linearGraph = Graph.createLinearGraph(graph, rows)
-            Estructura.linear2structure(linearGraph, linearGraph.nodes(), structureName)  # Create a linear 2-structure
+            Structure.linear2structure(linearGraph, linearGraph.nodes(), structureName)  # Create a linear 2-structure
         elif option == 3:
             structureName = "exponential 2-structure.dot"
             exponentialGraph = Graph.createExponentialGraph(graph, rows)
-            Estructura.exponential2structure(exponentialGraph, exponentialGraph.nodes(),
-                                             structureName)  # Create an exponential 2-structure
+            Structure.exponential2structure(exponentialGraph, exponentialGraph.nodes(),
+                                            structureName)  # Create an exponential 2-structure
 
         Interface.openGraphviz(structureName)  # Open 2-structure in Graphviz program
 
@@ -107,7 +107,7 @@ class Interface:
                 structureName = "plain 2-structure.dot"
                 plainGraph = Graph.createPlainGraph(graph, rows)  # Create a plain initGraph
                 Graph.exportGraph(graph, graphName)  # Export initGraph to Graphviz format
-                Estructura.plain2structure(plainGraph, plainGraph.nodes(), structureName)  # Create a plain 2-structure
+                Structure.create2Structure(plainGraph, plainGraph.nodes(), structureName)  # Create a plain 2-structure
             elif optionPlain == 2:
                 graphName = "plainGraph with threshold.dot"
                 structureName = "plain 2-structure with threshold.dot"
@@ -115,20 +115,20 @@ class Interface:
                 plainGraph = Graph.createPlainGraphWithThreshold(graph, rows, threshold)  # Create a plain initGraph with
                 #  threshold
                 Graph.exportGraph(graph, graphName)  # Export initGraph to Graphviz format
-                Estructura.plain2structure(plainGraph, plainGraph.nodes(), structureName)  # Create a plain 2-structure
+                Structure.create2Structure(plainGraph, plainGraph.nodes(), structureName)  # Create a plain 2-structure
 
         elif option == 2:
             graphName = "linearGraph.dot"
             structureName = "linear 2-structure.dot"
             linearGraph = Graph.createLinearGraph(graph, rows)  # Create a linear initGraph
             Graph.exportGraph(graph, graphName)  # Export initGraph to Graphviz format
-            Estructura.linear2structure(linearGraph, linearGraph.nodes(), structureName)
+            Structure.linear2structure(linearGraph, linearGraph.nodes(), structureName)
         elif option == 3:
             graphName = "exponentialGraph.dot"
             structureName = "exponential 2-structure.dot"
             exponentialGraph = Graph.createExponentialGraph(graph, rows)  # Create an exponential initGraph
             Graph.exportGraph(graph, graphName)  # Export initGraph to Graphviz format
-            Estructura.exponential2structure(exponentialGraph, exponentialGraph.nodes(), structureName)
+            Structure.exponential2structure(exponentialGraph, exponentialGraph.nodes(), structureName)
 
         Interface.openGraphviz(graphName)  # Open initGraph in Graphviz program
         Interface.openGraphviz(structureName)  # Open 2-structure in Graphviz program

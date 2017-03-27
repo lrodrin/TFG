@@ -10,7 +10,7 @@ import six
 
 from src.final.Clan import *
 from src.final.Graph import *
-from src.simple_graphs import *
+from src.simpleGraphs import *
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
@@ -37,7 +37,7 @@ def printResults(graph):
 
 
 if __name__ == "__main__":
-    graph = simpleGraph()  # Create a simple graph
+    graph = simpleGraph_1()  # Create a simple graph
     printResults(graph)
 
     file = str(six.moves.input("Please enter the name from SQLite file:\n"))

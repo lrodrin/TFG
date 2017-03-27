@@ -1,0 +1,23 @@
+strict graph "" {
+A;
+B;
+C;
+D;
+E;
+F;
+A -- B  [color=black];
+A -- C  [color=black];
+A -- D  [color=black];
+A -- E  [color=black];
+A -- F  [color=orange];
+B -- C  [color=black];
+B -- D  [color=black];
+B -- E  [color=black];
+B -- F  [color=orange];
+C -- D  [color=red];
+C -- E  [color=green];
+C -- F  [color=blue];
+D -- E  [color=green];
+D -- F  [color=blue];
+E -- F  [color=red];
+}

@@ -12,12 +12,13 @@ __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 if __name__ == '__main__':
-    option = int(six.moves.input("Please enter the option for the type of file you provide:\n [1] = ARFF\n [2] = "
-                                 "TXT\n [3] = DB\n"))
+    optionData = int(six.moves.input("Please enter the option for the type of file you provide:\n [1] = ARFF\n [2] = "
+                                     "TXT\n [3] = DB\n"))
 
-    columnNames, rows, cursor, tableName = Data.inputFileOptions(option)  # Manages the data entry
+    columnNames, rows, cursor, tableName = Data.inputFileOptions(optionData)  # Manages the data entry
     initGraph, rows = Graph.initGraph(tableName, cursor)  # Initialize the graph
 
-    option = int(six.moves.input("Please enter the option of graph you want to create:\n [1] = plain\n [2] = plain "
-                                 "with threshold\n [3] = linear\n [4] = exponential\n"))
-    Graph.graphOptions(option, initGraph, rows)  # Create a type of graph
+    optionGraph = int(
+        six.moves.input("Please enter the option of graph you want to create:\n [1] = plain\n [2] = plain "
+                        "with threshold\n [3] = linear\n [4] = exponential\n"))
+    graph = Graph.graphOptions(optionGraph, initGraph, rows)  # Create a type of graph

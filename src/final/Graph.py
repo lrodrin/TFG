@@ -224,3 +224,5 @@ class Graph:
 
         Graph.exportGraph(graph, graphName)  # Export a type of graph to Graphviz format
         print("%s was created" % graphName)
+
+        return graph

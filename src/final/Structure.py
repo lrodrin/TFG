@@ -1,5 +1,5 @@
 """
-This module implements the Estructura class
+This module implements the Structure class
 
 Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 
@@ -7,7 +7,6 @@ Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
 from collections import OrderedDict
-
 import pydot
 
 from src.final.Clan import *
@@ -17,17 +16,16 @@ __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 
-class Estructura:
+class Structure:
     @staticmethod
-    def create2structure(EdgesAtributtes, primalClansDict, filename):
-        # TODO modificar la mida de cada cluster i els nodes
+    def createGraphvizStructure(edgesAtributtes, primalClansDict, filename):
         """
         Create a 2-structure from a dictionary of primal clans specified by primalClansDict
 
-        :param EdgesAtributtes: Edges atributtes from a initGraph
+        :param edgesAtributtes: Edges atributtes from a graph
         :param primalClansDict: Dictionary of primal clans
         :param filename: Dot file name
-        :type EdgesAtributtes: dict
+        :type edgesAtributtes: dict
         :type primalClansDict: dict
         :type filename: str
         :return: A 2-structure
@@ -50,7 +48,7 @@ class Estructura:
 
             for pair in itertools.combinations(value, 2):  # For each pair primal clan combinations
                 subgraph.add_edge(pydot.Edge("s_%s" % "".join(pair[0]), "s_%s" % "".join(pair[1]), arrowhead="none",
-                                             color=Clan.getColorClans(EdgesAtributtes, pair[0], pair[1])))
+                                             color=Clan.getColorClans(edgesAtributtes, pair[0], pair[1])))
                 #  Add edge into subgraph
             cluster.add_subgraph(subgraph)  # Add subgraph to cluster
             callgraph.add_subgraph(cluster)  # Add cluster
@@ -75,68 +73,68 @@ class Estructura:
     @staticmethod
     def decomposition(graph, nodes):
         """
-        Decomposition of initGraph in clans and primal clans
+        Decomposition of graph in clans and primal clans
 
-        :param graph: Networkx's initGraph
-        :param nodes: Nodes from initGraph
+        :param graph: Networkx's graph
+        :param nodes: Nodes from graph
         :type graph: nx.Graph
         :type nodes: list
-        :return: The edges atributtes from initGraph and a dictionary of primal clans
+        :return: The edges atributtes from graph and a dictionary of primal clans
         :rtype: dict, dict
         """
         clansList = Clan.clans(graph, nodes)  # List of clans
         primalClansList = Clan.primalClans(clansList)  # List of primal clans
-        EdgesAtributtes = Graph.getAttributesFromGraph(graph)  # Dictionary of edges atributtes from initGraph
+        EdgesAtributtes = Graph.getAttributesFromGraph(graph)  # Dictionary of edges atributtes from graph
         primalClansDict = OrderedDict(reversed(sorted(Clan.primalClansDict(primalClansList).items(),
                                                       key=lambda t: len(t[0]))))  # Dictionary of primal clans
         # sorted in reverse mode by primal clans length
         return EdgesAtributtes, primalClansDict
 
     @staticmethod
-    def plain2structure(plainGraph, nodes, filename):
+    def create2Structure(graph, nodes, filename):
         """
-        Create a plain 2-structure from a plain initGraph specified by plainGraph
+        Create a 2-structure from a type of graph specified by graph
 
-        :param plainGraph: Networkx's initGraph
-        :param nodes: Nodes from initGraph
+        :param graph: Networkx's graph
+        :param nodes: Nodes from graph
         :param filename: Dot file name
-        :type plainGraph: nx.Graph
+        :type graph: nx.Graph
         :type nodes: list
         :type filename: str
-        :return: A plain 2-structure
+        :return: A 2-structure
         """
-        EdgesAtributtes, primalClansDict = Estructura.decomposition(plainGraph, nodes)  # Decomposition
-        Estructura.create2structure(EdgesAtributtes, primalClansDict, filename)  # Create 2-structure
+        EdgesAtributtes, primalClansDict = Structure.decomposition(graph, nodes)  # Decomposition
+        Structure.createGraphvizStructure(EdgesAtributtes, primalClansDict, filename)  # Create 2-structure
 
     @staticmethod
     def linear2structure(linearGraph, nodes, filename):
         """
-        Create a linear 2-structure from a linear initGraph specified by linearGraph
+        Create a linear 2-structure from a linear graph specified by linearGraph
 
-        :param linearGraph: Networkx's initGraph
-        :param nodes: Nodes from initGraph
+        :param linearGraph: Networkx's graph
+        :param nodes: Nodes from graph
         :param filename: Dot file name
         :type linearGraph: nx.Graph
         :type nodes: list
         :type filename: str
         :return: A linear 2-structure
         """
-        EdgesAtributtes, primalClansDict = Estructura.decomposition(linearGraph, nodes)  # Decomposition
-        Estructura.create2structure(EdgesAtributtes, primalClansDict, filename)  # Create 2-structure
+        EdgesAtributtes, primalClansDict = Structure.decomposition(linearGraph, nodes)  # Decomposition
+        Structure.createGraphvizStructure(EdgesAtributtes, primalClansDict, filename)  # Create 2-structure
 
     @staticmethod
     def exponential2structure(exponentialGraph, nodes, filename):
         """
-        Create an exponential 2-structure from a exponential initGraph specified by exponentialGraph
+        Create an exponential 2-structure from a exponential graph specified by exponentialGraph
 
-        :param exponentialGraph: Networkx's initGraph
-        :param nodes: Nodes from initGraph
+        :param exponentialGraph: Networkx's graph
+        :param nodes: Nodes from graph
         :param filename: Dot file name
         :type exponentialGraph: nx.Graph
         :type nodes: list
         :type filename: str
         :return: A exponential 2-structure
         """
-        EdgesAtributtes, primalClansDict = Estructura.decomposition(exponentialGraph, nodes)  # Decomposition
-        Estructura.create2structure(EdgesAtributtes, primalClansDict, filename)  # Create
+        EdgesAtributtes, primalClansDict = Structure.decomposition(exponentialGraph, nodes)  # Decomposition
+        Structure.createGraphvizStructure(EdgesAtributtes, primalClansDict, filename)  # Create
         # 2-structure

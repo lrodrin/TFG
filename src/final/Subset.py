@@ -18,7 +18,7 @@ class Subset:
         """
         Iterator on powerset: all subsets of aset
 
-        :param aset: Subsets from NetworkX's graph
+        :param aset: Subsets from NetworkX's initGraph
         :type aset: set
         :return: subset
         :rtype: set

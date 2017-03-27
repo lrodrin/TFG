@@ -14,7 +14,7 @@ __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 if __name__ == "__main__":
-    G = nx.Graph()  # Create an empty graph structure (a “null graph”) with no nodes and no edges
+    G = nx.Graph()  # Create an empty initGraph structure (a “null initGraph”) with no nodes and no edges
     # Adding edges and edges attributes
     G.add_edges_from([('A', 'B'), ('A', 'C'), ('A', 'D'), ('A', 'E'), ('B', 'C'), ('B', 'D'), ('B', 'E')],
                      color='black')
@@ -23,10 +23,10 @@ if __name__ == "__main__":
     G.add_edges_from([('A', 'F'), ('B', 'F')], color='green')
     G.add_edges_from([('C', 'E'), ('D', 'E')], color='orange')
 
-    nx.nx_pydot.write_dot(G, 'create_example_graph.dot')  # Return a pydot graph from graph
+    nx.nx_pydot.write_dot(G, 'create_example_graph.dot')  # Return a pydot initGraph from initGraph
 
-    setNodes = set(G.nodes())  # Set of nodes from graph
-    cardinality = nx.graph_clique_number(G)  # A maximal cardinality matching in the graph
+    setNodes = set(G.nodes())  # Set of nodes from initGraph
+    cardinality = nx.graph_clique_number(G)  # A maximal cardinality matching in the initGraph
 
     clansList = Clan.clans(G, setNodes)
     print("List of clans:\n", clansList)
@@ -40,5 +40,5 @@ if __name__ == "__main__":
     print("List of primal clans:\n", primalsList)
     print("-" * 20)
 
-    print("Dictionary of the graph:\n", Graph.createDictFromGraph(G))
+    print("Dictionary of the initGraph:\n", Graph.createDictFromGraph(G))
     print("-" * 20)

@@ -6,9 +6,9 @@ Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
-import itertools
 from collections import defaultdict
 
+from src.final.Graph import *
 from src.final.Subset import *
 
 __author__ = 'Laura Rodriguez Navas'
@@ -19,16 +19,16 @@ class Clan:
     @staticmethod
     def isClan(graph, subSet):
         """
-        Checks if subSet of a graph is a clan
+        Checks if subSet of a initGraph is a clan
 
-        :param graph: Networkx's graph
-        :param subSet: Subset from graph
+        :param graph: Networkx's initGraph
+        :param subSet: subSet from initGraph
         :type graph: nx.Graph
         :type subSet: set
         :return: isClan == True if successful, isClan == False otherwise
         :rtype: bool
         """
-        diff = set(graph.nodes()).difference(subSet)  # Subset formed by all nodes of graph less subset passed as
+        diff = set(graph.nodes()).difference(subSet)  # subSet formed by all nodes of initGraph less subset passed as
         # argument
         isClan = True
         for external in diff:  # For each subset of diff
@@ -42,16 +42,16 @@ class Clan:
     @staticmethod
     def isTrivialClan(subSet, cardinality):
         """
-        Checks if subSet of a graph is a trivial clan
+        Checks if subSet of a initGraph is a trivial clan
 
-        :param subSet: Subset from a graph
-        :param cardinality: Maximal number of matched edges from a graph
+        :param subSet: Subset from a initGraph
+        :param cardinality: Maximal number of matched edges from a initGraph
         :type subSet: set
         :type cardinality: int
         :return: True if successful, False otherwise
         :rtype: bool
         """
-        if len(subSet) == 1 or cardinality == len(subSet):  # subSet that contains one element or all nodes from a graph
+        if len(subSet) == 1 or cardinality == len(subSet):  # subSet that contains one element or all nodes from a initGraph
             return True
         else:
             return False
@@ -59,10 +59,10 @@ class Clan:
     @staticmethod
     def clans(graph, nodes):
         """
-        Return a list of clans from graph sorted by subset length
+        Return a list of clans from initGraph sorted by subset length
 
-        :param graph: Networkx's graph
-        :param nodes: Nodes from graph
+        :param graph: Networkx's initGraph
+        :param nodes: Nodes from initGraph
         :type graph: nx.Graph
         :type nodes: list
         :return: List of clans
@@ -77,10 +77,10 @@ class Clan:
     @staticmethod
     def trivialClans(nodes, cardinality):
         """
-        Return a list of trivial clans from a graph sorted by subset length
+        Return a list of trivial clans from a initGraph sorted by subset length
 
-        :param nodes: Nodes from a graph
-        :param cardinality: A maximal cardinality matching in a graph
+        :param nodes: Nodes from a initGraph
+        :param cardinality: A maximal cardinality matching in a initGraph
         :type nodes: list
         :type cardinality: int
         :return: List of trivial clans
@@ -149,7 +149,7 @@ class Clan:
         """
         Get the color edge between two primal clans specified by primalClan_1 and primalClan2
 
-        :param EdgesAtributtes: Edges atributtes from a graph
+        :param EdgesAtributtes: Edges atributtes from a initGraph
         :param primalClan1: Primal clan
         :param primalClan2: Primal clan
         :type EdgesAtributtes: dict

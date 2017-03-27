@@ -13,32 +13,32 @@ if __name__ == "__main__":
 
     graph = src.Graph.Graph(g)
 
-    print("Vertices of graph:")
+    print("Vertices of initGraph:")
     print(graph.vertices())
 
-    print("Edges of graph:")
+    print("Edges of initGraph:")
     print(graph.edges())
 
     print("Add vertex:")
     graph.add_vertex("z")
 
-    print("Vertices of graph:")
+    print("Vertices of initGraph:")
     print(graph.vertices())
 
     print("Add an edge:")
     graph.add_edge({"a", "z"})
 
-    print("Vertices of graph:")
+    print("Vertices of initGraph:")
     print(graph.vertices())
 
-    print("Edges of graph:")
+    print("Edges of initGraph:")
     print(graph.edges())
 
     print('Adding an edge {"x","y"} with new vertices:')
     graph.add_edge({"x", "y"})
 
-    print("Vertices of graph:")
+    print("Vertices of initGraph:")
     print(graph.vertices())
 
-    print("Edges of graph:")
+    print("Edges of initGraph:")
     print(graph.edges())

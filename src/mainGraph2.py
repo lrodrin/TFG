@@ -20,9 +20,9 @@ if __name__ == "__main__":
         print("Ups! It is not a valid number. The number of colors may not be greater than 9! Try it again ...")
         ncolors = int(input("Please enter a number of colors: "))
 
-    print("Creating and coloring graph...")
+    print("Creating and coloring initGraph...")
     G = Graph.creating_and_coloring_graph(nnodes=nnodes, nequivalences=ncolors, colorList=colorList)
-    print("Create dot file from graph...")
+    print("Create dot file from initGraph...")
     Graph.create_dot_file_from_graph(G, 'Graph_2.dot')
-    print("Dictionary of the graph:\n", Graph.createDictFromGraph(G))
+    print("Dictionary of the initGraph:\n", Graph.createDictFromGraph(G))
     print("-" * 20)

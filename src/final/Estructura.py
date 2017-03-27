@@ -24,7 +24,7 @@ class Estructura:
         """
         Create a 2-structure from a dictionary of primal clans specified by primalClansDict
 
-        :param EdgesAtributtes: Edges atributtes from a graph
+        :param EdgesAtributtes: Edges atributtes from a initGraph
         :param primalClansDict: Dictionary of primal clans
         :param filename: Dot file name
         :type EdgesAtributtes: dict
@@ -75,18 +75,18 @@ class Estructura:
     @staticmethod
     def decomposition(graph, nodes):
         """
-        Decomposition of graph in clans and primal clans
+        Decomposition of initGraph in clans and primal clans
 
-        :param graph: Networkx's graph
-        :param nodes: Nodes from graph
+        :param graph: Networkx's initGraph
+        :param nodes: Nodes from initGraph
         :type graph: nx.Graph
         :type nodes: list
-        :return: The edges atributtes from graph and a dictionary of primal clans
+        :return: The edges atributtes from initGraph and a dictionary of primal clans
         :rtype: dict, dict
         """
         clansList = Clan.clans(graph, nodes)  # List of clans
         primalClansList = Clan.primalClans(clansList)  # List of primal clans
-        EdgesAtributtes = Graph.createDictFromGraph(graph)  # Dictionary of edges atributtes from graph
+        EdgesAtributtes = Graph.createDictFromGraph(graph)  # Dictionary of edges atributtes from initGraph
         primalClansDict = OrderedDict(reversed(sorted(Clan.primalClansDict(primalClansList).items(),
                                                       key=lambda t: len(t[0]))))  # Dictionary of primal clans
         # sorted in reverse mode by primal clans length
@@ -95,10 +95,10 @@ class Estructura:
     @staticmethod
     def plain2structure(plainGraph, nodes, filename):
         """
-        Create a plain 2-structure from a plain graph specified by plainGraph
+        Create a plain 2-structure from a plain initGraph specified by plainGraph
 
-        :param plainGraph: Networkx's graph
-        :param nodes: Nodes from graph
+        :param plainGraph: Networkx's initGraph
+        :param nodes: Nodes from initGraph
         :param filename: Dot file name
         :type plainGraph: nx.Graph
         :type nodes: list
@@ -111,10 +111,10 @@ class Estructura:
     @staticmethod
     def linear2structure(linearGraph, nodes, filename):
         """
-        Create a linear 2-structure from a linear graph specified by linearGraph
+        Create a linear 2-structure from a linear initGraph specified by linearGraph
 
-        :param linearGraph: Networkx's graph
-        :param nodes: Nodes from graph
+        :param linearGraph: Networkx's initGraph
+        :param nodes: Nodes from initGraph
         :param filename: Dot file name
         :type linearGraph: nx.Graph
         :type nodes: list
@@ -127,10 +127,10 @@ class Estructura:
     @staticmethod
     def exponential2structure(exponentialGraph, nodes, filename):
         """
-        Create an exponential 2-structure from a exponential graph specified by exponentialGraph
+        Create an exponential 2-structure from a exponential initGraph specified by exponentialGraph
 
-        :param exponentialGraph: Networkx's graph
-        :param nodes: Nodes from graph
+        :param exponentialGraph: Networkx's initGraph
+        :param nodes: Nodes from initGraph
         :param filename: Dot file name
         :type exponentialGraph: nx.Graph
         :type nodes: list

@@ -24,31 +24,31 @@ class Interface:
         """
         Create and display different types of graphs: plain, plain with threshold, linear and exponential
 
-        :param option: Option graph
+        :param option: Option initGraph
         :param graph: Networkx's Graph
         :param rows: Rows from a SQLite table
         :type option: int
         :type graph: nx.Graph
         """
         if option == 1:
-            Graph.createPlainGraph(graph, rows)  # Create a plain graph
+            Graph.createPlainGraph(graph, rows)  # Create a plain initGraph
             graphName = "plainGraph.dot"
-            Graph.exportGraphDOT(graph, graphName)  # Export graph to Graphviz format
+            Graph.exportGraphDOT(graph, graphName)  # Export initGraph to Graphviz format
         elif option == 2:
             threshold = int(six.moves.input("Please enter the k constant for the threshold:\n"))
-            Graph.createPlainGraphWithThreshold(graph, rows, threshold)  # Create a plain graph with threshold
+            Graph.createPlainGraphWithThreshold(graph, rows, threshold)  # Create a plain initGraph with threshold
             graphName = "plainGraph with threshold.dot"
-            Graph.exportGraphDOT(graph, graphName)  # Export graph to Graphviz format
+            Graph.exportGraphDOT(graph, graphName)  # Export initGraph to Graphviz format
         elif option == 3:
-            Graph.createLinearGraph(graph, rows)  # Create a linear graph
+            Graph.createLinearGraph(graph, rows)  # Create a linear initGraph
             graphName = "linearGraph.dot"
-            Graph.exportGraphDOT(graph, graphName)  # Export graph to Graphviz format
+            Graph.exportGraphDOT(graph, graphName)  # Export initGraph to Graphviz format
         elif option == 4:
-            Graph.createExponentialGraph(graph, rows)  # Create an exponential graph
+            Graph.createExponentialGraph(graph, rows)  # Create an exponential initGraph
             graphName = "exponentialGraph.dot"
-            Graph.exportGraphDOT(graph, graphName)  # Export graph to Graphviz format
+            Graph.exportGraphDOT(graph, graphName)  # Export initGraph to Graphviz format
 
-        Interface.openGraphviz(graphName)  # Open graph in Graphviz program
+        Interface.openGraphviz(graphName)  # Open initGraph in Graphviz program
 
     @staticmethod
     def structureOptions(option, graph, rows):
@@ -63,15 +63,15 @@ class Interface:
         """
         if option == 1:
             optionPlain = int(six.moves.input(
-                "Please enter the option of graph you want to create:\n [1] = plain\n [2] = plain with threshold\n"))
+                "Please enter the option of initGraph you want to create:\n [1] = plain\n [2] = plain with threshold\n"))
             if optionPlain == 1:
                 structureName = "plain 2-structure.dot"
-                plainGraph = Graph.createPlainGraph(graph, rows)  # Create a plain graph
+                plainGraph = Graph.createPlainGraph(graph, rows)  # Create a plain initGraph
             elif optionPlain == 2:
                 structureName = "plain 2-structure with threshold.dot"
                 threshold = int(six.moves.input("Please enter the k constant for the threshold:\n"))
                 plainGraph = Graph.createPlainGraphWithThreshold(graph, rows,
-                                                                 threshold)  # Create a plain graph with threshold
+                                                                 threshold)  # Create a plain initGraph with threshold
 
             Estructura.plain2structure(plainGraph, plainGraph.nodes(), structureName)  # Create a plain 2-structure
 
@@ -90,10 +90,10 @@ class Interface:
     @staticmethod
     def graphANDstructureOptions(option, graph, rows):
         """
-        Create and display different types of graph and 2-structures: plain, plain with threshold, linear and
+        Create and display different types of initGraph and 2-structures: plain, plain with threshold, linear and
         exponential
 
-        :param option: Option graph and 2-structure
+        :param option: Option initGraph and 2-structure
         :param graph: Networkx's Graph
         :param rows: Rows from a SQLite table
         :type option: int
@@ -105,32 +105,32 @@ class Interface:
             if optionPlain == 1:
                 graphName = "plainGraph.dot"
                 structureName = "plain 2-structure.dot"
-                plainGraph = Graph.createPlainGraph(graph, rows)  # Create a plain graph
-                Graph.exportGraphDOT(graph, graphName)  # Export graph to Graphviz format
+                plainGraph = Graph.createPlainGraph(graph, rows)  # Create a plain initGraph
+                Graph.exportGraphDOT(graph, graphName)  # Export initGraph to Graphviz format
                 Estructura.plain2structure(plainGraph, plainGraph.nodes(), structureName)  # Create a plain 2-structure
             elif optionPlain == 2:
                 graphName = "plainGraph with threshold.dot"
                 structureName = "plain 2-structure with threshold.dot"
                 threshold = int(six.moves.input("Please enter the k constant for the threshold:\n"))
-                plainGraph = Graph.createPlainGraphWithThreshold(graph, rows, threshold)  # Create a plain graph with
+                plainGraph = Graph.createPlainGraphWithThreshold(graph, rows, threshold)  # Create a plain initGraph with
                 #  threshold
-                Graph.exportGraphDOT(graph, graphName)  # Export graph to Graphviz format
+                Graph.exportGraphDOT(graph, graphName)  # Export initGraph to Graphviz format
                 Estructura.plain2structure(plainGraph, plainGraph.nodes(), structureName)  # Create a plain 2-structure
 
         elif option == 2:
             graphName = "linearGraph.dot"
             structureName = "linear 2-structure.dot"
-            linearGraph = Graph.createLinearGraph(graph, rows)  # Create a linear graph
-            Graph.exportGraphDOT(graph, graphName)  # Export graph to Graphviz format
+            linearGraph = Graph.createLinearGraph(graph, rows)  # Create a linear initGraph
+            Graph.exportGraphDOT(graph, graphName)  # Export initGraph to Graphviz format
             Estructura.linear2structure(linearGraph, linearGraph.nodes(), structureName)
         elif option == 3:
             graphName = "exponentialGraph.dot"
             structureName = "exponential 2-structure.dot"
-            exponentialGraph = Graph.createExponentialGraph(graph, rows)  # Create an exponential graph
-            Graph.exportGraphDOT(graph, graphName)  # Export graph to Graphviz format
+            exponentialGraph = Graph.createExponentialGraph(graph, rows)  # Create an exponential initGraph
+            Graph.exportGraphDOT(graph, graphName)  # Export initGraph to Graphviz format
             Estructura.exponential2structure(exponentialGraph, exponentialGraph.nodes(), structureName)
 
-        Interface.openGraphviz(graphName)  # Open graph in Graphviz program
+        Interface.openGraphviz(graphName)  # Open initGraph in Graphviz program
         Interface.openGraphviz(structureName)  # Open 2-structure in Graphviz program
 
     @staticmethod

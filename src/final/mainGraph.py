@@ -28,25 +28,25 @@ if __name__ == '__main__':
         connection, cursor = Data.connection(file)  # Connection to SQLite database
 
     tableName = str(six.moves.input("Please enter the table name: \n"))
-    graph, rows = Graph.initializeGraph(tableName, cursor)  # Initialize the graph
+    graph, rows = Graph.initializeGraph(tableName, cursor)  # Initialize the initGraph
 
     option = int(
-        six.moves.input("Please enter the option of graph you want to create:\n [1] = plain\n [2] = plain with "
+        six.moves.input("Please enter the option of initGraph you want to create:\n [1] = plain\n [2] = plain with "
                         "threshold\n [3] = linear\n [4] = exponential\n"))
     if option == 1:
-        plainGraph = Graph.createPlainGraph(graph, rows)  # Create a plain graph
-        Graph.exportGraphDOT(graph, 'plainGraph.dot')  # Export graph to Graphviz format
-        print("Plain graph was created")
+        plainGraph = Graph.createPlainGraph(graph, rows)  # Create a plain initGraph
+        Graph.exportGraphDOT(graph, 'plainGraph.dot')  # Export simpleGraph to Graphviz format
+        print("Plain initGraph was created")
     elif option == 2:
         threshold = int(six.moves.input("Please enter the k constant for the threshold:\n"))
-        plainGraph = Graph.createPlainGraphWithThreshold(graph, rows, threshold)  # Create a plain graph with threshold
-        Graph.exportGraphDOT(graph, 'plainGraph with threshold.dot')  # Export graph to Graphviz format
-        print("Plain graph with threshold was created")
+        plainGraph = Graph.createPlainGraphWithThreshold(graph, rows, threshold)  # Create a plain initGraph with threshold
+        Graph.exportGraphDOT(graph, 'plainGraph with threshold.dot')  # Export initGraph to Graphviz format
+        print("Plain initGraph with threshold was created")
     elif option == 3:
-        linearGraph = Graph.createLinearGraph(graph, rows)  # Create a linear graph
-        Graph.exportGraphDOT(graph, 'linearGraph.dot')  # Export graph to Graphviz format
-        print("Linear graph was created")
+        linearGraph = Graph.createLinearGraph(graph, rows)  # Create a linear initGraph
+        Graph.exportGraphDOT(graph, 'linearGraph.dot')  # Export initGraph to Graphviz format
+        print("Linear initGraph was created")
     elif option == 4:
-        exponentialGraph = Graph.createExponentialGraph(graph, rows)  # Create an exponential graph
-        Graph.exportGraphDOT(graph, 'exponentialGraph.dot')  # Export graph to Graphviz format
-        print("Exponential graph was created")
+        exponentialGraph = Graph.createExponentialGraph(graph, rows)  # Create an exponential initGraph
+        Graph.exportGraphDOT(graph, 'exponentialGraph.dot')  # Export initGraph to Graphviz format
+        print("Exponential initGraph was created")

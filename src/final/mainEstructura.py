@@ -57,32 +57,32 @@ if __name__ == "__main__":
         connection, cursor = Data.connection(file)  # Connection to SQLite database
 
     tableName = str(six.moves.input("Please enter the table name: \n"))
-    graph, rows = Graph.initializeGraph(tableName, cursor)  # Initialize the graph
+    graph, rows = Graph.initializeGraph(tableName, cursor)  # Initialize the initGraph
 
     option = int(
         six.moves.input("Please enter the option of 2-structure you want to create:\n [1] = plain\n [2] = linear\n [3] "
                         "= exponential\n"))
     if option == 1:
         optionPlain = int(
-            six.moves.input("Please enter the option of plain graph you want to create:\n [1] = plain\n [2] = "
+            six.moves.input("Please enter the option of plain initGraph you want to create:\n [1] = plain\n [2] = "
                             "plain with threshold\n"))
         if optionPlain == 1:
             filename = "plain 2-structure.dot"
-            plainGraph = Graph.createPlainGraph(graph, rows)  # Create a plain graph
+            plainGraph = Graph.createPlainGraph(graph, rows)  # Create a plain initGraph
         elif optionPlain == 2:
             filename = "plain 2-structure with threshold.dot"
             threshold = int(six.moves.input("Please enter the k constant for the threshold:\n"))
             plainGraph = Graph.createPlainGraphWithThreshold(graph, rows,
-                                                             threshold)  # Create a plain graph with threshold
+                                                             threshold)  # Create a plain initGraph with threshold
 
         Estructura.plain2structure(plainGraph, plainGraph.nodes(), filename)  # Create a plain 2-structure
 
     elif option == 2:
-        linearGraph = Graph.createLinearGraph(graph, rows)  # Create a linear graph
+        linearGraph = Graph.createLinearGraph(graph, rows)  # Create a linear initGraph
         Estructura.linear2structure(linearGraph, linearGraph.nodes(),
                                     "linear 2-structure.dot")  # Create a linear 2-structure
     elif option == 3:
-        exponentialGraph = Graph.createExponentialGraph(graph, rows)  # Create an exponential graph
+        exponentialGraph = Graph.createExponentialGraph(graph, rows)  # Create an exponential simpleGraph
         Estructura.exponential2structure(exponentialGraph,
                                          exponentialGraph.nodes(),
                                          "exponential 2-structure.dot")  # Create an exponential 2-structure

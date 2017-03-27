@@ -17,12 +17,12 @@ if __name__ == '__main__':
     cursor = Interface.fileOptions(fileOption)
 
     tableName = str(six.moves.input("Please enter the table name: \n"))
-    graph, rows = Graph.initializeGraph(tableName, cursor)  # Initialize the graph
+    graph, rows = Graph.initializeGraph(tableName, cursor)  # Initialize the initGraph
 
-    # option = int(six.moves.input("Please enter the option of graph you want to create:\n [1] = plain\n [2] = plain
-    # with " "threshold\n [3] = linear\n [4] = exponential\n")) Interface.graphOptions(option, graph, rows)
+    # option = int(six.moves.input("Please enter the option of initGraph you want to create:\n [1] = plain\n [2] = plain
+    # with " "threshold\n [3] = linear\n [4] = exponential\n")) Interface.graphOptions(option, initGraph, rows)
 
     option = int(six.moves.input("Please enter the option of 2-structure you want to create:\n [1] = plain\n [2] = "
                                  "linear\n [3] = exponential\n"))
-    # Interface.structureOptions(option, graph, rows)
+    # Interface.structureOptions(option, initGraph, rows)
     Interface.graphANDstructureOptions(option, graph, rows)

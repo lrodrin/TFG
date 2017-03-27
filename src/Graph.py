@@ -15,18 +15,18 @@ __author__ = "\"Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>"""
 
 class Graph(object):
     def __init__(self, graph_dict=None):
-        """ initializes a graph object
+        """ initializes a initGraph object
             If no dictionary or None is given, an empty dictionary will be used """
         if graph_dict is None:
             graph_dict = {}
         self.__graph_dict = graph_dict
 
     def vertices(self):
-        """ returns the vertices of a graph """
+        """ returns the vertices of a initGraph """
         return list(self.__graph_dict.keys())
 
     def edges(self):
-        """ returns the edges of a graph """
+        """ returns the edges of a initGraph """
         return self.__generate_edges()
 
     def add_vertex(self, vertex):
@@ -45,7 +45,7 @@ class Graph(object):
             self.__graph_dict[vertex1] = [vertex2]
 
     def __generate_edges(self):
-        """ A static method generating the edges of the graph "graph". Edges are represented as sets
+        """ A static method generating the edges of the initGraph "initGraph". Edges are represented as sets
             with one (a loop back to the vertex) or two vertices """
         edges = []
         for vertex in self.__graph_dict:

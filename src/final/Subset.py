@@ -18,7 +18,7 @@ class Subset:
         """
         Generate all subsets of a list of nodes
 
-        :param nodes: List of nodes from Networkx's initGraph
+        :param nodes: List of nodes from Networkx's graph
         :type nodes: list
         :return: A subset
         :rtype: set

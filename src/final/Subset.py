@@ -14,14 +14,14 @@ __license__ = 'MIT'
 
 class Subset:
     @staticmethod
-    def powerset_generator(aset):
+    def powersetGenerator(aSet):
         """
-        Iterator on powerset: all subsets of aset
+        Iterator on powerset: all subsets of a set specified by aSet
 
-        :param aset: Subsets from NetworkX's initGraph
-        :type aset: set
-        :return: subset
+        :param aSet: List of nodes from Networkx's graph
+        :type aSet: list
+        :return: A subset
         :rtype: set
         """
-        for subset in chain.from_iterable(combinations(aset, r) for r in range(1, len(aset) + 1)):
+        for subset in chain.from_iterable(combinations(aSet, r) for r in range(1, len(aSet) + 1)):
             yield set(subset)

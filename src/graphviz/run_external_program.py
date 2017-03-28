@@ -24,8 +24,10 @@ def openGraphviz(filename):
     """
     if sys.platform == 'win32':  # Windows platform
         os.startfile(filename)
-    else:  # Linux platform
+    elif sys.platform == 'darwin':  # Mac platform
         subprocess.call(['open', '-a', 'Graphviz.app', filename])
+    elif sys.platform == 'linux2':   # Linux platform
+        print("UBUNTU")
 
 
 if __name__ == '__main__':

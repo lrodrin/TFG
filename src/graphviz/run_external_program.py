@@ -26,8 +26,10 @@ def openGraphviz(filename):
         os.startfile(filename)
     elif sys.platform == 'darwin':  # Mac platform
         subprocess.call(['open', '-a', 'Graphviz.app', filename])
-    elif sys.platform == 'linux2':   # Linux platform
-        print("UBUNTU")
+    elif sys.platform == 'linux2':   # Linux platform 
+        image = filename[0:-3] + "png"
+        os.system("dot -Tpng %s -o %s" % (filename, image))
+        os.system("eog %s" % image)
 
 
 if __name__ == '__main__':

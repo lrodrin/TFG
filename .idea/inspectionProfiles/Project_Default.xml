@@ -39,6 +39,7 @@
           <option value="types.StringType" />
           <option value="networkx.nxgraphviz_layout" />
           <option value="os.startfile" />
+          <option value="six.__init__.moves" />
         </list>
       </option>
     </inspection_tool>

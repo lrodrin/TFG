@@ -53,4 +53,7 @@ for line in lines:
             values = str()
         except sqlite3.Error as e:
             print("Error insertTXT:", e)
-Data.close(file, cursor, connection)
+
+file.close()
+cursor.close()
+connection.close()

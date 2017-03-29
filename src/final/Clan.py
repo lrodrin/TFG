@@ -73,6 +73,7 @@ class Clan:
         for subset in Subset.powersetGenerator(nodes):  # For each subset in nodes
             if Clan.isClan(graph, subset):  # If subset is a clan
                 clansList.append(subset)  # Add subset to the clans list
+            print(subset)
         return sorted(clansList)
 
     @staticmethod

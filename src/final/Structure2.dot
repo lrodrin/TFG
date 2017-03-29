@@ -6,16 +6,16 @@ B;
 A;
 D;
 C;
-subgraph cluster_ABDFCE {
-s_DC [label=" ", fillcolor=white, fixedsize=True, width=0.2];
+subgraph cluster_EDFBAC {
+s_CD [label=" ", fillcolor=white, fixedsize=True, width=0.2];
 s_BA [label=" ", fillcolor=white, fixedsize=True, width=0.2];
 s_F [label=" ", fillcolor=white, fixedsize=True, width=0.2];
 s_E [label=" ", fillcolor=white, fixedsize=True, width=0.2];
 subgraph  {
 rank=same;
-s_DC -> s_BA  [arrowhead=none, color=black];
-s_DC -> s_F  [arrowhead=none, color=blue];
-s_DC -> s_E  [arrowhead=none, color=green];
+s_CD -> s_BA  [arrowhead=none, color=black];
+s_CD -> s_F  [arrowhead=none, color=blue];
+s_CD -> s_E  [arrowhead=none, color=green];
 s_BA -> s_F  [arrowhead=none, color=orange];
 s_BA -> s_E  [arrowhead=none, color=black];
 s_F -> s_E  [arrowhead=none, color=red];
@@ -33,7 +33,7 @@ s_B -> s_A  [arrowhead=none, color=black];
 
 }
 
-subgraph cluster_DC {
+subgraph cluster_CD {
 s_D [label=" ", fillcolor=white, fixedsize=True, width=0.2];
 s_C [label=" ", fillcolor=white, fixedsize=True, width=0.2];
 subgraph  {
@@ -50,5 +50,5 @@ s_A -> A  [arrowhead=none];
 s_D -> D  [arrowhead=none];
 s_C -> C  [arrowhead=none];
 s_BA -> s_B  [arrowhead=none, lhead=cluster_BA];
-s_DC -> s_D  [arrowhead=none, lhead=cluster_DC];
+s_CD -> s_D  [arrowhead=none, lhead=cluster_CD];
 }

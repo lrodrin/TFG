@@ -82,7 +82,7 @@ class Interface:
             threshold = int(six.moves.input("Please enter the K constant for the threshold:\n"))
             graph = Graph.createPlainGraphWithThreshold(initGraph, rows,
                                                         threshold)  # Create a plain graph with threshold
-            graphName = "plainGraph with threshold.dot"
+            graphName = "plainGraph_with_threshold.dot"
 
         elif option == 3:
             graph = Graph.createLinearGraph(initGraph, rows)  # Create a linear graph
@@ -110,20 +110,20 @@ class Interface:
         :rtype: str
         """
         if option == 1:
-            structureName = "plain 2-structure.dot"
+            structureName = "plain_2-structure.dot"
             Structure.create2Structure(graph, graph.nodes(), structureName)  # Create a plain 2-structure
 
         elif option == 2:
-            structureName = "plain 2-structure with threshold.dot"
+            structureName = "plain_2-structure_with_threshold.dot"
             Structure.create2Structure(graph, graph.nodes(), structureName)  # Create a plain 2-structure with
             # threshold
 
         elif option == 3:
-            structureName = "linear 2-structure.dot"
+            structureName = "linear_2-structure.dot"
             Structure.create2Structure(graph, graph.nodes(), structureName)  # Create a linear 2-structure
 
         elif option == 4:
-            structureName = "exponential 2-structure.dot"
+            structureName = "exponential_2-structure.dot"
             Structure.create2Structure(graph, graph.nodes(), structureName)  # Create an exponential 2-structure
 
         return structureName

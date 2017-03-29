@@ -107,8 +107,9 @@ class Clan:
         primalClansList = list()
         for i, key in enumerate(clansList):  # For each clan in clansList
             for j in range(i + 1, len(clansList)):
-                intersection = clansList[i] & clansList[j]  # clansList[i] ∩ clansList[j]
-                if len(intersection) == 0 or intersection == clansList[i] or intersection == clansList[j]:
+                intersection = clansList[i] & clansList[j]  # if clansList[i] and clansList[j] = 0 that means are
+                # disjointed
+                if intersection == 0 or clansList[i].issubset(clansList[j]) or clansList[j].issubset(clansList[i]):
                     # If not exist overlapping, the clan is a potential primal clan
                     potentialPrimalClans[frozenset(clansList[i])] = True
                     potentialPrimalClans[frozenset(clansList[j])] = True

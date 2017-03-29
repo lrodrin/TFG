@@ -38,6 +38,11 @@ def printResults(g):
 
 if __name__ == "__main__":
     graph = simpleGraph_1()  # Create a simple graph
+    print("Simple graph\n")
+    printResults(graph)
+
+    graph = simpleGraph_2()  # Create a simple graph
+    print("Simple graph\n")
     printResults(graph)
 
     file = str(six.moves.input("Please enter the name from SQLite file:\n"))
@@ -46,8 +51,18 @@ if __name__ == "__main__":
     initGraph, rows = Graph.initGraph(tableName, cursor)  # Initialize the initGraph
 
     plainGraph = Graph.createPlainGraph(initGraph, rows)  # Create plain graph
+    print("\nPlain graph\n")
     printResults(plainGraph)
+
+    plainGraphWithThreshold = Graph.createPlainGraphWithThreshold(initGraph, rows, 3)  # Create a plain graph with
+    # threshold
+    print("\nPlain graph with threshold\n")
+    printResults(plainGraphWithThreshold)
+
     linearGraph = Graph.createLinearGraph(initGraph, rows)  # Create linear graph
+    print("\nLinear graph\n")
     printResults(linearGraph)
+
     exponentialGraph = Graph.createExponentialGraph(initGraph, rows)  # Create exponential graph
+    print("\nExponential graph\n")
     printResults(exponentialGraph)

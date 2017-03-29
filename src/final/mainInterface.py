@@ -8,17 +8,18 @@ Distributed under MIT license
 """
 
 from src.final.Interface import *
+from src.simpleGraphs import *
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 if __name__ == '__main__':
     # Simple graphs
-    # simpleGraph_1 = simpleGraph_1()  # Create a simple graph
-    # Structure.create2Structure(simpleGraph_1, simpleGraph_1.nodes(), 'Structure.dot')  # Create a 2-structure
-    #
-    # simpleGraph_2 = simpleGraph_2()  # Create a simple graph
-    # Structure.create2Structure(simpleGraph_2, simpleGraph_2.nodes(), 'Structure2.dot')  # Create a 2-structure
+    simpleGraph_1 = simpleGraph_1()  # Create a simple graph
+    Structure.create2Structure(simpleGraph_1, simpleGraph_1.nodes(), 'Structure.dot')  # Create a 2-structure
+
+    simpleGraph_2 = simpleGraph_2()  # Create a simple graph
+    Structure.create2Structure(simpleGraph_2, simpleGraph_2.nodes(), 'Structure2.dot')  # Create a 2-structure
 
     optionData = int(six.moves.input("Please enter the option for the type of file you provide:\n [1] = ARFF\n [2] = "
                                      "TXT\n [3] = DB\n"))

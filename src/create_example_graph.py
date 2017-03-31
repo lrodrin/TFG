@@ -40,5 +40,5 @@ if __name__ == "__main__":
     print("List of primal clans:\n", primalsList)
     print("-" * 20)
 
-    print("Dictionary of the initGraph:\n", Graph.getAttributesFromGraph(G))
+    print("Dictionary of the initGraph:\n", Graph.getColorAttributesFromGraph(G))
     print("-" * 20)

@@ -14,7 +14,7 @@ __license__ = 'MIT'
 # file = str(input("Please enter a database SQLite file:\n"))
 # C:/Users/Laura/PycharmProjects/TFG/src/data/BD.db  WINDOWS
 # /Users/laura/PycharmProjects/TFG/src/data/BD.db    OS X
-connection, cursor = Data.connection('C:/Users/Laura/PycharmProjects/TFG/src/data/BD.db')  # Connection to SQLite
+connection, cursor = Data.connectionDB('C:/Users/Laura/PycharmProjects/TFG/src/data/BD.db')  # Connection to SQLite
 # database
 
 # dataFile = str(input("Please enter data file:\n"))

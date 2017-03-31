@@ -19,7 +19,7 @@ class Clan:
     @staticmethod
     def isClan(graph, subSet):
         """
-        Checks if subSet of a graph is a clan
+        Checks if subSet of graph is a clan
 
         :param graph: Networkx's graph
         :param subSet: subSet from graph
@@ -28,39 +28,24 @@ class Clan:
         :return: isClan == True if successful, isClan == False otherwise
         :rtype: bool
         """
-        diff = set(graph.nodes()).difference(subSet)  # subSet formed by all nodes of graph less subset passed as
-        # argument
+        diff = set(graph.nodes()).difference(subSet)  # Subset formed by all nodes of graph less subSet passed as
+        # parameter
         isClan = True
-        for external in diff:  # For each subset of diff
-            for (x, y) in itertools.combinations(subSet, 2):  # For each pair (x, y) in the subset combinations
-                colorX = graph.edge[external][x]['color']
-                colorY = graph.edge[external][y]['color']
-                if colorX != colorY:  # (external, x) and (external, y) not have the same color edge
-                    isClan = False
+        for external in diff:  # For each subset in diff
+            for (x, y) in itertools.combinations(subSet, 2):  # For each pair (x, y) in the subSet combinations
+                if graph.has_edge(external, x) and graph.has_edge(external, y):  # If exists the edge (external,
+                    # x) and (external, y) in graph
+                    colorX = graph.edge[external][x]['color']
+                    colorY = graph.edge[external][y]['color']
+                    if colorX != colorY:  # The pair (external, x) and (external, y) not have the same color edge
+                        isClan = False
         return isClan
 
     @staticmethod
-    def isTrivialClan(subSet, cardinality):
-        """
-        Checks if subSet of a graph is a trivial clan
-
-        :param subSet: Subset from a graph
-        :param cardinality: Maximal number of matched edges from a graph
-        :type subSet: set
-        :type cardinality: int
-        :return: True if successful, False otherwise
-        :rtype: bool
-        """
-        if len(subSet) == 1 or cardinality == len(subSet):  # subSet that contains one element or all nodes from a
-            # graph
-            return True
-        else:
-            return False
-
-    @staticmethod
     def clans(graph, nodes):
+        # TODO s'ha de canviar pel nou generador a la classe Subset
         """
-        Return a list of clans from graph sorted by subset length
+        Return a list of clans from graph sorted by clan's length
 
         :param graph: Networkx's graph
         :param nodes: Nodes from graph
@@ -70,54 +55,55 @@ class Clan:
         :rtype: list
         """
         clansList = list()
-        for subset in Subset.powersetGenerator(nodes):  # For each subset in nodes
+        for subset in Subset.powerSetGenerator(nodes):  # For each subset in nodes from graph
             if Clan.isClan(graph, subset):  # If subset is a clan
                 clansList.append(subset)  # Add subset to the clans list
-            print(subset)
+
         return sorted(clansList)
 
     @staticmethod
-    def trivialClans(nodes, cardinality):
+    def trivialClans(clansList, cardinality):
         """
-        Return a list of trivial clans from a graph sorted by subset length
+        Return a list of trivial clans from a list of clans specified by clansList sorted by clan's length
 
-        :param nodes: Nodes from a graph
+        :param clansList: List of clans
         :param cardinality: A maximal cardinality matching in a graph
-        :type nodes: list
+        :type clansList: list
         :type cardinality: int
         :return: List of trivial clans
         :rtype: list
         """
         trivialClansList = list()
-        for subset in Subset.powersetGenerator(nodes):  # For each subset in nodes
-            if Clan.isTrivialClan(subset, cardinality):  # If subset is a trivial clan
-                trivialClansList.append(subset)  # Add subset to the trivial clans list
+        for clan in clansList:
+            if len(clan) == 1 or cardinality == len(clan):  # If clan is a trivial clan
+                trivialClansList.append(clan)
+
         return sorted(trivialClansList)
 
     @staticmethod
     def primalClans(clansList):
         """
-        Returns a list of the primal clans sorted by primal clans length
+        Returns a list of the primal clans sorted by primal clan's length
 
         :param clansList: List of clans
         :type clansList: list
         :return: List of primal clans
         :rtype: list
         """
-        potentialPrimalClans = defaultdict(bool)  # Creates and initializes a dictionary of booleans
+        primalClans = defaultdict(bool)  # Creates and initializes a dictionary of booleans
         primalClansList = list()
         for i, key in enumerate(clansList):  # For each clan in clansList
             for j in range(i + 1, len(clansList)):
-                intersection = clansList[i] & clansList[j]  # if clansList[i] and clansList[j] = 0 that means are
-                # disjointed
-                if intersection == 0 or clansList[i].issubset(clansList[j]) or clansList[j].issubset(clansList[i]):
-                    # If not exist overlapping, the clan is a potential primal clan
-                    potentialPrimalClans[frozenset(clansList[i])] = True
-                    potentialPrimalClans[frozenset(clansList[j])] = True
+                intersection = clansList[i] & clansList[j]  # clansList[i] intersection clansList[j]
+                if len(intersection) != 0 and intersection <= clansList[i] and intersection <= clansList[j]:
+                    # If exist overlapping, the clan is a primal clan
+                    primalClans[frozenset(clansList[i])] = True
+                    primalClans[frozenset(clansList[j])] = True
 
-        for key, value in potentialPrimalClans.items():  # For each potential primal clan in potentialPrimalClans
-            if potentialPrimalClans[key]:  # If potential primal clan is a primal clan
+        for key, value in primalClans.items():  # For each potential primal clan in primalClans
+            if value:  # If is a primal clan
                 primalClansList.append(key)  # Add primal clan to primal clans list
+
         return sorted(primalClansList, key=len)
 
     @staticmethod
@@ -134,35 +120,36 @@ class Clan:
         primalClansDict = defaultdict(list)  # Creates and initializes a dictionary of list
         for i in range(len(primalClansList) - 1, 0, -1):  # For each primal clan
             for j in range(i - 1, -1, -1):
-                if primalClansList[j].issubset(primalClansList[i]):  # If primalClansList[j] is subset of
+                if primalClansList[j].issubset(primalClansList[i]):  # If primalClansList[j] is s of
                     # primalClansList[i]
                     for k in range(j + 1, i):  # Searching if between primalClansList[j] and primalClansList[i]
                         # there are more primal clans
                         if primalClansList[k].issubset(primalClansList[i]) and primalClansList[j].issubset(
-                                primalClansList[k]):  # If primalClansList[k] is subset of primalClansList[i] and
-                            # primalClansList[j] is subset of primalClansList[k]
+                                primalClansList[k]):  # If primalClansList[k] is s of primalClansList[i] and
+                            # primalClansList[j] is s of primalClansList[k]
                             break
                     else:
                         primalClansDict[frozenset(primalClansList[i])].append(primalClansList[j])  # Add primal clan
                         #  to primal clans dict
+
         return primalClansDict
 
     @staticmethod
-    def getColorClans(EdgesAtributtes, primalClan1, primalClan2):
+    def getColorClans(colorEdgesAtributtes, primalClan1, primalClan2):
         """
         Get the color edge between two primal clans specified by primalClan_1 and primalClan2
 
-        :param EdgesAtributtes: Edges atributtes from a graph
+        :param colorEdgesAtributtes: Color edges atributtes from a graph
         :param primalClan1: Primal clan
         :param primalClan2: Primal clan
-        :type EdgesAtributtes: dict
+        :type colorEdgesAtributtes: dict
         :type primalClan1: set
         :type primalClan2: set
         :return: Color edge between primalClan1 and primalClan2
         :rtype: str
         """
-        for key, color in EdgesAtributtes.items():  # For each primal clan
+        for key, color in colorEdgesAtributtes.items():  # For each primal clan and their color atributte
             if (key[0] in primalClan1 and key[1] in primalClan2) or (
                             key[1] in primalClan1 and key[0] in primalClan2):  # If primalClan1 and primalClan2 have
-                #  the same color in EdgesAtributtes
+                #  the same color in colorEdgesAtributtes
                 return color

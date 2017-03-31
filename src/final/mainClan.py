@@ -16,7 +16,7 @@ __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 
-def printResults(g):
+def printResults(graph):
     """
     Print the results of the main execution:
         - A list of clans
@@ -24,11 +24,14 @@ def printResults(g):
         - A list of primal clans
         - A dictionary of primal clans
 
-    :param g: Networkx's graph
+    :param graph: Networkx's graph
+    :type graph: nx.Graph
     """
-    clansList = Clan.clans(g, g.nodes())  # Create clans list
+    clansList = Clan.clans(graph, graph.nodes())  # Create clans list
     print("List of clans:\n", clansList)
-    trivialClansList = Clan.trivialClans(g.nodes(), nx.graph_clique_number(g))  # Create trivial clans list
+    trivialClansList = Clan.trivialClans(clansList, Graph.getMaxCardinalityFromGraph(graph))  # Create trivial clans
+    # list
+    # TODO cardinality ha de ser una funció de la classe Graph
     print("List of trivial clans:\n", trivialClansList)
     primalClansList = Clan.primalClans(clansList)  # Create primal clans list
     print("List of primal clans:\n", primalClansList)
@@ -42,11 +45,11 @@ if __name__ == "__main__":
     printResults(graph)
 
     graph = simpleGraph_2()  # Create a simple graph
-    print("Simple graph\n")
+    print("\nSimple graph\n")
     printResults(graph)
 
     file = str(six.moves.input("Please enter the name from SQLite file:\n"))
-    connection, cursor = Data.connection(file)  # Connection to SQLite database
+    connection, cursor = Data.connectionDB(file)  # Connection to SQLite database
     tableName = str(six.moves.input("Please enter the table name which to create graph: \n"))
     initGraph, rows = Graph.initGraph(tableName, cursor)  # Initialize the initGraph
 

@@ -11,7 +11,7 @@ from src.final.Data import *
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
-connection, cursor = Data.connection('C:/Users/Laura/PycharmProjects/TFG/src/final/DB.db')
+connection, cursor = Data.connectionDB('C:/Users/Laura/PycharmProjects/TFG/src/final/DB.db')
 
 
 def geTablesNames():

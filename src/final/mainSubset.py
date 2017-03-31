@@ -15,5 +15,5 @@ __license__ = 'MIT'
 if __name__ == "__main__":
     graph = simpleGraph_1()  # Create a simple graph
 
-    for subset in Subset.powersetGenerator(graph.nodes()):
+    for subset in Subset.powerSetGenerator(graph.nodes()):
         print(subset)

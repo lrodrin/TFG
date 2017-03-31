@@ -14,7 +14,7 @@ __license__ = 'MIT'
 
 class Data:
     @staticmethod
-    def connection(fileDB):
+    def connectionDB(fileDB):
         """
         Create a database connection to the SQLite database specified by file
 
@@ -95,7 +95,7 @@ class Data:
             print("Error to create table:", e)
 
     @staticmethod
-    def insertTXT(tableName, columnNames, lines, cursor, connection):
+    def insertDataTXT(tableName, columnNames, lines, cursor, connection):
         """
         Insert values to a table specified by tableName in SQLite database
 
@@ -122,7 +122,7 @@ class Data:
                 print("Error to insertTXT:", e)
 
     @staticmethod
-    def insertARFF(tableName, columnNames, lines, cursor, connection):
+    def insertDataARFF(tableName, columnNames, lines, cursor, connection):
         """
         Insert values to a table specified by tableName in SQLite database
 
@@ -151,7 +151,7 @@ class Data:
                     print("Error to insertTXT:", e)
 
     @staticmethod
-    def select(tableName, cursor):
+    def selectData(tableName, cursor):
         """
         Select all the rows from a table specified by tableName in SQLite database
 
@@ -175,7 +175,7 @@ class Data:
         return None
 
     @staticmethod
-    def getNameForTableNameFromARFF(lines):
+    def getTableNameARFF(lines):
         """
         Return the table name from data arff file
 
@@ -191,7 +191,7 @@ class Data:
                     return line.split(" ")[1]
 
     @staticmethod
-    def getTablesNamesFromSQLiteDB(cursor):
+    def getTableNamesDB(cursor):
         """
         Return a list of all the table names from a SQLite database
         :param cursor: Cursor object

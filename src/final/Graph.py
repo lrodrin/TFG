@@ -31,7 +31,7 @@ class Graph:
         :rtype: nx.Graph
         """
         graph = nx.Graph()
-        columnNames, rows = Data.select(tableName, cursor)  # Select data from tableName
+        columnNames, rows = Data.selectData(tableName, cursor)  # Select data from tableName
         Graph.addNodes(graph, columnNames, rows)  # Adding nodes to graph
         for (u, v) in itertools.combinations(graph.nodes(), 2):  # For initialization all the edges from graph are
             # painted white
@@ -52,16 +52,29 @@ class Graph:
         nx.nx_pydot.write_dot(graph, filename)
 
     @staticmethod
-    def getAttributesFromGraph(graph):
+    def getColorAttributesFromGraph(graph):
         """
-        Return a dictionary of attributes from graph keyed by edge
+        Return a dictionary of color attributes from graph keyed by edge
 
         :param graph: Networkx's graph
         :type graph: nx.Graph
-        :return A dictionary of attributes from graph
+        :return A dictionary of color attributes from graph
         :rtype: dict
         """
         graphDict = nx.get_edge_attributes(graph, 'color')
+        return graphDict
+
+    @staticmethod
+    def getLabelAttributesFromGraph(graph):
+        """
+        Return a dictionary of label attributes from graph keyed by edge
+
+        :param graph: Networkx's graph
+        :type graph: nx.Graph
+        :return A dictionary of label attributes from graph
+        :rtype: dict
+        """
+        graphDict = nx.get_edge_attributes(graph, 'label')
         return graphDict
 
     @staticmethod
@@ -111,7 +124,7 @@ class Graph:
         """
         Graph.labelEdges(graph, rows)  # labeling edges
         # painting edges by label
-        labels = nx.get_edge_attributes(graph, 'label')  # Labels from graph
+        labels = Graph.getLabelAttributesFromGraph(graph)  # Labels from graph
         for (u, v), label in labels.items():  # For each label in graph
             if label < k:  # If label is smaller than k constant
                 graph[u][v]['color'] = 'white'  # Edge white
@@ -176,7 +189,7 @@ class Graph:
         :rtype: nx.Graph
         """
         graph = Graph.createLinearGraph(linearGraph, rows)  # Create a linear graph
-        labels = nx.get_edge_attributes(graph, 'label')
+        labels = Graph.getLabelAttributesFromGraph(graph)
         # painting edges by label
         for (u, v), label in labels.items():  # For each label
             if 0 <= label < 1:
@@ -201,3 +214,15 @@ class Graph:
                 graph[u][v]['color'] = 'brown'
 
         return graph
+
+    @staticmethod
+    def getMaxCardinalityFromGraph(graph):
+        """
+        Return the max cardinality from graph
+
+        :param graph: Networkx's graph
+        :type graph: nx.Graph
+        :return: The max cardinality
+        :rtype: int
+        """
+        return nx.graph_clique_number(graph)

@@ -20,5 +20,5 @@ if __name__ == "__main__":
     print("Column names from %s:" % tableName, columnNames)
     print(rows)
 
-    tables = Data.getTablesNamesFromSQLiteDB(cursor)  # Get tables name from SQLite database
+    tables = Data.getTableNamesDB(cursor)  # Get tables name from SQLite database
     print("List of tables from SQLite database:\n", tables)

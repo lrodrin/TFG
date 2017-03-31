@@ -85,7 +85,7 @@ class Structure:
         """
         clansList = Clan.clans(graph, nodes)  # List of clans
         primalClansList = Clan.primalClans(clansList)  # List of primal clans
-        EdgesAtributtes = Graph.getAttributesFromGraph(graph)  # Dictionary of edges atributtes from graph
+        EdgesAtributtes = Graph.getColorAttributesFromGraph(graph)  # Dictionary of edges atributtes from graph
         primalClansDict = OrderedDict(reversed(sorted(Clan.primalClansDict(primalClansList).items(),
                                                       key=lambda t: len(t[0]))))  # Dictionary of primal clans
         # sorted in reverse mode by primal clans length

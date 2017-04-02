@@ -11,8 +11,7 @@ if __name__ == '__main__':
                         "with threshold\n [3] = linear\n [4] = exponential\n"))
     graph, graphName = Interface.graphOptions(optionGraph, initGraph, rows)  # Create a type of graph
 
-    file = Data.openFile(tableName + ".ap")  # Open AP data file
-    moreFrequentSubsets = Data.convertDataToSet(file)  # Return the more frequents subsets from file
+    moreFrequentSubsets = Subset.convertDataToSet(tableName)  # Return the more frequents subsets from file
 
     clansList = list()
     for subset in moreFrequentSubsets:  # For each subset in more frequent subsets

@@ -15,10 +15,6 @@ from src.simpleGraphs import *
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
-
-
-
-
 if __name__ == "__main__":
     graph = simpleGraph_1()  # Create a simple graph
     print("Simple graph\n")

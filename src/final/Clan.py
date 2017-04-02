@@ -19,31 +19,30 @@ class Clan:
     @staticmethod
     def isClan(graph, subSet):
         """
-        Checks if subSet of graph is a clan
+        Checks if a subSet is a clan of graph 
 
         :param graph: Networkx's graph
-        :param subSet: subSet from graph
+        :param subSet: Subset from graph
         :type graph: nx.Graph
         :type subSet: set
-        :return: isClan == True if successful, isClan == False otherwise
+        :return: True if successful, False otherwise
         :rtype: bool
         """
         diff = set(graph.nodes()).difference(subSet)  # Subset formed by all nodes of graph less subSet passed as
         # parameter
         isClan = True
         for external in diff:  # For each subset in diff
-            for (x, y) in itertools.combinations(subSet, 2):  # For each pair (x, y) in the subSet combinations
-                if graph.has_edge(external, x) and graph.has_edge(external, y):  # If exists the edge (external,
-                    # x) and (external, y) in graph
-                    colorX = graph.edge[external][x]['color']
-                    colorY = graph.edge[external][y]['color']
-                    if colorX != colorY:  # The pair (external, x) and (external, y) not have the same color edge
+            for (u, v) in itertools.combinations(subSet, 2):  # For each pair (u, v) in the subSet combinations
+                if graph.has_edge(external, u) and graph.has_edge(external, v):  # If exists the edge (external,
+                    # u) and (external, v) in graph
+                    colorX = graph.edge[external][u]['color']
+                    colorY = graph.edge[external][v]['color']
+                    if colorX != colorY:  # If the pair (external, u) and (external, v) not have the same color edge
                         isClan = False
         return isClan
 
     @staticmethod
     def clans(graph, nodes):
-        # TODO s'ha de canviar pel nou generador a la classe Subset
         """
         Return a list of clans from graph sorted by clan's length
 
@@ -55,7 +54,26 @@ class Clan:
         :rtype: list
         """
         clansList = list()
-        for subset in Subset.powerSetGenerator(nodes):  # For each subset in nodes from graph
+        for subset in Subset.powerSetGenerator(nodes):  # For each subset in nodes
+            if Clan.isClan(graph, subset):  # If subset is a clan
+                clansList.append(subset)  # Add subset to the clans list
+
+        return sorted(clansList)
+
+    @staticmethod
+    def frequentClans(graph, moreFrequentSubsets):
+        """
+        Return a list of more frequent clans from graph sorted by clan's length
+
+        :param graph: Networkx's graph
+        :param moreFrequentSubsets: More frequents nodes from graph
+        :type graph: nx.Graph
+        :type moreFrequentSubsets: list
+        :return: List of more frequent clans
+        :rtype: list
+        """
+        clansList = list()
+        for subset in moreFrequentSubsets:  # For each subset in more frequent subsets
             if Clan.isClan(graph, subset):  # If subset is a clan
                 clansList.append(subset)  # Add subset to the clans list
 
@@ -64,7 +82,7 @@ class Clan:
     @staticmethod
     def trivialClans(clansList, cardinality):
         """
-        Return a list of trivial clans from a list of clans specified by clansList sorted by clan's length
+        Return a list of trivial clans from a list of clans specified by clansList
 
         :param clansList: List of clans
         :param cardinality: A maximal cardinality matching in a graph
@@ -83,7 +101,7 @@ class Clan:
     @staticmethod
     def primalClans(clansList):
         """
-        Returns a list of the primal clans sorted by primal clan's length
+        Return a list of primal clans from a list of clans specified by clansList
 
         :param clansList: List of clans
         :type clansList: list
@@ -101,7 +119,7 @@ class Clan:
                     primalClans[frozenset(clansList[i])] = True
                     primalClans[frozenset(clansList[j])] = True
 
-        for key, value in primalClans.items():  # For each potential primal clan in primalClans
+        for key, value in primalClans.items():  # For each primal clan in primalClans
             if value:  # If is a primal clan
                 primalClansList.append(key)  # Add primal clan to primal clans list
 
@@ -121,13 +139,13 @@ class Clan:
         primalClansDict = defaultdict(list)  # Creates and initializes a dictionary of list
         for i in range(len(primalClansList) - 1, 0, -1):  # For each primal clan
             for j in range(i - 1, -1, -1):
-                if primalClansList[j].issubset(primalClansList[i]):  # If primalClansList[j] is s of
+                if primalClansList[j].issubset(primalClansList[i]):  # If primalClansList[j] is a subset of
                     # primalClansList[i]
-                    for k in range(j + 1, i):  # Searching if between primalClansList[j] and primalClansList[i]
+                    for k in range(j + 1, i):  # Search if between primalClansList[j] and primalClansList[i]
                         # there are more primal clans
                         if primalClansList[k].issubset(primalClansList[i]) and primalClansList[j].issubset(
-                                primalClansList[k]):  # If primalClansList[k] is s of primalClansList[i] and
-                            # primalClansList[j] is s of primalClansList[k]
+                                primalClansList[k]):  # If primalClansList[k] is a subset of primalClansList[i] and
+                            # primalClansList[j] is a subset of primalClansList[k]
                             break
                     else:
                         primalClansDict[frozenset(primalClansList[i])].append(primalClansList[j])  # Add primal clan
@@ -136,23 +154,23 @@ class Clan:
         return primalClansDict
 
     @staticmethod
-    def getColorClans(colorEdgesAtributtes, primalClan1, primalClan2):
+    def getColorClans(colorEdgesAttributes, primalClan1, primalClan2):
         """
         Get the color edge between two primal clans specified by primalClan_1 and primalClan2
 
-        :param colorEdgesAtributtes: Color edges atributtes from a graph
+        :param colorEdgesAttributes: Color edges atributtes from a graph
         :param primalClan1: Primal clan
         :param primalClan2: Primal clan
-        :type colorEdgesAtributtes: dict
+        :type colorEdgesAttributes: dict
         :type primalClan1: set
         :type primalClan2: set
-        :return: Color edge between primalClan1 and primalClan2
+        :return: Color edge attribute between primalClan1 and primalClan2
         :rtype: str
         """
-        for key, color in colorEdgesAtributtes.items():  # For each primal clan and their color atributte
+        for key, color in colorEdgesAttributes.items():  # For each primal clan and their color attribute
             if (key[0] in primalClan1 and key[1] in primalClan2) or (
                             key[1] in primalClan1 and key[0] in primalClan2):  # If primalClan1 and primalClan2 have
-                #  the same color in colorEdgesAtributtes
+                #  the same color in colorEdgesAttributes
                 return color
 
     @staticmethod
@@ -168,6 +186,30 @@ class Clan:
         :type graph: nx.Graph
         """
         clansList = Clan.clans(graph, graph.nodes())  # Create clans list
+        print("List of clans:\n", clansList)
+        trivialClansList = Clan.trivialClans(clansList, Graph.getMaxCardinalityFromGraph(graph))  # Create trivial clans
+        # list
+        print("List of trivial clans:\n", trivialClansList)
+        primalClansList = Clan.primalClans(clansList)  # Create primal clans list
+        print("List of primal clans:\n", primalClansList)
+        primalClansDict = Clan.primalClansDict(primalClansList)  # Create primal clans dictionary
+        print("Dictionary of primal clans:\n", primalClansDict)
+
+    @staticmethod
+    def printFrequentResults(graph, moreFrequentSubsets):
+        """
+        Print the results of the main execution:
+            - A list of clans
+            - A list of trivial clans
+            - A list of primal clans
+            - A dictionary of primal clans
+
+        :param graph: Networkx's graph
+        :param moreFrequentSubsets: More frequents nodes from graph
+        :type graph: nx.Graph
+        :type moreFrequentSubsets: list
+        """
+        clansList = Clan.frequentClans(graph, moreFrequentSubsets)  # Create clans list
         print("List of clans:\n", clansList)
         trivialClansList = Clan.trivialClans(clansList, Graph.getMaxCardinalityFromGraph(graph))  # Create trivial clans
         # list

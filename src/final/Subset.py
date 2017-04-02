@@ -9,6 +9,8 @@ Distributed under MIT license
 import os
 from itertools import chain, combinations
 
+import sys
+
 from src.final.Data import *
 
 __author__ = 'Laura Rodriguez Navas'
@@ -30,22 +32,30 @@ class Subset:
             yield set(subset)
 
     @staticmethod
-    def convertDataToSet(dataFile):
+    def moreFrequentSubsets(dataFile, option):
         """
         Return the more frequent subsets from data file specified by dataFile
 
         :param dataFile: Data file
+        :param option: Specifies type of dataFile
         :type dataFile: file
+        :type option: int
         :return: The more frequent subsets
         :rtype: list
         """
-        filename = dataFile + ".ap"
+        # Create and/or open AP data file
+        newFilename = dataFile + ".ap"
+        if not os.path.exists(newFilename):  # If exists filename
+            if option == 1:
+                dataFile += ".arff"
+            elif option == 2:
+                dataFile += ".txt"
 
-        # Open and/or creates AP data file
-        if not os.path.exists(filename):  # If exists filename
-            # TODO crida al programa apriori
-            pass
-        file = Data.openFile(filename)
+            if sys.platform == 'win32':  # Windows platform
+                os.startfile("apriori.exe -s1 -C'@%' {0} {1}".format(str(dataFile), str(newFilename)))
+        # TODO crida al executable apriori
+
+        file = Data.openFile(newFilename)
 
         subset = set()
         moreFrequentSubsets = list()

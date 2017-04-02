@@ -40,6 +40,7 @@ class Data:
         :param dataFile: Data file
         :type dataFile: str
         :return: File object or None
+        :rtype: file
         """
         try:
             file = open(dataFile, 'r')

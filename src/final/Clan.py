@@ -199,10 +199,10 @@ class Clan:
     def printFrequentResults(graph, moreFrequentSubsets):
         """
         Print the results of the main execution:
-            - A list of clans
-            - A list of trivial clans
-            - A list of primal clans
-            - A dictionary of primal clans
+            - A list of more frequents clans
+            - A list of more frequents trivial clans
+            - A list of more frequents primal clans
+            - A dictionary of more frequents primal clans
 
         :param graph: Networkx's graph
         :param moreFrequentSubsets: More frequents nodes from graph

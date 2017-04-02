@@ -53,7 +53,11 @@ class Subset:
 
             if sys.platform == 'win32':  # Windows platform
                 os.system("apriori.exe -s1 -C'@%' {0} {1}".format(str(dataFile), str(newFilename)))
-        # TODO crida al executable apriori
+            # elif sys.platform == 'darwin':  # Mac platform
+            #     os.system("apriori.exe -s1 -C'@%' {0} {1}".format(str(dataFile), str(newFilename)))
+            # elif sys.platform == 'linux2':  # Linux platform
+            #     os.system("apriori.exe -s1 -C'@%' {0} {1}".format(str(dataFile), str(newFilename)))
+            # TODO OS X and Ubuntu
 
         file = Data.openFile(newFilename)
 

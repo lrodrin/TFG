@@ -11,11 +11,7 @@ if __name__ == '__main__':
                         "with threshold\n [3] = linear\n [4] = exponential\n"))
     graph, graphName = Interface.graphOptions(optionGraph, initGraph, rows)  # Create a type of graph
 
-    moreFrequentSubsets = Subset.moreFrequentSubsets(tableName)  # Return the more frequents subsets from file
-    clansList = Clan.frequentClans(graph, moreFrequentSubsets)
-    print(clansList)
-    trivialClansList = Clan.trivialClans(clansList, Graph.getMaxCardinalityFromGraph(graph))
-    print(clansList)
-    primalClansList = Clan.primalClans(clansList)
-    print(primalClansList)
-    # Clan.printFrequentResults(graph, moreFrequentSubsets)
+    moreFrequentSubsets = Subset.moreFrequentSubsets(tableName, optionData)  # Return the more frequents subsets from
+    # print(moreFrequentSubsets)
+    #  file
+    Clan.printFrequentResults(graph, moreFrequentSubsets)

@@ -52,7 +52,7 @@ class Subset:
                 dataFile += ".txt"
 
             if sys.platform == 'win32':  # Windows platform
-                os.startfile("apriori.exe -s1 -C'@%' {0} {1}".format(str(dataFile), str(newFilename)))
+                os.system("apriori.exe -s1 -C'@%' {0} {1}".format(str(dataFile), str(newFilename)))
         # TODO crida al executable apriori
 
         file = Data.openFile(newFilename)

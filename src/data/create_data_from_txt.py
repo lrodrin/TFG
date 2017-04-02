@@ -18,7 +18,7 @@ query = ""
 tableName = ""
 
 try:
-    connection = sqlite3.connect('C:/Users/Laura/PycharmProjects/TFG/src/data/BD.db')  # Connection to database
+    connection = sqlite3.connect('C:/Users/Laura/PycharmProjects/TFG/src/data/DB.db')  # Connection to database
     # pathBD = str(input("Please enter a path from database file: "))
     # connection = sqlite3.connect(pathBD)
 except sqlite3.Error as e:

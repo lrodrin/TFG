@@ -54,7 +54,7 @@ class Interface:
         elif option == 3:
             # fileDB = str(six.moves.input("Please enter the name from SQLite file:\n")) + ".db"
             # connection, cursor = Data.connection(fileDB[0:-3] + ".db")  # Connection to SQLite database
-            connection, cursor = Data.connectionDB("BD")  # Connection to SQLite database
+            connection, cursor = Data.connectionDB("DB")  # Connection to SQLite database
             tableName = str(
                 six.moves.input("Please enter the table name which to select from SQLite database: \n"))
             columnNames, rows = Data.selectData(tableName, cursor)  # Select data from tableName

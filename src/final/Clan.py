@@ -154,3 +154,25 @@ class Clan:
                             key[1] in primalClan1 and key[0] in primalClan2):  # If primalClan1 and primalClan2 have
                 #  the same color in colorEdgesAtributtes
                 return color
+
+    @staticmethod
+    def printResults(graph):
+        """
+        Print the results of the main execution:
+            - A list of clans
+            - A list of trivial clans
+            - A list of primal clans
+            - A dictionary of primal clans
+
+        :param graph: Networkx's graph
+        :type graph: nx.Graph
+        """
+        clansList = Clan.clans(graph, graph.nodes())  # Create clans list
+        print("List of clans:\n", clansList)
+        trivialClansList = Clan.trivialClans(clansList, Graph.getMaxCardinalityFromGraph(graph))  # Create trivial clans
+        # list
+        print("List of trivial clans:\n", trivialClansList)
+        primalClansList = Clan.primalClans(clansList)  # Create primal clans list
+        print("List of primal clans:\n", primalClansList)
+        primalClansDict = Clan.primalClansDict(primalClansList)  # Create primal clans dictionary
+        print("Dictionary of primal clans:\n", primalClansDict)

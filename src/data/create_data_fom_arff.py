@@ -12,9 +12,9 @@ __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 # file = str(input("Please enter a database SQLite file:\n"))
-# C:/Users/Laura/PycharmProjects/TFG/src/data/BD.db  WINDOWS
-# /Users/laura/PycharmProjects/TFG/src/data/BD.db    OS X
-connection, cursor = Data.connectionDB('C:/Users/Laura/PycharmProjects/TFG/src/data/BD.db')  # Connection to SQLite
+# C:/Users/Laura/PycharmProjects/TFG/src/data/DB.db  WINDOWS
+# /Users/laura/PycharmProjects/TFG/src/data/DB.db    OS X
+connection, cursor = Data.connectionDB('C:/Users/Laura/PycharmProjects/TFG/src/data/DB.db')  # Connection to SQLite
 # database
 
 # dataFile = str(input("Please enter data file:\n"))

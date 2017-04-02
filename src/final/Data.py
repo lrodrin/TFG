@@ -206,3 +206,24 @@ class Data:
             tablesNameList.append(table)
 
         return tablesNameList
+
+    @staticmethod
+    def convertDataToSet(dataFile):
+        """
+        Return the more frequent subsets from data file specified by dataFile
+
+        :param dataFile: Data file
+        :type dataFile: file
+        :return: The more frequent subsets
+        :rtype: list
+        """
+        subset = set()
+        moreFrequentSubsets = list()
+        for line in dataFile.readlines():  # For each line in dataFile
+            for word in line.split(" "):  # For each word in line
+                if not word.startswith("("):
+                    subset.add(word)  # Add word as a subset
+            moreFrequentSubsets.append(frozenset(subset))
+            subset = set()
+
+        return moreFrequentSubsets

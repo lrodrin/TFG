@@ -14,7 +14,7 @@ __license__ = 'MIT'
 connection, cursor = Data.connectionDB('C:/Users/Laura/PycharmProjects/TFG/src/final/DB.db')
 
 
-def geTablesNames():
+def getTablesNames():
     query = "SELECT name FROM sqlite_master WHERE type='table' ORDER BY Name"
     cursor.execute(query)
     tables = map(lambda t: t[0], cursor.fetchall())
@@ -22,4 +22,5 @@ def geTablesNames():
         print(table)
 
 
-geTablesNames()
+if __name__ == '__main__':
+    getTablesNames()

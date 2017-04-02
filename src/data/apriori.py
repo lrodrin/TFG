@@ -15,3 +15,5 @@ if __name__ == '__main__':
     # print(moreFrequentSubsets)
     #  file
     Clan.printFrequentResults(graph, moreFrequentSubsets)
+
+    cursor.close()

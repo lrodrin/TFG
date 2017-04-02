@@ -6,10 +6,7 @@ Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
-import os
 import subprocess
-import sys
-
 import six
 
 from src.final.Structure import *

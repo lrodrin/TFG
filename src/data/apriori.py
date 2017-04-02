@@ -2,7 +2,7 @@ from src.final.Interface import *
 
 if __name__ == '__main__':
     optionData = int(six.moves.input("Please enter the option for the type of file you provide:\n [1] = ARFF\n [2] = "
-                                     "TXT\n [3] = DB\n"))
+                                     "TXT\n"))
     columnNames, rows, cursor, tableName = Interface.inputFileOptions(optionData)  # Manages the data entry
     initGraph, rows = Graph.initGraph(tableName, cursor)  # Initialize a graph
 

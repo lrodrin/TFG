@@ -43,7 +43,7 @@ class Data:
         :rtype: file
         """
         try:
-            file = open(dataFile, 'r')
+            file = open(dataFile, 'r+')
             print("File %s opened" % dataFile)
             return file
 

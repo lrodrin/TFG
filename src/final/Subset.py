@@ -45,7 +45,7 @@ class Subset:
         """
         # Create and/or open AP data file
         newFilename = dataFile + ".ap"
-        if not os.path.exists(newFilename):  # If exists filename
+        if not os.path.exists(newFilename):  # If not exists a AP filename
             if option == 1:
                 dataFile += ".arff"
             elif option == 2:

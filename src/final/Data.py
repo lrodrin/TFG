@@ -90,7 +90,7 @@ class Data:
         try:
             query = 'CREATE TABLE {0} ({1});'.format(str(tableName), str(columnNames[0:-2]))
             cursor.execute(query)
-
+            # print(query)
         except sqlite3.Error as e:
             print("Error to create table:", e)
 
@@ -110,12 +110,16 @@ class Data:
         values = str()
         for line in range(1, len(lines)):  # For each line in lines
             for column in lines[line].split(" "):  # For each column in lines[line]
-                values += "'%s'," % column.split(":")[1]  # Extract values
+                if ":" in column:
+                    values += "'%s'," % column.split(":")[1]  # Extract values
+                elif "=" in column:
+                    values += "'%s'," % column.split("=")[1]  # Extract values
             try:
                 query = 'INSERT INTO {0} ({1}) VALUES ({2});'.format(str(tableName), str(columnNames[0:-2]),
                                                                      str(values[0:-1]).replace('\n', ''))
                 cursor.execute(query)
                 connection.commit()
+                # print(query)
                 values = str()
 
             except sqlite3.Error as e:
@@ -145,10 +149,11 @@ class Data:
                                                                         str(values[0:-1]).replace('\n', ''))
                     cursor.execute(query)
                     connection.commit()
+                    # print(query)
                     values = str()
 
                 except sqlite3.Error as e:
-                    print("Error to insertTXT:", e)
+                    print("Error to insertARFF:", e)
 
     @staticmethod
     def selectData(tableName, cursor):

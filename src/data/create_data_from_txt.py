@@ -1,69 +1,29 @@
 """
-This module creates a table for a SQLite database from txt
+This module creates a table for a SQLite database from TXT file
 
 Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 
 Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
-import sqlite3
+from src.final.Data import *
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
-# global variables
-connection = ""
-file = ""
-query = ""
-tableName = ""
+# C:/Users/Laura/PycharmProjects/TFG/src/data/DB.db  WINDOWS
+# /Users/laura/PycharmProjects/TFG/src/data/DB.db    OS X
+connection, cursor = Data.connectionDB('C:/Users/Laura/PycharmProjects/TFG/src/data/DB')  # Connection to SQLite
+# database
 
-try:
-    connection = sqlite3.connect('C:/Users/Laura/PycharmProjects/TFG/src/data/DB.db')  # Connection to database
-    # pathBD = str(input("Please enter a path from database file: "))
-    # connection = sqlite3.connect(pathBD)
-except sqlite3.Error as e:
-    print("Error:", e)
+fileName = str(input("Please enter the file name you provide:\n"))
+file = Data.openFile("C:/Users/Laura/PycharmProjects/TFG/src/data/%s.txt" % fileName)  # Open data file
 
-cur = connection.cursor()
-
-try:
-    file = open('C:/Users/Laura/PycharmProjects/TFG/src/data/contact-lenses.txt', 'r')  # Open data file
-    # dataFile = str(input("Please enter a path from data file: "))
-    # file = open(dataFile, 'r')
-except IOError as e:
-    print("Error:", e)
-
-lines = file.readlines()  # Keep all lines from data file into lines
-header = lines[0]  # Extract the header from lines
-colNames = ""
-for word in header.split(" "):  # For each word from header
-    colNames += word + ", "  # Adding a column into columnNames
-
-try:
-    tableName = str(input("Please enter a name for the database table: "))
-    query = "CREATE TABLE %s (%s);" % (str(tableName), str(colNames[0:-2]))  # Create a table
-    # print(query)
-    cur.execute(query)
-    print("Created table %s..." % tableName)
-except sqlite3.Error as e:
-    print("Error:", e)
-
-values = ""
-for i in range(1, len(lines)):  # For each row from data file
-    for col in lines[i].split(" "):  # For each column in lines[i]
-        values += "'%s'," % col.split(":")[1]  # Extract and save the value
-    try:
-        query = 'INSERT INTO {0} ({1}) VALUES ({2});'.format(str(tableName), str(colNames[0:-2]),
-                                                             str(values[0:-1]).replace('\n', ''))
-        # Insert values to table
-        # print(query)
-        cur.execute(query)
-        connection.commit()
-        print("Inserted row number %d" % i)
-    except sqlite3.Error as e:
-        print("Error:", e)
-    values = ""
+columnNames, lines = Data.getDataFile(file, "TXT")  # Get data from file
+# print(columnNames)
+Data.createTable(cursor, fileName, columnNames)  # Create SQLite table
+Data.insertDataTXT(fileName, columnNames, lines, cursor, connection)  # Insert data values into SQLite table
 
 file.close()
-cur.close()
+cursor.close()
 connection.close()

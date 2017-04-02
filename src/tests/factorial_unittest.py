@@ -1,4 +1,5 @@
 import unittest
+
 from src.tests.factorial import fact
 
 

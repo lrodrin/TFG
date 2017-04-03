@@ -27,22 +27,22 @@ class Graph:
         :param tableName: Table name
         :param cursor: Cursor object
         :type tableName: str
-        :return: A graph and all rows from tableName
+        :return: A graph
         :rtype: nx.Graph
         """
         graph = nx.Graph()
         columnNames, rows = Data.selectData(tableName, cursor)  # Select data from tableName
         Graph.addNodes(graph, columnNames, rows)  # Adding nodes to graph
-        for (u, v) in itertools.combinations(graph.nodes(), 2):  # For initialization all the edges from graph are
-            # painted white
-            graph.add_edge(u, v, color='white')
+        for (u, v) in itertools.combinations(graph.nodes(), 2):  # For the initialization all the edges from graph are
+            # painted black and the edge style is dashed
+            graph.add_edge(u, v, color='black', style='dashed')
 
         return graph, rows
 
     @staticmethod
     def exportGraph(graph, filename):
         """
-        Export a graph to Graphviz Dot format
+        Export a graph to Graphviz DOT format
 
         :param graph: Networkx's graph
         :param filename: File name
@@ -54,11 +54,11 @@ class Graph:
     @staticmethod
     def getColorAttributesFromGraph(graph):
         """
-        Return a dictionary of color attributes from graph keyed by edge
+        Return a dictionary of color edges attributes from graph
 
         :param graph: Networkx's graph
         :type graph: nx.Graph
-        :return A dictionary of color attributes from graph
+        :return Color edge's attributes from graph
         :rtype: dict
         """
         graphDict = nx.get_edge_attributes(graph, 'color')
@@ -67,11 +67,11 @@ class Graph:
     @staticmethod
     def getLabelAttributesFromGraph(graph):
         """
-        Return a dictionary of label attributes from graph keyed by edge
+        Return a dictionary of label edges attributes from graph
 
         :param graph: Networkx's graph
         :type graph: nx.Graph
-        :return A dictionary of label attributes from graph
+        :return Label edge's attributes from graph
         :rtype: dict
         """
         graphDict = nx.get_edge_attributes(graph, 'label')
@@ -80,7 +80,7 @@ class Graph:
     @staticmethod
     def addNodes(graph, columnNames, rows):
         """
-        Add nodes to graph through SQLite database data source
+        Add nodes to graph
 
         :param graph: Networkx's graph
         :param columnNames: Column names from a SQLite table
@@ -95,7 +95,7 @@ class Graph:
     @staticmethod
     def createPlainGraph(graph, rows):
         """
-        Create a plain graph from a SQLite rows specified by rows
+        Create a plain graph
 
         :param graph: Networkx's graph
         :param rows: Rows from a SQLite table
@@ -104,60 +104,63 @@ class Graph:
         :rtype: nx.Graph
         """
         for row in rows:  # For each row in rows
-            for (u, v) in itertools.combinations(row, 2):  # For each pair of rows
+            for (u, v) in itertools.combinations(row, 2):  # For each pair (u, v) in row
                 if graph.has_edge(u, v):  # If exists edge (u, v) in graph
-                    graph.edge[u][v]['color'] = 'black'  # Edge painted black
+                    graph.add_edge(u, v, color='black', style='solid')  # Edge painted black and style is not dashed
+
         return graph
 
     @staticmethod
     def createPlainGraphWithThreshold(graph, rows, k):
         """
-        Create a plain graph from a SQLite rows specified by rows
+        Create a plain graph with threshold
 
         :param graph: Networkx's graph
         :param rows: Rows from a SQLite table
         :param k: Threshold
         :type graph: nx.Graph
         :type k: int
-        :return: A Plain graph with threshold
+        :return: A plain graph with threshold
         :rtype: nx.Graph
         """
         Graph.labelEdges(graph, rows)  # labeling edges
-        # painting edges by label
         labels = Graph.getLabelAttributesFromGraph(graph)  # Labels from graph
-        for (u, v), label in labels.items():  # For each label in graph
-            if label < k:  # If label is smaller than k constant
-                graph[u][v]['color'] = 'white'  # Edge white
-            else:  # If label is equal or greater than k constant
-                graph[u][v]['color'] = 'black'  # Edge painted black
+
+        # Painting edges by label
+        for (u, v), label in labels.items():  # For each label edge attribute in labels
+            if graph.has_edge(u, v):  # If exists edge (u, v) in graph
+                if label < k:  # If label is smaller than k constant
+                    graph.add_edge(u, v, color='black', style='dashed')  # Edge painted black and style is dashed
+                else:  # If label is equal or greater than k constant
+                    graph.add_edge(u, v, color='black', style='solid')  # Edge painted black and style is not dashed
 
         return graph
 
     @staticmethod
     def labelEdges(graph, rows):
         """
-        Count the number of equivalences and label the edges from graph with this number
+        Count the number of equivalences and label the edges from graph with the number of equivalences
 
         :param graph: Networkx's graph
         :param rows: Rows from a SQLite table
         :type graph: nx.Graph
         """
-        dictionary = dict()
+        numberOfEquivalences = dict()
         for row in rows:  # For each row in rows
-            for (u, v) in itertools.combinations(row, 2):  # For each pair of rows
-                if (u, v) in dictionary.keys():  # If exists edge (u, v) in dictionary
-                    dictionary[(u, v)] = dictionary.get((u, v)) + 1
-                    graph.edge[u][v]['label'] += 1  # Add 1 to the label that counts the (u, v) occurrences in
-                    # dictionary
+            for (u, v) in itertools.combinations(row, 2):  # For each pair (u, v) in row
+                if (u, v) in numberOfEquivalences.keys():  # If exists edge (u, v) in a numberOfEquivalences
+                    numberOfEquivalences[(u, v)] = numberOfEquivalences.get((u, v)) + 1  # Count one to
+                    # numberOfEquivalences
+                    graph.edge[u][v]['label'] += 1  # Add the number of equivalences into edge label from graph
 
-                else:  # If not exists edge (u, v) in dictionary, initializes the label 1
-                    dictionary[(u, v)] = 1
+                else:  # If not exists edge (u, v) in numberOfEquivalences, count one
+                    numberOfEquivalences[(u, v)] = 1
                     graph.add_edge(u, v, label=1)
 
     @staticmethod
     def createLinearGraph(graph, rows):
         """
-        Create a linear graph from a SQLite rows specified by rows
+        Create a linear graph
 
         :param graph: Networkx's graph
         :param rows: Rows from a SQLite table
@@ -166,21 +169,25 @@ class Graph:
         :rtype: nx.Graph
         """
         Graph.labelEdges(graph, rows)  # labeling edges
-        # painting edges by label
-        colors = {0: 'white', 1: 'black', 2: 'cyan', 3: 'green', 4: 'magenta', 5: 'orange', 6: 'purple', 7: 'red',
-                  8: 'yellow', 9: 'brown'}  # Dictionary of possible labels and colours
-        for label, color in colors.items():  # For each label and color
-            for (u, v) in graph.edges():  # For each pair of nodes from graph
-                if 'label' in graph[u][v] and label == graph[u][v]['label']:  # If label is labeled in graph and
-                    # label is the edge label
-                    graph[u][v]['color'] = color  # Add color to edge
+        potentialColors = {0: 'white', 1: 'black', 2: 'cyan', 3: 'green', 4: 'magenta', 5: 'orange', 6: 'purple',
+                           7: 'red',
+                           8: 'yellow', 9: 'brown'}  # Potential label and colours for edges
+
+        # Painting edges by label
+        for label, color in potentialColors.items():  # For each label and color edge attributes in potentialColors
+            for (u, v) in graph.edges():  # For each edge from graph
+                if graph.has_edge(u, v):  # If exists edge (u, v) in graph
+                    if 'label' in graph[u][v] and label == graph[u][v]['label']:  # If edge have label attribute and
+                        # the label equivalence in potentialColors are the same
+                        graph.add_edge(u, v, color=color, style='solid')  # Edge painted with potentialColor and
+                        # style is not dashed
 
         return graph
 
     @staticmethod
     def createExponentialGraph(linearGraph, rows):
         """
-        Create a exponential graph from a SQLite rows specified by rows
+        Create a exponential graph
 
         :param linearGraph: Networkx's graph
         :param rows: Rows from a SQLite table
@@ -189,29 +196,30 @@ class Graph:
         :rtype: nx.Graph
         """
         graph = Graph.createLinearGraph(linearGraph, rows)  # Create a linear graph
-        labels = Graph.getLabelAttributesFromGraph(graph)
+        labels = Graph.getLabelAttributesFromGraph(graph)  # Labels from graph
         # painting edges by label
-        for (u, v), label in labels.items():  # For each label
-            if 0 <= label < 1:
-                graph[u][v]['color'] = 'white'
-            elif 1 <= label < 2:
-                graph[u][v]['color'] = 'black'
-            elif 2 <= label < 4:
-                graph[u][v]['color'] = 'cyan'
-            elif 4 <= label < 8:
-                graph[u][v]['color'] = 'green'
-            elif 8 <= label < 16:
-                graph[u][v]['color'] = 'magenta'
-            elif 16 <= label < 32:
-                graph[u][v]['color'] = 'orange'
-            elif 32 <= label < 64:
-                graph[u][v]['color'] = 'purple'
-            elif 64 <= label < 128:
-                graph[u][v]['color'] = 'red'
-            elif 128 <= label < 256:
-                graph[u][v]['color'] = 'yellow'
-            else:
-                graph[u][v]['color'] = 'brown'
+        for (u, v), label in labels.items():  # For each edge and label attribute from labels
+            if graph.has_edge(u, v):  # If exists edge (u, v) in graph
+                if 0 <= label < 1:
+                    graph.add_edge(u, v, color='black', style='dashed')  # Edge painted black and style is dashed
+                elif 1 <= label < 2:
+                    graph.add_edge(u, v, color='black', style='solid')  # Edge painted black and style is dashed
+                elif 2 <= label < 4:
+                    graph.add_edge(u, v, color='cyan', style='solid')  # Edge painted cyan and style is dashed
+                elif 4 <= label < 8:
+                    graph.add_edge(u, v, color='green', style='solid')  # Edge painted green and style is dashed
+                elif 8 <= label < 16:
+                    graph.add_edge(u, v, color='magenta', style='solid')  # Edge painted magenta and style is dashed
+                elif 16 <= label < 32:
+                    graph.add_edge(u, v, color='orange', style='solid')  # Edge painted orange and style is dashed
+                elif 32 <= label < 64:
+                    graph.add_edge(u, v, color='purple', style='solid')  # Edge painted purple and style is dashed
+                elif 64 <= label < 128:
+                    graph.add_edge(u, v, color='red', style='solid')  # Edge painted red and style is dashed
+                elif 128 <= label < 256:
+                    graph.add_edge(u, v, color='yellow', style='solid')  # Edge painted yellow and style is dashed
+                else:
+                    graph.add_edge(u, v, color='brown', style='solid')  # Edge painted brown and style is dashed
 
         return graph
 

@@ -13,6 +13,8 @@ __license__ = 'MIT'
 
 
 class Data:
+    # TODO tractar diferents taules
+
     @staticmethod
     def connectionDB(fileDB):
         """
@@ -174,8 +176,8 @@ class Data:
         try:
             query = 'SELECT * FROM {0};'.format(str(tableName))
             cursor.execute(query)
-            columnNames = [description[0] for description in cursor.description]    # Extract column names
-            rows = cursor.fetchall()    # All the rows
+            columnNames = [description[0] for description in cursor.description]  # Extract column names
+            rows = cursor.fetchall()  # All the rows
 
             return columnNames, rows
 
@@ -198,7 +200,7 @@ class Data:
                     line = line.split(" ")[1]  # Quit the char '
                     return line[1:-2]
 
-                else:   # If table name not contains the char '
+                else:  # If table name not contains the char '
                     return line.split(" ")[1]
 
     @staticmethod
@@ -215,7 +217,7 @@ class Data:
         cursor.execute(query)
         tables = map(lambda t: t[0], cursor.fetchall())
         for table in tables:
-            tablesNameList.append(table)    # Add table name to the list tablesNameList
+            tablesNameList.append(table)  # Add table name to the list tablesNameList
 
         return tablesNameList
 
@@ -233,9 +235,9 @@ class Data:
         moreFrequentSubsets = list()
         for line in dataFile.readlines():  # For each line in dataFile
             for word in line.split(" "):  # For each word in line
-                if not word.startswith("("):    # If word not contains the char (
+                if not word.startswith("("):  # If word not contains the char (
                     subset.add(word)  # Add word as a subset
-            moreFrequentSubsets.append(frozenset(subset))   # Add subset in list moreFrequentSubsets
+            moreFrequentSubsets.append(frozenset(subset))  # Add subset in list moreFrequentSubsets
             subset = set()
 
         return moreFrequentSubsets

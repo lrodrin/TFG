@@ -72,16 +72,19 @@ class Structure:
         print("A %s was created" % filename)
 
     @staticmethod
-    def decomposition(graph):
+    def decomposition(graph, moreFrequentSubsets):
         """
         Decomposition of graph in primal clans
 
         :param graph: Networkx's graph
+        :param moreFrequentSubsets: More frequents nodes from graph
         :type graph: nx.Graph
+        :type moreFrequentSubsets: list
         :return: The edges atributtes from graph and primal clans ordered
         :rtype: dict, dict
         """
-        clansList = Clan.clans(graph, graph.nodes())  # List of clans
+        # clansList = Clan.clans(graph, graph.nodes())  # List of clans
+        clansList = Clan.frequentClans(graph, moreFrequentSubsets)  # List of clans
         primalClansList = Clan.primalClans(clansList)  # List of primal clans
         EdgesAtributtes = Graph.getColorAttributesFromGraph(graph)  # Edges atributtes from graph
         primalClansDict = OrderedDict(reversed(sorted(Clan.primalClansDict(primalClansList).items(),
@@ -90,15 +93,20 @@ class Structure:
         return EdgesAtributtes, primalClansDict
 
     @staticmethod
-    def create2Structure(graph, filename):
+    def create2Structure(graph, filename, moreFrequentSubsets):
         """
         Create a 2-structure from a type of graph
 
         :param graph: Networkx's graph
         :param filename: Dot file name
+        :param moreFrequentSubsets: More frequents nodes from graph
         :type graph: nx.Graph
         :type filename: str
+        :type moreFrequentSubsets: list
         :return: A 2-structure
         """
-        EdgesAtributtes, primalClansDict = Structure.decomposition(graph)  # Graph decomposition
+        EdgesAtributtes, primalClansDict = Structure.decomposition(graph, moreFrequentSubsets)  # Graph decomposition
+        print(EdgesAtributtes)
+        print(primalClansDict)
         Structure.createGraphvizStructure(EdgesAtributtes, primalClansDict, filename)  # Create 2-structure
+

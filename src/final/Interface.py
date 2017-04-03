@@ -95,7 +95,7 @@ class Interface:
         return graph, graphName
 
     @staticmethod
-    def structureOptions(option, graph):
+    def structureOptions(option, graph, moreFrequentSubsets):
         """
         Manages the creation of 2-structures (plain, plain with threshold, linear or exponential) specified by option
 
@@ -108,19 +108,19 @@ class Interface:
         """
         if option == 1:
             structureName = "plain_2-structure.dot"
-            Structure.create2Structure(graph, structureName)  # Create a plain 2-structure
+            Structure.create2Structure(graph, structureName, moreFrequentSubsets)  # Create a plain 2-structure
 
         elif option == 2:
             structureName = "plain_2-structure_with_threshold.dot"
-            Structure.create2Structure(graph, structureName)  # Create a plain 2-structure with threshold
+            Structure.create2Structure(graph, structureName, moreFrequentSubsets)  # Create a plain 2-structure with threshold
 
         elif option == 3:
             structureName = "linear_2-structure.dot"
-            Structure.create2Structure(graph, structureName)  # Create a linear 2-structure
+            Structure.create2Structure(graph, structureName, moreFrequentSubsets)  # Create a linear 2-structure
 
         elif option == 4:
             structureName = "exponential_2-structure.dot"
-            Structure.create2Structure(graph, structureName)  # Create an exponential 2-structure
+            Structure.create2Structure(graph, structureName, moreFrequentSubsets)  # Create an exponential 2-structure
 
         return structureName
 

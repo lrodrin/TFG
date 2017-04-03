@@ -1,5 +1,5 @@
 """
-This module implements the main for the more frequent Clan class
+This module implements the main for the more frequent Structure class
 
 Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 
@@ -19,13 +19,12 @@ if __name__ == "__main__":
     columnNames, rows, cursor, tableName = Interface.inputFileOptions(optionData)  # Manages the data entry
     initGraph, rows = Graph.initGraph(tableName, cursor)  # Initialize the graph
 
-    optionGraph = int(
-        six.moves.input("Please enter the option of graph you want to create:\n [1] = plain\n [2] = plain "
+    optionStructure = int(
+        six.moves.input("Please enter the option of 2-structure you want to create:\n [1] = plain\n [2] = plain "
                         "with threshold\n [3] = linear\n [4] = exponential\n"))
-    graph, graphName = Interface.graphOptions(optionGraph, initGraph, rows)  # Create a type of graph
+    graph, graphName = Interface.graphOptions(optionStructure, initGraph, rows)  # Create a type of graph
 
     probability = float(six.moves.input("Please enter the probability for the more frequent subsets creation:\n"))
     moreFrequentSubsets = Subset.moreFrequentSubsets(tableName, optionData, probability)  # The more frequents subsets
-    #  from filename
 
-    Clan.printFrequentResults(graph, moreFrequentSubsets)
+    Interface.structureOptions(optionStructure, graph, moreFrequentSubsets)  # Create 2-structure from graph

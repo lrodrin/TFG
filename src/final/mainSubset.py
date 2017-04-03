@@ -22,5 +22,6 @@ if __name__ == "__main__":
     optionData = int(six.moves.input("Please enter the option for the type of file you provide:\n [1] = ARFF\n [2] = "
                                      "TXT\n"))
     filename = str(input("Please enter the file name you provide:\n"))
-    moreFrequentSubsets = Subset.moreFrequentSubsets(filename, optionData, 1)  # The more frequents subsets from filename
+    moreFrequentSubsets = Subset.moreFrequentSubsets(filename, optionData, 1)  # The more frequents subsets from
+    # filename
     print(moreFrequentSubsets)

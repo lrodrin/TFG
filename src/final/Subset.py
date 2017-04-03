@@ -7,9 +7,8 @@ Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
 import os
-from itertools import chain, combinations
-
 import sys
+from itertools import chain, combinations
 
 from src.final.Data import *
 
@@ -34,7 +33,7 @@ class Subset:
     @staticmethod
     def moreFrequentSubsets(dataFile, option, probability):
         """
-        Return the more frequent subsets from data file specified by dataFile
+        Return the more frequent subsets from ARFF data file specified by dataFile
 
         :param dataFile: Data file
         :param option: Specifies type of dataFile
@@ -45,23 +44,21 @@ class Subset:
         :return: The more frequent subsets
         :rtype: list
         """
-        # Create and/or open AP data file
+        # Create if not exists and open AP data file
         newFilename = dataFile + ".ap"
         if not os.path.exists(newFilename):  # If not exists a AP filename
-            if option == 1:
+            if option == 1:  # If data file input have arff type
                 dataFile += ".arff"
-            elif option == 2:
+            elif option == 2:  # If data file input have txt type
                 dataFile += ".txt"
 
+            # System calls to apriori's algorithm who's create the AP data file
             if sys.platform == 'win32':  # Windows platform
                 os.system("apriori.exe -s{0} -C'@%' {1} {2}".format(str(probability), str(dataFile), str(newFilename)))
-            # elif sys.platform == 'darwin':  # Mac platform
-            #     os.system("apriori.exe -s1 -C'@%' {0} {1}".format(str(dataFile), str(newFilename)))
-            elif sys.platform == 'linux2' or sys.platform == 'darwin':  # Linux  and Mac platform
+            elif sys.platform == 'linux2' or sys.platform == 'darwin':  # Linux or Mac platform
                 os.system("/.apriori -s1 -C'@%' {0} {1}".format(str(dataFile), str(newFilename)))
 
-        file = Data.openFile(newFilename)   # Open data file
-
+        file = Data.openFile(newFilename)  # Open AP data file
         subset = set()
         moreFrequentSubsets = list()
         for line in file.readlines():  # For each line in filename

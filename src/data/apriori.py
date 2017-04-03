@@ -1,3 +1,11 @@
+"""
+This module creates the more frequents subsets from an AP file
+
+Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
+
+Distributed under MIT license
+[https://opensource.org/licenses/MIT]
+"""
 import six
 
 from src.final.Subset import *

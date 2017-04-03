@@ -1,5 +1,5 @@
 """
-This module implements rules for parse ARFF and TXT files
+This module implements rules to parse ARFF and TXT files
 
 Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 

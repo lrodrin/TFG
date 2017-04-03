@@ -1,49 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="DB.db">
-  <database-model serializer="dbm" rdbms="SQLITE" format-version="4.1">
+  <database-model serializer="dbm" rdbms="SQLITE" format-version="4.0">
     <root id="1"/>
-    <schema id="2" parent="1" name="main">
+    <schema id="2" parent="1">
+      <Current>1</Current>
       <Visible>1</Visible>
     </schema>
-    <table id="3" parent="2" name="sqlite_master"/>
-    <table id="4" parent="2" name="weather"/>
-    <column id="5" parent="3" name="type">
-      <DataType>text|0</DataType>
+    <table id="3" parent="2" name="weather"/>
+    <column id="4" parent="3" name="outlook">
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="6" parent="3" name="name">
+    <column id="5" parent="3" name="temperature">
       <Position>1</Position>
-      <DataType>text|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="7" parent="3" name="tbl_name">
+    <column id="6" parent="3" name="humidity">
       <Position>2</Position>
-      <DataType>text|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="8" parent="3" name="rootpage">
+    <column id="7" parent="3" name="windy">
       <Position>3</Position>
-      <DataType>integer|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="9" parent="3" name="sql">
+    <column id="8" parent="3" name="play">
       <Position>4</Position>
-      <DataType>text|0</DataType>
-    </column>
-    <column id="10" parent="4" name="outlook">
-      <DataType>|0</DataType>
-    </column>
-    <column id="11" parent="4" name="temperature">
-      <Position>1</Position>
-      <DataType>|0</DataType>
-    </column>
-    <column id="12" parent="4" name="humidity">
-      <Position>2</Position>
-      <DataType>|0</DataType>
-    </column>
-    <column id="13" parent="4" name="windy">
-      <Position>3</Position>
-      <DataType>|0</DataType>
-    </column>
-    <column id="14" parent="4" name="play">
-      <Position>4</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
   </database-model>
 </dataSource>

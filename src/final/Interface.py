@@ -138,7 +138,4 @@ class Interface:
         elif sys.platform == 'darwin':  # Mac platform
             subprocess.call(['open', '-a', 'Graphviz.app', filename])
         elif sys.platform == 'linux2':  # Linux platform
-            image = filename[0:-3] + "jpeg"
-            os.system("dot -Tpng %s -o %s" % (filename, image))
-            os.system("eog %s" % image)
-            # TODO pel programa XDot d'Ubuntu
+            os.system("xdot %s" % filename)

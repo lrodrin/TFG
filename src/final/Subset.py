@@ -57,9 +57,8 @@ class Subset:
                 os.system("apriori.exe -s{0} -C'@%' {1} {2}".format(str(probability), str(dataFile), str(newFilename)))
             # elif sys.platform == 'darwin':  # Mac platform
             #     os.system("apriori.exe -s1 -C'@%' {0} {1}".format(str(dataFile), str(newFilename)))
-            # elif sys.platform == 'linux2':  # Linux platform
-            #     os.system("apriori.exe -s1 -C'@%' {0} {1}".format(str(dataFile), str(newFilename)))
-            # TODO OS X and Ubuntu
+            elif sys.platform == 'linux2' or sys.platform == 'darwin':  # Linux  and Mac platform
+                os.system("/.apriori -s1 -C'@%' {0} {1}".format(str(dataFile), str(newFilename)))
 
         file = Data.openFile(newFilename)   # Open data file
 

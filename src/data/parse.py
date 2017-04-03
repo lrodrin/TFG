@@ -6,6 +6,8 @@ Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
+import six
+
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
@@ -18,7 +20,7 @@ def replaceCharacter(fi, fo, old, new):
 
 
 if __name__ == '__main__':
-    filename = str(input("Please enter the file name you want to parse:\n"))
+    filename = str(six.moves.input("Please enter the file name you want to parse:\n"))
     fi = open(filename, 'r')
     fo = open(filename + ".out", 'w')
     replaceCharacter(fi, fo, "-", "_")

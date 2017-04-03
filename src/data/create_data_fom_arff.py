@@ -6,6 +6,8 @@ Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
+import six
+
 from src.final.Data import *
 
 __author__ = 'Laura Rodriguez Navas'
@@ -16,7 +18,7 @@ __license__ = 'MIT'
 connection, cursor = Data.connectionDB('C:/Users/Laura/PycharmProjects/TFG/src/data/DB')  # Connection to SQLite
 # database
 
-fileName = str(input("Please enter the file name you provide:\n"))
+fileName = str(six.moves.input("Please enter the file name you provide:\n"))
 file = Data.openFile("C:/Users/Laura/PycharmProjects/TFG/src/data/%s.arff" % fileName)  # Open data file
 
 columnNames, lines = Data.getDataFile(file, "ARFF")  # Get data from file

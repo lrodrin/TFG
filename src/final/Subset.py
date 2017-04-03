@@ -61,7 +61,7 @@ class Subset:
             #     os.system("apriori.exe -s1 -C'@%' {0} {1}".format(str(dataFile), str(newFilename)))
             # TODO OS X and Ubuntu
 
-        file = Data.openFile(newFilename)
+        file = Data.openFile(newFilename)   # Open data file
 
         subset = set()
         moreFrequentSubsets = list()

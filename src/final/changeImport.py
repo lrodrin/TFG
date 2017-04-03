@@ -7,6 +7,7 @@ Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
 import glob
+import os
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
@@ -34,3 +35,4 @@ if __name__ == '__main__':
         changeImport(fi, fo)
         fi.close()
         fo.close()
+        os.system("mx %s %s" % (str(filename) + ".out", str(filename)))

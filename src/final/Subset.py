@@ -32,14 +32,16 @@ class Subset:
             yield set(subset)
 
     @staticmethod
-    def moreFrequentSubsets(dataFile, option):
+    def moreFrequentSubsets(dataFile, option, probability):
         """
         Return the more frequent subsets from data file specified by dataFile
 
         :param dataFile: Data file
         :param option: Specifies type of dataFile
+        :param probability: 
         :type dataFile: file
         :type option: int
+        :type probability: float
         :return: The more frequent subsets
         :rtype: list
         """
@@ -52,7 +54,7 @@ class Subset:
                 dataFile += ".txt"
 
             if sys.platform == 'win32':  # Windows platform
-                os.system("apriori.exe -s1 -C'@%' {0} {1}".format(str(dataFile), str(newFilename)))
+                os.system("apriori.exe -s{0} -C'@%' {1} {2}".format(str(probability), str(dataFile), str(newFilename)))
             # elif sys.platform == 'darwin':  # Mac platform
             #     os.system("apriori.exe -s1 -C'@%' {0} {1}".format(str(dataFile), str(newFilename)))
             # elif sys.platform == 'linux2':  # Linux platform

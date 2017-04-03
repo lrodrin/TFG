@@ -16,11 +16,11 @@ def replaceCharacter(fi, fo, old, new):
             line = line.replace(old, new)
         fo.write(line)
 
+
 if __name__ == '__main__':
-    filename = "iris.arff"
+    filename = str(input("Please enter the file name you want to parse:\n"))
     fi = open(filename, 'r')
     fo = open(filename + ".out", 'w')
     replaceCharacter(fi, fo, "-", "_")
-    replaceCharacter(fi, fo, ":", "_")
     fi.close()
     fo.close()

@@ -7,6 +7,7 @@
 % used in the data mining book.
 %
 @relation 'cpu'
+
 @attribute MYCT real
 @attribute MMIN real
 @attribute MMAX real
@@ -14,6 +15,7 @@
 @attribute CHMIN real
 @attribute CHMAX real
 @attribute class real
+
 @data
 125,256,6000,256,16,128,198
 29,8000,32000,32,8,32,269

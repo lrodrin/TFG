@@ -141,20 +141,22 @@ class Data:
         """
         values = str()
         for line in lines:  # For each line in lines
-            if not line.startswith("@") and not line.startswith("\n") and not line.startswith("%"):  # Parse init line
-                for word in line.split(","):  # For each word in line parsed
-                    word = "'{0}'".format(word.replace('\n', ''))  # Quit end of line from word
-                    values += word + ','  # Add word to values
-                try:
-                    query = 'INSERT INTO {0} ({1}) VALUES ({2})'.format(str(tableName), str(columnNames[0:-2]),
-                                                                        str(values[0:-1]).replace('\n', ''))
-                    cursor.execute(query)
-                    connection.commit()
-                    # print(query)
-                    values = str()
+            if len(line) != 0:
+                if not line.startswith("@") and not line.startswith("\n") and not line.startswith("%"):  # Parse init
+                    #  line
+                    for word in line.split(","):  # For each word in line parsed
+                        word = "'{0}'".format(word.replace('\n', ''))  # Quit end of line from word
+                        values += word + ','  # Add word to values
+                    try:
+                        query = 'INSERT INTO {0} ({1}) VALUES ({2})'.format(str(tableName), str(columnNames[0:-2]),
+                                                                            str(values[0:-1]).replace('\n', ''))
+                        cursor.execute(query)
+                        connection.commit()
+                        # print(query, line)
+                        values = str()
 
-                except sqlite3.Error as e:
-                    print("Error to insertARFF:", e)
+                    except sqlite3.Error as e:
+                        print("Error to insertARFF:", e)
 
     @staticmethod
     def selectData(tableName, cursor):

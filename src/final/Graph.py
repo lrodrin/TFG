@@ -16,8 +16,6 @@ __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 
-# TODO Linies discontinues enlloc del color blanc
-
 class Graph:
     @staticmethod
     def initGraph(tableName, cursor):

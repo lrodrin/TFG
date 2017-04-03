@@ -1,5 +1,5 @@
 """
-This module implements the main for Clan class
+This module implements the main for the more frequent Clan class
 
 Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 

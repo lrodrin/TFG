@@ -30,18 +30,22 @@ if __name__ == "__main__":
     initGraph, rows = Graph.initGraph(tableName, cursor)  # Initialize the initGraph
 
     plainGraph = Graph.createPlainGraph(initGraph, rows)  # Create plain graph
-    print("\nPlain graph\n")
+    print("\nPlain graph")
+    print("-" * 30)
     Clan.printResults(plainGraph)
 
     plainGraphWithThreshold = Graph.createPlainGraphWithThreshold(initGraph, rows, 3)  # Create a plain graph with
     # threshold
-    print("\nPlain graph with threshold\n")
+    print("\nPlain graph with threshold")
+    print("-" * 30)
     Clan.printResults(plainGraphWithThreshold)
 
     linearGraph = Graph.createLinearGraph(initGraph, rows)  # Create linear graph
-    print("\nLinear graph\n")
+    print("\nLinear graph")
+    print("-" * 30)
     Clan.printResults(linearGraph)
 
     exponentialGraph = Graph.createExponentialGraph(initGraph, rows)  # Create exponential graph
-    print("\nExponential graph\n")
+    print("\nExponential graph")
+    print("-" * 30)
     Clan.printResults(exponentialGraph)

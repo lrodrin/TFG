@@ -6,7 +6,7 @@ B;
 A;
 D;
 C;
-subgraph cluster_CEDAFB {
+subgraph cluster_CDAEBF {
 s_CD [label=" ", fillcolor=white, fixedsize=True, width=0.2];
 s_AB [label=" ", fillcolor=white, fixedsize=True, width=0.2];
 s_F [label=" ", fillcolor=white, fixedsize=True, width=0.2];

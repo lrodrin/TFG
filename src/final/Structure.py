@@ -72,37 +72,33 @@ class Structure:
         print("A %s was created" % filename)
 
     @staticmethod
-    def decomposition(graph, nodes):
+    def decomposition(graph):
         """
-        Decomposition of graph in clans and primal clans
+        Decomposition of graph in primal clans
 
         :param graph: Networkx's graph
-        :param nodes: Nodes from graph
         :type graph: nx.Graph
-        :type nodes: list
-        :return: The edges atributtes from graph and a dictionary of primal clans
+        :return: The edges atributtes from graph and primal clans ordered
         :rtype: dict, dict
         """
-        clansList = Clan.clans(graph, nodes)  # List of clans
+        clansList = Clan.clans(graph, graph.nodes())  # List of clans
         primalClansList = Clan.primalClans(clansList)  # List of primal clans
-        EdgesAtributtes = Graph.getColorAttributesFromGraph(graph)  # Dictionary of edges atributtes from graph
+        EdgesAtributtes = Graph.getColorAttributesFromGraph(graph)  # Edges atributtes from graph
         primalClansDict = OrderedDict(reversed(sorted(Clan.primalClansDict(primalClansList).items(),
                                                       key=lambda t: len(t[0]))))  # Dictionary of primal clans
         # sorted in reverse mode by primal clans length
         return EdgesAtributtes, primalClansDict
 
     @staticmethod
-    def create2Structure(graph, nodes, filename):
+    def create2Structure(graph, filename):
         """
-        Create a 2-structure from a type of graph specified by graph
+        Create a 2-structure from a type of graph
 
         :param graph: Networkx's graph
-        :param nodes: Nodes from graph
         :param filename: Dot file name
         :type graph: nx.Graph
-        :type nodes: list
         :type filename: str
         :return: A 2-structure
         """
-        EdgesAtributtes, primalClansDict = Structure.decomposition(graph, nodes)  # Decomposition
+        EdgesAtributtes, primalClansDict = Structure.decomposition(graph)  # Graph decomposition
         Structure.createGraphvizStructure(EdgesAtributtes, primalClansDict, filename)  # Create 2-structure

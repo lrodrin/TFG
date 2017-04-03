@@ -100,42 +100,43 @@ class Interface:
         Manages the creation of 2-structures (plain, plain with threshold, linear or exponential) specified by option
 
         :param option: Type of 2-structure option
-        :param graph: A graph of the same type 2-structure
+        :param graph: A graph with the same type 2-structure
         :type option: str
         :type graph: nx.Graph
-        :return: The name of 2-structure dot file
+        :return: The name of 2-structure DOT file
         :rtype: str
         """
         if option == 1:
             structureName = "plain_2-structure.dot"
-            Structure.create2Structure(graph, graph.nodes(), structureName)  # Create a plain 2-structure
+            Structure.create2Structure(graph, structureName)  # Create a plain 2-structure
 
         elif option == 2:
             structureName = "plain_2-structure_with_threshold.dot"
-            Structure.create2Structure(graph, graph.nodes(), structureName)  # Create a plain 2-structure with
-            # threshold
+            Structure.create2Structure(graph, structureName)  # Create a plain 2-structure with threshold
 
         elif option == 3:
             structureName = "linear_2-structure.dot"
-            Structure.create2Structure(graph, graph.nodes(), structureName)  # Create a linear 2-structure
+            Structure.create2Structure(graph, structureName)  # Create a linear 2-structure
 
         elif option == 4:
             structureName = "exponential_2-structure.dot"
-            Structure.create2Structure(graph, graph.nodes(), structureName)  # Create an exponential 2-structure
+            Structure.create2Structure(graph, structureName)  # Create an exponential 2-structure
 
         return structureName
 
     @staticmethod
     def openGraphviz(filename):
         """
-        Call the Graphviz program that is associated with a Dot file specified by filename
+        Call the Graphviz program that is associated with a DOT file specified by filename
 
         :param filename: Dot file
         :type filename: str
         """
         if sys.platform == 'win32':  # Windows platform
             os.startfile(filename)
+
         elif sys.platform == 'darwin':  # Mac platform
             subprocess.call(['open', '-a', 'Graphviz.app', filename])
+
         elif sys.platform == 'linux2':  # Linux platform
             os.system("xdot %s" % filename)

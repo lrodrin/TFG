@@ -25,10 +25,22 @@ if __name__ == "__main__":
     # print("\nSimple graph\n")
     # Clan.printResults(graph)
 
-    file = str(six.moves.input("Please enter the name from SQLite file:\n"))
-    connection, cursor = Data.connectionDB(file)  # Connection to SQLite database
-    tableName = str(six.moves.input("Please enter the table name which to create graph: \n"))
-    initGraph, rows = Graph.initGraph(tableName, cursor)  # Initialize the initGraph
+    optionData = int(six.moves.input("Please enter the option for the type of file you provide:\n [1] = ARFF\n [2] = "
+                                     "TXT\n [3] = DB\n"))
+
+    columnNames, rows, cursor, tableName = Interface.inputFileOptions(optionData)  # Manages the data entry
+    initGraph, rows = Graph.initGraph(tableName, cursor)  # Initialize the graph
+
+    optionGraph = int(
+        six.moves.input("Please enter the option of graph you want to create:\n [1] = plain\n [2] = plain "
+                        "with threshold\n [3] = linear\n [4] = exponential\n"))
+    graph = Interface.graphOptions(optionGraph, initGraph, rows)  # Create a type of graph
+
+    filename = str(six.moves.input("Please enter the file name you provide:\n"))
+    probability = float(six.moves.input("Please enter the probability for the more frequent subsets creation:\n"))
+    moreFrequentSubsets = Subset.moreFrequentSubsets(filename, optionData, probability)  # The more frequents subsets
+    #  from filename
+    print(moreFrequentSubsets)
 
     plainGraph = Graph.createPlainGraph(initGraph, rows)  # Create plain graph
     print("\nPlain graph\n")

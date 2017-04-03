@@ -43,8 +43,7 @@ class Interface:
             connection, cursor = Data.connectionDB("DB")  # Connection to SQLite database
             file = Data.openFile(fileTXT)  # Open data file
             columnNames, lines = Data.getDataFile(file, "TXT")  # Get column names and lines from file
-            tableName = str(
-                six.moves.input("Please enter the table name which to create the new SQLite table from file: \n"))
+            tableName = fileTXT[0:-4]   # Table name
             Data.createTable(cursor, tableName, columnNames)  # Create table tableName
             Data.insertDataTXT(tableName, columnNames, lines, cursor, connection)  # Insert data values to tableName
             columnNames, rows = Data.selectData(tableName, cursor)  # Select data from tableName

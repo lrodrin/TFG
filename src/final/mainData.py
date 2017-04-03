@@ -17,8 +17,6 @@ if __name__ == "__main__":
                                  "TXT\n [3] = DB\n"))
 
     columnNames, rows, cursor, tableName = Interface.inputFileOptions(option)  # Manages the data entry
-    print("Column names from %s:" % tableName, columnNames)
-    print(rows)
 
-    tables = Data.getTableNamesDB(cursor)  # Get tables name from SQLite database
-    print("List of tables from SQLite database:\n", tables)
+    tables = Data.getTableNamesDB(cursor)  # Get tables names from SQLite database
+    print("List of SQLite tables:\n", tables)

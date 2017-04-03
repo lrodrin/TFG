@@ -6,11 +6,8 @@ Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
-import six
 
-from src.final.Clan import *
-from src.final.Graph import *
-
+from src.final.Interface import *
 # from src.simpleGraphs import *
 
 __author__ = 'Laura Rodriguez Navas'
@@ -25,28 +22,13 @@ if __name__ == "__main__":
     # print("\nSimple graph\n")
     # Clan.printResults(graph)
 
-    file = str(six.moves.input("Please enter the name from SQLite file:\n"))
-    connection, cursor = Data.connectionDB(file)  # Connection to SQLite database
-    tableName = str(six.moves.input("Please enter the table name which to create graph: \n"))
-    initGraph, rows = Graph.initGraph(tableName, cursor)  # Initialize the initGraph
+    optionData = int(six.moves.input("Please enter the option for the type of file you provide:\n [1] = ARFF\n [2] = "
+                                     "TXT\n [3] = DB\n"))
 
-    plainGraph = Graph.createPlainGraph(initGraph, rows)  # Create plain graph
-    print("\nPlain graph")
-    print("-" * 30)
-    Clan.printResults(plainGraph)
+    columnNames, rows, cursor, tableName = Interface.inputFileOptions(optionData)  # Manages the data entry
+    initGraph, rows = Graph.initGraph(tableName, cursor)  # Initialize the graph
 
-    plainGraphWithThreshold = Graph.createPlainGraphWithThreshold(initGraph, rows, 3)  # Create a plain graph with
-    # threshold
-    print("\nPlain graph with threshold")
-    print("-" * 30)
-    Clan.printResults(plainGraphWithThreshold)
-
-    linearGraph = Graph.createLinearGraph(initGraph, rows)  # Create linear graph
-    print("\nLinear graph")
-    print("-" * 30)
-    Clan.printResults(linearGraph)
-
-    exponentialGraph = Graph.createExponentialGraph(initGraph, rows)  # Create exponential graph
-    print("\nExponential graph")
-    print("-" * 30)
-    Clan.printResults(exponentialGraph)
+    optionGraph = int(
+        six.moves.input("Please enter the option of graph you want to create:\n [1] = plain\n [2] = plain "
+                        "with threshold\n [3] = linear\n [4] = exponential\n"))
+    graph = Interface.graphOptions(optionGraph, initGraph, rows)  # Create a type of graph

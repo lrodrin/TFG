@@ -10,19 +10,19 @@ import six
 
 from src.final.Clan import *
 from src.final.Graph import *
-# from src.simpleGraphs import *
+from src.simpleGraphs import *
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 if __name__ == "__main__":
-    # graph = simpleGraph_1()  # Create a simple graph
-    # print("Simple graph\n")
-    # Clan.printResults(graph)
-    #
-    # graph = simpleGraph_2()  # Create a simple graph
-    # print("\nSimple graph\n")
-    # Clan.printResults(graph)
+    graph = simpleGraph_1()  # Create a simple graph
+    print("Simple graph\n")
+    Clan.printResults(graph)
+
+    graph = simpleGraph_2()  # Create a simple graph
+    print("\nSimple graph\n")
+    Clan.printResults(graph)
 
     file = str(six.moves.input("Please enter the name from SQLite file:\n"))
     connection, cursor = Data.connectionDB(file)  # Connection to SQLite database

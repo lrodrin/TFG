@@ -8,7 +8,7 @@ Distributed under MIT license
 """
 
 from src.final.Interface import *
-from src.simpleGraphs import *
+from src.final.simpleGraphs import *
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'

@@ -7,6 +7,7 @@ Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
 import subprocess
+
 import six
 
 from src.final.Structure import *

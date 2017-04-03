@@ -7,8 +7,9 @@ Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
 import six
+
 from src.final.Subset import *
-from src.simpleGraphs import *
+from src.final.simpleGraphs import *
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'

@@ -35,4 +35,4 @@ if __name__ == '__main__':
         changeImport(fi, fo)
         fi.close()
         fo.close()
-        os.system("mx %s %s" % (str(filename) + ".out", str(filename)))
+        os.system("cp %s %s" % (str(filename) + ".out", str(filename)))

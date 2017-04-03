@@ -7,6 +7,6 @@ if __name__ == '__main__':
                                      "TXT\n"))
     filename = str(input("Please enter the file name you provide:\n"))
     probability = int(input("Please enter the probability for the more frequent subsets creation:\n"))
-    moreFrequentSubsets = Subset.moreFrequentSubsets(filename, optionData, 1)  # The more frequents subsets from
-    # filename
+    moreFrequentSubsets = Subset.moreFrequentSubsets(filename, optionData, probability)  # The more frequents subsets
+    #  from filename
     print(moreFrequentSubsets)

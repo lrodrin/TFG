@@ -38,7 +38,7 @@ class Subset:
 
         :param dataFile: Data file
         :param option: Specifies type of dataFile
-        :param probability: 
+        :param probability: The probability for the more frequent subsets creation
         :type dataFile: file
         :type option: int
         :type probability: float

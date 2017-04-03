@@ -176,7 +176,7 @@ class Clan:
     @staticmethod
     def printResults(graph):
         """
-        Print the results of the main execution:
+        Print the results of the main Clan execution:
             - A list of clans
             - A list of trivial clans
             - A list of primal clans
@@ -186,19 +186,23 @@ class Clan:
         :type graph: nx.Graph
         """
         clansList = Clan.clans(graph, graph.nodes())  # Create clans list
-        print("List of clans:\n", clansList)
+        print("\nList of clans:\n", clansList)
+        print("-" * 30 + "\n")
         trivialClansList = Clan.trivialClans(clansList, Graph.getMaxCardinalityFromGraph(graph))  # Create trivial clans
         # list
         print("List of trivial clans:\n", trivialClansList)
+        print("-" * 30 + "\n")
         primalClansList = Clan.primalClans(clansList)  # Create primal clans list
         print("List of primal clans:\n", primalClansList)
+        print("-" * 30 + "\n")
         primalClansDict = Clan.primalClansDict(primalClansList)  # Create primal clans dictionary
         print("Dictionary of primal clans:\n", primalClansDict)
+        print("-" * 30)
 
     @staticmethod
     def printFrequentResults(graph, moreFrequentSubsets):
         """
-        Print the results of the main execution:
+        Print the results of the main Clan execution:
             - A list of more frequents clans
             - A list of more frequents trivial clans
             - A list of more frequents primal clans
@@ -210,11 +214,15 @@ class Clan:
         :type moreFrequentSubsets: list
         """
         clansList = Clan.frequentClans(graph, moreFrequentSubsets)  # Create clans list
-        print("List of clans:\n", clansList)
+        print("\nList of clans:\n", clansList)
+        print("-" * 30 + "\n")
         trivialClansList = Clan.trivialClans(clansList, Graph.getMaxCardinalityFromGraph(graph))  # Create trivial clans
         # list
         print("List of trivial clans:\n", trivialClansList)
+        print("-" * 30 + "\n")
         primalClansList = Clan.primalClans(clansList)  # Create primal clans list
         print("List of primal clans:\n", primalClansList)
+        print("-" * 30 + "\n")
         primalClansDict = Clan.primalClansDict(primalClansList)  # Create primal clans dictionary
         print("Dictionary of primal clans:\n", primalClansDict)
+        print("-" * 30)

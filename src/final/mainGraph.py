@@ -22,4 +22,4 @@ if __name__ == '__main__':
     optionGraph = int(
         six.moves.input("Please enter the option of graph you want to create:\n [1] = plain\n [2] = plain "
                         "with threshold\n [3] = linear\n [4] = exponential\n"))
-    graph = Interface.graphOptions(optionGraph, initGraph, rows)  # Create a type of graph
+    graph, graphName = Interface.graphOptions(optionGraph, initGraph, rows)  # Create a type of graph

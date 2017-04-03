@@ -24,7 +24,7 @@ class Interface:
 
         :param option: Type of data option
         :type option: str
-        :return: The column names, rows, cursor and tableName generated for one type of data
+        :return: The column names, rows, cursor and tableName generated for the type of data
         """
         if option == 1:
             fileARFF = str(six.moves.input("Please enter the name from ARFF file:\n")) + ".arff"
@@ -68,7 +68,7 @@ class Interface:
         :param rows: Rows from a SQLite table
         :type option: str
         :type initGraph: nx.Graph
-        :return: A type of graph and the name of graph dot file
+        :return: A type of graph and the name of graph dot file generated
         :rtype: nx.Graph, str
         """
         if option == 1:

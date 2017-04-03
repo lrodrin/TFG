@@ -20,10 +20,6 @@ def changeImport(FI, FO):
                 newLine = line.split(" ")[1].lstrip("src.final.")
                 line = str(line.split(" ")[0]) + " " + newLine + " " + str(line.split(" ")[2]) + " " + str(
                     line.split(" ")[3])
-            elif "src." in line.split(" ")[1]:
-                newLine = line.split(" ")[1].lstrip("src")
-                line = str(line.split(" ")[0]) + " " + newLine.lstrip(".") + " " + str(line.split(" ")[2]) + " " + str(
-                    line.split(" ")[3])
         FO.write(line)
 
 

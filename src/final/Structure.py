@@ -19,16 +19,16 @@ __license__ = 'MIT'
 
 class Structure:
     @staticmethod
-    def createGraphvizStructure(edgesAtributtes, primalClansDict, filename):
+    def createGraphvizStructure(edgesAtributtes, primalClansDict, structureName):
         """
         Create a 2-structure from a dictionary of primal clans specified by primalClansDict
 
         :param edgesAtributtes: Edges atributtes from a graph
         :param primalClansDict: Dictionary of primal clans
-        :param filename: Dot file name
+        :param structureName: Dot file name
         :type edgesAtributtes: dict
         :type primalClansDict: dict
-        :type filename: str
+        :type structureName: str
         :return: A 2-structure
         """
         callgraph = pydot.Dot(graph_type='digraph', compound=True)
@@ -68,8 +68,8 @@ class Structure:
                                               arrowhead="none", lhead="cluster_%s" % "".join(key)))  # Add primal clan
                 # value as a edge
 
-        callgraph.write(filename)  # Write a Dot file with all previous information
-        print("A %s was created" % filename)
+        callgraph.write(structureName)  # Write a Dot file with all previous information
+        print("A %s was created" % structureName)
 
     @staticmethod
     def decomposition(graph, moreFrequentSubsets):
@@ -106,7 +106,4 @@ class Structure:
         :return: A 2-structure
         """
         EdgesAtributtes, primalClansDict = Structure.decomposition(graph, moreFrequentSubsets)  # Graph decomposition
-        print(EdgesAtributtes)
-        print(primalClansDict)
         Structure.createGraphvizStructure(EdgesAtributtes, primalClansDict, filename)  # Create 2-structure
-

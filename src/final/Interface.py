@@ -101,8 +101,10 @@ class Interface:
 
         :param option: Type of 2-structure option
         :param graph: A graph with the same type 2-structure
+        :param moreFrequentSubsets: More frequents nodes from graph
         :type option: str
         :type graph: nx.Graph
+        :type moreFrequentSubsets: list
         :return: The name of 2-structure DOT file
         :rtype: str
         """

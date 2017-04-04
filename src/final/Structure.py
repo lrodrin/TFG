@@ -37,7 +37,7 @@ class Structure:
         for value in primalClansDict.values():  # For each primal clan
             for elem in value:
                 if len(elem) == 1:  # If len(primal clan) == 1
-                    if not callgraph.get_node("".join(elem)):
+                    if not callgraph.get_node("".join(elem)):   # Exclude the repetitive primal clans
                         callgraph.add_node(pydot.Node("".join(elem)))  # Add primal clan value as a node
 
         # creating subgraphs

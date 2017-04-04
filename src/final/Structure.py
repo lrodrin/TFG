@@ -38,7 +38,6 @@ class Structure:
             for elem in value:
                 if len(elem) == 1:  # If len(primal clan) == 1
                     if not callgraph.get_node("".join(elem)):
-                        print(elem)
                         callgraph.add_node(pydot.Node("".join(elem)))  # Add primal clan value as a node
 
         # creating subgraphs

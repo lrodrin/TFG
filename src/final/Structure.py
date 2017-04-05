@@ -37,7 +37,7 @@ class Structure:
         for value in primalClansDict.values():  # For each primal clan
             for elem in value:
                 if len(elem) == 1:  # If len(primal clan) == 1
-                    if not callgraph.get_node("".join(elem)):   # Exclude the repetitive primal clans
+                    if not callgraph.get_node("".join(elem)):  # Exclude the repetitive primal clans
                         callgraph.add_node(pydot.Node("".join(elem)))  # Add primal clan value as a node
 
         # creating subgraphs
@@ -45,13 +45,16 @@ class Structure:
             cluster = pydot.Cluster("".join(key))  # Create a cluster
             subgraph = pydot.Subgraph(rank="same")  # Create a subgraph into cluster
             for elem in value:
-                cluster.add_node(pydot.Node("s_%s" % "".join(elem), label=" ", fillcolor="white",
-                                            fixedsize=True, width=0.2))  # Add primal clan as a node into cluster
+                if not cluster.get_node("s_%s" % "".join(elem)):  # Exclude the repetitive primal clans
+                    cluster.add_node(pydot.Node("s_%s" % "".join(elem), label=" ", fillcolor="white",
+                                                fixedsize=True, width=0.2))  # Add primal clan as a node into cluster
 
             for pair in itertools.combinations(value, 2):  # For each pair primal clan combinations
-                subgraph.add_edge(pydot.Edge("s_%s" % "".join(pair[0]), "s_%s" % "".join(pair[1]), arrowhead="none",
-                                             color=Clan.getColorClans(edgesAtributtes, pair[0], pair[1])))
-                #  Add edge into subgraph
+                if not subgraph.get_edge("s_%s" % "".join(pair[0]),
+                                         "s_%s" % "".join(pair[1])):  # Exclude the repetitive primal clans
+                    subgraph.add_edge(pydot.Edge("s_%s" % "".join(pair[0]), "s_%s" % "".join(pair[1]), arrowhead="none",
+                                                 color=Clan.getColorClans(edgesAtributtes, pair[0], pair[1])))
+                    #  Add edge into subgraph
             cluster.add_subgraph(subgraph)  # Add subgraph to cluster
             callgraph.add_subgraph(cluster)  # Add cluster
 
@@ -59,15 +62,21 @@ class Structure:
         for value in primalClansDict.values():  # For each primal clan
             for elem in value:
                 if len(elem) == 1:  # If len(primal clan) == 1
-                    callgraph.add_edge(
-                        pydot.Edge("s_%s" % "".join(elem), "".join(elem), arrowhead="none"))  # Add primal clan
-                    # value as a edge
+                    if not callgraph.get_edge(
+                            pydot.Edge("s_%s" % "".join(elem), "".join(elem))):  # Exclude the repetitive primal clans
+                        callgraph.add_edge(
+                            pydot.Edge("s_%s" % "".join(value), "".join(value), arrowhead="none"))  # Add primal clan
+                        # value as a edge
 
         for i, (key, value) in enumerate(primalClansDict.items()):  # For each primal clan
             if i != 0:  # If not the first primal clan in primalClansDict
-                callgraph.add_edge(pydot.Edge("s_%s" % "".join(key), "s_%s" % "".join(value[0]),
-                                              arrowhead="none", lhead="cluster_%s" % "".join(key)))  # Add primal clan
-                # value as a edge
+                if not callgraph.get_edge(pydot.Edge("s_%s" % "".join(key), "s_%s" % "".join(value[0]),
+                                                     arrowhead="none",
+                                                     lhead="cluster_%s" % "".join(key))):
+                    callgraph.add_edge(pydot.Edge("s_%s" % "".join(key), "s_%s" % "".join(value[0]),
+                                                  arrowhead="none",
+                                                  lhead="cluster_%s" % "".join(key)))  # Add primal clan
+                    # value as a edge
 
         callgraph.write(structureName)  # Write a Dot file with all previous information
         print("A %s was created" % structureName)

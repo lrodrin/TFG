@@ -17,7 +17,7 @@ def changeImport(FI, FO):
     for line in FI.readlines():
         if line.startswith("from"):
             if "src.final." in line.split(" ")[1]:
-                newLine = line.split(" ")[1].lstrip("src.final.")
+                newLine = line.split(" ")[1][10:]
                 line = str(line.split(" ")[0]) + " " + newLine + " " + str(line.split(" ")[2]) + " " + str(
                     line.split(" ")[3])
         FO.write(line)
@@ -31,4 +31,4 @@ if __name__ == '__main__':
         changeImport(fi, fo)
         fi.close()
         fo.close()
-        os.system("cp %s %s" % (str(filename) + ".out", str(filename)))
+        os.system("mv %s %s" % (str(filename) + ".out", str(filename)))

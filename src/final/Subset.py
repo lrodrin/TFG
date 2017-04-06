@@ -56,7 +56,7 @@ class Subset:
             if sys.platform == 'win32':  # Windows platform
                 os.system("apriori.exe -s{0} -C'@%' {1} {2}".format(str(probability), str(dataFile.replace("\n", "")),
                                                                     str(newFilename.replace("\n", ""))))
-            elif sys.platform == 'linux2' or sys.platform == 'darwin':  # Linux or Mac platform
+            elif sys.platform == 'linux2':  # Linux platform
                 os.system("./apriori -s{0} -C'@%' {1} {2}".format(str(probability), str(dataFile.replace("\n", "")),
                                                                   str(newFilename.replace("\n", ""))))
 

@@ -119,7 +119,7 @@ class Clan:
                     noPrimalClans[frozenset(clansList[j])] = True
 
         for clan in clansList:
-            if not noPrimalClans.get(frozenset(clan)):  # If not exist overlapping the clan is a primal clan
+            if not noPrimalClans[frozenset(clan)]:  # If not exist overlapping the clan is a primal clan
                 primalClansList.append(clan)
 
         return sorted(primalClansList, key=len)

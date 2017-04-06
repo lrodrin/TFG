@@ -1,5 +1,5 @@
 """
-This module implements the main for the more frequent Clan class
+This module implements a main for the Clan class and test the class wiht the more frequent clans
 
 Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 
@@ -24,7 +24,7 @@ if __name__ == "__main__":
                         "with threshold\n [3] = linear\n [4] = exponential\n"))
     graph, graphName = Interface.graphOptions(optionGraph, initGraph, rows)  # Create a type of graph
 
-    probability = float(six.moves.input("Please enter the probability for the more frequent subsets creation:\n"))
+    probability = float(six.moves.input("Please enter the support for the more frequent subsets creation:\n"))
     moreFrequentSubsets = Subset.moreFrequentSubsets(tableName, optionData, probability)  # The more frequents subsets
     #  from filename
 

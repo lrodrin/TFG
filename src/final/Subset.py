@@ -52,12 +52,12 @@ class Subset:
             elif option == 2:  # If data file input have the txt type
                 dataFile += ".txt"
 
-            # System calls to apriori32's algorithm who's create the AP data file
+            # System calls to apriori's algorithm who's create the AP data file
             if sys.platform == 'win32':  # Windows platform
-                os.system("apriori32.exe -s{0} -C'@%' {1} {2}".format(str(probability), str(dataFile.replace("\n", "")),
+                os.system("apriori.exe -s{0} -C'@%' {1} {2}".format(str(probability), str(dataFile.replace("\n", "")),
                                                                     str(newFilename.replace("\n", ""))))
             elif sys.platform == 'linux2' or sys.platform == 'darwin':  # Linux or Mac platform
-                os.system("./apriori32 -s{0} -C'@%' {1} {2}".format(str(probability), str(dataFile.replace("\n", "")),
+                os.system("./apriori -s{0} -C'@%' {1} {2}".format(str(probability), str(dataFile.replace("\n", "")),
                                                                   str(newFilename.replace("\n", ""))))
 
         file = Data.openFile(newFilename.replace("\n", ""))  # Open AP data file

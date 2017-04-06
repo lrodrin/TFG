@@ -1,5 +1,5 @@
 """
-This module implements a main for the Clan class and test the class wiht the more frequent clans
+This module implements a main for the Clan class and test the class with the more frequent clans
 
 Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 

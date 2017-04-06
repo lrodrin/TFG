@@ -108,20 +108,19 @@ class Clan:
         :return: List of primal clans
         :rtype: list
         """
-        overlapping = defaultdict(bool)
+        primalClans = defaultdict(value=True)
         primalClansList = list()
         for i, key in enumerate(clansList):  # For each clan in clansList
             for j in range(i + 1, len(clansList)):
                 intersection = clansList[i] & clansList[j]  # clansList[i] intersection clansList[j]
-                if len(intersection) != 0 and intersection.issubset(clansList[i]) and intersection.issubset(
-                        clansList[j]):
+                if len(intersection) != 0 and intersection < clansList[i] and intersection < clansList[j]:
                     # If exist an overlapping, the clan is not a primal clan
-                    overlapping[frozenset(clansList[i])] = False
-                    overlapping[frozenset(clansList[j])] = False
+                    primalClans[frozenset(clansList[i])] = False
+                    primalClans[frozenset(clansList[j])] = False
 
-        for key, value in overlapping.items():
-            if not value:  # If not exist overlapping the clan is a primal clan
-                primalClansList.append(key)
+        for clan in clansList:
+            if not primalClans.get(frozenset(clan)):  # If not exist overlapping the clan is a primal clan
+                primalClansList.append(clan)
 
         return sorted(primalClansList, key=len)
 

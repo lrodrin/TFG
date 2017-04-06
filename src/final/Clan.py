@@ -186,18 +186,14 @@ class Clan:
         :type graph: nx.Graph
         """
         clansList = Clan.clans(graph, graph.nodes())  # Create clans list
-        print("\nList of clans:\n", clansList)
-        print("-" * 30 + "\n")
+        print("\nList of clans:\n%s\n" % clansList)
         trivialClansList = Clan.trivialClans(clansList, Graph.getMaxCardinalityFromGraph(graph))  # Create trivial clans
         # list
-        print("List of trivial clans:\n", trivialClansList)
-        print("-" * 30 + "\n")
+        print("List of trivial clans:\n%s\n" % trivialClansList)
         primalClansList = Clan.primalClans(clansList)  # Create primal clans list
-        print("List of primal clans:\n", primalClansList)
-        print("-" * 30 + "\n")
+        print("List of primal clans:\n%s\n" % primalClansList)
         primalClansDict = Clan.primalClansDict(primalClansList)  # Create primal clans dictionary
-        print("Dictionary of primal clans:\n", primalClansDict)
-        print("-" * 30)
+        print("Dictionary of primal clans:\n%s\n" % primalClansDict)
 
     @staticmethod
     def printFrequentResults(graph, moreFrequentSubsets):

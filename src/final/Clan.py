@@ -192,7 +192,7 @@ class Clan:
         primalClansList = Clan.primalClans(clansList)  # Create primal clans list
         print("List of primal clans:\n%s\n" % primalClansList)
         primalClansDict = Clan.primalClansDict(primalClansList)  # Create primal clans dictionary
-        print("Dictionary of primal clans:\n%s\n" % primalClansDict)
+        print("Dictionary of primal clans:\n%s" % primalClansDict)
 
     @staticmethod
     def printFrequentResults(graph, moreFrequentSubsets):

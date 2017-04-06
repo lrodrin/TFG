@@ -16,6 +16,20 @@ __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 
+def checkIfTableExists(tableList, tableName):
+    b = False
+    for table in tableList:
+        print(table, tableName)
+        if str(table) == str(tableName):
+            b = True
+        else:
+            b = False
+    return b
+
+b = checkIfTableExists(['contact_lenses', 'cpu', 'cpu_with_vendor', 'weather', 'zoo'], 'cpu')
+if not b:
+    print("hehe")
+
 class Interface:
     @staticmethod
     def inputFileOptions(option):
@@ -33,8 +47,13 @@ class Interface:
             file = Data.openFile(fileARFF)  # Open data file
             columnNames, lines = Data.getDataFile(file, "ARFF")  # Get column names and lines from data file
             tableName = Data.getTableNameARFF(lines)  # Get table name from data file
-            Data.createTable(cursor, tableName, columnNames)  # Create table tableName
-            Data.insertDataARFF(tableName, columnNames, lines, cursor, connection)  # Insert data values to tableName
+            tableList = Data.getTableNamesDB(cursor)
+            b = checkIfTableExists(tableList, tableName)
+            if not b:
+                Data.createTable(cursor, tableName, tableName)  # Create table tableName
+                Data.insertDataARFF(tableName, tableName, lines, cursor,
+                                    connection)  # Insert data values to tableName
+
             columnNames, rows = Data.selectData(tableName, cursor)  # Select data from tableName
 
         elif option == 2:
@@ -43,9 +62,11 @@ class Interface:
             connection, cursor = Data.connectionDB("DB")  # Connection to SQLite database
             file = Data.openFile(fileTXT)  # Open data file
             columnNames, lines = Data.getDataFile(file, "TXT")  # Get column names and lines from file
-            tableName = fileTXT[0:-4]   # Table name
-            Data.createTable(cursor, tableName, columnNames)  # Create table tableName
-            Data.insertDataTXT(tableName, columnNames, lines, cursor, connection)  # Insert data values to tableName
+            tableName = fileTXT[0:-4]  # Table name
+            tableList = Data.getTableNamesDB(cursor)
+            if "'" + tableName + "'" not in tableList:
+                Data.createTable(cursor, tableName, columnNames)  # Create table tableName
+                Data.insertDataTXT(tableName, columnNames, lines, cursor, connection)  # Insert data values to tableName
             columnNames, rows = Data.selectData(tableName, cursor)  # Select data from tableName
 
         elif option == 3:
@@ -114,7 +135,8 @@ class Interface:
 
         elif option == 2:
             structureName = "plain_2-structure_with_threshold.dot"
-            Structure.create2Structure(graph, structureName, moreFrequentSubsets)  # Create a plain 2-structure with threshold
+            Structure.create2Structure(graph, structureName,
+                                       moreFrequentSubsets)  # Create a plain 2-structure with threshold
 
         elif option == 3:
             structureName = "linear_2-structure.dot"

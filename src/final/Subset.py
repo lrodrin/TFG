@@ -56,7 +56,7 @@ class Subset:
             if sys.platform == 'win32':  # Windows platform
                 os.system("apriori.exe -s{0} -C'@%' {1} {2}".format(str(probability), str(dataFile), str(newFilename)))
             elif sys.platform == 'linux2' or sys.platform == 'darwin':  # Linux or Mac platform
-                os.system("/.apriori -s1 -C'@%' {0} {1}".format(str(dataFile), str(newFilename)))
+                os.system("./apriori -s{0} -C'@%' {1} {2}".format(str(probability), str(dataFile), str(newFilename)))
 
         file = Data.openFile(newFilename)  # Open AP data file
         subset = set()

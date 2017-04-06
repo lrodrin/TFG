@@ -1,201 +1,182 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="DB.db">
-  <database-model serializer="dbm" rdbms="SQLITE" format-version="4.1">
+  <database-model serializer="dbm" rdbms="SQLITE" format-version="4.0">
     <root id="1"/>
-    <schema id="2" parent="1" name="main">
+    <schema id="2" parent="1">
+      <Current>1</Current>
       <Visible>1</Visible>
     </schema>
     <table id="3" parent="2" name="contact_lenses"/>
     <table id="4" parent="2" name="cpu"/>
     <table id="5" parent="2" name="cpu_with_vendor"/>
-    <table id="6" parent="2" name="sqlite_master"/>
-    <table id="7" parent="2" name="weather"/>
-    <table id="8" parent="2" name="zoo"/>
-    <column id="9" parent="3" name="age">
-      <DataType>|0</DataType>
+    <table id="6" parent="2" name="weather"/>
+    <table id="7" parent="2" name="zoo"/>
+    <column id="8" parent="3" name="age">
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="10" parent="3" name="prescription">
+    <column id="9" parent="3" name="prescription">
       <Position>1</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="11" parent="3" name="astigmatism">
+    <column id="10" parent="3" name="astigmatism">
       <Position>2</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="12" parent="3" name="tears">
+    <column id="11" parent="3" name="tears">
       <Position>3</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="13" parent="3" name="contact_lenses">
+    <column id="12" parent="3" name="contact_lenses">
       <Position>4</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="14" parent="4" name="MYCT">
-      <DataType>|0</DataType>
+    <column id="13" parent="4" name="MYCT">
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="15" parent="4" name="MMIN">
+    <column id="14" parent="4" name="MMIN">
       <Position>1</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="16" parent="4" name="MMAX">
+    <column id="15" parent="4" name="MMAX">
       <Position>2</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="17" parent="4" name="CACH">
+    <column id="16" parent="4" name="CACH">
       <Position>3</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="18" parent="4" name="CHMIN">
+    <column id="17" parent="4" name="CHMIN">
       <Position>4</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="19" parent="4" name="CHMAX">
+    <column id="18" parent="4" name="CHMAX">
       <Position>5</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="20" parent="4" name="class">
+    <column id="19" parent="4" name="class">
       <Position>6</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="21" parent="5" name="vendor">
-      <DataType>|0</DataType>
+    <column id="20" parent="5" name="vendor">
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="22" parent="5" name="MYCT">
+    <column id="21" parent="5" name="MYCT">
       <Position>1</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="23" parent="5" name="MMIN">
+    <column id="22" parent="5" name="MMIN">
       <Position>2</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="24" parent="5" name="MMAX">
+    <column id="23" parent="5" name="MMAX">
       <Position>3</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="25" parent="5" name="CACH">
+    <column id="24" parent="5" name="CACH">
       <Position>4</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="26" parent="5" name="CHMIN">
+    <column id="25" parent="5" name="CHMIN">
       <Position>5</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="27" parent="5" name="CHMAX">
+    <column id="26" parent="5" name="CHMAX">
       <Position>6</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="28" parent="5" name="class">
+    <column id="27" parent="5" name="class">
       <Position>7</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="29" parent="6" name="type">
-      <DataType>text|0</DataType>
+    <column id="28" parent="6" name="outlook">
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="30" parent="6" name="name">
+    <column id="29" parent="6" name="temperature">
       <Position>1</Position>
-      <DataType>text|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="31" parent="6" name="tbl_name">
+    <column id="30" parent="6" name="humidity">
       <Position>2</Position>
-      <DataType>text|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="32" parent="6" name="rootpage">
+    <column id="31" parent="6" name="windy">
       <Position>3</Position>
-      <DataType>integer|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="33" parent="6" name="sql">
+    <column id="32" parent="6" name="play">
       <Position>4</Position>
-      <DataType>text|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="34" parent="7" name="outlook">
-      <DataType>|0</DataType>
+    <column id="33" parent="7" name="animal">
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="35" parent="7" name="temperature">
+    <column id="34" parent="7" name="hair">
       <Position>1</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="36" parent="7" name="humidity">
+    <column id="35" parent="7" name="feathers">
       <Position>2</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="37" parent="7" name="windy">
+    <column id="36" parent="7" name="eggs">
       <Position>3</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="38" parent="7" name="play">
+    <column id="37" parent="7" name="milk">
       <Position>4</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="39" parent="8" name="animal">
-      <DataType>|0</DataType>
-    </column>
-    <column id="40" parent="8" name="hair">
-      <Position>1</Position>
-      <DataType>|0</DataType>
-    </column>
-    <column id="41" parent="8" name="feathers">
-      <Position>2</Position>
-      <DataType>|0</DataType>
-    </column>
-    <column id="42" parent="8" name="eggs">
-      <Position>3</Position>
-      <DataType>|0</DataType>
-    </column>
-    <column id="43" parent="8" name="milk">
-      <Position>4</Position>
-      <DataType>|0</DataType>
-    </column>
-    <column id="44" parent="8" name="airborne">
+    <column id="38" parent="7" name="airborne">
       <Position>5</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="45" parent="8" name="aquatic">
+    <column id="39" parent="7" name="aquatic">
       <Position>6</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="46" parent="8" name="predator">
+    <column id="40" parent="7" name="predator">
       <Position>7</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="47" parent="8" name="toothed">
+    <column id="41" parent="7" name="toothed">
       <Position>8</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="48" parent="8" name="backbone">
+    <column id="42" parent="7" name="backbone">
       <Position>9</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="49" parent="8" name="breathes">
+    <column id="43" parent="7" name="breathes">
       <Position>10</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="50" parent="8" name="venomous">
+    <column id="44" parent="7" name="venomous">
       <Position>11</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="51" parent="8" name="fins">
+    <column id="45" parent="7" name="fins">
       <Position>12</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="52" parent="8" name="legs">
+    <column id="46" parent="7" name="legs">
       <Position>13</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="53" parent="8" name="tail">
+    <column id="47" parent="7" name="tail">
       <Position>14</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="54" parent="8" name="domestic">
+    <column id="48" parent="7" name="domestic">
       <Position>15</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="55" parent="8" name="catsize">
+    <column id="49" parent="7" name="catsize">
       <Position>16</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
-    <column id="56" parent="8" name="type">
+    <column id="50" parent="7" name="type">
       <Position>17</Position>
-      <DataType>|0</DataType>
+      <DataType>(0,-1)|12</DataType>
     </column>
   </database-model>
 </dataSource>

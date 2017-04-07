@@ -16,20 +16,6 @@ __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 
-def checkIfTableExists(tableList, tableName):
-    b = False
-    for table in tableList:
-        print(table, tableName)
-        if str(table) == str(tableName):
-            b = True
-        else:
-            b = False
-    return b
-
-b = checkIfTableExists(['contact_lenses', 'cpu', 'cpu_with_vendor', 'weather', 'zoo'], 'cpu')
-if not b:
-    print("hehe")
-
 class Interface:
     @staticmethod
     def inputFileOptions(option):
@@ -46,13 +32,11 @@ class Interface:
             connection, cursor = Data.connectionDB("DB")  # Connection to SQLite database
             file = Data.openFile(fileARFF)  # Open data file
             columnNames, lines = Data.getDataFile(file, "ARFF")  # Get column names and lines from data file
-            tableName = Data.getTableNameARFF(lines)  # Get table name from data file
-            tableList = Data.getTableNamesDB(cursor)
-            b = checkIfTableExists(tableList, tableName)
-            if not b:
+            tableName = fileARFF[0:-5]  # Table name
+            tableList = Data.getTableNamesDB(cursor)  # Get table names from database
+            if tableName not in tableList:  # If table name not exists
                 Data.createTable(cursor, tableName, tableName)  # Create table tableName
-                Data.insertDataARFF(tableName, tableName, lines, cursor,
-                                    connection)  # Insert data values to tableName
+                Data.insertDataARFF(tableName, columnNames, lines, cursor, connection)  # Insert data values to tableName
 
             columnNames, rows = Data.selectData(tableName, cursor)  # Select data from tableName
 
@@ -63,10 +47,11 @@ class Interface:
             file = Data.openFile(fileTXT)  # Open data file
             columnNames, lines = Data.getDataFile(file, "TXT")  # Get column names and lines from file
             tableName = fileTXT[0:-4]  # Table name
-            tableList = Data.getTableNamesDB(cursor)
-            if "'" + tableName + "'" not in tableList:
+            tableList = Data.getTableNamesDB(cursor)  # Get table names from database
+            if tableName not in tableList:  # If table name not exists
                 Data.createTable(cursor, tableName, columnNames)  # Create table tableName
                 Data.insertDataTXT(tableName, columnNames, lines, cursor, connection)  # Insert data values to tableName
+
             columnNames, rows = Data.selectData(tableName, cursor)  # Select data from tableName
 
         elif option == 3:

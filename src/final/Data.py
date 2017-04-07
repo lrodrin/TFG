@@ -94,7 +94,7 @@ class Data:
         :type columnNames: str
         """
         try:
-            query = 'CREATE TABLE {0} ({1});'.format(str(tableName), str(columnNames[0:-2]))
+            query = 'CREATE TABLE IF NOT EXISTS {0} ({1});'.format(str(tableName), str(columnNames[0:-2]))
             cursor.execute(query)
             # print(query)
         except sqlite3.Error as e:
@@ -185,23 +185,6 @@ class Data:
             print("Error to select in table name %s: %s" % (tableName, e))
 
         return None
-
-    @staticmethod
-    def getTableNameARFF(lines):
-        """
-        Return the table name from an arff data file
-
-        :param lines: Lines from a data file
-        :return: A Table name
-        """
-        for line in lines:  # For each line in lines
-            if line.startswith("@relation"):  # If line starts with @relation
-                if "'" in line:  # If table name contains the char '
-                    line = line.split(" ")[1]  # Quit the char '
-                    return line[1:-2]
-
-                else:  # If table name not contains the char '
-                    return line.split(" ")[1]
 
     @staticmethod
     def getTableNamesDB(cursor):

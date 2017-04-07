@@ -157,7 +157,7 @@ class Data:
                                                                             str(values[0:-1]).replace('\n', ''))
                         cursor.execute(query)
                         connection.commit()
-                        # print(query, line)
+                        # print(query)
                         values = str()
 
                     except sqlite3.Error as e:

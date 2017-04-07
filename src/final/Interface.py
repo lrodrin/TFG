@@ -35,7 +35,7 @@ class Interface:
             tableName = fileARFF[0:-5]  # Table name
             tableList = Data.getTableNamesDB(cursor)  # Get table names from database
             if tableName not in tableList:  # If table name not exists
-                Data.createTable(cursor, tableName, tableName)  # Create table tableName
+                Data.createTable(cursor, tableName, columnNames)  # Create table tableName
                 Data.insertDataARFF(tableName, columnNames, lines, cursor, connection)  # Insert data values to tableName
 
             columnNames, rows = Data.selectData(tableName, cursor)  # Select data from tableName

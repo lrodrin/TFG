@@ -94,7 +94,7 @@ class Data:
         :type columnNames: str
         """
         try:
-            query = 'CREATE TABLE IF NOT EXISTS {0} ({1});'.format(str(tableName), str(columnNames[0:-2]))
+            query = 'CREATE TABLE {0} ({1});'.format(str(tableName), str(columnNames[0:-2]))
             cursor.execute(query)
             # print(query)
         except sqlite3.Error as e:

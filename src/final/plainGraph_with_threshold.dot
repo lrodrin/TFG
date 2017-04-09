@@ -8,8 +8,8 @@ e;
 a -- c  [color=black, style=dashed];
 a -- b  [color=black, label=1, style=dashed];
 a -- x  [color=black, label=1, style=dashed];
-a -- d  [color=black, label=2, style=dashed];
-a -- e  [color=black, label=2, style=dashed];
+a -- d  [color=black, label=2, style=solid];
+a -- e  [color=black, label=2, style=solid];
 c -- b  [color=black, style=dashed];
 c -- x  [color=black, style=dashed];
 c -- d  [color=black, style=dashed];
@@ -19,5 +19,5 @@ b -- d  [color=black, label=1, style=dashed];
 b -- e  [color=black, label=1, style=dashed];
 x -- d  [color=black, label=1, style=dashed];
 x -- e  [color=black, label=1, style=dashed];
-d -- e  [color=black, label=2, style=dashed];
+d -- e  [color=black, label=2, style=solid];
 }

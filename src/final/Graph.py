@@ -137,7 +137,6 @@ class Graph:
         # Painting edges by label
         for (u, v), label in labels.items():  # For each label edge attribute in labels
             if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph
-                print(u, v)
                 if label < k:  # If label is smaller than k constant
                     graph.add_edge(u, v, color='black', style='dashed')  # Edge painted black and style is dashed
                 elif label >= k:  # If label is equal or greater than k constant
@@ -163,8 +162,8 @@ class Graph:
 
         # Painting edges by label
         for label, color in potentialColors.items():  # For each label and color edge attributes in potentialColors
-            for (u, v) in graph.edges() and u != v:  # For each edge from graph
-                if graph.has_edge(u, v):  # If exists edge (u, v) in graph
+            for (u, v) in graph.edges():  # For each edge from graph
+                if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph
                     if 'label' in graph[u][v] and label == graph[u][v]['label']:  # If edge have label attribute and
                         # the label equivalence in potentialColors are the same
                         if graph[u][v]['label'] == 0:

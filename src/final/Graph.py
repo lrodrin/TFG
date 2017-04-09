@@ -7,7 +7,6 @@ Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
 import itertools
-
 import networkx as nx
 
 from src.final.Data import *
@@ -33,7 +32,8 @@ class Graph:
         Graph.addNodes(graph, columnNames, rows)  # Adding nodes to graph
         for (u, v) in itertools.combinations(graph.nodes(), 2):  # For the initialization all the edges from graph are
             # painted black and the edge style is dashed
-            graph.add_edge(u, v, color='black', style='dashed')
+            if u != v:
+                graph.add_edge(u, v, color='black', style='dashed')
 
         return graph, rows
 
@@ -90,14 +90,15 @@ class Graph:
         numberOfEquivalences = dict()
         for row in rows:  # For each row in rows
             for (u, v) in itertools.combinations(row, 2):  # For each pair (u, v) in row
-                if (u, v) in numberOfEquivalences.keys():  # If exists edge (u, v) in a numberOfEquivalences
-                    numberOfEquivalences[(u, v)] = numberOfEquivalences.get((u, v)) + 1  # Count one to
-                    # numberOfEquivalences
-                    graph.edge[u][v]['label'] += 1  # Add the number of equivalences into edge label from graph
+                if u != v:
+                    if (u, v) in numberOfEquivalences.keys():  # If exists edge (u, v) in a numberOfEquivalences
+                        numberOfEquivalences[(u, v)] = numberOfEquivalences.get((u, v)) + 1  # Count one to
+                        # numberOfEquivalences
+                        graph.edge[u][v]['label'] += 1  # Add the number of equivalences into edge label from graph
 
-                else:  # If not exists edge (u, v) in numberOfEquivalences, count one
-                    numberOfEquivalences[(u, v)] = 1
-                    graph.add_edge(u, v, label=1)
+                    else:  # If not exists edge (u, v) in numberOfEquivalences, count one
+                        numberOfEquivalences[(u, v)] = 1
+                        graph.add_edge(u, v, label=1)
 
     @staticmethod
     def createPlainGraph(graph, rows):
@@ -112,7 +113,7 @@ class Graph:
         """
         for row in rows:  # For each row in rows
             for (u, v) in itertools.combinations(row, 2):  # For each pair (u, v) in row
-                if graph.has_edge(u, v):  # If exists edge (u, v) in graph
+                if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph
                     graph.add_edge(u, v, color='black', style='solid')  # Edge painted black and style is not dashed
 
         return graph
@@ -135,10 +136,11 @@ class Graph:
 
         # Painting edges by label
         for (u, v), label in labels.items():  # For each label edge attribute in labels
-            if graph.has_edge(u, v):  # If exists edge (u, v) in graph
+            if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph
+                print(u, v)
                 if label < k:  # If label is smaller than k constant
                     graph.add_edge(u, v, color='black', style='dashed')  # Edge painted black and style is dashed
-                else:  # If label is equal or greater than k constant
+                elif label >= k:  # If label is equal or greater than k constant
                     graph.add_edge(u, v, color='black', style='solid')  # Edge painted black and style is not dashed
 
         return graph
@@ -161,7 +163,7 @@ class Graph:
 
         # Painting edges by label
         for label, color in potentialColors.items():  # For each label and color edge attributes in potentialColors
-            for (u, v) in graph.edges():  # For each edge from graph
+            for (u, v) in graph.edges() and u != v:  # For each edge from graph
                 if graph.has_edge(u, v):  # If exists edge (u, v) in graph
                     if 'label' in graph[u][v] and label == graph[u][v]['label']:  # If edge have label attribute and
                         # the label equivalence in potentialColors are the same
@@ -189,7 +191,7 @@ class Graph:
         labels = Graph.getLabelAttributesFromGraph(graph)  # Labels from graph
         # painting edges by label
         for (u, v), label in labels.items():  # For each edge and label attribute from labels
-            if graph.has_edge(u, v):  # If exists edge (u, v) in graph
+            if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph
                 if 0 <= label < 1:
                     graph.add_edge(u, v, color='black', style='dashed')  # Edge painted black and style is dashed
                 elif 1 <= label < 2:
@@ -226,13 +228,13 @@ class Graph:
         return nx.graph_clique_number(graph)
 
     @staticmethod
-    def exportGraph(graph, filename):
+    def exportGraph(graph, graphName):
         """
-        Export a graph to Graphviz DOT format
+        Export a graph to DOT format
 
         :param graph: Networkx's graph
-        :param filename: File name
+        :param graphName: Graph name
         :type graph: nx.Graph
-        :type filename: str
+        :type graphName: str
         """
-        nx.nx_pydot.write_dot(graph, filename)
+        nx.nx_pydot.write_dot(graph, graphName)

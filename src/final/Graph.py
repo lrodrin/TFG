@@ -7,6 +7,7 @@ Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
 import itertools
+
 import networkx as nx
 
 from src.final.Data import *
@@ -171,7 +172,7 @@ class Graph:
                             # style is dashed
                         else:
                             graph.add_edge(u, v, color=color, style='solid')  # Edge painted with potentialColor and
-                        # style is not dashed
+                            # style is not dashed
 
         return graph
 

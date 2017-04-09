@@ -25,6 +25,7 @@ if __name__ == "__main__":
     graph, graphName = Interface.graphOptions(optionStructure, initGraph, rows)  # Create a type of graph
 
     probability = float(six.moves.input("Please enter the probability for the more frequent subsets creation:\n"))
-    moreFrequentSubsets = Subset.moreFrequentSubsets(tableName.strip("\n"), optionData, probability)  # The more frequents subsets
+    moreFrequentSubsets = Subset.moreFrequentSubsets(tableName.strip("\n"), optionData,
+                                                     probability)  # The more frequents subsets
 
     Interface.structureOptions(optionStructure, graph, moreFrequentSubsets)  # Create 2-structure from graph

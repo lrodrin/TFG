@@ -62,8 +62,10 @@ class Structure:
         for value in primalClansDict.values():  # For each primal clan
             for elem in value:
                 if len(elem) == 1:  # If len(primal clan) == 1
-                    if not callgraph.get_node(pydot.Edge("s_%s" % "".join(elem))):  # Exclude the repetitive primal clans
-                        callgraph.add_edge(pydot.Edge("s_%s" % "".join(elem), "".join(elem), arrowhead="none"))  # Add primal clan
+                    if not callgraph.get_node(
+                            pydot.Edge("s_%s" % "".join(elem))):  # Exclude the repetitive primal clans
+                        callgraph.add_edge(
+                            pydot.Edge("s_%s" % "".join(elem), "".join(elem), arrowhead="none"))  # Add primal clan
                         # value as a edge
 
         for i, (key, value) in enumerate(primalClansDict.items()):  # For each primal clan

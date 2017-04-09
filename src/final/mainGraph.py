@@ -23,4 +23,4 @@ if __name__ == '__main__':
         six.moves.input("Please enter the option of graph you want to create:\n [1] = plain\n [2] = plain "
                         "with threshold\n [3] = linear\n [4] = exponential\n"))
     graph, graphName = Interface.graphOptions(optionGraph, initGraph, rows)  # Create a type of graph
-    Interface.openGraphviz(graphName)   # Open graph in Graphviz program
+    Interface.openGraphviz(graphName)  # Open graph in Graphviz program

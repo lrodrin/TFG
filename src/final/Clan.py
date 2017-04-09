@@ -138,13 +138,13 @@ class Clan:
         primalClansDict = defaultdict(list)  # Creates and initializes a dictionary of list
         for i in range(len(primalClansList) - 1, 0, -1):  # For each primal clan
             for j in range(i - 1, -1, -1):
-                if primalClansList[j].issubset(primalClansList[i]):  # If primalClansList[j] is a subset of
+                if primalClansList[j] < (primalClansList[i]):  # If primalClansList[j] is a subset of
                     # primalClansList[i]
                     for k in range(j + 1, i):  # Search if between primalClansList[j] and primalClansList[i]
                         # there are more primal clans
-                        if primalClansList[k].issubset(primalClansList[i]) and primalClansList[j].issubset(
-                                primalClansList[k]):  # If primalClansList[k] is a subset of primalClansList[i] and
-                            # primalClansList[j] is a subset of primalClansList[k]
+                        if (primalClansList[i]) > primalClansList[k] > primalClansList[j]:  #
+                            # If primalClansList[k] is a subset of primalClansList[i] and primalClansList[j] is a
+                            # subset of primalClansList[k]
                             break
                     else:
                         primalClansDict[frozenset(primalClansList[i])].append(primalClansList[j])  # Add primal clan

@@ -31,16 +31,16 @@ class Subset:
             yield set(subset)
 
     @staticmethod
-    def moreFrequentSubsets(dataFile, option, probability):
+    def moreFrequentSubsets(dataFile, option, support):
         """
         Return the more frequent subsets from ARFF data file specified by dataFile
 
         :param dataFile: Data file
         :param option: Specifies type of dataFile
-        :param probability: The probability for the more frequent subsets creation
+        :param support: The probability for the more frequent subsets creation
         :type dataFile: str
         :type option: int
-        :type probability: float
+        :type support: float
         :return: The more frequent subsets
         :rtype: list
         """
@@ -54,10 +54,10 @@ class Subset:
 
             # System calls to apriori's algorithm who's create the AP data file
             if sys.platform == 'win32':  # Windows platform
-                os.system("apriori.exe -s{0} -C'@%' {1} {2}".format(str(probability), str(dataFile.replace("\n", "")),
+                os.system("apriori.exe -s{0} -C'@%' {1} {2}".format(str(support), str(dataFile.replace("\n", "")),
                                                                     str(newFilename.replace("\n", ""))))
             elif sys.platform == 'linux2':  # Linux platform
-                os.system("./apriori -s{0} -C'@%' {1} {2}".format(str(probability), str(dataFile.replace("\n", "")),
+                os.system("./apriori -s{0} -C'@%' {1} {2}".format(str(support), str(dataFile.replace("\n", "")),
                                                                   str(newFilename.replace("\n", ""))))
 
         file = Data.openFile(newFilename.replace("\n", ""))  # Open AP data file

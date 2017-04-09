@@ -24,7 +24,7 @@ if __name__ == "__main__":
                         "with threshold\n [3] = linear\n [4] = exponential\n"))
 
     graph, graphName = Interface.graphOptions(optionGraph, initGraph, rows)  # Create a type of graph
-    probability = float(six.moves.input("Please enter the support for the more frequent subsets creation:\n"))
-    moreFrequentSubsets = Subset.moreFrequentSubsets(tableName, optionData, probability)  # Return the more frequents
+    support = float(six.moves.input("Please enter the support for the more frequent subsets creation:\n"))
+    moreFrequentSubsets = Subset.moreFrequentSubsets(tableName, optionData, support)  # Return the more frequents
     #  subsets from filename
     Clan.printFrequentResults(graph, moreFrequentSubsets)

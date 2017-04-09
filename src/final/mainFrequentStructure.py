@@ -1,5 +1,5 @@
 """
-This module implements the main for the more frequent Structure class
+This module implements a main for the Structure class and test the class with the more frequent clans
 
 Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 
@@ -24,8 +24,9 @@ if __name__ == "__main__":
                         "with threshold\n [3] = linear\n [4] = exponential\n"))
     graph, graphName = Interface.graphOptions(optionStructure, initGraph, rows)  # Create a type of graph
 
-    probability = float(six.moves.input("Please enter the probability for the more frequent subsets creation:\n"))
+    support = float(six.moves.input("Please enter the probability for the more frequent subsets creation:\n"))
     moreFrequentSubsets = Subset.moreFrequentSubsets(tableName.strip("\n"), optionData,
-                                                     probability)  # The more frequents subsets
+                                                     support)  # The more frequents subsets
 
-    Interface.structureOptions(optionStructure, graph, moreFrequentSubsets)  # Create 2-structure from graph
+    structureName = Interface.structureOptions(optionStructure, graph, moreFrequentSubsets)  # Create 2-structure from graph
+    Interface.openGraphviz(structureName)

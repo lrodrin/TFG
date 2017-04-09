@@ -1,5 +1,5 @@
 """
-This module implements the main for Data class
+This module implements the main for Data class and test the class
 
 Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 

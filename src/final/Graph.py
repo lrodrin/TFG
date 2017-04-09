@@ -20,7 +20,7 @@ class Graph:
     @staticmethod
     def initGraph(tableName, cursor):
         """
-        Create and initializes a graph from SQLite database source
+        Create and initializes a graph from a table SQLite database source
 
         :param tableName: Table name
         :param cursor: Cursor object
@@ -38,16 +38,19 @@ class Graph:
         return graph, rows
 
     @staticmethod
-    def exportGraph(graph, filename):
+    def addNodes(graph, columnNames, rows):
         """
-        Export a graph to Graphviz DOT format
+        Add nodes to graph
 
         :param graph: Networkx's graph
-        :param filename: File name
+        :param columnNames: Column names from a SQLite table
+        :param rows: Rows from a SQLite table
         :type graph: nx.Graph
-        :type filename: str
+        :type columnNames: str
         """
-        nx.nx_pydot.write_dot(graph, filename)
+        for i in range(0, len(columnNames)):  # For each column from a SQLite table
+            for row in rows:  # For each row from a SQLite table
+                graph.add_node(row[i])  # Add node to graph
 
     @staticmethod
     def getColorAttributesFromGraph(graph):
@@ -76,19 +79,25 @@ class Graph:
         return graphDict
 
     @staticmethod
-    def addNodes(graph, columnNames, rows):
+    def labelEdges(graph, rows):
         """
-        Add nodes to graph
+        Count the number of equivalences and label the edges from graph with the number of equivalences
 
         :param graph: Networkx's graph
-        :param columnNames: Column names from a SQLite table
         :param rows: Rows from a SQLite table
         :type graph: nx.Graph
-        :type columnNames: str
         """
-        for i in range(0, len(columnNames)):  # For each column from a SQLite table
-            for row in rows:  # For each row from a SQLite table
-                graph.add_node(row[i])  # Add node to graph
+        numberOfEquivalences = dict()
+        for row in rows:  # For each row in rows
+            for (u, v) in itertools.combinations(row, 2):  # For each pair (u, v) in row
+                if (u, v) in numberOfEquivalences.keys():  # If exists edge (u, v) in a numberOfEquivalences
+                    numberOfEquivalences[(u, v)] = numberOfEquivalences.get((u, v)) + 1  # Count one to
+                    # numberOfEquivalences
+                    graph.edge[u][v]['label'] += 1  # Add the number of equivalences into edge label from graph
+
+                else:  # If not exists edge (u, v) in numberOfEquivalences, count one
+                    numberOfEquivalences[(u, v)] = 1
+                    graph.add_edge(u, v, label=1)
 
     @staticmethod
     def createPlainGraph(graph, rows):
@@ -135,27 +144,6 @@ class Graph:
         return graph
 
     @staticmethod
-    def labelEdges(graph, rows):
-        """
-        Count the number of equivalences and label the edges from graph with the number of equivalences
-
-        :param graph: Networkx's graph
-        :param rows: Rows from a SQLite table
-        :type graph: nx.Graph
-        """
-        numberOfEquivalences = dict()
-        for row in rows:  # For each row in rows
-            for (u, v) in itertools.combinations(row, 2):  # For each pair (u, v) in row
-                if (u, v) in numberOfEquivalences.keys():  # If exists edge (u, v) in a numberOfEquivalences
-                    numberOfEquivalences[(u, v)] = numberOfEquivalences.get((u, v)) + 1  # Count one to
-                    # numberOfEquivalences
-                    graph.edge[u][v]['label'] += 1  # Add the number of equivalences into edge label from graph
-
-                else:  # If not exists edge (u, v) in numberOfEquivalences, count one
-                    numberOfEquivalences[(u, v)] = 1
-                    graph.add_edge(u, v, label=1)
-
-    @staticmethod
     def createLinearGraph(graph, rows):
         """
         Create a linear graph
@@ -167,7 +155,7 @@ class Graph:
         :rtype: nx.Graph
         """
         Graph.labelEdges(graph, rows)  # labeling edges
-        potentialColors = {0: 'white', 1: 'black', 2: 'cyan', 3: 'green', 4: 'magenta', 5: 'orange', 6: 'purple',
+        potentialColors = {0: 'black', 1: 'black', 2: 'cyan', 3: 'green', 4: 'magenta', 5: 'orange', 6: 'purple',
                            7: 'red',
                            8: 'yellow', 9: 'brown'}  # Potential label and colours for edges
 
@@ -177,7 +165,11 @@ class Graph:
                 if graph.has_edge(u, v):  # If exists edge (u, v) in graph
                     if 'label' in graph[u][v] and label == graph[u][v]['label']:  # If edge have label attribute and
                         # the label equivalence in potentialColors are the same
-                        graph.add_edge(u, v, color=color, style='solid')  # Edge painted with potentialColor and
+                        if graph[u][v]['label'] == 0:
+                            graph.add_edge(u, v, color=color, style='dashed')  # Edge painted with potentialColor and
+                            # style is dashed
+                        else:
+                            graph.add_edge(u, v, color=color, style='solid')  # Edge painted with potentialColor and
                         # style is not dashed
 
         return graph
@@ -232,3 +224,15 @@ class Graph:
         :rtype: int
         """
         return nx.graph_clique_number(graph)
+
+    @staticmethod
+    def exportGraph(graph, filename):
+        """
+        Export a graph to Graphviz DOT format
+
+        :param graph: Networkx's graph
+        :param filename: File name
+        :type graph: nx.Graph
+        :type filename: str
+        """
+        nx.nx_pydot.write_dot(graph, filename)

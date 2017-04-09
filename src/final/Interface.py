@@ -78,21 +78,21 @@ class Interface:
         :return: A type of graph and the name of graph dot file generated
         :rtype: nx.Graph, str
         """
-        if option == 1: # Create a plain graph
+        if option == 1:  # Create a plain graph
             graph = Graph.createPlainGraph(initGraph, rows)
             graphName = "plainGraph.dot"
 
-        elif option == 2:   # Create a plain graph with threshold
+        elif option == 2:  # Create a plain graph with threshold
             threshold = int(six.moves.input("Please enter the K constant for the threshold:\n"))
             graph = Graph.createPlainGraphWithThreshold(initGraph, rows,
                                                         threshold)
             graphName = "plainGraph_with_threshold.dot"
 
-        elif option == 3:   # Create a linear graph
+        elif option == 3:  # Create a linear graph
             graph = Graph.createLinearGraph(initGraph, rows)
             graphName = "linearGraph.dot"
 
-        elif option == 4:   # Create an exponential graph
+        elif option == 4:  # Create an exponential graph
             graph = Graph.createExponentialGraph(initGraph, rows)
             graphName = "exponentialGraph.dot"
 
@@ -115,28 +115,28 @@ class Interface:
         :return: The name of 2-structure DOT file
         :rtype: str
         """
-        if option == 1: # Create a plain 2-structure
+        if option == 1:  # Create a plain 2-structure
             structureName = "plain_2-structure.dot"
             if moreFrequentSubsets is not None:
                 Structure.createFrequent2Structure(graph, structureName, moreFrequentSubsets)
             else:
                 Structure.create2Structure(graph, structureName)
 
-        elif option == 2:   # Create a plain 2-structure with threshold
+        elif option == 2:  # Create a plain 2-structure with threshold
             structureName = "plain_2-structure_with_threshold.dot"
             if moreFrequentSubsets is not None:
                 Structure.createFrequent2Structure(graph, structureName, moreFrequentSubsets)
             else:
                 Structure.create2Structure(graph, structureName)
 
-        elif option == 3:   # Create a linear 2-structure
+        elif option == 3:  # Create a linear 2-structure
             structureName = "linear_2-structure.dot"
             if moreFrequentSubsets is not None:
                 Structure.createFrequent2Structure(graph, structureName, moreFrequentSubsets)
             else:
                 Structure.create2Structure(graph, structureName)
 
-        elif option == 4:   # Create an exponential 2-structure
+        elif option == 4:  # Create an exponential 2-structure
             structureName = "exponential_2-structure.dot"
             if moreFrequentSubsets is not None:
                 Structure.createFrequent2Structure(graph, structureName, moreFrequentSubsets)

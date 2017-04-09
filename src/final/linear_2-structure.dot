@@ -1,13 +1,14 @@
 digraph G {
 compound=true;
+fontname=Verdana;
+fontsize=12;
 x [shape=circle];
 b [shape=circle];
 c [shape=circle];
 e [shape=circle];
 d [shape=circle];
 a [shape=circle];
-subgraph cluster_xdebac {
-fixedsize=true;
+subgraph cluster_xcadbe {
 s_ade [label=" ", fixedsize=true, shape=point];
 s_x [label=" ", fixedsize=true, shape=point];
 s_b [label=" ", fixedsize=true, shape=point];

@@ -1,0 +1,33 @@
+digraph G {
+rankdir=LR;
+
+subgraph cluster_BCADE {
+node [shape=point];
+s_EBAD -> s_C [arrowhead=none, color=black];
+}
+
+subgraph cluster_EBAD {
+node [shape=point];
+s_EAD -> s_B  [arrowhead=none, color=red];
+}
+
+subgraph cluster_EAD {
+node [shape=point];
+s_ED -> s_A  [arrowhead=none, color=blue];
+
+}
+
+subgraph cluster_ED {
+node [shape=point];
+s_E -> s_D  [arrowhead=none, color=red];
+}
+
+s_C -> C  [arrowhead=none];
+s_B -> B [arrowhead=none];
+s_A -> A [arrowhead=none];
+s_E -> E [arrowhead=none];
+s_D -> D [arrowhead=none];
+s_EBAD -> s_B [ltail=cluster_BCADE, lhead=cluster_EBAD, arrowhead=none]
+s_EAD -> s_A [ltail=cluster_EBAD, lhead=cluster_EAD, arrowhead=none]
+s_ED -> s_D [ltail=cluster_EAD, lhead=cluster_ED, arrowhead=none]
+}

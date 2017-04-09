@@ -1,12 +1,11 @@
 """
-This module implements a main for the Structure class and test the class with the more frequent clans
+This module implements a main for the Interface class and test the class with the more frequent clans
 
 Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 
 Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
-
 from src.final.Interface import *
 
 __author__ = 'Laura Rodriguez Navas'
@@ -30,4 +29,5 @@ if __name__ == "__main__":
 
     structureName = Interface.structureOptions(optionStructure, graph,
                                                moreFrequentSubsets)  # Create 2-structure from graph
+    Interface.openGraphviz(graphName)
     Interface.openGraphviz(structureName)

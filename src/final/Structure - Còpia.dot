@@ -1,25 +1,20 @@
 digraph G {
-rankdir=LR;
 
 subgraph cluster_BCADE {
-node [shape=point];
-s_EBAD -> s_C [arrowhead=none, color=black];
+s_EBAD -> s_C [arrowhead=none, color=black, shape=point];
 }
 
 subgraph cluster_EBAD {
-node [shape=point];
-s_EAD -> s_B  [arrowhead=none, color=red];
+s_EAD -> s_B  [arrowhead=none, color=red, shape=point];
 }
 
 subgraph cluster_EAD {
-node [shape=point];
-s_ED -> s_A  [arrowhead=none, color=blue];
+s_ED -> s_A  [arrowhead=none, color=blue, shape=point];
 
 }
 
 subgraph cluster_ED {
-node [shape=point];
-s_E -> s_D  [arrowhead=none, color=red];
+s_E -> s_D  [arrowhead=none, color=red, shape=point];
 }
 
 s_C -> C  [arrowhead=none];
@@ -27,7 +22,7 @@ s_B -> B [arrowhead=none];
 s_A -> A [arrowhead=none];
 s_E -> E [arrowhead=none];
 s_D -> D [arrowhead=none];
-s_EBAD -> s_B [ltail=cluster_BCADE, lhead=cluster_EBAD, arrowhead=none]
-s_EAD -> s_A [ltail=cluster_EBAD, lhead=cluster_EAD, arrowhead=none]
-s_ED -> s_D [ltail=cluster_EAD, lhead=cluster_ED, arrowhead=none]
+s_EBAD -> s_EAD [lhead=cluster_EBAD, ltail=cluster_BCADE, arrowhead=none]
+s_EAD -> s_ED [lhead=cluster_EAD, arrowhead=none]
+s_ED -> s_D [lhead=cluster_ED, arrowhead=none]
 }

@@ -1,33 +1,31 @@
 digraph G {
-compound=true;
-rankdir=LR
 
 subgraph cluster_FCDEAB {
 node [shape=point];
-s_CD -> s_AB  [arrowhead=none, color=black];
-s_CD -> s_F  [arrowhead=none, color=blue];
-s_CD -> s_E  [arrowhead=none, color=green];
-s_AB -> s_F  [arrowhead=none, color=orange];
-s_AB -> s_E  [arrowhead=none, color=black];
-s_F -> s_E  [arrowhead=none, color=red];
+s_CD -> s_AB [arrowhead=none, color=black];
+s_CD -> s_F [arrowhead=none, color=blue];
+s_CD -> s_E [arrowhead=none, color=green];
+s_AB -> s_F [arrowhead=none, color=orange];
+s_AB -> s_E [arrowhead=none, color=black];
+s_F -> s_E [arrowhead=none, color=red];
 }
 
 subgraph cluster_AB {
 node [shape=point];
-s_B -> s_A  [arrowhead=none, color=black];
+s_B -> s_A [arrowhead=none, color=black];
 }
 
 subgraph cluster_CD {
 node [shape=point];
-s_D -> s_C  [arrowhead=none, color=red];
+s_D -> s_C [arrowhead=none, color=red];
 }
 
-s_F -> F  [arrowhead=none];
-s_E -> E  [arrowhead=none];
-s_B -> B  [arrowhead=none];
-s_A -> A  [arrowhead=none];
-s_D -> D  [arrowhead=none];
-s_C -> C  [arrowhead=none];
-s_AB -> s_B [ltail=cluster_BCADE, lhead=cluster_EBAD, arrowhead=none]
-s_CD -> s_D  [arrowhead=none, lhead=cluster_CD];
+s_F -> F [arrowhead=none];
+s_E -> E [arrowhead=none];
+s_B -> B [arrowhead=none];
+s_A -> A [arrowhead=none];
+s_D -> D [arrowhead=none];
+s_C -> C [arrowhead=none];
+s_AB -> s_B [ltail=s_AB, lhead=s_AB, arrowhead=none];
+s_CD -> s_D [lhead=cluster_CD, arrowhead=none];
 }

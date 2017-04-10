@@ -1,3 +1,5 @@
 digraph G {
-compound=True;
+compound=true;
+fontname=Verdana;
+fontsize=12;
 }

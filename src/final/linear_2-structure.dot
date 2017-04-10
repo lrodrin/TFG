@@ -1,48 +1,37 @@
-digraph G {
+digraph "linear_2-structure" {
 compound=true;
 fontname=Verdana;
 fontsize=12;
-x [shape=circle];
-b [shape=circle];
-c [shape=circle];
-e [shape=circle];
-d [shape=circle];
-a [shape=circle];
-subgraph cluster_xcadbe {
-s_ade [label=" ", fixedsize=true, shape=point];
-s_x [label=" ", fixedsize=true, shape=point];
-s_b [label=" ", fixedsize=true, shape=point];
-s_c [label=" ", fixedsize=true, shape=point];
-subgraph  {
-rank=same;
-s_ade -> s_x  [arrowhead=none, color=black];
-s_ade -> s_b  [arrowhead=none, color=black];
-s_ade -> s_c  [arrowhead=none, color=black];
-s_x -> s_b  [arrowhead=none, color=black];
-s_x -> s_c  [arrowhead=none, color=black];
-s_b -> s_c  [arrowhead=none, color=black];
-}
-
-}
-
-subgraph cluster_ade {
-s_e [label=" ", fixedsize=true, shape=point];
-s_d [label=" ", fixedsize=true, shape=point];
-s_a [label=" ", fixedsize=true, shape=point];
-subgraph  {
-rank=same;
+rankdir=LR;
+node [shape=circle];
+a;
+c;
+b;
+x;
+d;
+e;
+subgraph cluster_eda {
+node [shape=point];
 s_e -> s_d  [arrowhead=none, color=cyan];
 s_e -> s_a  [arrowhead=none, color=cyan];
 s_d -> s_a  [arrowhead=none, color=cyan];
 }
 
+subgraph cluster_eabdcx {
+node [shape=point];
+s_eda -> s_x  [arrowhead=none, color=black];
+s_eda -> s_b  [arrowhead=none, color=black];
+s_eda -> s_c  [arrowhead=none, color=black];
+s_x -> s_b  [arrowhead=none, color=black];
+s_x -> s_c  [arrowhead=none, color=black];
+s_b -> s_c  [arrowhead=none, color=black];
 }
 
-s_x -> x  [arrowhead=none];
-s_b -> b  [arrowhead=none];
-s_c -> c  [arrowhead=none];
-s_e -> e  [arrowhead=none];
-s_d -> d  [arrowhead=none];
 s_a -> a  [arrowhead=none];
-s_ade -> s_e  [arrowhead=none, lhead=cluster_ade];
+s_c -> c  [arrowhead=none];
+s_b -> b  [arrowhead=none];
+s_x -> x  [arrowhead=none];
+s_d -> d  [arrowhead=none];
+s_e -> e  [arrowhead=none];
+s_eda -> s_e  [arrowhead=none, lhead=cluster_eda];
 }

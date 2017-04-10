@@ -31,14 +31,14 @@ class Structure:
         :type structureName: str
         :return: A 2-structure
         """
-        callgraph = pydot.Dot(graph_type="digraph", compound="true", fontname="Verdana", fontsize=12)
+        dot = pydot.Dot(graph_type="digraph", compound="true", fontname="Verdana", fontsize=12)
 
         # creating an external nodes
         for value in primalClansDict.values():  # For each primal clan
             for elem in value:
                 if len(elem) == 1:  # If len(primal clan) == 1
-                    if not callgraph.get_node("".join(elem)):  # Exclude the repetitive primal clans
-                        callgraph.add_node(pydot.Node("".join(elem), shape="circle"))  # Add primal clan value as a node
+                    if not dot.get_node("".join(elem)):  # Exclude the repetitive primal clans
+                        dot.add_node(pydot.Node("".join(elem), shape="circle"))  # Add primal clan value as a node
 
         # creating subgraphs
         for key, value in primalClansDict.items():  # For each primal clan
@@ -56,33 +56,33 @@ class Structure:
                                                  color=Clan.getColorClans(edgesAtributtes, pair[0], pair[1])))
                     #  Add edge into subgraph
             cluster.add_subgraph(subgraph)  # Add subgraph to cluster
-            callgraph.add_subgraph(cluster)  # Add cluster
+            dot.add_subgraph(cluster)  # Add cluster
 
         # creating edge links for nodes and subgraphs
         for value in primalClansDict.values():  # For each primal clan
             for elem in value:
                 if len(elem) == 1:  # If len(primal clan) == 1
-                    if not callgraph.get_node(
+                    if not dot.get_node(
                             pydot.Edge("s_%s" % "".join(elem))):  # Exclude the repetitive primal clans
-                        callgraph.add_edge(
+                        dot.add_edge(
                             pydot.Edge("s_%s" % "".join(elem), "".join(elem), arrowhead="none"))  # Add primal clan
                         # value as a edge
 
         for i, (key, value) in enumerate(primalClansDict.items()):  # For each primal clan
             if i != 0:  # If not the first primal clan in primalClansDict
-                if not callgraph.get_edge(pydot.Edge("s_%s" % "".join(key), "s_%s" % "".join(value[0]),
-                                                     arrowhead="none",
-                                                     lhead="cluster_%s" % "".join(key))):
-                    callgraph.add_edge(pydot.Edge("s_%s" % "".join(key), "s_%s" % "".join(value[0]),
-                                                  arrowhead="none",
-                                                  lhead="cluster_%s" % "".join(key)))  # Add primal clan
+                if not dot.get_edge(pydot.Edge("s_%s" % "".join(key), "s_%s" % "".join(value[0]),
+                                               arrowhead="none",
+                                               lhead="cluster_%s" % "".join(key))):
+                    dot.add_edge(pydot.Edge("s_%s" % "".join(key), "s_%s" % "".join(value[0]),
+                                            arrowhead="none",
+                                            lhead="cluster_%s" % "".join(key)))  # Add primal clan
                     # value as a edge
 
-        callgraph.write(structureName)  # Write a Dot file with all previous information
+        dot.write(structureName)  # Write a Dot file with all previous information
         print("A %s was created" % structureName)
 
     @staticmethod
-    def proves(edgesAtributtes, primalClansDict, structureName):
+    def proves(edgesAtributtes, primalClansDict, trivialClansList, structureName):
         """
         Create a 2-structure from a dictionary of primal clans specified by primalClansDict
 
@@ -94,54 +94,39 @@ class Structure:
         :type structureName: str
         :return: A 2-structure
         """
-        callgraph = pydot.Dot(graph_type="digraph", compound="true", fontname="Verdana", fontsize=12)
+        graph = pydot.Dot(graph_type="digraph", graph_name=structureName[:-4], compound="true", fontname="Verdana",
+                          fontsize=12, rankdir="LR")
+        graph.set_node_defaults(shape="circle")
 
-        # creating an external nodes
-        for value in primalClansDict.values():  # For each primal clan
-            for elem in value:
-                if len(elem) == 1:  # If len(primal clan) == 1
-                    if not callgraph.get_node("".join(elem)):  # Exclude the repetitive primal clans
-                        callgraph.add_node(pydot.Node("".join(elem), shape="circle"))  # Add primal clan value as a node
+        # Creating nodes
+        for trivialClan in trivialClansList[:-1]:
+            graph.add_node(pydot.Node("".join(trivialClan)))  # Add primal clan value as a node
 
-        # creating subgraphs
-        for key, value in primalClansDict.items():  # For each primal clan
+        # Creating cluster
+        for key, value in reversed(primalClansDict.items()):  # For each primal clan and subprimal clans
             cluster = pydot.Cluster("".join(key))  # Create a cluster
-            subgraph = pydot.Subgraph(rank="same")  # Create a subgraph into cluster
-            for elem in value:
-                if not cluster.get_node("s_%s" % "".join(elem)):  # Exclude the repetitive primal clans
-                    cluster.add_node(pydot.Node("s_%s" % "".join(elem), label=" ", fixedsize="true", shape="point"))  #
-                    #  Add primal clan as a node into cluster
+            cluster.set_node_defaults(shape="point")
+            # Creating internal cluster edges
+            for subPrimal in itertools.combinations(value, 2):  # For each subprimal clan
+                if not cluster.get_edge("s_%s" % "".join(subPrimal[0]),
+                                        "s_%s" % "".join(subPrimal[1])):  # If not exists subPrimal
+                    cluster.add_edge(
+                        pydot.Edge("s_%s" % "".join(subPrimal[0]), "s_%s" % "".join(subPrimal[1]), arrowhead="none",
+                                   color=Clan.getColorClans(edgesAtributtes, subPrimal[0], subPrimal[1])))
+            graph.add_subgraph(cluster)  # Add cluster to graph
 
-            for pair in itertools.combinations(value, 2):  # For each pair primal clan combinations
-                if not subgraph.get_edge("s_%s" % "".join(pair[0]),
-                                         "s_%s" % "".join(pair[1])):  # Exclude the repetitive primal clans
-                    subgraph.add_edge(pydot.Edge("s_%s" % "".join(pair[0]), "s_%s" % "".join(pair[1]), arrowhead="none",
-                                                 color=Clan.getColorClans(edgesAtributtes, pair[0], pair[1])))
-                    #  Add edge into subgraph
-            cluster.add_subgraph(subgraph)  # Add subgraph to cluster
-            callgraph.add_subgraph(cluster)  # Add cluster
+        # Creating graph edges
+        for node in graph.get_node_list()[1:]:
+            elem = pydot.Node.get_name(node)
+            graph.add_edge(pydot.Edge("s_%s" % elem, elem, arrowhead="none"))
 
-        # creating edge links for nodes and subgraphs
-        for value in primalClansDict.values():  # For each primal clan
-            for elem in value:
-                if len(elem) == 1:  # If len(primal clan) == 1
-                    if not callgraph.get_node(
-                            pydot.Edge("s_%s" % "".join(elem))):  # Exclude the repetitive primal clans
-                        callgraph.add_edge(
-                            pydot.Edge("s_%s" % "".join(elem), "".join(elem), arrowhead="none"))  # Add primal clan
-                        # value as a edge
+        # Creating external cluster edges
+        # TODO fer-ho amb pydot
+        for i, (key, value) in enumerate(primalClansDict.items()):
+            if i != 0:
+                graph.add_edge(pydot.Edge("s_%s" % "".join(key), "s_%s" % "".join(value[0]), arrowhead="none", lhead="cluster_%s" % "".join(key)))
 
-        for i, (key, value) in enumerate(primalClansDict.items()):  # For each primal clan
-            if i != 0:  # If not the first primal clan in primalClansDict
-                if not callgraph.get_edge(pydot.Edge("s_%s" % "".join(key), "s_%s" % "".join(value[0]),
-                                                     arrowhead="none",
-                                                     lhead="cluster_%s" % "".join(key))):
-                    callgraph.add_edge(pydot.Edge("s_%s" % "".join(key), "s_%s" % "".join(value[0]),
-                                                  arrowhead="none",
-                                                  lhead="cluster_%s" % "".join(key)))  # Add primal clan
-                    # value as a edge
-
-        callgraph.write(structureName)  # Write a Dot file with all previous information
+        graph.write(structureName)  # Write a Dot file with all previous information
         print("A %s was created" % structureName)
 
     @staticmethod
@@ -155,12 +140,13 @@ class Structure:
         :rtype: dict, dict
         """
         clansList = Clan.clans(graph, graph.nodes())  # List of clans
+        trivialClansList = Clan.trivialClans(clansList, Graph.getMaxCardinalityFromGraph(graph))
         primalClansList = Clan.primalClans(clansList)  # List of primal clans
         EdgesAtributtes = Graph.getColorAttributesFromGraph(graph)  # Edges atributtes from graph
         primalClansDict = OrderedDict(reversed(sorted(Clan.primalClansDict(primalClansList).items(),
                                                       key=lambda t: len(t[0]))))  # Dictionary of primal clans
         # sorted in reverse mode by primal clans length
-        return EdgesAtributtes, primalClansDict
+        return EdgesAtributtes, primalClansDict, trivialClansList
 
     @staticmethod
     def frequentDecomposition(graph, moreFrequentSubsets):
@@ -175,12 +161,13 @@ class Structure:
         :rtype: dict, dict
         """
         clansList = Clan.frequentClans(graph, moreFrequentSubsets)  # List of more frequent clans
+        trivialClansList = Clan.trivialClans(clansList, Graph.getMaxCardinalityFromGraph(graph))
         primalClansList = Clan.primalClans(clansList)  # List of more frequent primal clans
         EdgesAtributtes = Graph.getColorAttributesFromGraph(graph)  # Edges atributtes from graph
         primalClansDict = OrderedDict(reversed(sorted(Clan.primalClansDict(primalClansList).items(),
                                                       key=lambda t: len(t[0]))))  # Dictionary of more frequent
         # primal clans sorted in reverse mode by primal clans length
-        return EdgesAtributtes, primalClansDict
+        return EdgesAtributtes, primalClansDict, trivialClansList
 
     @staticmethod
     def create2Structure(graph, filename):
@@ -193,8 +180,8 @@ class Structure:
         :type filename: str
         :return: A 2-structure
         """
-        EdgesAtributtes, primalClansDict = Structure.decomposition(graph)  # Graph decomposition
-        Structure.createGraphvizStructure(EdgesAtributtes, primalClansDict, filename)  # Create 2-structure
+        EdgesAtributtes, primalClansDict, trivialClansList = Structure.decomposition(graph)  # Graph decomposition
+        Structure.proves(EdgesAtributtes, primalClansDict, trivialClansList, filename)  # Create 2-structure
 
     @staticmethod
     def createFrequent2Structure(graph, filename, moreFrequentSubsets):
@@ -209,6 +196,5 @@ class Structure:
         :type moreFrequentSubsets: list
         :return: A 2-structure
         """
-        EdgesAtributtes, primalClansDict = Structure.frequentDecomposition(graph,
-                                                                           moreFrequentSubsets)  # Graph decomposition
-        Structure.createGraphvizStructure(EdgesAtributtes, primalClansDict, filename)  # Create 2-structure
+        EdgesAtributtes, primalClansDict, trivialClansList = Structure.frequentDecomposition(graph, moreFrequentSubsets)  # Graph decomposition
+        Structure.proves(EdgesAtributtes, primalClansDict, trivialClansList, filename)  # Create 2-structure

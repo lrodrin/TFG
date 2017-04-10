@@ -1,58 +1,40 @@
-digraph G {
+digraph Structure {
 compound=true;
 fontname=Verdana;
 fontsize=12;
-C [shape=circle];
-B [shape=circle];
-A [shape=circle];
-E [shape=circle];
-D [shape=circle];
-subgraph cluster_DCBAE {
-s_EDAB [label=" ", fixedsize=true, shape=point];
-s_C [label=" ", fixedsize=true, shape=point];
-subgraph  {
-rank=same;
-s_EDAB -> s_C  [arrowhead=none, color=black];
-}
-
-}
-
-subgraph cluster_EDAB {
-s_EDA [label=" ", fixedsize=true, shape=point];
-s_B [label=" ", fixedsize=true, shape=point];
-subgraph  {
-rank=same;
-s_EDA -> s_B  [arrowhead=none, color=red];
-}
-
-}
-
-subgraph cluster_EDA {
-s_ED [label=" ", fixedsize=true, shape=point];
-s_A [label=" ", fixedsize=true, shape=point];
-subgraph  {
-rank=same;
-s_ED -> s_A  [arrowhead=none, color=blue];
-}
-
-}
-
+rankdir=LR;
+node [shape=circle];
+A;
+B;
+D;
+E;
+C;
 subgraph cluster_ED {
-s_E [label=" ", fixedsize=true, shape=point];
-s_D [label=" ", fixedsize=true, shape=point];
-subgraph  {
-rank=same;
+node [shape=point];
 s_E -> s_D  [arrowhead=none, color=red];
 }
 
+subgraph cluster_EAD {
+node [shape=point];
+s_ED -> s_A  [arrowhead=none, color=blue];
 }
 
-s_C -> C  [arrowhead=none];
-s_B -> B  [arrowhead=none];
+subgraph cluster_EBAD {
+node [shape=point];
+s_EAD -> s_B  [arrowhead=none, color=red];
+}
+
+subgraph cluster_BCEDA {
+node [shape=point];
+s_EBAD -> s_C  [arrowhead=none, color=black];
+}
+
 s_A -> A  [arrowhead=none];
-s_E -> E  [arrowhead=none];
+s_B -> B  [arrowhead=none];
 s_D -> D  [arrowhead=none];
-s_EDAB -> s_EDA  [arrowhead=none, lhead=cluster_EDAB];
-s_EDA -> s_ED  [arrowhead=none, lhead=cluster_EDA];
+s_E -> E  [arrowhead=none];
+s_C -> C  [arrowhead=none];
+s_EBAD -> s_EAD  [arrowhead=none, lhead=cluster_EBAD];
+s_EAD -> s_ED  [arrowhead=none, lhead=cluster_EAD];
 s_ED -> s_E  [arrowhead=none, lhead=cluster_ED];
 }

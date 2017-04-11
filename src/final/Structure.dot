@@ -8,31 +8,31 @@ B;
 A;
 E;
 D;
-subgraph cluster_EBADC {
+subgraph cluster_EACDB {
 node [shape=point];
-s_BDAE -> s_C  [color=black, arrowhead=none];
+s_BEDA -> s_C  [color=black, arrowhead=none];
 }
 
-subgraph cluster_BDAE {
+subgraph cluster_BEDA {
 node [shape=point];
-s_DEA -> s_B  [color=red, arrowhead=none];
+s_EDA -> s_B  [color=red, arrowhead=none];
 }
 
-subgraph cluster_DEA {
+subgraph cluster_EDA {
 node [shape=point];
-s_DE -> s_A  [color=blue, arrowhead=none];
+s_ED -> s_A  [color=blue, arrowhead=none];
 }
 
-subgraph cluster_DE {
+subgraph cluster_ED {
 node [shape=point];
 s_E -> s_D  [color=red, arrowhead=none];
 }
 
-s_BDAE -> s_DEA  [lhead=cluster_BDAE, arrowhead=none];
+s_BEDA -> s_EDA  [lhead=cluster_BEDA, arrowhead=none];
 s_C -> C  [arrowhead=none];
-s_DEA -> s_DE  [lhead=cluster_DEA, arrowhead=none];
+s_EDA -> s_ED  [lhead=cluster_EDA, arrowhead=none];
 s_B -> B  [arrowhead=none];
-s_DE -> s_E  [lhead=cluster_DE, arrowhead=none];
+s_ED -> s_E  [lhead=cluster_ED, arrowhead=none];
 s_A -> A  [arrowhead=none];
 s_E -> E  [arrowhead=none];
 s_D -> D  [arrowhead=none];

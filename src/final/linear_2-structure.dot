@@ -9,7 +9,7 @@ c;
 e;
 d;
 a;
-subgraph cluster_bacxed {
+subgraph cluster_ceadbx {
 node [shape=point];
 s_ade -> s_x  [color=black, arrowhead=none];
 s_ade -> s_b  [color=black, arrowhead=none];

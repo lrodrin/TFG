@@ -31,102 +31,48 @@ class Structure:
         :type structureName: str
         :return: A 2-structure
         """
-        dot = pydot.Dot(graph_type="digraph", compound="true", fontname="Verdana", fontsize=12)
+        structure = pydot.Dot(graph_type="digraph", graph_name=structureName[:-4], compound="true", fontname="Verdana",
+                              fontsize=12)
+        structure.set_node_defaults(shape="circle")
 
-        # creating an external nodes
-        for value in primalClansDict.values():  # For each primal clan
-            for elem in value:
-                if len(elem) == 1:  # If len(primal clan) == 1
-                    if not dot.get_node("".join(elem)):  # Exclude the repetitive primal clans
-                        dot.add_node(pydot.Node("".join(elem), shape="circle"))  # Add primal clan value as a node
+        # Creating external nodes
+        for primals in primalClansDict.values():  # For each primal clan
+            for primal in primals:  # For each sub primal clan
+                if len(primal) == 1:  # If primal clan is a trivial clan
+                    # if not structure.get_node("".join(primal)):
+                    # Exclude the repetitive nodes
+                    structure.add_node(pydot.Node("".join(primal)))  # Add node to structure
 
-        # creating subgraphs
-        for key, value in primalClansDict.items():  # For each primal clan
-            cluster = pydot.Cluster("".join(key))  # Create a cluster
-            subgraph = pydot.Subgraph(rank="same")  # Create a subgraph into cluster
-            for elem in value:
-                if not cluster.get_node("s_%s" % "".join(elem)):  # Exclude the repetitive primal clans
-                    cluster.add_node(pydot.Node("s_%s" % "".join(elem), label=" ", fixedsize="true", shape="point"))  #
-                    #  Add primal clan as a node into cluster
-
-            for pair in itertools.combinations(value, 2):  # For each pair primal clan combinations
-                if not subgraph.get_edge("s_%s" % "".join(pair[0]),
-                                         "s_%s" % "".join(pair[1])):  # Exclude the repetitive primal clans
-                    subgraph.add_edge(pydot.Edge("s_%s" % "".join(pair[0]), "s_%s" % "".join(pair[1]), arrowhead="none",
-                                                 color=Clan.getColorClans(edgesAtributtes, pair[0], pair[1])))
-                    #  Add edge into subgraph
-            cluster.add_subgraph(subgraph)  # Add subgraph to cluster
-            dot.add_subgraph(cluster)  # Add cluster
-
-        # creating edge links for nodes and subgraphs
-        for value in primalClansDict.values():  # For each primal clan
-            for elem in value:
-                if len(elem) == 1:  # If len(primal clan) == 1
-                    if not dot.get_node(
-                            pydot.Edge("s_%s" % "".join(elem))):  # Exclude the repetitive primal clans
-                        dot.add_edge(
-                            pydot.Edge("s_%s" % "".join(elem), "".join(elem), arrowhead="none"))  # Add primal clan
-                        # value as a edge
-
-        for i, (key, value) in enumerate(primalClansDict.items()):  # For each primal clan
-            if i != 0:  # If not the first primal clan in primalClansDict
-                if not dot.get_edge(pydot.Edge("s_%s" % "".join(key), "s_%s" % "".join(value[0]),
-                                               arrowhead="none",
-                                               lhead="cluster_%s" % "".join(key))):
-                    dot.add_edge(pydot.Edge("s_%s" % "".join(key), "s_%s" % "".join(value[0]),
-                                            arrowhead="none",
-                                            lhead="cluster_%s" % "".join(key)))  # Add primal clan
-                    # value as a edge
-
-        dot.write(structureName)  # Write a Dot file with all previous information
-        print("A %s was created" % structureName)
-
-    @staticmethod
-    def proves(edgesAtributtes, primalClansDict, trivialClansList, structureName):
-        """
-        Create a 2-structure from a dictionary of primal clans specified by primalClansDict
-
-        :param edgesAtributtes: Edges atributtes from a graph
-        :param primalClansDict: Dictionary of primal clans
-        :param structureName: Dot file name
-        :type edgesAtributtes: dict
-        :type primalClansDict: dict
-        :type structureName: str
-        :return: A 2-structure
-        """
-        graph = pydot.Dot(graph_type="digraph", graph_name=structureName[:-4], compound="true", fontname="Verdana",
-                          fontsize=12, rankdir="LR")
-        graph.set_node_defaults(shape="circle")
-
-        # Creating nodes
-        for trivialClan in trivialClansList[:-1]:
-            graph.add_node(pydot.Node("".join(trivialClan)))  # Add primal clan value as a node
-
-        # Creating cluster
-        for key, value in reversed(primalClansDict.items()):  # For each primal clan and subprimal clans
+        # Creating clusters
+        for key, values in primalClansDict.items():  # For each primal clan and their sub primal clans
             cluster = pydot.Cluster("".join(key))  # Create a cluster
             cluster.set_node_defaults(shape="point")
-            # Creating internal cluster edges
-            for subPrimal in itertools.combinations(value, 2):  # For each subprimal clan
-                if not cluster.get_edge("s_%s" % "".join(subPrimal[0]),
-                                        "s_%s" % "".join(subPrimal[1])):  # If not exists subPrimal
-                    cluster.add_edge(
-                        pydot.Edge("s_%s" % "".join(subPrimal[0]), "s_%s" % "".join(subPrimal[1]), arrowhead="none",
-                                   color=Clan.getColorClans(edgesAtributtes, subPrimal[0], subPrimal[1])))
-            graph.add_subgraph(cluster)  # Add cluster to graph
 
-        # Creating graph edges
-        for node in graph.get_node_list()[1:]:
-            elem = pydot.Node.get_name(node)
-            graph.add_edge(pydot.Edge("s_%s" % elem, elem, arrowhead="none"))
+            # Creating edges inside the cluster
+            for primalClan1, primalClan2 in itertools.combinations(values, 2):
+                edge = pydot.Edge("s_%s" % "".join(primalClan1), "s_%s" % "".join(primalClan2),
+                                  color=Clan.getColorClans(edgesAtributtes, primalClan1, primalClan2), arrowhead="none")
 
-        # Creating external cluster edges
-        # TODO fer-ho amb pydot
-        for i, (key, value) in enumerate(primalClansDict.items()):
-            if i != 0:
-                graph.add_edge(pydot.Edge("s_%s" % "".join(key), "s_%s" % "".join(value[0]), arrowhead="none", lhead="cluster_%s" % "".join(key)))
+                if not cluster.get_edge(edge):  # If edge not exists
+                    cluster.add_edge(edge)  # Add edge to cluster
 
-        graph.write(structureName)  # Write a Dot file with all previous information
+            structure.add_subgraph(cluster)  # Add cluster to structure
+
+        # Creating external edges
+        for values in primalClansDict.values():  # For each sub primal clans
+            for primal in values:   # For each sub primal clan
+                u = "s_%s" % "".join(primal)
+                if primalClansDict.get(frozenset(primal)):  # If primal exists as a key in primalClansDict
+                    v = "s_%s" % "".join(primalClansDict.get(frozenset(primal))[0])
+                    edge = pydot.Edge(u, v, lhead="cluster%s" % "".join(u[1:]), arrowhead="none")
+
+                else:   # If primal not exists as a key in primalClansDict
+                    v = "".join(primal)
+                    edge = pydot.Edge(u, v, arrowhead="none")
+
+                structure.add_edge(edge)    # Add edge to structure
+
+        structure.write(structureName)  # Write a Dot file with all previous information
         print("A %s was created" % structureName)
 
     @staticmethod
@@ -140,13 +86,12 @@ class Structure:
         :rtype: dict, dict
         """
         clansList = Clan.clans(graph, graph.nodes())  # List of clans
-        trivialClansList = Clan.trivialClans(clansList, Graph.getMaxCardinalityFromGraph(graph))
         primalClansList = Clan.primalClans(clansList)  # List of primal clans
         EdgesAtributtes = Graph.getColorAttributesFromGraph(graph)  # Edges atributtes from graph
         primalClansDict = OrderedDict(reversed(sorted(Clan.primalClansDict(primalClansList).items(),
                                                       key=lambda t: len(t[0]))))  # Dictionary of primal clans
         # sorted in reverse mode by primal clans length
-        return EdgesAtributtes, primalClansDict, trivialClansList
+        return EdgesAtributtes, primalClansDict
 
     @staticmethod
     def frequentDecomposition(graph, moreFrequentSubsets):
@@ -161,13 +106,12 @@ class Structure:
         :rtype: dict, dict
         """
         clansList = Clan.frequentClans(graph, moreFrequentSubsets)  # List of more frequent clans
-        trivialClansList = Clan.trivialClans(clansList, Graph.getMaxCardinalityFromGraph(graph))
         primalClansList = Clan.primalClans(clansList)  # List of more frequent primal clans
         EdgesAtributtes = Graph.getColorAttributesFromGraph(graph)  # Edges atributtes from graph
         primalClansDict = OrderedDict(reversed(sorted(Clan.primalClansDict(primalClansList).items(),
                                                       key=lambda t: len(t[0]))))  # Dictionary of more frequent
         # primal clans sorted in reverse mode by primal clans length
-        return EdgesAtributtes, primalClansDict, trivialClansList
+        return EdgesAtributtes, primalClansDict
 
     @staticmethod
     def create2Structure(graph, filename):
@@ -180,8 +124,8 @@ class Structure:
         :type filename: str
         :return: A 2-structure
         """
-        EdgesAtributtes, primalClansDict, trivialClansList = Structure.decomposition(graph)  # Graph decomposition
-        Structure.proves(EdgesAtributtes, primalClansDict, trivialClansList, filename)  # Create 2-structure
+        EdgesAtributtes, primalClansDict = Structure.decomposition(graph)  # Graph decomposition
+        Structure.createGraphvizStructure(EdgesAtributtes, primalClansDict, filename)  # Create 2-structure
 
     @staticmethod
     def createFrequent2Structure(graph, filename, moreFrequentSubsets):
@@ -196,5 +140,6 @@ class Structure:
         :type moreFrequentSubsets: list
         :return: A 2-structure
         """
-        EdgesAtributtes, primalClansDict, trivialClansList = Structure.frequentDecomposition(graph, moreFrequentSubsets)  # Graph decomposition
-        Structure.proves(EdgesAtributtes, primalClansDict, trivialClansList, filename)  # Create 2-structure
+        EdgesAtributtes, primalClansDict = Structure.frequentDecomposition(graph, moreFrequentSubsets)
+        # Graph decomposition
+        Structure.createGraphvizStructure(EdgesAtributtes, primalClansDict, filename)  # Create 2-structure

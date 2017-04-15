@@ -1,23 +1,19 @@
-strict graph "" {
-D;
-F;
+strict digraph "" {
 A;
-E;
 B;
 C;
-D -- A  [color=black];
-D -- E  [color=orange];
-D -- C  [color=red];
-D -- B  [color=black];
-D -- F  [color=blue];
-F -- A  [color=green];
-F -- B  [color=green];
-F -- E  [color=red];
-F -- C  [color=blue];
-A -- E  [color=black];
-A -- B  [color=black];
-A -- C  [color=black];
-E -- C  [color=orange];
-E -- B  [color=black];
-B -- C  [color=black];
+D;
+E;
+F;
+H;
+G;
+A -> B;
+A -> C;
+B -> H;
+B -> G;
+B -> F;
+C -> G;
+D -> B;
+E -> C;
+E -> F;
 }

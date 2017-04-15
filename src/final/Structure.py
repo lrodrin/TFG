@@ -32,7 +32,7 @@ class Structure:
         :return: A 2-structure
         """
         structure = pydot.Dot(graph_type="digraph", graph_name=structureName[:-4], compound="true", fontname="Verdana",
-                              fontsize=12)
+                              fontsize=12, rankdir="LR")
         structure.set_node_defaults(shape="circle")
 
         # Creating external nodes

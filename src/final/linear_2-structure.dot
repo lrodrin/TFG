@@ -2,6 +2,7 @@ digraph "linear_2-structure" {
 compound=true;
 fontname=Verdana;
 fontsize=12;
+rankdir=LR;
 node [shape=circle];
 x;
 b;
@@ -9,24 +10,24 @@ c;
 e;
 d;
 a;
-subgraph cluster_ceadbx {
+subgraph cluster_xcabde {
 node [shape=point];
-s_ade -> s_x  [color=black, arrowhead=none];
-s_ade -> s_b  [color=black, arrowhead=none];
-s_ade -> s_c  [color=black, arrowhead=none];
+s_dae -> s_x  [color=black, arrowhead=none];
+s_dae -> s_b  [color=black, arrowhead=none];
+s_dae -> s_c  [color=black, arrowhead=none];
 s_x -> s_b  [color=black, arrowhead=none];
 s_x -> s_c  [color=black, arrowhead=none];
 s_b -> s_c  [color=black, arrowhead=none];
 }
 
-subgraph cluster_ade {
+subgraph cluster_dae {
 node [shape=point];
 s_e -> s_d  [color=cyan, arrowhead=none];
 s_e -> s_a  [color=cyan, arrowhead=none];
 s_d -> s_a  [color=cyan, arrowhead=none];
 }
 
-s_ade -> s_e  [lhead=cluster_ade, arrowhead=none];
+s_dae -> s_e  [lhead=cluster_dae, arrowhead=none];
 s_x -> x  [arrowhead=none];
 s_b -> b  [arrowhead=none];
 s_c -> c  [arrowhead=none];

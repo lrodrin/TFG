@@ -2,18 +2,19 @@ digraph Structure {
 compound=true;
 fontname=Verdana;
 fontsize=12;
+rankdir=LR;
 node [shape=circle];
 C;
 B;
 A;
 E;
 D;
-subgraph cluster_EACDB {
+subgraph cluster_BEACD {
 node [shape=point];
-s_BEDA -> s_C  [color=black, arrowhead=none];
+s_EBDA -> s_C  [color=black, arrowhead=none];
 }
 
-subgraph cluster_BEDA {
+subgraph cluster_EBDA {
 node [shape=point];
 s_EDA -> s_B  [color=red, arrowhead=none];
 }
@@ -28,7 +29,7 @@ node [shape=point];
 s_E -> s_D  [color=red, arrowhead=none];
 }
 
-s_BEDA -> s_EDA  [lhead=cluster_BEDA, arrowhead=none];
+s_EBDA -> s_EDA  [lhead=cluster_EBDA, arrowhead=none];
 s_C -> C  [arrowhead=none];
 s_EDA -> s_ED  [lhead=cluster_EDA, arrowhead=none];
 s_B -> B  [arrowhead=none];

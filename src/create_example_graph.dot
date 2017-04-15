@@ -1,4 +1,4 @@
-strict digraph "" {
+strict graph "" {
 A;
 B;
 C;
@@ -7,13 +7,13 @@ E;
 F;
 H;
 G;
-A -> B;
-A -> C;
-B -> H;
-B -> G;
-B -> F;
-C -> G;
-D -> B;
-E -> C;
-E -> F;
+A -- B  [label=3];
+A -- C  [label=3];
+B -- D  [label=4];
+B -- H  [label=0];
+B -- G  [label=1];
+B -- F  [label=8];
+C -- E  [label=5];
+C -- G  [label=2];
+E -- F  [label=1];
 }

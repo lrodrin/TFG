@@ -60,17 +60,17 @@ class Structure:
 
         # Creating external edges
         for values in primalClansDict.values():  # For each sub primal clans
-            for primal in values:   # For each sub primal clan
+            for primal in values:  # For each sub primal clan
                 u = "s_%s" % "".join(primal)
                 if primalClansDict.get(frozenset(primal)):  # If primal exists as a key in primalClansDict
                     v = "s_%s" % "".join(primalClansDict.get(frozenset(primal))[0])
                     edge = pydot.Edge(u, v, lhead="cluster%s" % "".join(u[1:]), arrowhead="none")
 
-                else:   # If primal not exists as a key in primalClansDict
+                else:  # If primal not exists as a key in primalClansDict
                     v = "".join(primal)
                     edge = pydot.Edge(u, v, arrowhead="none")
 
-                structure.add_edge(edge)    # Add edge to structure
+                structure.add_edge(edge)  # Add edge to structure
 
         structure.write(structureName)  # Write a Dot file with all previous information
         print("A %s was created" % structureName)

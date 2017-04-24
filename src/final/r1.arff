@@ -1,0 +1,7 @@
+@relation r1
+@attribute col_1 int
+@attribute col_2 int
+@attribute col_3 int
+@data
+a,b,c
+d,b,c

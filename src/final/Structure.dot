@@ -9,7 +9,7 @@ B;
 A;
 E;
 D;
-subgraph cluster_EADBC {
+subgraph cluster_DABEC {
 rank=same;
 node [shape=point];
 s_DEBA -> s_C  [color=black, arrowhead=none];

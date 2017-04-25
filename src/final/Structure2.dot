@@ -2,7 +2,7 @@ digraph Structure2 {
 compound=true;
 fontname=Verdana;
 fontsize=12;
-rankdir=LR;
+newrank=true;
 node [shape=circle];
 F;
 E;
@@ -10,7 +10,7 @@ B;
 A;
 D;
 C;
-subgraph cluster_FBEACD {
+subgraph cluster_FEADBC {
 node [shape=point];
 s_DC -> s_BA  [color=black, arrowhead=none];
 s_DC -> s_F  [color=blue, arrowhead=none];
@@ -21,11 +21,13 @@ s_F -> s_E  [color=red, arrowhead=none];
 }
 
 subgraph cluster_BA {
+rank=same;
 node [shape=point];
 s_B -> s_A  [color=black, arrowhead=none];
 }
 
 subgraph cluster_DC {
+rank=same;
 node [shape=point];
 s_D -> s_C  [color=red, arrowhead=none];
 }

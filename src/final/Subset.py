@@ -60,10 +60,10 @@ class Subset:
                 os.system("./apriori -s{0} -C'@%' {1} {2}".format(str(support), str(dataFile.replace("\n", "")),
                                                                   str(newFilename.replace("\n", ""))))
 
-        file = Data.openFile(newFilename.replace("\n", ""))  # Open AP data file
+        f = Data.openFile(newFilename.replace("\n", ""))  # Open AP data file
         subset = set()
         moreFrequentSubsets = list()
-        for line in file.readlines():  # For each line in AP data file
+        for line in f.readlines():  # For each line in AP data file
             for word in line.split(" "):  # For each word in line
                 if not word.startswith("("):
                     subset.add(word)  # Add word as a subset

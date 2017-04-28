@@ -51,6 +51,6 @@ def simpleGraph_2():
 
 if __name__ == '__main__':
     simpleGraph_1 = simpleGraph_1()
-    nx.nx_pydot.write_dot(simpleGraph_1, 'simpleGraph 1.dot')
+    nx.nx_pydot.write_dot(simpleGraph_1, 'simpleGraph1_graph.dot')
     simpleGraph_2 = simpleGraph_2()
-    nx.nx_pydot.write_dot(simpleGraph_2, 'simpleGraph 2.dot')
+    nx.nx_pydot.write_dot(simpleGraph_2, 'simpleGraph2_graph.dot')

@@ -15,11 +15,11 @@ __license__ = 'MIT'
 if __name__ == '__main__':
     # Simple graphs
     graph = simpleGraph_1()  # Create a simple graph
-    structureName = 'Structure.dot'
+    structureName = 'simpleGraph1_structure.dot'
     Structure.create2Structure(graph, structureName)  # Create a 2-structure from graph
     Interface.openGraphviz(structureName)
 
     graph = simpleGraph_2()  # Create a simple graph
-    structureName = 'Structure2.dot'
+    structureName = 'simpleGraph2_structure.dot'
     Structure.create2Structure(graph, structureName)  # Create a 2-structure from graph
     Interface.openGraphviz(structureName)

@@ -14,11 +14,11 @@ __license__ = 'MIT'
 
 if __name__ == '__main__':
     graph = simpleGraph_1()  # Create a simple graph
-    graphName = "simpleGraph1.dot"
+    graphName = "simpleGraph1_graph.dot"
     Graph.exportGraph(graph, graphName)  # Export graph to DOT format
     Interface.openGraphviz(graphName)  # Open graph in Graphviz program
 
     graph = simpleGraph_2()  # Create a simple graph
-    graphName = "simpleGraph2.dot"
+    graphName = "simpleGraph2_graph.dot"
     Graph.exportGraph(graph, graphName)  # Export graph to DOT format
     Interface.openGraphviz(graphName)  # Open graph in Graphviz program

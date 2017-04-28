@@ -24,10 +24,6 @@ if __name__ == "__main__":
                         "with threshold\n [3] = linear\n [4] = exponential\n"))
     graph, graphName = Interface.graphOptions(optionStructure, initGraph, rows)  # Create a type of graph
 
-    support = float(six.moves.input("Please enter the probability for the more frequent subsets creation:\n"))
-    moreFrequentSubsets = Subset.moreFrequentSubsets(tableName.strip("\n"), optionData,
-                                                     support)  # The more frequents subsets
-
     structureName = Interface.structureOptions(optionStructure, graph, None)  # Create 2-structure from graph
     Interface.openGraphviz(graphName)
     Interface.openGraphviz(structureName)

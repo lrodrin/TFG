@@ -46,6 +46,7 @@ class Subset:
         """
         # Create if not exists and open AP data file
         newFilename = dataFile + ".ap"
+        print(sys.platform)
         if not os.path.exists(newFilename):  # If not exists a AP filename
             if option == 1:  # If data file input have the arff type
                 dataFile += ".arff"
@@ -59,6 +60,7 @@ class Subset:
             elif sys.platform == 'linux2':  # Linux platform
                 os.system("./apriori -s{0} -C'@%' {1} {2}".format(str(support), str(dataFile.replace("\n", "")),
                                                                   str(newFilename.replace("\n", ""))))
+            # elif sys.platform == 'darwin': # Mac platform
 
         print(newFilename)
         filename = (Data.openFile(newFilename.replace("\n", "")))  # Open AP data file

@@ -15,11 +15,11 @@ __license__ = 'MIT'
 
 if __name__ == "__main__":
     graph = simpleGraph_1()  # Create a simple graph
-    graphName = "Simple graph 1"
+    graphName = "simpleGraph1"
     print(graphName + "\n" + len(graphName) * "-")
     Clan.printResults(graph)
 
     graph = simpleGraph_2()  # Create a simple graph
-    graphName = "Simple graph 2"
+    graphName = "simpleGraph2"
     print("\n" + graphName + "\n" + len(graphName) * "-")
     Clan.printResults(graph)

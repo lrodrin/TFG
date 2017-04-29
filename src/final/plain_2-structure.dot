@@ -4,35 +4,4 @@ fontname=Verdana;
 fontsize=12;
 newrank=true;
 node [shape=circle];
-c;
-h;
-b;
-g;
-e;
-f;
-subgraph cluster_fhegbc {
-node [shape=point];
-s_c -> s_h  [color=black, arrowhead=none];
-s_c -> s_b  [color=black, arrowhead=none];
-s_c -> s_g  [color=black, arrowhead=none];
-s_c -> s_e  [color=black, arrowhead=none];
-s_c -> s_f  [color=black, arrowhead=none];
-s_h -> s_b  [color=black, arrowhead=none];
-s_h -> s_g  [color=black, arrowhead=none];
-s_h -> s_e  [color=black, arrowhead=none];
-s_h -> s_f  [color=black, arrowhead=none];
-s_b -> s_g  [color=black, arrowhead=none];
-s_b -> s_e  [color=black, arrowhead=none];
-s_b -> s_f  [color=black, arrowhead=none];
-s_g -> s_e  [color=black, arrowhead=none];
-s_g -> s_f  [color=black, arrowhead=none];
-s_e -> s_f  [color=black, arrowhead=none];
-}
-
-s_c -> c  [arrowhead=none];
-s_h -> h  [arrowhead=none];
-s_b -> b  [arrowhead=none];
-s_g -> g  [arrowhead=none];
-s_e -> e  [arrowhead=none];
-s_f -> f  [arrowhead=none];
 }

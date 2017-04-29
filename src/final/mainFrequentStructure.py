@@ -14,28 +14,21 @@ __license__ = 'MIT'
 
 if __name__ == "__main__":
     optionData = int(six.moves.input("Please enter the option for the type of file you provide:\n [1] = ARFF\n [2] = "
-                                     "TXT\n [3] = DB\n"))
+                                     "TXT\n"))
 
     columnNames, rows, cursor, tableName = Interface.inputFileOptions(optionData)  # Manages the data entry
-    print("input")
     initGraph, rows = Graph.initGraph(tableName, cursor)  # Initialize the graph
-    print("init graph")
 
     optionStructure = int(
         six.moves.input("Please enter the option of 2-structure you want to create:\n [1] = plain\n [2] = plain "
                         "with threshold\n [3] = linear\n [4] = exponential\n"))
     graph, graphName = Interface.graphOptions(optionStructure, initGraph, rows)  # Create a type of graph
 
-    print("graph")
-
     support = float(six.moves.input("Please enter the probability for the more frequent subsets creation:\n"))
     moreFrequentSubsets = Subset.moreFrequentSubsets(tableName.strip("\n"), optionData,
                                                      support)  # The more frequents subsets
 
-    print("subsets")
     structureName = Interface.structureOptions(optionStructure, graph,
                                                moreFrequentSubsets)  # Create 2-structure from graph
 
-    print("2-structure")
     Interface.openGraphviz(structureName)
-    print("system call")

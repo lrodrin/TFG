@@ -46,7 +46,6 @@ class Subset:
         """
         # Create if not exists and open AP data file
         newFilename = dataFile + ".ap"
-        print(sys.platform)
         if not os.path.exists(newFilename):  # If not exists a AP filename
             if option == 1:  # If data file input have the arff type
                 dataFile += ".arff"

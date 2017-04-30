@@ -9,7 +9,7 @@ B;
 A;
 E;
 D;
-subgraph cluster_CBDEA {
+subgraph cluster_CDABE {
 rank=same;
 node [shape=point];
 s_BDEA -> s_C  [color=black, arrowhead=none];
@@ -24,10 +24,10 @@ s_DEA -> s_B  [color=red, arrowhead=none];
 subgraph cluster_DEA {
 rank=same;
 node [shape=point];
-s_DE -> s_A  [color=blue, arrowhead=none];
+s_ED -> s_A  [color=blue, arrowhead=none];
 }
 
-subgraph cluster_DE {
+subgraph cluster_ED {
 rank=same;
 node [shape=point];
 s_E -> s_D  [color=red, arrowhead=none];
@@ -35,9 +35,9 @@ s_E -> s_D  [color=red, arrowhead=none];
 
 s_BDEA -> s_DEA  [lhead=cluster_BDEA, arrowhead=none];
 s_C -> C  [arrowhead=none];
-s_DEA -> s_DE  [lhead=cluster_DEA, arrowhead=none];
+s_DEA -> s_ED  [lhead=cluster_DEA, arrowhead=none];
 s_B -> B  [arrowhead=none];
-s_DE -> s_E  [lhead=cluster_DE, arrowhead=none];
+s_ED -> s_E  [lhead=cluster_ED, arrowhead=none];
 s_A -> A  [arrowhead=none];
 s_E -> E  [arrowhead=none];
 s_D -> D  [arrowhead=none];

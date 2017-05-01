@@ -10,7 +10,7 @@ B;
 A;
 D;
 C;
-subgraph cluster_FCDABE {
+subgraph cluster_CABEDF {
 node [shape=point];
 s_CD -> s_BA  [color=black, arrowhead=none];
 s_CD -> s_F  [color=blue, arrowhead=none];

@@ -1,9 +1,9 @@
 @relation simple3
 @attribute A { a, m, c }
-@attribute B { b, x, c }
+@attribute B { b, f, c }
 @attribute C { d, m, c }
 @attribute D { e, m, c }
 @data
 a,b,d,e
-a,x,d,e
+a,f,d,e
 c,c,c,c

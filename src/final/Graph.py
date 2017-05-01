@@ -51,7 +51,8 @@ class Graph:
         """
         for i in range(0, len(columnNames)):  # For each column from a SQLite table
             for row in rows:  # For each row from a SQLite table
-                graph.add_node(row[i])  # Add node to graph
+                if not graph.add_node(row[i]):  # If not exists node(row[i])
+                    graph.add_node(row[i])  # Add node to graph
 
     @staticmethod
     def getColorAttributesFromGraph(graph):

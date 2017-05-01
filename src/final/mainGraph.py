@@ -19,6 +19,9 @@ if __name__ == '__main__':
     columnNames, rows, cursor, tableName = Interface.inputFileOptions(optionData)  # Manages the data entry
     initGraph, rows = Graph.initGraph(tableName, cursor)  # Initialize a graph
 
+    Graph.exportGraph(initGraph, "initGraph.dot")
+    Interface.openGraphviz("initGraph.dot")
+
     optionGraph = int(
         six.moves.input("Please enter the option of graph you want to create:\n [1] = plain\n [2] = plain "
                         "with threshold\n [3] = linear\n [4] = exponential\n"))

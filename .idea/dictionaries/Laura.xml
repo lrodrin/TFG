@@ -2,6 +2,9 @@
   <dictionary name="Laura">
     <words>
       <w>apriori</w>
+      <w>fontname</w>
+      <w>graphname</w>
+      <w>newrank</w>
       <w>xdot</w>
     </words>
   </dictionary>

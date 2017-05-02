@@ -31,7 +31,7 @@ class Structure:
         :type structureName: str
         :return: A 2-structure
         """
-        structure = pydot.Dot(graph_type="digraph", graph_name=structureName[:-4], compound="true", fontname="Verdana",
+        structure = pydot.Dot(strict=True, graph_type="digraph", graph_name=structureName[:-4], compound="true", fontname="Verdana",
                               fontsize=12, newrank="true")
         structure.set_node_defaults(shape="circle")
 

@@ -4,4 +4,35 @@ fontname=Verdana;
 fontsize=12;
 newrank=true;
 node [shape=circle];
+e;
+d;
+f;
+b;
+c;
+a;
+subgraph cluster_faebdc {
+node [shape=point];
+s_e -> s_d  [color=black, arrowhead=none];
+s_e -> s_f  [color=black, arrowhead=none];
+s_e -> s_b  [color=black, arrowhead=none];
+s_e -> s_c  [color=black, arrowhead=none];
+s_e -> s_a  [color=black, arrowhead=none];
+s_d -> s_f  [color=black, arrowhead=none];
+s_d -> s_b  [color=black, arrowhead=none];
+s_d -> s_c  [color=black, arrowhead=none];
+s_d -> s_a  [color=black, arrowhead=none];
+s_f -> s_b  [color=black, arrowhead=none];
+s_f -> s_c  [color=black, arrowhead=none];
+s_f -> s_a  [color=black, arrowhead=none];
+s_b -> s_c  [color=black, arrowhead=none];
+s_b -> s_a  [color=black, arrowhead=none];
+s_c -> s_a  [color=black, arrowhead=none];
+}
+
+s_e -> e  [arrowhead=none];
+s_d -> d  [arrowhead=none];
+s_f -> f  [arrowhead=none];
+s_b -> b  [arrowhead=none];
+s_c -> c  [arrowhead=none];
+s_a -> a  [arrowhead=none];
 }

@@ -92,7 +92,7 @@ class Graph:
         numberOfEquivalences = dict()
         for row in rows:  # For each row in rows
             for (u, v) in itertools.combinations(row, 2):  # For each pair (u, v) in row
-                if u != v:
+                if u != v:  # u and v have different values
                     if (u, v) in numberOfEquivalences.keys():  # If exists edge (u, v) in a numberOfEquivalences
                         numberOfEquivalences[(u, v)] = numberOfEquivalences.get((u, v)) + 1  # Count one to
                         # numberOfEquivalences

@@ -192,9 +192,7 @@ class Graph:
         # painting edges by label
         for (u, v), label in labels.items():  # For each edge and label attribute from labels
             if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph
-                if 0 <= label < 1:
-                    graph.add_edge(u, v, color='black', style='dashed')  # Edge painted black and style is dashed
-                elif 1 <= label < 2:
+                if 1 <= label < 2:
                     graph.add_edge(u, v, color='black', style='solid')  # Edge painted black and style is dashed
                 elif 2 <= label < 4:
                     graph.add_edge(u, v, color='cyan', style='solid')  # Edge painted cyan and style is dashed
@@ -205,13 +203,15 @@ class Graph:
                 elif 16 <= label < 32:
                     graph.add_edge(u, v, color='orange', style='solid')  # Edge painted orange and style is dashed
                 elif 32 <= label < 64:
-                    graph.add_edge(u, v, color='purple', style='solid')  # Edge painted purple and style is dashed
+                    graph.add_edge(u, v, color='blue', style='solid')  # Edge painted purple and style is dashed
                 elif 64 <= label < 128:
                     graph.add_edge(u, v, color='red', style='solid')  # Edge painted red and style is dashed
                 elif 128 <= label < 256:
                     graph.add_edge(u, v, color='yellow', style='solid')  # Edge painted yellow and style is dashed
-                else:
+                elif 512 <= label < 1024:
                     graph.add_edge(u, v, color='brown', style='solid')  # Edge painted brown and style is dashed
+                else:
+                    graph.add_edge(u, v, color='grey', style='solid')  # Edge painted grey and style is dashed
 
         return graph
 

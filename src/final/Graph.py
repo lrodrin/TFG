@@ -118,7 +118,7 @@ class Graph:
 
         for (u, v), label in labels.items():  # For each label edge attribute in labels
             if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph
-                if label > 0:  # If label is more bigger than  0
+                if label > 0:  # If label is bigger than 0
                     graph.add_edge(u, v, color='black', style='solid')  # Edge painted black and style is not dashed
 
         return graph

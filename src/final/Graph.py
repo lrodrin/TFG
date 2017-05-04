@@ -170,7 +170,7 @@ class Graph:
                 if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph
                     if 'label' in graph[u][v] and label == graph[u][v]['label']:  # If edge have label attribute and
                         # the label equivalence in potentialColors are the same
-                        if graph[u][v]['label'] > 0:
+                        if graph[u][v]['label'] > 0:    # If the number of equivalences are greater than 0
                             graph.add_edge(u, v, color=color, style='solid')  # Edge painted with potentialColor and
                             # style is not dashed
 

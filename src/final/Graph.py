@@ -208,9 +208,9 @@ class Graph:
                     graph.add_edge(u, v, color='red', style='solid')  # Edge painted red and style is dashed
                 elif 128 <= label < 256:
                     graph.add_edge(u, v, color='yellow', style='solid')  # Edge painted yellow and style is dashed
-                elif 512 <= label < 1024:
+                elif 256 <= label < 512:
                     graph.add_edge(u, v, color='brown', style='solid')  # Edge painted brown and style is dashed
-                elif 2048 <= label < 4096:
+                elif 512 <= label < 1024:
                     graph.add_edge(u, v, color='grey', style='solid')  # Edge painted grey and style is dashed
 
         return graph

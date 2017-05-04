@@ -192,7 +192,7 @@ class Graph:
         # painting edges by label
         for (u, v), label in labels.items():  # For each edge and label attribute from labels
             if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph
-                if 1 <= label < 2:
+                if label == 1:
                     graph.add_edge(u, v, color='black', style='solid')  # Edge painted black and style is dashed
                 elif 2 <= label < 4:
                     graph.add_edge(u, v, color='cyan', style='solid')  # Edge painted cyan and style is dashed

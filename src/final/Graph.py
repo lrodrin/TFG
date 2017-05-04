@@ -113,9 +113,12 @@ class Graph:
         :return: A plain graph
         :rtype: nx.Graph
         """
-        for row in rows:  # For each row in rows
-            for (u, v) in itertools.combinations(row, 2):  # For each pair (u, v) in row
-                if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph
+        Graph.labelEdges(graph, rows)  # labeling edges
+        labels = Graph.getLabelAttributesFromGraph(graph)  # Labels from graph
+
+        for (u, v), label in labels.items():  # For each label edge attribute in labels
+            if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph
+                if label > 0:  # If label is more bigger than  0
                     graph.add_edge(u, v, color='black', style='solid')  # Edge painted black and style is not dashed
 
         return graph

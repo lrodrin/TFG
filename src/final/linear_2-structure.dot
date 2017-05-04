@@ -10,24 +10,24 @@ c;
 e;
 d;
 a;
-subgraph cluster_facedb {
+subgraph cluster_bfaced {
 node [shape=point];
-s_ead -> s_f  [color=black, arrowhead=none];
-s_ead -> s_b  [color=black, arrowhead=none];
-s_ead -> s_c  [color=black, arrowhead=none];
+s_ade -> s_f  [color=black, arrowhead=none];
+s_ade -> s_b  [color=black, arrowhead=none];
+s_ade -> s_c  [color=black, arrowhead=none];
 s_f -> s_b  [color=black, arrowhead=none];
 s_f -> s_c  [color=black, arrowhead=none];
 s_b -> s_c  [color=black, arrowhead=none];
 }
 
-subgraph cluster_ead {
+subgraph cluster_ade {
 node [shape=point];
 s_e -> s_d  [color=cyan, arrowhead=none];
 s_e -> s_a  [color=cyan, arrowhead=none];
 s_d -> s_a  [color=cyan, arrowhead=none];
 }
 
-s_ead -> s_e  [lhead=cluster_ead, arrowhead=none];
+s_ade -> s_e  [lhead=cluster_ade, arrowhead=none];
 s_f -> f  [arrowhead=none];
 s_b -> b  [arrowhead=none];
 s_c -> c  [arrowhead=none];

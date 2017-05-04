@@ -161,9 +161,8 @@ class Graph:
         :rtype: nx.Graph
         """
         Graph.labelEdges(graph, rows)  # labeling edges
-        potentialColors = {0: 'black', 1: 'black', 2: 'cyan', 3: 'green', 4: 'magenta', 5: 'orange', 6: 'purple',
-                           7: 'red',
-                           8: 'yellow', 9: 'brown'}  # Potential label and colours for edges
+        potentialColors = {1: 'black', 2: 'cyan', 3: 'green', 4: 'magenta', 5: 'orange', 6: 'blue',
+                           7: 'red', 8: 'yellow', 9: 'brown', 10: 'grey'}  # Potential label and colours for edges
 
         # Painting edges by label
         for label, color in potentialColors.items():  # For each label and color edge attributes in potentialColors
@@ -171,10 +170,7 @@ class Graph:
                 if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph
                     if 'label' in graph[u][v] and label == graph[u][v]['label']:  # If edge have label attribute and
                         # the label equivalence in potentialColors are the same
-                        if graph[u][v]['label'] == 0:
-                            graph.add_edge(u, v, color=color, style='dashed')  # Edge painted with potentialColor and
-                            # style is dashed
-                        else:
+                        if graph[u][v]['label'] > 0:
                             graph.add_edge(u, v, color=color, style='solid')  # Edge painted with potentialColor and
                             # style is not dashed
 

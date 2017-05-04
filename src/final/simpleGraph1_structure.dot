@@ -1,4 +1,4 @@
-digraph simpleGraph1_structure {
+strict digraph simpleGraph1_structure {
 compound=true;
 fontname=Verdana;
 fontsize=12;
@@ -9,35 +9,35 @@ B;
 A;
 E;
 D;
-subgraph cluster_CABED {
+subgraph cluster_DACBE {
 rank=same;
 node [shape=point];
-s_EDBA -> s_C  [color=black, arrowhead=none];
+s_DEAB -> s_C  [color=black, arrowhead=none];
 }
 
-subgraph cluster_EDBA {
+subgraph cluster_DEAB {
 rank=same;
 node [shape=point];
-s_EDA -> s_B  [color=red, arrowhead=none];
+s_DEA -> s_B  [color=red, arrowhead=none];
 }
 
-subgraph cluster_EDA {
+subgraph cluster_DEA {
 rank=same;
 node [shape=point];
-s_ED -> s_A  [color=blue, arrowhead=none];
+s_DE -> s_A  [color=blue, arrowhead=none];
 }
 
-subgraph cluster_ED {
+subgraph cluster_DE {
 rank=same;
 node [shape=point];
 s_E -> s_D  [color=red, arrowhead=none];
 }
 
-s_EDBA -> s_EDA  [lhead=cluster_EDBA, arrowhead=none];
+s_DEAB -> s_DEA  [lhead=cluster_DEAB, arrowhead=none];
 s_C -> C  [arrowhead=none];
-s_EDA -> s_ED  [lhead=cluster_EDA, arrowhead=none];
+s_DEA -> s_DE  [lhead=cluster_DEA, arrowhead=none];
 s_B -> B  [arrowhead=none];
-s_ED -> s_E  [lhead=cluster_ED, arrowhead=none];
+s_DE -> s_E  [lhead=cluster_DE, arrowhead=none];
 s_A -> A  [arrowhead=none];
 s_E -> E  [arrowhead=none];
 s_D -> D  [arrowhead=none];

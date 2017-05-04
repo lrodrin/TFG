@@ -203,7 +203,7 @@ class Graph:
                 elif 16 <= label < 32:
                     graph.add_edge(u, v, color='orange', style='solid')  # Edge painted orange and style is dashed
                 elif 32 <= label < 64:
-                    graph.add_edge(u, v, color='blue', style='solid')  # Edge painted purple and style is dashed
+                    graph.add_edge(u, v, color='blue', style='solid')  # Edge painted blue and style is dashed
                 elif 64 <= label < 128:
                     graph.add_edge(u, v, color='red', style='solid')  # Edge painted red and style is dashed
                 elif 128 <= label < 256:

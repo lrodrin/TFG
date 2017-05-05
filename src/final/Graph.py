@@ -28,7 +28,7 @@ class Graph:
         :return: A graph
         :rtype: nx.Graph
         """
-        graph = nx.Graph()
+        graph = nx.Graph()  # Create an empty graph with no nodes and no edges
         columnNames, rows = Data.selectData(tableName, cursor)  # Select data from tableName
         Graph.addNodes(graph, columnNames, rows)  # Adding nodes to graph
         for (u, v) in itertools.combinations(graph.nodes(), 2):  # For the initialization all the edges from graph are
@@ -81,9 +81,9 @@ class Graph:
         return graphDict
 
     @staticmethod
-    def labelEdges(graph, rows):
+    def labeledEdges(graph, rows):
         """
-        Count the number of equivalences and label the edges from graph with the number of equivalences
+        Count the number of equivalences and label the edges from graph with the total number of equivalences
 
         :param graph: Networkx's graph
         :param rows: Rows from a SQLite table
@@ -91,14 +91,14 @@ class Graph:
         """
         numberOfEquivalences = dict()
         for row in rows:  # For each row in rows
-            for (u, v) in itertools.combinations(row, 2):  # For each pair (u, v) in row
-                if u != v:  # u and v have different values
+            for (u, v) in itertools.combinations(row, 2):  # For each pair (u, v) in the row
+                if u != v:  # If u and v have different values
                     if (u, v) in numberOfEquivalences.keys():  # If exists edge (u, v) in a numberOfEquivalences
-                        numberOfEquivalences[(u, v)] = numberOfEquivalences.get((u, v)) + 1  # Count one to
-                        # numberOfEquivalences
-                        graph.edge[u][v]['label'] += 1  # Add the number of equivalences into edge label from graph
+                        numberOfEquivalences[(u, v)] = numberOfEquivalences.get(
+                            (u, v)) + 1  # Increases the number of equivalences
+                        graph.edge[u][v]['label'] += 1  # Add the number of equivalences into label edge from graph
 
-                    else:  # If not exists edge (u, v) in numberOfEquivalences, count one
+                    else:  # If not exists edge (u, v) in numberOfEquivalences
                         numberOfEquivalences[(u, v)] = 1
                         graph.add_edge(u, v, label=1)
 
@@ -113,13 +113,14 @@ class Graph:
         :return: A plain graph
         :rtype: nx.Graph
         """
-        Graph.labelEdges(graph, rows)  # labeling edges
-        labels = Graph.getLabelAttributesFromGraph(graph)  # Labels from graph
+        Graph.labeledEdges(graph, rows)  # Labeling edges from graph
+        labels = Graph.getLabelAttributesFromGraph(graph)  # Edge labels from graph
 
-        for (u, v), label in labels.items():  # For each label edge attribute in labels
-            if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph
-                if label > 0:  # If label is bigger than 0
-                    graph.add_edge(u, v, color='black', style='solid')  # Edge painted black and style is not dashed
+        for (u, v), label in labels.items():  # For each edge and label attribute in labels
+            if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph and u and v have different values
+                if label > 0:  # If label attribute from edge(u, v) is bigger than 0
+                    graph.add_edge(u, v, color='black', style='solid')  # Edge painted black and line style is not
+                    # dashed
 
         return graph
 
@@ -136,16 +137,16 @@ class Graph:
         :return: A plain graph with threshold
         :rtype: nx.Graph
         """
-        Graph.labelEdges(graph, rows)  # labeling edges
-        labels = Graph.getLabelAttributesFromGraph(graph)  # Labels from graph
+        Graph.labeledEdges(graph, rows)  # Labeling edges from graph
+        labels = Graph.getLabelAttributesFromGraph(graph)  # Edge labels from graph
 
-        # Painting edges by label
-        for (u, v), label in labels.items():  # For each label edge attribute in labels
-            if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph
-                if label < k:  # If label is smaller than k constant
-                    graph.add_edge(u, v, color='black', style='dashed')  # Edge painted black and style is dashed
-                elif label >= k:  # If label is equal or greater than k constant
-                    graph.add_edge(u, v, color='black', style='solid')  # Edge painted black and style is not dashed
+        for (u, v), label in labels.items():  # For each edge and label attribute in labels
+            if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph and u and v have different values
+                if label < k:  # If label attribute from edge(u, v) is smaller than k constant
+                    graph.add_edge(u, v, color='black', style='dashed')  # Edge painted black and line style is dashed
+                elif label >= k:  # If label attribute from edge(u, v) is equal or greater than k constant
+                    graph.add_edge(u, v, color='black',
+                                   style='solid')  # Edge painted black and line style is not dashed
 
         return graph
 
@@ -160,18 +161,18 @@ class Graph:
         :return: A linear graph
         :rtype: nx.Graph
         """
-        Graph.labelEdges(graph, rows)  # labeling edges
+        Graph.labeledEdges(graph, rows)  # Labeling edges from graph
         potentialColors = {1: 'black', 2: 'cyan', 3: 'green', 4: 'magenta', 5: 'orange', 6: 'blue',
-                           7: 'red', 8: 'yellow', 9: 'brown', 10: 'grey'}  # Potential label and colours for edges
+                           7: 'red', 8: 'yellow', 9: 'brown', 10: 'grey'}  # Potential colours for equivalence classes
 
-        # Painting edges by label
         for label, color in potentialColors.items():  # For each label and color edge attributes in potentialColors
             for (u, v) in graph.edges():  # For each edge from graph
-                if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph
-                    if 'label' in graph[u][v] and label == graph[u][v]['label']:  # If edge have label attribute and
-                        # the label equivalence in potentialColors are the same
-                        if graph[u][v]['label'] > 0:    # If the number of equivalences are greater than 0
-                            graph.add_edge(u, v, color=color, style='solid')  # Edge painted with potentialColor and
+                if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph and u and v have different values
+                    if 'label' in graph[u][v] and label == graph[u][v]['label']:  # If edge have the label attribute and
+                        # the number of equivalences in potentialColors are the same
+                        if graph[u][v]['label'] > 0:  # If the number of equivalences is greater than 0
+                            graph.add_edge(u, v, color=color,
+                                           style='solid')  # Edge painted with a color from potentialColor and line
                             # style is not dashed
 
         return graph
@@ -187,33 +188,33 @@ class Graph:
         :return: An exponential graph
         :rtype: nx.Graph
         """
-        graph = Graph.createLinearGraph(linearGraph, rows)  # Create a linear graph
-        labels = Graph.getLabelAttributesFromGraph(graph)  # Labels from graph
-        # painting edges by label
-        for (u, v), label in labels.items():  # For each edge and label attribute from labels
-            if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph
-                if label == 1:
-                    graph.add_edge(u, v, color='black', style='solid')  # Edge painted black and style is dashed
-                elif 2 <= label < 4:
-                    graph.add_edge(u, v, color='cyan', style='solid')  # Edge painted cyan and style is dashed
-                elif 4 <= label < 8:
-                    graph.add_edge(u, v, color='green', style='solid')  # Edge painted green and style is dashed
-                elif 8 <= label < 16:
-                    graph.add_edge(u, v, color='magenta', style='solid')  # Edge painted magenta and style is dashed
-                elif 16 <= label < 32:
-                    graph.add_edge(u, v, color='orange', style='solid')  # Edge painted orange and style is dashed
-                elif 32 <= label < 64:
-                    graph.add_edge(u, v, color='blue', style='solid')  # Edge painted blue and style is dashed
-                elif 64 <= label < 128:
-                    graph.add_edge(u, v, color='red', style='solid')  # Edge painted red and style is dashed
-                elif 128 <= label < 256:
-                    graph.add_edge(u, v, color='yellow', style='solid')  # Edge painted yellow and style is dashed
-                elif 256 <= label < 512:
-                    graph.add_edge(u, v, color='brown', style='solid')  # Edge painted brown and style is dashed
-                elif 512 <= label < 1024:
-                    graph.add_edge(u, v, color='grey', style='solid')  # Edge painted grey and style is dashed
+        newGraph = Graph.createLinearGraph(linearGraph, rows)  # Create a new graph from linearGraph
+        labels = Graph.getLabelAttributesFromGraph(newGraph)  # Edge labels from newGraph
 
-        return graph
+        for (u, v), label in labels.items():  # For each edge and label attribute in labels
+            if newGraph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph and u and v have different values
+                if label == 1:  # Equivalence class of 1
+                    newGraph.add_edge(u, v, color='black', style='solid')  # Edge painted black and style is dashed
+                elif 2 <= label < 4:  # Equivalence classes of (2-3)
+                    newGraph.add_edge(u, v, color='cyan', style='solid')  # Edge painted cyan and style is dashed
+                elif 4 <= label < 8:  # Equivalence classes of (4-7)
+                    newGraph.add_edge(u, v, color='green', style='solid')  # Edge painted green and style is dashed
+                elif 8 <= label < 16:  # Equivalence classes of (8-15)
+                    newGraph.add_edge(u, v, color='magenta', style='solid')  # Edge painted magenta and style is dashed
+                elif 16 <= label < 32:  # Equivalence classes of (16-31)
+                    newGraph.add_edge(u, v, color='orange', style='solid')  # Edge painted orange and style is dashed
+                elif 32 <= label < 64:  # Equivalence classes of (32-63)
+                    newGraph.add_edge(u, v, color='blue', style='solid')  # Edge painted blue and style is dashed
+                elif 64 <= label < 128:  # Equivalence classes of (64-127)
+                    newGraph.add_edge(u, v, color='red', style='solid')  # Edge painted red and style is dashed
+                elif 128 <= label < 256:  # Equivalence classes of (128-255)
+                    newGraph.add_edge(u, v, color='yellow', style='solid')  # Edge painted yellow and style is dashed
+                elif 256 <= label < 512:  # Equivalence classes of (256-511)
+                    newGraph.add_edge(u, v, color='brown', style='solid')  # Edge painted brown and style is dashed
+                elif 512 <= label < 1024:  # Equivalence classes of (512-1023)
+                    newGraph.add_edge(u, v, color='grey', style='solid')  # Edge painted grey and style is dashed
+
+        return newGraph
 
     @staticmethod
     def getMaxCardinalityFromGraph(graph):

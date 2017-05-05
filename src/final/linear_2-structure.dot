@@ -10,7 +10,7 @@ c;
 e;
 d;
 a;
-subgraph cluster_bfaced {
+subgraph cluster_cbadfe {
 node [shape=point];
 s_ade -> s_f  [color=black, arrowhead=none];
 s_ade -> s_b  [color=black, arrowhead=none];

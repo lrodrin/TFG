@@ -16,7 +16,7 @@ hot;
 rainy;
 overcast;
 sunny;
-subgraph cluster_coolmildsunnyovercastyesnormalrainyhotFALSETRUEhighno {
+subgraph cluster_TRUEcoolmildrainynoovercasthotnormalsunnyFALSEyeshigh {
 node [shape=point];
 s_yes -> s_no  [color=black, arrowhead=none];
 s_yes -> s_TRUE  [color=black, arrowhead=none];

@@ -25,7 +25,7 @@ if __name__ == '__main__':
     graph, graphName = Interface.graphOptions(optionStructure, initGraph, rows)  # Create a type of graph
 
     if optionData == 1 or optionData == 2:
-        frequentClans = str(input("Want to work with the most frequent clans?\nyes/no\n"))
+        frequentClans = str(input("Want to work with the more frequent clans?\nyes/no\n"))
 
         if frequentClans == "yes":
             support = float(six.moves.input("Please enter the probability for the more frequent subsets creation:\n"))

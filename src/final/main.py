@@ -19,8 +19,8 @@ if __name__ == '__main__':
     initGraph, rows = Graph.initGraph(tableName, cursor)  # Initialize the graph
 
     optionStructure = int(six.moves.input(
-            "Please enter the option of 2-structure you want to create:\n [1] = plain\n [2] = plain "
-            "with threshold\n [3] = linear\n [4] = exponential\n"))
+        "Please enter the option of 2-structure you want to create:\n [1] = plain\n [2] = plain "
+        "with threshold\n [3] = linear\n [4] = exponential\n"))
 
     graph, graphName = Interface.graphOptions(optionStructure, initGraph, rows)  # Create a type of graph
 

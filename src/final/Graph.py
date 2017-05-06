@@ -7,7 +7,6 @@ Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
 import itertools
-
 import networkx as nx
 
 from src.final.Data import *

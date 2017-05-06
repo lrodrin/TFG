@@ -7,6 +7,7 @@ Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
 import os
+
 import sys
 from itertools import chain, combinations
 
@@ -59,7 +60,7 @@ class Subset:
             elif sys.platform == 'linux2':  # Linux platform
                 os.system("./apriori -s{0} -C'@%' {1} {2}".format(str(support), str(dataFile.replace("\n", "")),
                                                                   str(newFilename.replace("\n", ""))))
-            # elif sys.platform == 'darwin': # Mac platform
+                # elif sys.platform == 'darwin': # Mac platform
 
         print(newFilename)
         filename = (Data.openFile(newFilename.replace("\n", "")))  # Open AP data file

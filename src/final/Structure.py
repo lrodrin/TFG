@@ -31,7 +31,8 @@ class Structure:
         :type structureName: str
         :return: A 2-structure
         """
-        structure = pydot.Dot(strict=True, graph_type="digraph", graph_name=structureName[:-4], compound="true", fontname="Verdana",
+        structure = pydot.Dot(strict=True, graph_type="digraph", graph_name=structureName[:-4], compound="true",
+                              fontname="Verdana",
                               fontsize=12, newrank="true")
         structure.set_node_defaults(shape="circle")
 
@@ -45,7 +46,7 @@ class Structure:
 
         # Creating clusters
         for key, values in primalClansDict.items():  # For each primal clan and their sub primal clans
-            if len(values) == 2:   # Primitive structure
+            if len(values) == 2:  # Primitive structure
                 cluster = pydot.Cluster("".join(key), rank="same")  # Create a cluster
             else:
                 cluster = pydot.Cluster("".join(key))  # Create a cluster

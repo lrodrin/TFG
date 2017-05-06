@@ -15,7 +15,7 @@ __license__ = 'MIT'
 
 if __name__ == "__main__":
     # G = nx.Graph()  # Undirected graph
-    G = nx.DiGraph()    # Directed graph
+    G = nx.DiGraph()  # Directed graph
     G.add_edges_from(
         [('A', 'B'), ('A', 'C'), ('D', 'B'), ('E', 'C'), ('E', 'F'),
          ('B', 'H'), ('B', 'G'), ('B', 'F'), ('C', 'G')])

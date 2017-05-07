@@ -4,34 +4,14 @@ fontname=Verdana;
 fontsize=12;
 newrank=true;
 node [shape=circle];
-g;
-e;
-f;
-h;
-c;
-b;
-subgraph cluster_eg {
+250;
+perkin_elmer;
+subgraph cluster_250perkin_elmer {
 rank=same;
 node [shape=point];
-s_g -> s_e  [color=black, arrowhead=none];
+s_250 -> s_perkin_elmer  [color, arrowhead=none];
 }
 
-subgraph cluster_hf {
-rank=same;
-node [shape=point];
-s_f -> s_h  [color=black, arrowhead=none];
-}
-
-subgraph cluster_cb {
-rank=same;
-node [shape=point];
-s_c -> s_b  [color=cyan, arrowhead=none];
-}
-
-s_g -> g  [arrowhead=none];
-s_e -> e  [arrowhead=none];
-s_f -> f  [arrowhead=none];
-s_h -> h  [arrowhead=none];
-s_c -> c  [arrowhead=none];
-s_b -> b  [arrowhead=none];
+s_250 -> 250  [arrowhead=none];
+s_perkin_elmer -> perkin_elmer  [arrowhead=none];
 }

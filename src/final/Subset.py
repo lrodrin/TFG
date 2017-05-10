@@ -9,6 +9,7 @@ Distributed under MIT license
 import os
 
 import sys
+from heapq import merge
 from itertools import chain, combinations
 
 from src.final.Data import *
@@ -75,15 +76,21 @@ class Subset:
                 except OSError as e:
                     print("Error to execute the apriori's algorithm in Mac platform:", e)
 
-        print(newFilename)
         filename = (Data.openFile(newFilename.replace("\n", "")))  # Open AP data file
         subset = set()
+        allElements = set()
         moreFrequentSubsets = list()
+        allElementsList = list()
         for line in filename.readlines():  # For each line in AP data file
             for word in line.split(" "):  # For each word in line
                 if not word.startswith("("):
                     subset.add(word)  # Add word as a subset
-            moreFrequentSubsets.append(frozenset(subset))  # Add new subset to the list moreFrequentSubsets
+                    for elem in word.split(" "):
+                        if word not in allElements:
+                            allElements.add(elem)
+            moreFrequentSubsets.append(subset)  # Add new subset to the list moreFrequentSubsets
             subset = set()
 
-        return moreFrequentSubsets
+        allElementsList.append(allElements)
+        result = list(merge(moreFrequentSubsets, allElementsList))
+        return result

@@ -4,22 +4,4 @@ fontname=Verdana;
 fontsize=12;
 newrank=true;
 node [shape=circle];
-c;
-d;
-b;
-a;
-subgraph cluster_cbad {
-node [shape=point];
-s_c -> s_d  [color=black, arrowhead=none];
-s_c -> s_b  [color=black, arrowhead=none];
-s_c -> s_a  [color=black, arrowhead=none];
-s_d -> s_b  [color=black, arrowhead=none];
-s_d -> s_a  [color=black, arrowhead=none];
-s_b -> s_a  [color=black, arrowhead=none];
-}
-
-s_c -> c  [arrowhead=none];
-s_d -> d  [arrowhead=none];
-s_b -> b  [arrowhead=none];
-s_a -> a  [arrowhead=none];
 }

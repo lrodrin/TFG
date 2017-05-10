@@ -165,7 +165,7 @@ class Interface:
             except OSError as e:
                 print("Error to open Graphviz program in Mac platform:", e)
 
-        elif sys.platform == 'linux2':  # Linux platform
+        elif 'linux' in sys.platform:  # Linux platform
             try:
                 image = filename[0:-4] + ".png"
                 os.system("dot -Tpng %s -o %s | feh %s" % (filename, image, image))

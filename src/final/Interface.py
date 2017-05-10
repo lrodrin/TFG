@@ -168,7 +168,6 @@ class Interface:
         elif sys.platform == 'linux2':  # Linux platform
             try:
                 image = filename[0:-4] + ".png"
-                print(image)
-                # subprocess.call("dot -Tpng %s -o %s | eog %s" % (filename, image, image))
+                os.system("dot -Tpng %s -o %s | eog %s" % (filename, image, image))
             except OSError as e:
                 print("Error to open Graphviz program in Linux platform:", e)

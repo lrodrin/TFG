@@ -160,4 +160,4 @@ class Interface:
             subprocess.call(['open', '-a', 'Graphviz.app', filename])
 
         elif sys.platform == 'linux2':  # Linux platform
-            os.system("xdot %s" % filename)
+            subprocess.call(['xdot', filename], shell=True)

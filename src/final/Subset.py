@@ -55,14 +55,25 @@ class Subset:
 
             # System calls to apriori's algorithm who's create the AP data file
             if sys.platform == 'win32':  # Windows platform
-                os.system("apriori.exe -s{0} -C'@%' {1} {2}".format(str(support), str(dataFile.replace("\n", "")),
-                                                                    str(newFilename.replace("\n", ""))))
+                try:
+                    os.system("apriori.exe -s{0} -C'@%' {1} {2}".format(str(support), str(dataFile.replace("\n", "")),
+                                                                        str(newFilename.replace("\n", ""))))
+                except OSError as e:
+                    print("Error to execute the apriori's algorithm in Windows platform:", e)
+
             elif sys.platform == 'linux2':  # Linux platform
-                os.system("./apriori -s{0} -C'@%' {1} {2}".format(str(support), str(dataFile.replace("\n", "")),
+                try:
+                    os.system("./apriori -s{0} -C'@%' {1} {2}".format(str(support), str(dataFile.replace("\n", "")),
                                                                   str(newFilename.replace("\n", ""))))
+                except OSError as e:
+                    print("Error to execute the apriori's algorithm in Linux platform:", e)
+
             elif sys.platform == 'darwin':  # Mac platform
-                os.system("./aprioriOSX -s{0} -C'@%' {1} {2}".format(str(support), str(dataFile.replace("\n", "")),
-                                                                   str(newFilename.replace("\n", ""))))
+                try:
+                    os.system("./aprioriOSX -s{0} -C'@%' {1} {2}".format(str(support), str(dataFile.replace("\n", "")),
+                                                                     str(newFilename.replace("\n", ""))))
+                except OSError as e:
+                    print("Error to execute the apriori's algorithm in Mac platform:", e)
 
         print(newFilename)
         filename = (Data.openFile(newFilename.replace("\n", "")))  # Open AP data file

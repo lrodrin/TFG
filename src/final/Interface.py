@@ -154,10 +154,19 @@ class Interface:
         :type filename: str
         """
         if sys.platform == 'win32':  # Windows platform
-            os.startfile(filename)
+            try:
+                os.startfile(filename)
+            except OSError as e:
+                print("Error to open Graphviz program in Windows platform:", e)
 
         elif sys.platform == 'darwin':  # Mac platform
-            subprocess.call(['open', '-a', 'Graphviz.app', filename])
+            try:
+                subprocess.call(['open', '-a', 'Graphviz.app', filename])
+            except OSError as e:
+                print("Error to open Graphviz program in Mac platform:", e)
 
         elif sys.platform == 'linux2':  # Linux platform
-            subprocess.call(['xdot', filename], shell=True)
+            try:
+                subprocess.call(['xdot', filename], shell=True)
+            except OSError as e:
+                print("Error to open Graphviz program in Linux platform:", e)

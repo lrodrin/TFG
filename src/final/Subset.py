@@ -84,10 +84,16 @@ class Subset:
         for line in filename.readlines():  # For each line in AP data file
             for word in line.split(" "):  # For each word in line
                 if not word.startswith("("):
-                    subset.add(word)  # Add word as a subset
+                    if ':' in word:
+                        subset.add(word.split(":")[1])
+                    else:
+                        subset.add(word)  # Add word as a subset
                     for elem in word.split(" "):
                         if word not in allElements:
-                            allElements.add(elem)
+                            if ':' in word:
+                                allElements.add(elem.split(":")[1])
+                            else:
+                                allElements.add(elem)
             moreFrequentSubsets.append(subset)  # Add new subset to the list moreFrequentSubsets
             subset = set()
 

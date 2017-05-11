@@ -15,5 +15,5 @@ __license__ = 'MIT'
 if __name__ == '__main__':
     arpFile = str(six.moves.input("Please enter a filename:\n"))
     graph = Graph.initFrequentGraph(arpFile + ".ap")
-    Graph.exportGraph(graph, "frequentGraph.dot")
-    Interface.openGraphviz("frequentGraph.dot")
+    Graph.exportGraph(graph, "arpFile.dot")
+    Interface.openGraphviz("arpFile.dot")

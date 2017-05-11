@@ -72,9 +72,10 @@ class Clan:
         :return: List of more frequent clans
         :rtype: list
         """
+        print(moreFrequentSubsets)
         clansList = list()
         for subset in moreFrequentSubsets:  # For each subset in more frequent subsets
-            if Clan.isClan(graph, subset):  # If subset is a clan
+            if Clan.isClan(graph, set(subset)):  # If subset is a clan
                 clansList.append(subset)  # Add subset to the clans list
 
         return sorted(clansList)

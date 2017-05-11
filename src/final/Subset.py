@@ -7,9 +7,7 @@ Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
 import os
-
 import sys
-from heapq import merge
 from itertools import chain, combinations
 
 from src.final.Data import *
@@ -48,33 +46,34 @@ class Subset:
         """
         # Create if not exists and open AP data file
         newFilename = dataFile + ".ap"
-        if not os.path.exists(newFilename):  # If not exists a AP filename
-            if option == 1:  # If data file input have the arff type
-                dataFile += ".arff"
-            elif option == 2:  # If data file input have the txt type
-                dataFile += ".txt"
+        if option == 1:  # If data file input have the arff type
+            dataFile += ".arff"
+        elif option == 2:  # If data file input have the txt type
+            dataFile += ".txt"
 
-            # System calls to apriori's algorithm who's create the AP data file
-            if sys.platform == 'win32':  # Windows platform
-                try:
-                    os.system("apriori.exe -s{0} -C'@%' {1} {2}".format(str(support), str(dataFile.replace("\n", "")),
-                                                                        str(newFilename.replace("\n", ""))))
-                except OSError as e:
-                    print("Error to execute the apriori's algorithm in Windows platform:", e)
+        # System calls to apriori's algorithm who's create the AP data file
+        if sys.platform == 'win32':  # Windows platform
+            try:
+                os.system("apriori.exe -s{0} -C'@%' {1} {2}".format(str(support), str(dataFile.replace("\n", "")),
+                                                                    str(newFilename.replace("\n", ""))))
+                print("apriori.exe -s{0} -C'@%' {1} {2}".format(str(support), str(dataFile.replace("\n", "")),
+                                                                    str(newFilename.replace("\n", ""))))
+            except OSError as e:
+                print("Error to execute the apriori's algorithm in Windows platform:", e)
 
-            elif sys.platform == 'linux2':  # Linux platform
-                try:
-                    os.system("./apriori -s{0} -C'@%' {1} {2}".format(str(support), str(dataFile.replace("\n", "")),
+        elif sys.platform == 'linux2':  # Linux platform
+            try:
+                os.system("./apriori -s{0} -C'@%' {1} {2}".format(str(support), str(dataFile.replace("\n", "")),
                                                                   str(newFilename.replace("\n", ""))))
-                except OSError as e:
-                    print("Error to execute the apriori's algorithm in Linux platform:", e)
+            except OSError as e:
+                print("Error to execute the apriori's algorithm in Linux platform:", e)
 
-            elif sys.platform == 'darwin':  # Mac platform
-                try:
-                    os.system("./aprioriOSX -s{0} -C'@%' {1} {2}".format(str(support), str(dataFile.replace("\n", "")),
+        elif sys.platform == 'darwin':  # Mac platform
+            try:
+                os.system("./aprioriOSX -s{0} -C'@%' {1} {2}".format(str(support), str(dataFile.replace("\n", "")),
                                                                      str(newFilename.replace("\n", ""))))
-                except OSError as e:
-                    print("Error to execute the apriori's algorithm in Mac platform:", e)
+            except OSError as e:
+                print("Error to execute the apriori's algorithm in Mac platform:", e)
 
         filename = (Data.openFile(newFilename.replace("\n", "")))  # Open AP data file
         subset = set()
@@ -98,5 +97,5 @@ class Subset:
             subset = set()
 
         allElementsList.append(allElements)
-        result = list(merge(moreFrequentSubsets, allElementsList))
+        result = moreFrequentSubsets + allElementsList
         return result

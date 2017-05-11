@@ -91,11 +91,9 @@ class Clan:
         :return: List of trivial clans
         :rtype: list
         """
-        print(cardinality)
         trivialClansList = list()
         for clan in clansList:
             if len(clan) == 1 or cardinality == len(clan):  # If clan is a trivial clan
-                print(len(clan))
                 trivialClansList.append(clan)
 
         return sorted(trivialClansList)

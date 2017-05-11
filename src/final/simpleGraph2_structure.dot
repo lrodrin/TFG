@@ -10,17 +10,17 @@ B;
 A;
 D;
 C;
-subgraph cluster_DFACBE {
+subgraph cluster_AEBFDC {
 node [shape=point];
-s_DC -> s_AB  [color=black, arrowhead=none];
+s_DC -> s_BA  [color=black, arrowhead=none];
 s_DC -> s_F  [color=blue, arrowhead=none];
 s_DC -> s_E  [color=green, arrowhead=none];
-s_AB -> s_F  [color=orange, arrowhead=none];
-s_AB -> s_E  [color=black, arrowhead=none];
+s_BA -> s_F  [color=orange, arrowhead=none];
+s_BA -> s_E  [color=black, arrowhead=none];
 s_F -> s_E  [color=red, arrowhead=none];
 }
 
-subgraph cluster_AB {
+subgraph cluster_BA {
 rank=same;
 node [shape=point];
 s_B -> s_A  [color=black, arrowhead=none];
@@ -33,7 +33,7 @@ s_D -> s_C  [color=red, arrowhead=none];
 }
 
 s_DC -> s_D  [lhead=cluster_DC, arrowhead=none];
-s_AB -> s_B  [lhead=cluster_AB, arrowhead=none];
+s_BA -> s_B  [lhead=cluster_BA, arrowhead=none];
 s_F -> F  [arrowhead=none];
 s_E -> E  [arrowhead=none];
 s_B -> B  [arrowhead=none];

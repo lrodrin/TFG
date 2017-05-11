@@ -40,6 +40,7 @@
           <option value="networkx.nxgraphviz_layout" />
           <option value="os.startfile" />
           <option value="six.__init__.moves" />
+          <option value="moreFrequentSubsets" />
         </list>
       </option>
     </inspection_tool>

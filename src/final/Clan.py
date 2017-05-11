@@ -72,6 +72,7 @@ class Clan:
         :return: List of more frequent clans
         :rtype: list
         """
+        print("frequentClan que fas")
         print(moreFrequentSubsets)
         clansList = list()
         for subset in moreFrequentSubsets:  # For each subset in more frequent subsets

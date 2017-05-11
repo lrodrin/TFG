@@ -4,4 +4,55 @@ fontname=Verdana;
 fontsize=12;
 newrank=true;
 node [shape=circle];
+a;
+d;
+g;
+e;
+f;
+h;
+c;
+b;
+subgraph cluster_ghbdface {
+node [shape=point];
+s_bc -> s_fh  [color=black, arrowhead=none];
+s_bc -> s_eg  [color=black, arrowhead=none];
+s_bc -> s_a  [color=black, arrowhead=none];
+s_bc -> s_d  [color=black, arrowhead=none];
+s_fh -> s_eg  [color=black, arrowhead=none];
+s_fh -> s_a  [color=black, arrowhead=none];
+s_fh -> s_d  [color=black, arrowhead=none];
+s_eg -> s_a  [color=black, arrowhead=none];
+s_eg -> s_d  [color=black, arrowhead=none];
+s_a -> s_d  [color=black, arrowhead=none];
+}
+
+subgraph cluster_eg {
+rank=same;
+node [shape=point];
+s_g -> s_e  [color=black, arrowhead=none];
+}
+
+subgraph cluster_fh {
+rank=same;
+node [shape=point];
+s_f -> s_h  [color=black, arrowhead=none];
+}
+
+subgraph cluster_bc {
+rank=same;
+node [shape=point];
+s_c -> s_b  [color=cyan, arrowhead=none];
+}
+
+s_bc -> s_c  [lhead=cluster_bc, arrowhead=none];
+s_fh -> s_f  [lhead=cluster_fh, arrowhead=none];
+s_eg -> s_g  [lhead=cluster_eg, arrowhead=none];
+s_a -> a  [arrowhead=none];
+s_d -> d  [arrowhead=none];
+s_g -> g  [arrowhead=none];
+s_e -> e  [arrowhead=none];
+s_f -> f  [arrowhead=none];
+s_h -> h  [arrowhead=none];
+s_c -> c  [arrowhead=none];
+s_b -> b  [arrowhead=none];
 }

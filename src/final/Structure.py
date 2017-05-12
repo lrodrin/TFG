@@ -110,7 +110,7 @@ class Structure:
         :return: The edges atributtes from graph and primal clans ordered
         :rtype: dict, dict
         """
-        clansList = Clan.frequentClans(graph, moreFrequentSubsets)  # List of more frequent clans
+        clansList = Clan.frequentClans(moreFrequentSubsets)  # List of more frequent clans
         primalClansList = Clan.primalClans(clansList)  # List of more frequent primal clans
         EdgesAtributtes = Graph.getColorAttributesFromGraph(graph)  # Edges atributtes from graph
         primalClansDict = OrderedDict(reversed(sorted(Clan.primalClansDict(primalClansList).items(),

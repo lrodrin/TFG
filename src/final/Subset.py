@@ -44,8 +44,7 @@ class Subset:
         :return: The more frequent subsets
         :rtype: list
         """
-        # Create if not exists and open AP data file
-        newFilename = dataFile + ".ap"
+        newFilename = dataFile + ".ap"  # Name for new AP file
         if option == 1:  # If data file input have the arff type
             dataFile += ".arff"
         elif option == 2:  # If data file input have the txt type
@@ -56,8 +55,7 @@ class Subset:
             try:
                 os.system("apriori.exe -s{0} -C'@%' {1} {2}".format(str(support), str(dataFile.replace("\n", "")),
                                                                     str(newFilename.replace("\n", ""))))
-                print("apriori.exe -s{0} -C'@%' {1} {2}".format(str(support), str(dataFile.replace("\n", "")),
-                                                                    str(newFilename.replace("\n", ""))))
+
             except OSError as e:
                 print("Error to execute the apriori's algorithm in Windows platform:", e)
 
@@ -83,19 +81,22 @@ class Subset:
         for line in filename.readlines():  # For each line in AP data file
             for word in line.split(" "):  # For each word in line
                 if not word.startswith("("):
-                    if ':' in word:
+                    if ':' in word:  # txt filter
                         subset.add(word.split(":")[1])
                     else:
                         subset.add(word)  # Add word as a subset
                     for elem in word.split(" "):
                         if word not in allElements:
-                            if ':' in word:
+                            if ':' in word: # txt filter
                                 allElements.add(elem.split(":")[1])
                             else:
                                 allElements.add(elem)
+
             moreFrequentSubsets.append(subset)  # Add new subset to the list moreFrequentSubsets
             subset = set()
 
+        filename.close()
         allElementsList.append(allElements)
-        result = moreFrequentSubsets + allElementsList
-        return result
+        l = moreFrequentSubsets + allElementsList   # List concatenation from two lists
+
+        return l

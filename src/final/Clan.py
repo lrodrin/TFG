@@ -61,23 +61,21 @@ class Clan:
         return sorted(clansList)
 
     @staticmethod
-    def frequentClans(graph, moreFrequentSubsets):
+    def frequentClans(moreFrequentSubsets):
         """
         Return a list of more frequent clans from graph sorted by clan's length
 
-        :param graph: Networkx's graph
         :param moreFrequentSubsets: More frequents nodes from graph
-        :type graph: nx.Graph
         :type moreFrequentSubsets: list
         :return: List of more frequent clans
         :rtype: list
         """
         clansList = list()
-        for subset in range(0, len(moreFrequentSubsets)-1):  # For each subset in more frequent subsets
-            if Clan.isClan(graph, set(moreFrequentSubsets[subset])):  # If subset is a clan
-                clansList.append(moreFrequentSubsets[subset])  # Add subset to the clans list
+        for subset in range(0, len(moreFrequentSubsets) - 1):  # For each subset in more frequent subsets
+            clansList.append(moreFrequentSubsets[subset])  # Add subset to the clans list
 
-        clansList.append(moreFrequentSubsets[len(moreFrequentSubsets)-1])
+        clansList.append(moreFrequentSubsets[len(moreFrequentSubsets) - 1])  # Add the last clan with all elements in
+        # moreFrequentSubsets
         return sorted(clansList)
 
     @staticmethod
@@ -98,6 +96,10 @@ class Clan:
                 trivialClansList.append(clan)
 
         return sorted(trivialClansList)
+
+    @staticmethod
+    def trivialFrequentClans(clansList):
+        pass
 
     @staticmethod
     def primalClans(clansList):
@@ -196,7 +198,7 @@ class Clan:
         print("Dictionary of primal clans:\n%s" % primalClansDict)
 
     @staticmethod
-    def printFrequentResults(graph, moreFrequentSubsets):
+    def printFrequentResults(moreFrequentSubsets):
         """
         Print the results of the main Clan execution:
             - A list of more frequents clans
@@ -204,16 +206,11 @@ class Clan:
             - A list of more frequents primal clans
             - A dictionary of more frequents primal clans
 
-        :param graph: Networkx's graph
         :param moreFrequentSubsets: More frequents nodes from graph
-        :type graph: nx.Graph
         :type moreFrequentSubsets: list
         """
-        clansList = Clan.frequentClans(graph, moreFrequentSubsets)  # Create clans list
+        clansList = Clan.frequentClans(moreFrequentSubsets)  # Create clans list
         print("\nList of clans:\n%s\n" % clansList)
-        trivialClansList = Clan.trivialClans(clansList, Graph.getMaxCardinalityFromGraph(graph))  # Create trivial clans
-        # list
-        print("List of trivial clans:\n%s\n" % trivialClansList)
         primalClansList = Clan.primalClans(clansList)  # Create primal clans list
         print("List of primal clans:\n%s\n" % primalClansList)
         primalClansDict = Clan.primalClansDict(primalClansList)  # Create primal clans dictionary

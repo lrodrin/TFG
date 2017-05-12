@@ -41,6 +41,7 @@
           <option value="os.startfile" />
           <option value="six.__init__.moves" />
           <option value="moreFrequentSubsets" />
+          <option value="graph" />
         </list>
       </option>
     </inspection_tool>

@@ -39,25 +39,6 @@ class Graph:
         return graph, rows
 
     @staticmethod
-    def initFrequentGraph(aprioriFile):
-        """
-        Create and initializes a graph from more frequent subsets
-
-        :param aprioriFile: File from apriori program execution
-        :type aprioriFile: file
-        :return: A graph
-        :rtype: nx.Graph
-        """
-        graph = nx.Graph()  # Create an empty graph with no nodes and no edges
-        file = open(aprioriFile, 'r')  # Open ARP file
-        for line in file.readlines():  # For each line in AP data file
-            for (u, v) in itertools.combinations(line.split(" ")[0:-2], 2):
-                if u != v:
-                    graph.add_edge(u, v, color='black', style='dashed')
-
-        return graph
-
-    @staticmethod
     def addNodes(graph, columnNames, rows):
         """
         Add nodes to graph

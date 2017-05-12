@@ -17,14 +17,8 @@ if __name__ == "__main__":
                                      "TXT\n"))
 
     columnNames, rows, cursor, tableName = Interface.inputFileOptions(optionData)  # Manages the data entry
-    initGraph, rows = Graph.initGraph(tableName, cursor)  # Initialize a graph
 
-    optionGraph = int(
-        six.moves.input("Please enter the option of graph you want to create:\n [1] = plain\n [2] = plain "
-                        "with threshold\n [3] = linear\n [4] = exponential\n"))
-
-    graph, graphName = Interface.graphOptions(optionGraph, initGraph, rows)  # Create a type of graph
     support = float(six.moves.input("Please enter the support for the more frequent subsets creation:\n"))
     moreFrequentSubsets = Subset.moreFrequentSubsets(tableName, optionData, support)  # Return the more frequents
     #  subsets from filename
-    Clan.printFrequentResults(graph, moreFrequentSubsets)
+    Clan.printFrequentResults(moreFrequentSubsets)

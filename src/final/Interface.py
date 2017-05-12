@@ -97,7 +97,7 @@ class Interface:
             graphName = "exponentialGraph.dot"
 
         Graph.exportGraph(graph, graphName)  # Export a type of graph to Graphviz format
-        print("A graph %s was created" % graphName)
+        print("A graph %s with %d nodes was created" % (graphName, graph.order()))
 
         return graph, graphName
 

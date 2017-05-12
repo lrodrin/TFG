@@ -4,52 +4,55 @@ fontname=Verdana;
 fontsize=12;
 newrank=true;
 node [shape=circle];
-venomous_False;
-domestic_False;
-fins_False;
-backbone_True;
-feathers_False;
-breathes_True;
-airborne_False;
-tail_True;
-subgraph cluster_tail_Truefeathers_Falsefins_Falsebreathes_Truedomestic_Falsevenomous_Falsebackbone_Trueairborne_False {
+a;
+d;
+g;
+e;
+f;
+h;
+c;
+b;
+subgraph cluster_edaghfcb {
 node [shape=point];
-s_venomous_False -> s_domestic_False  [color=black, arrowhead=none];
-s_venomous_False -> s_fins_False  [color=black, arrowhead=none];
-s_venomous_False -> s_backbone_True  [color=black, arrowhead=none];
-s_venomous_False -> s_feathers_False  [color=black, arrowhead=none];
-s_venomous_False -> s_breathes_True  [color=black, arrowhead=none];
-s_venomous_False -> s_airborne_False  [color=black, arrowhead=none];
-s_venomous_False -> s_tail_True  [color=black, arrowhead=none];
-s_domestic_False -> s_fins_False  [color=black, arrowhead=none];
-s_domestic_False -> s_backbone_True  [color=black, arrowhead=none];
-s_domestic_False -> s_feathers_False  [color=black, arrowhead=none];
-s_domestic_False -> s_breathes_True  [color=black, arrowhead=none];
-s_domestic_False -> s_airborne_False  [color=black, arrowhead=none];
-s_domestic_False -> s_tail_True  [color=black, arrowhead=none];
-s_fins_False -> s_backbone_True  [color=black, arrowhead=none];
-s_fins_False -> s_feathers_False  [color=black, arrowhead=none];
-s_fins_False -> s_breathes_True  [color=black, arrowhead=none];
-s_fins_False -> s_airborne_False  [color=black, arrowhead=none];
-s_fins_False -> s_tail_True  [color=black, arrowhead=none];
-s_backbone_True -> s_feathers_False  [color=black, arrowhead=none];
-s_backbone_True -> s_breathes_True  [color=black, arrowhead=none];
-s_backbone_True -> s_airborne_False  [color=black, arrowhead=none];
-s_backbone_True -> s_tail_True  [color=black, arrowhead=none];
-s_feathers_False -> s_breathes_True  [color=black, arrowhead=none];
-s_feathers_False -> s_airborne_False  [color=black, arrowhead=none];
-s_feathers_False -> s_tail_True  [color=black, arrowhead=none];
-s_breathes_True -> s_airborne_False  [color=black, arrowhead=none];
-s_breathes_True -> s_tail_True  [color=black, arrowhead=none];
-s_airborne_False -> s_tail_True  [color=black, arrowhead=none];
+s_cb -> s_hf  [color=black, arrowhead=none];
+s_cb -> s_eg  [color=black, arrowhead=none];
+s_cb -> s_a  [color=black, arrowhead=none];
+s_cb -> s_d  [color=black, arrowhead=none];
+s_hf -> s_eg  [color=black, arrowhead=none];
+s_hf -> s_a  [color=black, arrowhead=none];
+s_hf -> s_d  [color=black, arrowhead=none];
+s_eg -> s_a  [color=black, arrowhead=none];
+s_eg -> s_d  [color=black, arrowhead=none];
+s_a -> s_d  [color=black, arrowhead=none];
 }
 
-s_venomous_False -> venomous_False  [arrowhead=none];
-s_domestic_False -> domestic_False  [arrowhead=none];
-s_fins_False -> fins_False  [arrowhead=none];
-s_backbone_True -> backbone_True  [arrowhead=none];
-s_feathers_False -> feathers_False  [arrowhead=none];
-s_breathes_True -> breathes_True  [arrowhead=none];
-s_airborne_False -> airborne_False  [arrowhead=none];
-s_tail_True -> tail_True  [arrowhead=none];
+subgraph cluster_eg {
+rank=same;
+node [shape=point];
+s_g -> s_e  [color=black, arrowhead=none];
+}
+
+subgraph cluster_hf {
+rank=same;
+node [shape=point];
+s_f -> s_h  [color=black, arrowhead=none];
+}
+
+subgraph cluster_cb {
+rank=same;
+node [shape=point];
+s_c -> s_b  [color=cyan, arrowhead=none];
+}
+
+s_cb -> s_c  [lhead=cluster_cb, arrowhead=none];
+s_hf -> s_f  [lhead=cluster_hf, arrowhead=none];
+s_eg -> s_g  [lhead=cluster_eg, arrowhead=none];
+s_a -> a  [arrowhead=none];
+s_d -> d  [arrowhead=none];
+s_g -> g  [arrowhead=none];
+s_e -> e  [arrowhead=none];
+s_f -> f  [arrowhead=none];
+s_h -> h  [arrowhead=none];
+s_c -> c  [arrowhead=none];
+s_b -> b  [arrowhead=none];
 }

@@ -120,6 +120,8 @@ class Data:
                     values += "'%s'," % column.split(":")[1]  # Extract values, separator values is :
                 elif "=" in column:
                     values += "'%s'," % column.split("=")[1]  # Extract values, separator values is =
+                else:
+                    values += "'%s'," % column
             try:
                 query = 'INSERT INTO {0} ({1}) VALUES ({2});'.format(str(tableName), str(columnNames[0:-2]),
                                                                      str(values[0:-1]).replace('\n', ''))

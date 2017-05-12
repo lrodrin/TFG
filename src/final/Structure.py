@@ -61,7 +61,8 @@ class Structure:
                 if not cluster.get_edge(edge):  # If edge not exists
                     cluster.add_edge(edge)  # Add edge to cluster
 
-            structure.add_subgraph(cluster)  # Add cluster to structure
+            if len(values) <= 15:
+                structure.add_subgraph(cluster)  # Add cluster to structure
 
         # Creating external edges
         for values in primalClansDict.values():  # For each sub primal clans

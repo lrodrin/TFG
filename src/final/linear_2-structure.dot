@@ -7,19 +7,19 @@ node [shape=circle];
 tested_positive;
 0;
 tested_negative;
-subgraph cluster_tested_positivetested_negative0 {
+subgraph cluster_0tested_positivetested_negative {
 rank=same;
 node [shape=point];
-s_tested_negative0 -> s_tested_positive  [color=black, arrowhead=none];
+s_0tested_negative -> s_tested_positive  [color=black, arrowhead=none];
 }
 
-subgraph cluster_tested_negative0 {
+subgraph cluster_0tested_negative {
 rank=same;
 node [shape=point];
 s_0 -> s_tested_negative  [color=black, arrowhead=none];
 }
 
-s_tested_negative0 -> s_0  [lhead=cluster_tested_negative0, arrowhead=none];
+s_0tested_negative -> s_0  [lhead=cluster_0tested_negative, arrowhead=none];
 s_tested_positive -> tested_positive  [arrowhead=none];
 s_0 -> 0  [arrowhead=none];
 s_tested_negative -> tested_negative  [arrowhead=none];

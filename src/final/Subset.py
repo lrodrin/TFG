@@ -61,7 +61,7 @@ class Subset:
             except OSError as e:
                 print("Error to execute the apriori's algorithm in Windows platform:", e)
 
-        elif sys.platform == 'linux2':  # Linux platform
+        elif 'linux' in sys.platform:  # Linux platform
             try:
                 os.system("./apriori -s{0} -C'@%' {1} {2}".format(str(support), str(dataFile.replace("\n", "")),
                                                                   str(newFilename.replace("\n", ""))))

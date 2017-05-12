@@ -4,44 +4,35 @@ fontname=Verdana;
 fontsize=12;
 newrank=true;
 node [shape=circle];
-hypermetrope;
-yes;
-normal;
-no;
-myope;
-none;
-reduced;
-subgraph cluster_yesreducedmyopehypermetropenonenormalno {
+f;
+e;
+a;
+d;
+b;
+c;
+subgraph cluster_efdbca {
 node [shape=point];
-s_nonereduced -> s_hypermetrope  [color=black, arrowhead=none];
-s_nonereduced -> s_yes  [color=black, arrowhead=none];
-s_nonereduced -> s_normal  [color=black, arrowhead=none];
-s_nonereduced -> s_no  [color=black, arrowhead=none];
-s_nonereduced -> s_myope  [color=black, arrowhead=none];
-s_hypermetrope -> s_yes  [color=black, arrowhead=none];
-s_hypermetrope -> s_normal  [color=black, arrowhead=none];
-s_hypermetrope -> s_no  [color=black, arrowhead=none];
-s_hypermetrope -> s_myope  [color=black, arrowhead=none];
-s_yes -> s_normal  [color=black, arrowhead=none];
-s_yes -> s_no  [color=black, arrowhead=none];
-s_yes -> s_myope  [color=black, arrowhead=none];
-s_normal -> s_no  [color=black, arrowhead=none];
-s_normal -> s_myope  [color=black, arrowhead=none];
-s_no -> s_myope  [color=black, arrowhead=none];
+s_f -> s_e  [color=black, arrowhead=none];
+s_f -> s_a  [color=black, arrowhead=none];
+s_f -> s_d  [color=black, arrowhead=none];
+s_f -> s_b  [color=black, arrowhead=none];
+s_f -> s_c  [color=black, arrowhead=none];
+s_e -> s_a  [color=black, arrowhead=none];
+s_e -> s_d  [color=black, arrowhead=none];
+s_e -> s_b  [color=black, arrowhead=none];
+s_e -> s_c  [color=black, arrowhead=none];
+s_a -> s_d  [color=black, arrowhead=none];
+s_a -> s_b  [color=black, arrowhead=none];
+s_a -> s_c  [color=black, arrowhead=none];
+s_d -> s_b  [color=black, arrowhead=none];
+s_d -> s_c  [color=black, arrowhead=none];
+s_b -> s_c  [color=black, arrowhead=none];
 }
 
-subgraph cluster_nonereduced {
-rank=same;
-node [shape=point];
-s_none -> s_reduced  [color=black, arrowhead=none];
-}
-
-s_nonereduced -> s_none  [lhead=cluster_nonereduced, arrowhead=none];
-s_hypermetrope -> hypermetrope  [arrowhead=none];
-s_yes -> yes  [arrowhead=none];
-s_normal -> normal  [arrowhead=none];
-s_no -> no  [arrowhead=none];
-s_myope -> myope  [arrowhead=none];
-s_none -> none  [arrowhead=none];
-s_reduced -> reduced  [arrowhead=none];
+s_f -> f  [arrowhead=none];
+s_e -> e  [arrowhead=none];
+s_a -> a  [arrowhead=none];
+s_d -> d  [arrowhead=none];
+s_b -> b  [arrowhead=none];
+s_c -> c  [arrowhead=none];
 }

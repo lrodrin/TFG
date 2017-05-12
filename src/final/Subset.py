@@ -87,7 +87,7 @@ class Subset:
                         subset.add(word)  # Add word as a subset
                     for elem in word.split(" "):
                         if word not in allElements:
-                            if ':' in word: # txt filter
+                            if ':' in word:  # txt filter
                                 allElements.add(elem.split(":")[1])
                             else:
                                 allElements.add(elem)
@@ -97,6 +97,6 @@ class Subset:
 
         filename.close()
         allElementsList.append(allElements)
-        l = moreFrequentSubsets + allElementsList   # List concatenation from two lists
+        l = moreFrequentSubsets + allElementsList  # List concatenation from two lists
 
         return l

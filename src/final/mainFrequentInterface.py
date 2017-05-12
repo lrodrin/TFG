@@ -29,5 +29,7 @@ if __name__ == "__main__":
 
     structureName = Interface.structureOptions(optionStructure, graph,
                                                moreFrequentSubsets)  # Create 2-structure from graph
-    Interface.openGraphviz(graphName)
+
+    if nx.number_of_nodes(graph) <= 15:
+        Interface.openGraphviz(graphName)
     Interface.openGraphviz(structureName)

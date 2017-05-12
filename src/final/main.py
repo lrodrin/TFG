@@ -41,5 +41,6 @@ if __name__ == '__main__':
     elif optionData == 3:
         structureName = Interface.structureOptions(optionStructure, graph, None)  # Create 2-structure from graph
 
-    Interface.openGraphviz(graphName)
+    if nx.number_of_nodes(graph) <= 15:
+        Interface.openGraphviz(graphName)  # Open graph in Graphviz program
     Interface.openGraphviz(structureName)

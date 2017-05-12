@@ -55,11 +55,13 @@ class Structure:
 
             # Creating edges inside the cluster
             for primalClan1, primalClan2 in itertools.combinations(values, 2):
-                edge = pydot.Edge("s_%s" % "".join(primalClan1), "s_%s" % "".join(primalClan2),
-                                  color=Clan.getColorClans(edgesAtributtes, primalClan1, primalClan2), arrowhead="none")
+                u = "s_%s" % "".join(primalClan1)
+                v = "s_%s" % "".join(primalClan2)
+                if u != v:  # If node cycle not exists
+                    edge = pydot.Edge(u, v, color=Clan.getColorClans(edgesAtributtes, primalClan1, primalClan2), arrowhead="none")
 
-                if not cluster.get_edge(edge):  # If edge not exists
-                    cluster.add_edge(edge)  # Add edge to cluster
+                    if not cluster.get_edge(edge):  # If edge not exists and node cycle also not exists
+                        cluster.add_edge(edge)  # Add edge to cluster
 
             if len(values) <= 15:
                 structure.add_subgraph(cluster)  # Add cluster to structure

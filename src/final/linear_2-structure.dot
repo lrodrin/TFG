@@ -4,23 +4,52 @@ fontname=Verdana;
 fontsize=12;
 newrank=true;
 node [shape=circle];
-tested_positive;
-0;
-tested_negative;
-subgraph cluster_0tested_positivetested_negative {
-rank=same;
+oth_inst_none;
+phone_no;
+oth_debtors_none;
+foreign_worker_no;
+pers_maint_1;
+class_good;
+credits_1;
+job_skill_official;
+subgraph cluster_class_goodjob_skill_officialforeign_worker_nopers_maint_1phone_nooth_inst_noneoth_debtors_nonecredits_1 {
 node [shape=point];
-s_0tested_negative -> s_tested_positive  [color=black, arrowhead=none];
+s_oth_inst_none -> s_phone_no  [color=black, arrowhead=none];
+s_oth_inst_none -> s_oth_debtors_none  [color=black, arrowhead=none];
+s_oth_inst_none -> s_foreign_worker_no  [color=black, arrowhead=none];
+s_oth_inst_none -> s_pers_maint_1  [color=black, arrowhead=none];
+s_oth_inst_none -> s_class_good  [color=black, arrowhead=none];
+s_oth_inst_none -> s_credits_1  [color=black, arrowhead=none];
+s_oth_inst_none -> s_job_skill_official  [color=black, arrowhead=none];
+s_phone_no -> s_oth_debtors_none  [color=black, arrowhead=none];
+s_phone_no -> s_foreign_worker_no  [color=black, arrowhead=none];
+s_phone_no -> s_pers_maint_1  [color=black, arrowhead=none];
+s_phone_no -> s_class_good  [color=black, arrowhead=none];
+s_phone_no -> s_credits_1  [color=black, arrowhead=none];
+s_phone_no -> s_job_skill_official  [color=black, arrowhead=none];
+s_oth_debtors_none -> s_foreign_worker_no  [color=black, arrowhead=none];
+s_oth_debtors_none -> s_pers_maint_1  [color=black, arrowhead=none];
+s_oth_debtors_none -> s_class_good  [color=black, arrowhead=none];
+s_oth_debtors_none -> s_credits_1  [color=black, arrowhead=none];
+s_oth_debtors_none -> s_job_skill_official  [color=black, arrowhead=none];
+s_foreign_worker_no -> s_pers_maint_1  [color=black, arrowhead=none];
+s_foreign_worker_no -> s_class_good  [color=black, arrowhead=none];
+s_foreign_worker_no -> s_credits_1  [color=black, arrowhead=none];
+s_foreign_worker_no -> s_job_skill_official  [color=black, arrowhead=none];
+s_pers_maint_1 -> s_class_good  [color=black, arrowhead=none];
+s_pers_maint_1 -> s_credits_1  [color=black, arrowhead=none];
+s_pers_maint_1 -> s_job_skill_official  [color=black, arrowhead=none];
+s_class_good -> s_credits_1  [color=black, arrowhead=none];
+s_class_good -> s_job_skill_official  [color=black, arrowhead=none];
+s_credits_1 -> s_job_skill_official  [color=grey, arrowhead=none];
 }
 
-subgraph cluster_0tested_negative {
-rank=same;
-node [shape=point];
-s_0 -> s_tested_negative  [color=black, arrowhead=none];
-}
-
-s_0tested_negative -> s_0  [lhead=cluster_0tested_negative, arrowhead=none];
-s_tested_positive -> tested_positive  [arrowhead=none];
-s_0 -> 0  [arrowhead=none];
-s_tested_negative -> tested_negative  [arrowhead=none];
+s_oth_inst_none -> oth_inst_none  [arrowhead=none];
+s_phone_no -> phone_no  [arrowhead=none];
+s_oth_debtors_none -> oth_debtors_none  [arrowhead=none];
+s_foreign_worker_no -> foreign_worker_no  [arrowhead=none];
+s_pers_maint_1 -> pers_maint_1  [arrowhead=none];
+s_class_good -> class_good  [arrowhead=none];
+s_credits_1 -> credits_1  [arrowhead=none];
+s_job_skill_official -> job_skill_official  [arrowhead=none];
 }

@@ -99,7 +99,21 @@ class Clan:
 
     @staticmethod
     def trivialFrequentClans(clansList):
-        pass
+        """
+        Return a list of trivial clans from a list of clans specified by clansList
+
+        :param clansList: List of clans
+        :type clansList: list
+        :return: List of trivial clans
+        :rtype: list
+        """
+        trivialClansList = list()
+        maxClanLenght = len(clansList[len(clansList) - 1])  # The lenght from the biggest clan
+        for clan in clansList:
+            if len(clan) == 1 or maxClanLenght == len(clan):  # If clan is a trivial clan
+                trivialClansList.append(clan)
+
+        return sorted(trivialClansList)
 
     @staticmethod
     def primalClans(clansList):
@@ -211,6 +225,8 @@ class Clan:
         """
         clansList = Clan.frequentClans(moreFrequentSubsets)  # Create clans list
         print("\nList of clans:\n%s\n" % clansList)
+        trivialClansList = Clan.trivialFrequentClans(clansList)  # Create trivial clans list
+        print("List of trivial clans:\n%s\n" % trivialClansList)
         primalClansList = Clan.primalClans(clansList)  # Create primal clans list
         print("List of primal clans:\n%s\n" % primalClansList)
         primalClansDict = Clan.primalClansDict(primalClansList)  # Create primal clans dictionary

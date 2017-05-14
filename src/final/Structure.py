@@ -58,7 +58,8 @@ class Structure:
                 u = "s_%s" % "".join(primalClan1)
                 v = "s_%s" % "".join(primalClan2)
                 if u != v:  # If node cycle not exists
-                    edge = pydot.Edge(u, v, color=Clan.getColorClans(edgesAtributtes, primalClan1, primalClan2), arrowhead="none")
+                    edge = pydot.Edge(u, v, color=Clan.getColorClans(edgesAtributtes, primalClan1, primalClan2),
+                                      arrowhead="none")
 
                     if not cluster.get_edge(edge):  # If edge not exists and node cycle also not exists
                         cluster.add_edge(edge)  # Add edge to cluster

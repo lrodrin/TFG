@@ -32,8 +32,8 @@ class Structure:
         :return: A 2-structure
         """
         structure = pydotplus.Dot(strict=True, graph_type="digraph", graph_name=structureName[:-4], compound="true",
-                              fontname="Verdana",
-                              fontsize=12, newrank="true")
+                                  fontname="Verdana",
+                                  fontsize=12, newrank="true")
         structure.set_node_defaults(shape="circle")
 
         # Creating external nodes
@@ -53,19 +53,27 @@ class Structure:
 
             cluster.set_node_defaults(shape="point")
 
-            # Creating edges inside the cluster
-            for primalClan1, primalClan2 in combinations(values, 2):
-                u = "s_%s" % "".join(primalClan1)
-                v = "s_%s" % "".join(primalClan2)
-                if u != v:  # If node cycle not exists
-                    edge = pydotplus.Edge(u, v, color=Clan.getColorClans(edgesAtributtes, primalClan1, primalClan2),
-                                      arrowhead="none")
+            if len(values) <= 10:
+                # Creating edges and nodes inside the cluster
+                for primalClan1, primalClan2 in combinations(values, 2):
+                    u = "s_%s" % "".join(primalClan1)
+                    v = "s_%s" % "".join(primalClan2)
+                    if u != v:  # If node cycle not exists
+                        edge = pydotplus.Edge(u, v, color=Clan.getColorClans(edgesAtributtes, primalClan1, primalClan2),
+                                              arrowhead="none")
 
                     if not cluster.get_edge(edge):  # If edge not exists and node cycle also not exists
                         cluster.add_edge(edge)  # Add edge to cluster
 
-            if len(values) <= 15:
-                structure.add_subgraph(cluster)  # Add cluster to structure
+            else:
+                # Creating nodes inside the cluster
+                for primals in primalClansDict.values():  # For each primal clan
+                    for primal in primals:  # For each sub primal clan
+                        node = pydotplus.Node("s_%s" % "".join(primal))
+                        if not cluster.get_node(node):  # If edge not exists and node cycle also not exists
+                            cluster.add_node(node)  # Add edge to cluster
+
+            structure.add_subgraph(cluster)  # Add cluster to structure
 
         # Creating external edges
         for values in primalClansDict.values():  # For each sub primal clans

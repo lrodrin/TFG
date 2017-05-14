@@ -54,7 +54,7 @@ class Structure:
             cluster.set_node_defaults(shape="point")
 
             # Creating edges inside the cluster
-            for primalClan1, primalClan2 in itertools.combinations(values, 2):
+            for primalClan1, primalClan2 in combinations(values, 2):
                 u = "s_%s" % "".join(primalClan1)
                 v = "s_%s" % "".join(primalClan2)
                 if u != v:  # If node cycle not exists

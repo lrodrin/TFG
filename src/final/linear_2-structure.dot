@@ -4,52 +4,44 @@ fontname=Verdana;
 fontsize=12;
 newrank=true;
 node [shape=circle];
-h;
-g;
+c;
 e;
-f;
 d;
 a;
-c;
+f;
 b;
-subgraph cluster_cdhebfga {
-node [shape=point];
-s_cb -> s_h  [color=black, arrowhead=none];
-s_cb -> s_g  [color=black, arrowhead=none];
-s_cb -> s_e  [color=black, arrowhead=none];
-s_cb -> s_f  [color=black, arrowhead=none];
-s_cb -> s_d  [color=black, arrowhead=none];
-s_cb -> s_a  [color=black, arrowhead=none];
-s_h -> s_g  [color=black, arrowhead=none];
-s_h -> s_e  [color=black, arrowhead=none];
-s_h -> s_f  [color=black, arrowhead=none];
-s_h -> s_d  [color=black, arrowhead=none];
-s_h -> s_a  [color=black, arrowhead=none];
-s_g -> s_e  [color=black, arrowhead=none];
-s_g -> s_f  [color=black, arrowhead=none];
-s_g -> s_d  [color=black, arrowhead=none];
-s_g -> s_a  [color=black, arrowhead=none];
-s_e -> s_f  [color=black, arrowhead=none];
-s_e -> s_d  [color=black, arrowhead=none];
-s_e -> s_a  [color=black, arrowhead=none];
-s_f -> s_d  [color=black, arrowhead=none];
-s_f -> s_a  [color=black, arrowhead=none];
-s_d -> s_a  [color=black, arrowhead=none];
-}
-
-subgraph cluster_cb {
+subgraph cluster_abcfed {
 rank=same;
 node [shape=point];
-s_c -> s_b  [color=cyan, arrowhead=none];
+s_abfed -> s_c  [arrowhead=none, color=black];
 }
 
-s_cb -> s_c  [lhead=cluster_cb, arrowhead=none];
-s_h -> h  [arrowhead=none];
-s_g -> g  [arrowhead=none];
+subgraph cluster_abfed {
+rank=same;
+node [shape=point];
+s_ead -> s_bf  [arrowhead=none, color=cyan];
+}
+
+subgraph cluster_ead {
+node [shape=point];
+s_e -> s_d  [arrowhead=none, color=magenta];
+s_e -> s_a  [arrowhead=none, color=magenta];
+s_d -> s_a  [arrowhead=none, color=magenta];
+}
+
+subgraph cluster_bf {
+rank=same;
+node [shape=point];
+s_f -> s_b  [arrowhead=none, color=black];
+}
+
+s_abfed -> s_ead  [arrowhead=none, lhead=cluster_abfed];
+s_c -> c  [arrowhead=none];
+s_ead -> s_e  [arrowhead=none, lhead=cluster_ead];
+s_bf -> s_f  [arrowhead=none, lhead=cluster_bf];
 s_e -> e  [arrowhead=none];
-s_f -> f  [arrowhead=none];
 s_d -> d  [arrowhead=none];
 s_a -> a  [arrowhead=none];
-s_c -> c  [arrowhead=none];
+s_f -> f  [arrowhead=none];
 s_b -> b  [arrowhead=none];
 }

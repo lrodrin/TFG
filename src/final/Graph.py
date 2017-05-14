@@ -6,7 +6,7 @@ Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
-import itertools
+from itertools import combinations
 
 import networkx as nx
 
@@ -31,7 +31,7 @@ class Graph:
         graph = nx.Graph()  # Create an empty graph with no nodes and no edges
         columnNames, rows = Data.selectData(tableName, cursor)  # Select data from tableName
         Graph.addNodes(graph, columnNames, rows)  # Adding nodes to graph
-        for (u, v) in itertools.combinations(graph.nodes(), 2):  # For the initialization all the edges from graph are
+        for (u, v) in combinations(graph.nodes(), 2):  # For the initialization all the edges from graph are
             # painted black and the edge style is dashed
             if u != v:
                 graph.add_edge(u, v, color='black', style='dashed')
@@ -91,7 +91,7 @@ class Graph:
         """
         numberOfEquivalences = dict()
         for row in rows:  # For each row in rows
-            for (u, v) in itertools.combinations(row, 2):  # For each pair (u, v) in the row
+            for (u, v) in combinations(row, 2):  # For each pair (u, v) in the row
                 if u != v:  # If u and v have different values
                     if (u, v) in numberOfEquivalences.keys():  # If exists edge (u, v) in a numberOfEquivalences
                         numberOfEquivalences[(u, v)] = numberOfEquivalences.get(

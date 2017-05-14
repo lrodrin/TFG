@@ -32,7 +32,7 @@ class Clan:
         # parameter
         isClan = True
         for external in diff:  # For each subset in diff
-            for (u, v) in itertools.combinations(subSet, 2):  # For each pair (u, v) in the subSet combinations
+            for (u, v) in combinations(subSet, 2):  # For each pair (u, v) in the subSet combinations
                 if graph.has_edge(external, u) and graph.has_edge(external, v):  # If exists the edge (external,
                     # u) and (external, v) in graph
                     colorX = graph.edge[external][u]['color']

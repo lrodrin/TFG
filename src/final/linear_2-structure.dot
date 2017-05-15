@@ -4,44 +4,44 @@ fontname=Verdana;
 fontsize=12;
 newrank=true;
 node [shape=circle];
-yes;
-no;
-TRUE;
-FALSE;
-normal;
-high;
-cool;
-mild;
-hot;
-rainy;
-overcast;
-sunny;
-subgraph cluster_FALSEovercastTRUEnorainyhotcoolsunnyyesmildnormalhigh {
+c;
+e;
+d;
+a;
+f;
+b;
+subgraph cluster_edfcba {
+rank=same;
 node [shape=point];
-s_yes;
-s_no;
-s_TRUE;
-s_FALSE;
-s_normal;
-s_high;
-s_cool;
-s_mild;
-s_hot;
-s_rainy;
-s_overcast;
-s_sunny;
+s_edfba -> s_c  [arrowhead=none, color=black];
 }
 
-s_yes -> yes  [arrowhead=none];
-s_no -> no  [arrowhead=none];
-s_TRUE -> TRUE  [arrowhead=none];
-s_FALSE -> FALSE  [arrowhead=none];
-s_normal -> normal  [arrowhead=none];
-s_high -> high  [arrowhead=none];
-s_cool -> cool  [arrowhead=none];
-s_mild -> mild  [arrowhead=none];
-s_hot -> hot  [arrowhead=none];
-s_rainy -> rainy  [arrowhead=none];
-s_overcast -> overcast  [arrowhead=none];
-s_sunny -> sunny  [arrowhead=none];
+subgraph cluster_edfba {
+rank=same;
+node [shape=point];
+s_dea -> s_fb  [arrowhead=none, color=cyan];
+}
+
+subgraph cluster_dea {
+node [shape=point];
+s_e -> s_d  [arrowhead=none, color=magenta];
+s_e -> s_a  [arrowhead=none, color=magenta];
+s_d -> s_a  [arrowhead=none, color=magenta];
+}
+
+subgraph cluster_fb {
+rank=same;
+node [shape=point];
+s_f -> s_b  [arrowhead=none, color=black];
+}
+
+s_edfba -> s_dea  [arrowhead=none, lhead=cluster_edfba];
+s_c -> c  [arrowhead=none];
+s_dea -> s_e  [arrowhead=none, lhead=cluster_dea];
+s_fb -> s_f  [arrowhead=none, lhead=cluster_fb];
+s_e -> e  [arrowhead=none];
+s_d -> d  [arrowhead=none];
+s_a -> a  [arrowhead=none];
+s_f -> f  [arrowhead=none];
+s_b -> b  [arrowhead=none];
 }

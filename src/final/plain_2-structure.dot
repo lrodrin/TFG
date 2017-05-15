@@ -4,35 +4,35 @@ fontname=Verdana;
 fontsize=12;
 newrank=true;
 node [shape=circle];
-f;
 e;
-a;
 d;
+f;
 b;
 c;
-subgraph cluster_efdbca {
+a;
+subgraph cluster_cedafb {
 node [shape=point];
-s_f -> s_e  [color=black, arrowhead=none];
-s_f -> s_a  [color=black, arrowhead=none];
-s_f -> s_d  [color=black, arrowhead=none];
-s_f -> s_b  [color=black, arrowhead=none];
-s_f -> s_c  [color=black, arrowhead=none];
-s_e -> s_a  [color=black, arrowhead=none];
-s_e -> s_d  [color=black, arrowhead=none];
-s_e -> s_b  [color=black, arrowhead=none];
-s_e -> s_c  [color=black, arrowhead=none];
-s_a -> s_d  [color=black, arrowhead=none];
-s_a -> s_b  [color=black, arrowhead=none];
-s_a -> s_c  [color=black, arrowhead=none];
-s_d -> s_b  [color=black, arrowhead=none];
-s_d -> s_c  [color=black, arrowhead=none];
-s_b -> s_c  [color=black, arrowhead=none];
+s_e -> s_d  [arrowhead=none, color=black];
+s_e -> s_f  [arrowhead=none, color=black];
+s_e -> s_b  [arrowhead=none, color=black];
+s_e -> s_c  [arrowhead=none, color=black];
+s_e -> s_a  [arrowhead=none, color=black];
+s_d -> s_f  [arrowhead=none, color=black];
+s_d -> s_b  [arrowhead=none, color=black];
+s_d -> s_c  [arrowhead=none, color=black];
+s_d -> s_a  [arrowhead=none, color=black];
+s_f -> s_b  [arrowhead=none, color=black];
+s_f -> s_c  [arrowhead=none, color=black];
+s_f -> s_a  [arrowhead=none, color=black];
+s_b -> s_c  [arrowhead=none, color=black];
+s_b -> s_a  [arrowhead=none, color=black];
+s_c -> s_a  [arrowhead=none, color=black];
 }
 
-s_f -> f  [arrowhead=none];
 s_e -> e  [arrowhead=none];
-s_a -> a  [arrowhead=none];
 s_d -> d  [arrowhead=none];
+s_f -> f  [arrowhead=none];
 s_b -> b  [arrowhead=none];
 s_c -> c  [arrowhead=none];
+s_a -> a  [arrowhead=none];
 }

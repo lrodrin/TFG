@@ -4,73 +4,76 @@ fontname=Verdana;
 fontsize=12;
 newrank=true;
 node [shape=circle];
-Yes;
-No;
-Child;
-Adult;
-Female;
-Male;
-"2nd";
-"1st";
-"3rd";
-Crew;
-subgraph cluster_3rdAdult1stNoCrew2ndFemaleYesMaleChild {
+hard;
+soft;
+none;
+normal;
+reduced;
+yes;
+no;
+presbyopic;
+pre_presbyopic;
+young;
+hypermetrope;
+myope;
+subgraph cluster_nosoftmyopehypermetropenormalpre_presbyopicreducedyeshardyoungnonepresbyopic {
 node [shape=point];
-s_Yes -> s_No  [arrowhead=none, color=black];
-s_Yes -> s_Child  [arrowhead=none, color=black];
-s_Yes -> s_Adult  [arrowhead=none, color=black];
-s_Yes -> s_Female  [arrowhead=none, color=black];
-s_Yes -> s_Male  [arrowhead=none, color=black];
-s_Yes -> s_2nd  [arrowhead=none, color=black];
-s_Yes -> s_1st  [arrowhead=none, color=black];
-s_Yes -> s_3rd  [arrowhead=none, color=black];
-s_Yes -> s_Crew  [arrowhead=none, color=black];
-s_No -> s_Child  [arrowhead=none, color=black];
-s_No -> s_Adult  [arrowhead=none, color=black];
-s_No -> s_Female  [arrowhead=none, color=black];
-s_No -> s_Male  [arrowhead=none, color=black];
-s_No -> s_2nd  [arrowhead=none, color=black];
-s_No -> s_1st  [arrowhead=none, color=black];
-s_No -> s_3rd  [arrowhead=none, color=black];
-s_No -> s_Crew  [arrowhead=none, color=black];
-s_Child -> s_Adult  [arrowhead=none, color=black];
-s_Child -> s_Female  [arrowhead=none, color=black];
-s_Child -> s_Male  [arrowhead=none, color=black];
-s_Child -> s_2nd  [arrowhead=none, color=black];
-s_Child -> s_1st  [arrowhead=none, color=black];
-s_Child -> s_3rd  [arrowhead=none, color=black];
-s_Child -> s_Crew  [arrowhead=none, color=black];
-s_Adult -> s_Female  [arrowhead=none, color=black];
-s_Adult -> s_Male  [arrowhead=none, color=black];
-s_Adult -> s_2nd  [arrowhead=none, color=black];
-s_Adult -> s_1st  [arrowhead=none, color=black];
-s_Adult -> s_3rd  [arrowhead=none, color=black];
-s_Adult -> s_Crew  [arrowhead=none, color=black];
-s_Female -> s_Male  [arrowhead=none, color=black];
-s_Female -> s_2nd  [arrowhead=none, color=black];
-s_Female -> s_1st  [arrowhead=none, color=black];
-s_Female -> s_3rd  [arrowhead=none, color=black];
-s_Female -> s_Crew  [arrowhead=none, color=black];
-s_Male -> s_2nd  [arrowhead=none, color=black];
-s_Male -> s_1st  [arrowhead=none, color=black];
-s_Male -> s_3rd  [arrowhead=none, color=black];
-s_Male -> s_Crew  [arrowhead=none, color=black];
-s_2nd -> s_1st  [arrowhead=none, color=black];
-s_2nd -> s_3rd  [arrowhead=none, color=black];
-s_2nd -> s_Crew  [arrowhead=none, color=black];
-s_1st -> s_3rd  [arrowhead=none, color=black];
-s_1st -> s_Crew  [arrowhead=none, color=black];
-s_3rd -> s_Crew  [arrowhead=none, color=black];
+s_reducednoyessofthardnormalnone -> s_pre_presbyopicpresbyopicyoung  [arrowhead=none, color=black];
+s_reducednoyessofthardnormalnone -> s_hypermetropemyope  [arrowhead=none, color=black];
+s_pre_presbyopicpresbyopicyoung -> s_hypermetropemyope  [arrowhead=none, color=black];
 }
 
-s_Yes -> Yes  [arrowhead=none];
-s_No -> No  [arrowhead=none];
-s_Child -> Child  [arrowhead=none];
-s_Adult -> Adult  [arrowhead=none];
-s_Female -> Female  [arrowhead=none];
-s_Male -> Male  [arrowhead=none];
-s_2nd -> "2nd"  [arrowhead=none];
-s_1st -> "1st"  [arrowhead=none];
-s_3rd -> "3rd"  [arrowhead=none];
-s_Crew -> Crew  [arrowhead=none];
+subgraph cluster_reducednoyessofthardnormalnone {
+node [shape=point];
+s_hard -> s_soft  [arrowhead=none, color=black];
+s_hard -> s_none  [arrowhead=none, color=black];
+s_hard -> s_normal  [arrowhead=none, color=black];
+s_hard -> s_reduced  [arrowhead=none, color=black];
+s_hard -> s_yes  [arrowhead=none, color=black];
+s_hard -> s_no  [arrowhead=none, color=black];
+s_soft -> s_none  [arrowhead=none, color=black];
+s_soft -> s_normal  [arrowhead=none, color=black];
+s_soft -> s_reduced  [arrowhead=none, color=black];
+s_soft -> s_yes  [arrowhead=none, color=black];
+s_soft -> s_no  [arrowhead=none, color=black];
+s_none -> s_normal  [arrowhead=none, color=black];
+s_none -> s_reduced  [arrowhead=none, color=black];
+s_none -> s_yes  [arrowhead=none, color=black];
+s_none -> s_no  [arrowhead=none, color=black];
+s_normal -> s_reduced  [arrowhead=none, color=black];
+s_normal -> s_yes  [arrowhead=none, color=black];
+s_normal -> s_no  [arrowhead=none, color=black];
+s_reduced -> s_yes  [arrowhead=none, color=black];
+s_reduced -> s_no  [arrowhead=none, color=black];
+s_yes -> s_no  [arrowhead=none, color=black];
+}
+
+subgraph cluster_pre_presbyopicpresbyopicyoung {
+node [shape=point];
+s_presbyopic -> s_pre_presbyopic  [arrowhead=none, color=black];
+s_presbyopic -> s_young  [arrowhead=none, color=black];
+s_pre_presbyopic -> s_young  [arrowhead=none, color=black];
+}
+
+subgraph cluster_hypermetropemyope {
+rank=same;
+node [shape=point];
+s_hypermetrope -> s_myope  [arrowhead=none, color=black];
+}
+
+s_reducednoyessofthardnormalnone -> s_hard  [arrowhead=none, lhead=cluster_reducednoyessofthardnormalnone];
+s_pre_presbyopicpresbyopicyoung -> s_presbyopic  [arrowhead=none, lhead=cluster_pre_presbyopicpresbyopicyoung];
+s_hypermetropemyope -> s_hypermetrope  [arrowhead=none, lhead=cluster_hypermetropemyope];
+s_hard -> hard  [arrowhead=none];
+s_soft -> soft  [arrowhead=none];
+s_none -> none  [arrowhead=none];
+s_normal -> normal  [arrowhead=none];
+s_reduced -> reduced  [arrowhead=none];
+s_yes -> yes  [arrowhead=none];
+s_no -> no  [arrowhead=none];
+s_presbyopic -> presbyopic  [arrowhead=none];
+s_pre_presbyopic -> pre_presbyopic  [arrowhead=none];
+s_young -> young  [arrowhead=none];
+s_hypermetrope -> hypermetrope  [arrowhead=none];
+s_myope -> myope  [arrowhead=none];
 }

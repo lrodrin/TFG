@@ -4,67 +4,35 @@ fontname=Verdana;
 fontsize=12;
 newrank=true;
 node [shape=circle];
-Child;
-Adult;
-"1st";
-Crew;
-"2nd";
-"3rd";
-Female;
-Male;
-Yes;
-No;
-subgraph cluster_Yes1stAdult3rdNoFemale2ndChildCrewMale {
+c;
+h;
+b;
+g;
+e;
+f;
+subgraph cluster_febgch {
 node [shape=point];
-s_3rd1st2ndAdultChildCrew -> s_YesNo  [arrowhead=none, color=grey];
-s_3rd1st2ndAdultChildCrew -> s_FemaleMale  [arrowhead=none, color=grey];
-s_YesNo -> s_FemaleMale  [arrowhead=none, color=grey];
+s_c -> s_h  [arrowhead=none, color=black];
+s_c -> s_b  [arrowhead=none, color=black];
+s_c -> s_g  [arrowhead=none, color=black];
+s_c -> s_e  [arrowhead=none, color=black];
+s_c -> s_f  [arrowhead=none, color=black];
+s_h -> s_b  [arrowhead=none, color=black];
+s_h -> s_g  [arrowhead=none, color=black];
+s_h -> s_e  [arrowhead=none, color=black];
+s_h -> s_f  [arrowhead=none, color=black];
+s_b -> s_g  [arrowhead=none, color=black];
+s_b -> s_e  [arrowhead=none, color=black];
+s_b -> s_f  [arrowhead=none, color=black];
+s_g -> s_e  [arrowhead=none, color=black];
+s_g -> s_f  [arrowhead=none, color=black];
+s_e -> s_f  [arrowhead=none, color=black];
 }
 
-subgraph cluster_3rd1st2ndAdultChildCrew {
-node [shape=point];
-s_3rd2nd -> s_Child  [arrowhead=none, color=grey];
-s_3rd2nd -> s_Adult  [arrowhead=none, color=grey];
-s_3rd2nd -> s_1st  [arrowhead=none, color=black];
-s_3rd2nd -> s_Crew  [arrowhead=none, color=black];
-s_Child -> s_Adult  [arrowhead=none, color=black];
-s_Child -> s_1st  [arrowhead=none, color=blue];
-s_Child -> s_Crew  [arrowhead=none, color=black];
-s_Adult -> s_1st  [arrowhead=none, color=grey];
-s_Adult -> s_Crew  [arrowhead=none, color=grey];
-s_1st -> s_Crew  [arrowhead=none, color=black];
-}
-
-subgraph cluster_3rd2nd {
-rank=same;
-node [shape=point];
-s_2nd -> s_3rd  [arrowhead=none, color=black];
-}
-
-subgraph cluster_FemaleMale {
-rank=same;
-node [shape=point];
-s_Female -> s_Male  [arrowhead=none, color=black];
-}
-
-subgraph cluster_YesNo {
-rank=same;
-node [shape=point];
-s_Yes -> s_No  [arrowhead=none, color=black];
-}
-
-s_3rd1st2ndAdultChildCrew -> s_3rd2nd  [arrowhead=none, lhead=cluster_3rd1st2ndAdultChildCrew];
-s_YesNo -> s_Yes  [arrowhead=none, lhead=cluster_YesNo];
-s_FemaleMale -> s_Female  [arrowhead=none, lhead=cluster_FemaleMale];
-s_3rd2nd -> s_2nd  [arrowhead=none, lhead=cluster_3rd2nd];
-s_Child -> Child  [arrowhead=none];
-s_Adult -> Adult  [arrowhead=none];
-s_1st -> "1st"  [arrowhead=none];
-s_Crew -> Crew  [arrowhead=none];
-s_2nd -> "2nd"  [arrowhead=none];
-s_3rd -> "3rd"  [arrowhead=none];
-s_Female -> Female  [arrowhead=none];
-s_Male -> Male  [arrowhead=none];
-s_Yes -> Yes  [arrowhead=none];
-s_No -> No  [arrowhead=none];
+s_c -> c  [arrowhead=none];
+s_h -> h  [arrowhead=none];
+s_b -> b  [arrowhead=none];
+s_g -> g  [arrowhead=none];
+s_e -> e  [arrowhead=none];
+s_f -> f  [arrowhead=none];
 }

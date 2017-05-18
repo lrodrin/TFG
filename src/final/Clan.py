@@ -29,15 +29,18 @@ class Clan:
         :rtype: bool
         """
         diff = set(graph.nodes()).difference(subSet)  # Subset formed by all nodes of graph less subSet passed as
+        print(diff)
         # parameter
         isClan = True
         for external in diff:  # For each subset in diff
             for (u, v) in combinations(subSet, 2):  # For each pair (u, v) in the subSet combinations
-                if graph.has_edge(external, u) and graph.has_edge(external, v):  # If exists the edge (external,
+                #if graph.has_edge(external, u) and graph.has_edge(external, v):  # If exists the edge (external,
                     # u) and (external, v) in graph
                     colorX = graph.edge[external][u]['color']
                     colorY = graph.edge[external][v]['color']
-                    if colorX != colorY:  # If the pair (external, u) and (external, v) not have the same color edge
+                    lineStyleX = graph.edge[external][u]['style']
+                    lineStyley = graph.edge[external][v]['style']
+                    if colorX != colorY or lineStyleX != lineStyley:  # If the pair (external, u) and (external, v) not have the same color edge
                         isClan = False
         return isClan
 

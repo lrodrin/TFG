@@ -162,22 +162,32 @@ class Graph:
         :rtype: nx.Graph
         """
         Graph.labeledEdges(graph, rows)  # Labeling edges from graph
+        labels = Graph.getLabelAttributesFromGraph(graph)  # Edge labels from graph
         potentialColors = {1: 'black', 2: 'cyan', 3: 'green', 4: 'magenta', 5: 'orange', 6: 'blue',
                            7: 'red', 8: 'yellow', 9: 'brown'}  # Potential colours for equivalence classes
 
-        for label, color in potentialColors.items():  # For each label and color edge attributes in potentialColors
-            for (u, v) in graph.edges():  # For each edge from graph
-                if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph and u and v have different values
-                    if 'label' in graph[u][v] and label == graph[u][v]['label']:  # If edge have the label attribute and
-                        # the number of equivalences in potentialColors are the same
-                        if 9 >= graph[u][v]['label'] > 0:  # If the number of equivalences is greater than 0
-                            graph.add_edge(u, v, color=color,
-                                           style='solid')  # Edge painted with a color from potentialColor and line
-                            # style is not dashed
-                        else:
-                            graph.add_edge(u, v, color='grey',
-                                           style='solid')  # Edge painted with a color from potentialColor and line
-                            # style is not dashed
+        for (u, v), label in labels.items():  # For each edge and label attribute in labels
+            if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph and u and v have different values
+                if label == 1:
+                    graph.add_edge(u, v, color='black', style='solid')  # Edge painted black and style is dashed
+                elif label == 2:
+                    graph.add_edge(u, v, color='cyan', style='solid')  # Edge painted cyan and style is dashed
+                elif label == 3:
+                    graph.add_edge(u, v, color='green', style='solid')  # Edge painted green and style is dashed
+                elif label == 4:
+                    graph.add_edge(u, v, color='magenta', style='solid')  # Edge painted magenta and style is dashed
+                elif label == 5:
+                    graph.add_edge(u, v, color='orange', style='solid')  # Edge painted orange and style is dashed
+                elif label == 6:
+                    graph.add_edge(u, v, color='blue', style='solid')  # Edge painted blue and style is dashed
+                elif label == 7:
+                    graph.add_edge(u, v, color='red', style='solid')  # Edge painted red and style is dashed
+                elif label == 8:
+                    graph.add_edge(u, v, color='yellow', style='solid')  # Edge painted yellow and style is dashed
+                elif label == 9:
+                    graph.add_edge(u, v, color='brown', style='solid')  # Edge painted brown and style is dashed
+                else:
+                    graph.add_edge(u, v, color='grey', style='solid')  # Edge painted grey and style is dashed
 
         return graph
 

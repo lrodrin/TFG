@@ -163,15 +163,19 @@ class Graph:
         """
         Graph.labeledEdges(graph, rows)  # Labeling edges from graph
         potentialColors = {1: 'black', 2: 'cyan', 3: 'green', 4: 'magenta', 5: 'orange', 6: 'blue',
-                           7: 'red', 8: 'yellow', 9: 'brown', 10: 'grey'}  # Potential colours for equivalence classes
+                           7: 'red', 8: 'yellow', 9: 'brown'}  # Potential colours for equivalence classes
 
         for label, color in potentialColors.items():  # For each label and color edge attributes in potentialColors
             for (u, v) in graph.edges():  # For each edge from graph
                 if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph and u and v have different values
                     if 'label' in graph[u][v] and label == graph[u][v]['label']:  # If edge have the label attribute and
                         # the number of equivalences in potentialColors are the same
-                        if graph[u][v]['label'] > 0:  # If the number of equivalences is greater than 0
+                        if 9 >= graph[u][v]['label'] > 0:  # If the number of equivalences is greater than 0
                             graph.add_edge(u, v, color=color,
+                                           style='solid')  # Edge painted with a color from potentialColor and line
+                            # style is not dashed
+                        else:
+                            graph.add_edge(u, v, color='grey',
                                            style='solid')  # Edge painted with a color from potentialColor and line
                             # style is not dashed
 
@@ -211,7 +215,7 @@ class Graph:
                     newGraph.add_edge(u, v, color='yellow', style='solid')  # Edge painted yellow and style is dashed
                 elif 256 <= label < 512:  # Equivalence classes of (256-511)
                     newGraph.add_edge(u, v, color='brown', style='solid')  # Edge painted brown and style is dashed
-                elif 512 <= label < 1024:  # Equivalence classes of (512-1023)
+                else:
                     newGraph.add_edge(u, v, color='grey', style='solid')  # Edge painted grey and style is dashed
 
         return newGraph

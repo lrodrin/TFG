@@ -163,30 +163,28 @@ class Graph:
         """
         Graph.labeledEdges(graph, rows)  # Labeling edges from graph
         labels = Graph.getLabelAttributesFromGraph(graph)  # Edge labels from graph
-        potentialColors = {1: 'black', 2: 'cyan', 3: 'green', 4: 'magenta', 5: 'orange', 6: 'blue',
-                           7: 'red', 8: 'yellow', 9: 'brown'}  # Potential colours for equivalence classes
 
         for (u, v), label in labels.items():  # For each edge and label attribute in labels
             if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph and u and v have different values
-                if label == 1:
+                if label == 1:  # Equivalence class of 1
                     graph.add_edge(u, v, color='black', style='solid')  # Edge painted black and style is dashed
-                elif label == 2:
+                elif label == 2:  # Equivalence class of 2
                     graph.add_edge(u, v, color='cyan', style='solid')  # Edge painted cyan and style is dashed
-                elif label == 3:
+                elif label == 3:  # Equivalence class of 4
                     graph.add_edge(u, v, color='green', style='solid')  # Edge painted green and style is dashed
-                elif label == 4:
+                elif label == 4:  # Equivalence class of 4
                     graph.add_edge(u, v, color='magenta', style='solid')  # Edge painted magenta and style is dashed
-                elif label == 5:
+                elif label == 5:  # Equivalence class of 5
                     graph.add_edge(u, v, color='orange', style='solid')  # Edge painted orange and style is dashed
-                elif label == 6:
+                elif label == 6:  # Equivalence class of 6
                     graph.add_edge(u, v, color='blue', style='solid')  # Edge painted blue and style is dashed
-                elif label == 7:
+                elif label == 7:  # Equivalence class of 7
                     graph.add_edge(u, v, color='red', style='solid')  # Edge painted red and style is dashed
-                elif label == 8:
+                elif label == 8:  # Equivalence class of 8
                     graph.add_edge(u, v, color='yellow', style='solid')  # Edge painted yellow and style is dashed
-                elif label == 9:
+                elif label == 9:  # Equivalence class of 9
                     graph.add_edge(u, v, color='brown', style='solid')  # Edge painted brown and style is dashed
-                else:
+                else:   # The others
                     graph.add_edge(u, v, color='grey', style='solid')  # Edge painted grey and style is dashed
 
         return graph
@@ -225,7 +223,7 @@ class Graph:
                     newGraph.add_edge(u, v, color='yellow', style='solid')  # Edge painted yellow and style is dashed
                 elif 256 <= label < 512:  # Equivalence classes of (256-511)
                     newGraph.add_edge(u, v, color='brown', style='solid')  # Edge painted brown and style is dashed
-                else:
+                else:   # The others
                     newGraph.add_edge(u, v, color='grey', style='solid')  # Edge painted grey and style is dashed
 
         return newGraph

@@ -29,7 +29,6 @@ class Clan:
         :rtype: bool
         """
         diff = set(graph.nodes()).difference(subSet)  # Subset formed by all nodes of graph less subSet passed as
-        print(diff)
         # parameter
         isClan = True
         for external in diff:  # For each subset in diff

@@ -14,7 +14,7 @@ Male;
 "1st";
 "3rd";
 Crew;
-subgraph cluster_ChildAdultFemaleYes1st2nd3rdNoMaleCrew {
+subgraph cluster_Male1stChildAdultFemaleCrewYesNo3rd2nd {
 node [shape=point];
 s_Yes -> s_No  [arrowhead=none, color=black];
 s_Yes -> s_Child  [arrowhead=none, color=blue];

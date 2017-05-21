@@ -39,7 +39,8 @@ class Clan:
                     colorY = graph.edge[external][v]['color']
                     lineStyleX = graph.edge[external][u]['style']
                     lineStyley = graph.edge[external][v]['style']
-                    if colorX != colorY or lineStyleX != lineStyley:  # If the pair (external, u) and (external, v) not have the same color edge
+                    if colorX != colorY or lineStyleX != lineStyley:  # If the pair (external, u) and (external,
+                        # v) not have the same color edge
                         isClan = False
         return isClan
 

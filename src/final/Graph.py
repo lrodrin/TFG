@@ -184,7 +184,7 @@ class Graph:
                     graph.add_edge(u, v, color='yellow', style='solid')  # Edge painted yellow and style is dashed
                 elif label == 9:  # Equivalence class of 9
                     graph.add_edge(u, v, color='brown', style='solid')  # Edge painted brown and style is dashed
-                else:   # The others
+                else:  # The others
                     graph.add_edge(u, v, color='grey', style='solid')  # Edge painted grey and style is dashed
 
         return graph
@@ -223,7 +223,7 @@ class Graph:
                     newGraph.add_edge(u, v, color='yellow', style='solid')  # Edge painted yellow and style is dashed
                 elif 256 <= label < 512:  # Equivalence classes of (256-511)
                     newGraph.add_edge(u, v, color='brown', style='solid')  # Edge painted brown and style is dashed
-                else:   # The others
+                else:  # The others
                     newGraph.add_edge(u, v, color='grey', style='solid')  # Edge painted grey and style is dashed
 
         return newGraph

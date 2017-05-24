@@ -4,64 +4,34 @@ fontname=Verdana;
 fontsize=12;
 newrank=true;
 node [shape=circle];
-Yes;
-Child;
-Female;
-"2nd";
-"1st";
-"3rd";
-Crew;
-No;
-Adult;
-Male;
-subgraph cluster_Adult3rdMaleCrewFemale2ndYes1stChildNo {
+f;
+b;
+c;
+e;
+d;
+a;
+subgraph cluster_badfce {
 node [shape=point];
-s_AdultMaleNo -> s_Yes  [arrowhead=none, color=black];
-s_AdultMaleNo -> s_Child  [arrowhead=none, color=black];
-s_AdultMaleNo -> s_Female  [arrowhead=none, color=black];
-s_AdultMaleNo -> s_2nd  [arrowhead=none, color=black];
-s_AdultMaleNo -> s_1st  [arrowhead=none, color=black];
-s_AdultMaleNo -> s_3rd  [arrowhead=none, color=black];
-s_AdultMaleNo -> s_Crew  [arrowhead=none, color=black];
-s_Yes -> s_Child  [arrowhead=none, color=black];
-s_Yes -> s_Female  [arrowhead=none, color=black];
-s_Yes -> s_2nd  [arrowhead=none, color=black];
-s_Yes -> s_1st  [arrowhead=none, color=black];
-s_Yes -> s_3rd  [arrowhead=none, color=black];
-s_Yes -> s_Crew  [arrowhead=none, color=black];
-s_Child -> s_Female  [arrowhead=none, color=black];
-s_Child -> s_2nd  [arrowhead=none, color=black];
-s_Child -> s_1st  [arrowhead=none, color=black];
-s_Child -> s_3rd  [arrowhead=none, color=black];
-s_Child -> s_Crew  [arrowhead=none, color=black];
-s_Female -> s_2nd  [arrowhead=none, color=black];
-s_Female -> s_1st  [arrowhead=none, color=black];
-s_Female -> s_3rd  [arrowhead=none, color=black];
-s_Female -> s_Crew  [arrowhead=none, color=black];
-s_2nd -> s_1st  [arrowhead=none, color=black];
-s_2nd -> s_3rd  [arrowhead=none, color=black];
-s_2nd -> s_Crew  [arrowhead=none, color=black];
-s_1st -> s_3rd  [arrowhead=none, color=black];
-s_1st -> s_Crew  [arrowhead=none, color=black];
-s_3rd -> s_Crew  [arrowhead=none, color=black];
+s_dea -> s_f  [arrowhead=none, color=black];
+s_dea -> s_b  [arrowhead=none, color=black];
+s_dea -> s_c  [arrowhead=none, color=black];
+s_f -> s_b  [arrowhead=none, color=black];
+s_f -> s_c  [arrowhead=none, color=black];
+s_b -> s_c  [arrowhead=none, color=black];
 }
 
-subgraph cluster_AdultMaleNo {
+subgraph cluster_dea {
 node [shape=point];
-s_No -> s_Adult  [arrowhead=none, color=black];
-s_No -> s_Male  [arrowhead=none, color=black];
-s_Adult -> s_Male  [arrowhead=none, color=black];
+s_e -> s_d  [arrowhead=none, color=black];
+s_e -> s_a  [arrowhead=none, color=black];
+s_d -> s_a  [arrowhead=none, color=black];
 }
 
-s_AdultMaleNo -> s_No  [arrowhead=none, lhead=cluster_AdultMaleNo];
-s_Yes -> Yes  [arrowhead=none];
-s_Child -> Child  [arrowhead=none];
-s_Female -> Female  [arrowhead=none];
-s_2nd -> "2nd"  [arrowhead=none];
-s_1st -> "1st"  [arrowhead=none];
-s_3rd -> "3rd"  [arrowhead=none];
-s_Crew -> Crew  [arrowhead=none];
-s_No -> No  [arrowhead=none];
-s_Adult -> Adult  [arrowhead=none];
-s_Male -> Male  [arrowhead=none];
+s_dea -> s_e  [arrowhead=none, lhead=cluster_dea];
+s_f -> f  [arrowhead=none];
+s_b -> b  [arrowhead=none];
+s_c -> c  [arrowhead=none];
+s_e -> e  [arrowhead=none];
+s_d -> d  [arrowhead=none];
+s_a -> a  [arrowhead=none];
 }

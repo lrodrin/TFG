@@ -4,34 +4,44 @@ fontname=Verdana;
 fontsize=12;
 newrank=true;
 node [shape=circle];
-Yes;
-"3rd";
-Adult;
-Male;
-No;
-Crew;
-subgraph cluster_MaleAdultYesNo3rdCrew {
+c;
+e;
+d;
+a;
+f;
+b;
+subgraph cluster_fdcbea {
+rank=same;
 node [shape=point];
-s_MaleCrewNoAdult -> s_Yes  [arrowhead=none, color=grey];
-s_MaleCrewNoAdult -> s_3rd  [arrowhead=none, color=black];
-s_Yes -> s_3rd  [arrowhead=none, color=grey];
+s_fdbea -> s_c  [arrowhead=none, color=black];
 }
 
-subgraph cluster_MaleCrewNoAdult {
+subgraph cluster_fdbea {
+rank=same;
 node [shape=point];
-s_Adult -> s_Male  [arrowhead=none, color=grey];
-s_Adult -> s_No  [arrowhead=none, color=grey];
-s_Adult -> s_Crew  [arrowhead=none, color=grey];
-s_Male -> s_No  [arrowhead=none, color=grey];
-s_Male -> s_Crew  [arrowhead=none, color=grey];
-s_No -> s_Crew  [arrowhead=none, color=grey];
+s_eda -> s_bf  [arrowhead=none, color=black];
 }
 
-s_MaleCrewNoAdult -> s_Adult  [arrowhead=none, lhead=cluster_MaleCrewNoAdult];
-s_Yes -> Yes  [arrowhead=none];
-s_3rd -> "3rd"  [arrowhead=none];
-s_Adult -> Adult  [arrowhead=none];
-s_Male -> Male  [arrowhead=none];
-s_No -> No  [arrowhead=none];
-s_Crew -> Crew  [arrowhead=none];
+subgraph cluster_eda {
+node [shape=point];
+s_e -> s_d  [arrowhead=none, color=cyan];
+s_e -> s_a  [arrowhead=none, color=cyan];
+s_d -> s_a  [arrowhead=none, color=cyan];
+}
+
+subgraph cluster_bf {
+rank=same;
+node [shape=point];
+s_f -> s_b  [arrowhead=none, color=black];
+}
+
+s_fdbea -> s_eda  [arrowhead=none, lhead=cluster_fdbea];
+s_c -> c  [arrowhead=none];
+s_eda -> s_e  [arrowhead=none, lhead=cluster_eda];
+s_bf -> s_f  [arrowhead=none, lhead=cluster_bf];
+s_e -> e  [arrowhead=none];
+s_d -> d  [arrowhead=none];
+s_a -> a  [arrowhead=none];
+s_f -> f  [arrowhead=none];
+s_b -> b  [arrowhead=none];
 }

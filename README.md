@@ -1,5 +1,5 @@
 # TFG
-Disseny i implementació d'un paquet de programari que sistematitzi l'anàlisi i la visualització de dades relacionals mitjançant estructures involucrades en la teoria de grafs.
+Disseny i implementació d'un paquet de programari que sistemitza l'anàlisi i la visualització de dades relacionals mitjançant estructures involucrades en la teoria de les 2-estructures.
 
 Execució del paquet de programari:
 

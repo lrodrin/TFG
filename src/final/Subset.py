@@ -61,6 +61,7 @@ class Subset:
 
         elif 'linux' in sys.platform:  # Linux platform
             try:
+                os.system("chmod +x apriori")
                 os.system("./apriori -s{0} -C'@%' {1} {2}".format(str(support), str(dataFile.replace("\n", "")),
                                                                   str(newFilename.replace("\n", ""))))
             except OSError as e:

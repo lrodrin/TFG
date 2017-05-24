@@ -97,6 +97,8 @@ class Subset:
 
         filename.close()
         allElementsList.append(allElements)
-        l = moreFrequentSubsets + allElementsList  # List concatenation from two lists
+        if allElements not in moreFrequentSubsets:  # If trivial clan with all the elements not exists in
+            # moreFrequentSubsets
+            moreFrequentSubsets.extend(allElementsList)  # Add the trivial clan with all the elements
 
-        return l
+        return moreFrequentSubsets

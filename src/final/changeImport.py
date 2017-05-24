@@ -1,5 +1,5 @@
 """
-This module implements a program that looping a list of files and change the imports
+This module implements a program that looping a list of files and change the imports in Linux platform
 
 Copyright (c) 2016-2017 Laura Rodriguez Navas <laura.rodriguez.navas@upc.edu>
 

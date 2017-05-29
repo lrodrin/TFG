@@ -14,14 +14,14 @@ Female;
 Male;
 Yes;
 No;
-subgraph cluster_AdultYesChild3rd2ndCrewNo1stFemaleMale {
+subgraph cluster_2ndFemaleChild1stAdultNoMaleCrew3rdYes {
 node [shape=point];
-s_Adult3rd2ndCrew1stChild -> s_YesNo  [arrowhead=none, color=black];
-s_Adult3rd2ndCrew1stChild -> s_FemaleMale  [arrowhead=none, color=black];
+s_Child1stAdultCrew2nd3rd -> s_YesNo  [arrowhead=none, color=black];
+s_Child1stAdultCrew2nd3rd -> s_FemaleMale  [arrowhead=none, color=black];
 s_YesNo -> s_FemaleMale  [arrowhead=none, color=black];
 }
 
-subgraph cluster_Adult3rd2ndCrew1stChild {
+subgraph cluster_Child1stAdultCrew2nd3rd {
 node [shape=point];
 s_3rd2nd1st -> s_Child  [arrowhead=none, color=black];
 s_3rd2nd1st -> s_Adult  [arrowhead=none, color=black];
@@ -50,7 +50,7 @@ node [shape=point];
 s_Yes -> s_No  [arrowhead=none, color=black];
 }
 
-s_Adult3rd2ndCrew1stChild -> s_3rd2nd1st  [arrowhead=none, lhead=cluster_Adult3rd2ndCrew1stChild];
+s_Child1stAdultCrew2nd3rd -> s_3rd2nd1st  [arrowhead=none, lhead=cluster_Child1stAdultCrew2nd3rd];
 s_YesNo -> s_Yes  [arrowhead=none, lhead=cluster_YesNo];
 s_FemaleMale -> s_Female  [arrowhead=none, lhead=cluster_FemaleMale];
 s_3rd2nd1st -> s_2nd  [arrowhead=none, lhead=cluster_3rd2nd1st];

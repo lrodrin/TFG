@@ -1,23 +1,12 @@
 strict graph "" {
-f;
-e;
-g;
+a;
 b;
-h;
+d;
 c;
-f -- e  [color=black, style=dashed];
-f -- g  [color=black, style=dashed];
-f -- b  [color=black, label=1, style=solid];
-f -- h  [color=black, label=1, style=solid];
-f -- c  [color=black, style=dashed];
-e -- g  [color=black, label=1, style=solid];
-e -- b  [color=black, style=dashed];
-e -- h  [color=black, style=dashed];
-e -- c  [color=black, style=dashed];
-g -- b  [color=black, style=dashed];
-g -- h  [color=black, style=dashed];
-g -- c  [color=black, label=1, style=solid];
-b -- h  [color=black, style=dashed];
-b -- c  [color=black, style=dashed];
-h -- c  [color=black, style=dashed];
+a -- b  [color=black, label=1, style=solid];
+a -- d  [color=black, style=dashed];
+a -- c  [color=black, style=dashed];
+b -- d  [color=black, label=1, style=solid];
+b -- c  [color=grey, label=2, style=solid];
+d -- c  [color=black, style=dashed];
 }

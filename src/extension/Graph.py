@@ -116,26 +116,40 @@ class Graph:
         return graphDict
 
     @staticmethod
-    def labeledEdges(graph, rows):
+    def labeledEdges(graph, rowsList):
         """
         Count the number of equivalences and label the edges from graph with the total number of equivalences
 
         :param graph: Networkx's graph
-        :param rows: Rows from a SQLite table
+        :param rowsList: Rows from a SQLite tables
         :type graph: nx.Graph
+        :type rowsList: list
         """
+        # numberOfEquivalences = dict()
+        # for row in rows:  # For each row in rows
+        #     for (u, v) in combinations(row, 2):  # For each pair (u, v) in the row
+        #         if u != v:  # If u and v have different values
+        #             if (u, v) in numberOfEquivalences.keys():  # If exists edge (u, v) in a numberOfEquivalences
+        #                 numberOfEquivalences[(u, v)] = numberOfEquivalences.get(
+        #                     (u, v)) + 1  # Increases the number of equivalences
+        #                 graph.edge[u][v]['label'] += 1  # Add the number of equivalences into label edge from graph
+        #
+        #             else:  # If not exists edge (u, v) in numberOfEquivalences
+        #                 numberOfEquivalences[(u, v)] = 1
+        #                 graph.add_edge(u, v, label=1)
         numberOfEquivalences = dict()
-        for row in rows:  # For each row in rows
-            for (u, v) in combinations(row, 2):  # For each pair (u, v) in the row
-                if u != v:  # If u and v have different values
-                    if (u, v) in numberOfEquivalences.keys():  # If exists edge (u, v) in a numberOfEquivalences
-                        numberOfEquivalences[(u, v)] = numberOfEquivalences.get(
-                            (u, v)) + 1  # Increases the number of equivalences
-                        graph.edge[u][v]['label'] += 1  # Add the number of equivalences into label edge from graph
+        for rows in rowsList:
+            for row in rows:  # For each row in rows
+                for (u, v) in combinations(row, 2):  # For each pair (u, v) in the row
+                    if u != v:  # If u and v have different values
+                        if (u, v) in numberOfEquivalences.keys():  # If exists edge (u, v) in a numberOfEquivalences
+                            numberOfEquivalences[(u, v)] = numberOfEquivalences.get(
+                                (u, v)) + 1  # Increases the number of equivalences
+                            graph.edge[u][v]['label'] += 1  # Add the number of equivalences into label edge from graph
 
-                    else:  # If not exists edge (u, v) in numberOfEquivalences
-                        numberOfEquivalences[(u, v)] = 1
-                        graph.add_edge(u, v, label=1)
+                        else:  # If not exists edge (u, v) in numberOfEquivalences
+                            numberOfEquivalences[(u, v)] = 1
+                            graph.add_edge(u, v, label=1)
 
     @staticmethod
     def createPlainGraph(graph, rows):

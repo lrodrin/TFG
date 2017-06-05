@@ -17,12 +17,14 @@ if __name__ == '__main__':
     # initMultiGraph from different SQLite tables
     tables, cursor = Data.getTableNamesDB(tableNames)
     initGraph = Graph.initMultiGraph(tables, cursor)  # Initialize a graph
-    Graph.exportGraph(initGraph, "initMultiGraph.dot")
-    Interface.openGraphviz("initMultiGraph.dot")
+    # Graph.exportGraph(initGraph, "initMultiGraph.dot")
+    # Interface.openGraphviz("initMultiGraph.dot")
 
     optionGraph = int(
         six.moves.input("Please enter the option of graph you want to create:\n [1] = plain\n [2] = plain "
                         "with threshold\n [3] = linear\n [4] = exponential\n"))
+
+    rows = Data.selectDataTables(tables)  # Select rows from SQLite tables
     graph, graphName = Interface.graphOptions(optionGraph, initGraph, rows)  # Create a type of graph
 
     if nx.number_of_nodes(graph) <= 15:

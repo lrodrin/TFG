@@ -1,0 +1,14 @@
+@relation r4
+@attribute col_1 int
+@attribute col_2 int
+@data
+a,b
+b,c
+d,b
+b,c
+a,c
+d,c
+f,b
+e,g
+f,h
+g,c

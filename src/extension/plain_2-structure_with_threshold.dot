@@ -1,0 +1,37 @@
+strict digraph "plain_2-structure_with_threshold" {
+compound=true;
+fontname=Verdana;
+fontsize=12;
+newrank=true;
+node [shape=circle];
+f;
+b;
+c;
+e;
+d;
+a;
+subgraph cluster_badfce {
+node [shape=point];
+s_dea -> s_f  [arrowhead=none, color=black];
+s_dea -> s_b  [arrowhead=none, color=black];
+s_dea -> s_c  [arrowhead=none, color=black];
+s_f -> s_b  [arrowhead=none, color=black];
+s_f -> s_c  [arrowhead=none, color=black];
+s_b -> s_c  [arrowhead=none, color=black];
+}
+
+subgraph cluster_dea {
+node [shape=point];
+s_e -> s_d  [arrowhead=none, color=black];
+s_e -> s_a  [arrowhead=none, color=black];
+s_d -> s_a  [arrowhead=none, color=black];
+}
+
+s_dea -> s_e  [arrowhead=none, lhead=cluster_dea];
+s_f -> f  [arrowhead=none];
+s_b -> b  [arrowhead=none];
+s_c -> c  [arrowhead=none];
+s_e -> e  [arrowhead=none];
+s_d -> d  [arrowhead=none];
+s_a -> a  [arrowhead=none];
+}

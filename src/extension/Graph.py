@@ -182,7 +182,7 @@ class Graph:
                 if label == 1:  # Equivalence class of 1
                     graph.add_edge(u, v, color='black', style='solid')  # Edge painted black and style is dashed
                 elif label == 2:  # Equivalence class of 2
-                    graph.add_edge(u, v, color='cyan', style='solid')  # Edge painted cyan and style is dashed
+                    graph.add_edge(u, v, color='cyan4', style='solid')  # Edge painted cyan and style is dashed
                 elif label == 3:  # Equivalence class of 4
                     graph.add_edge(u, v, color='green', style='solid')  # Edge painted green and style is dashed
                 elif label == 4:  # Equivalence class of 4
@@ -221,7 +221,7 @@ class Graph:
                 if label == 1:  # Equivalence class of 1
                     newGraph.add_edge(u, v, color='black', style='solid')  # Edge painted black and style is dashed
                 elif 2 <= label < 4:  # Equivalence classes of (2-3)
-                    newGraph.add_edge(u, v, color='cyan', style='solid')  # Edge painted cyan and style is dashed
+                    newGraph.add_edge(u, v, color='cyan4', style='solid')  # Edge painted cyan and style is dashed
                 elif 4 <= label < 8:  # Equivalence classes of (4-7)
                     newGraph.add_edge(u, v, color='green', style='solid')  # Edge painted green and style is dashed
                 elif 8 <= label < 16:  # Equivalence classes of (8-15)

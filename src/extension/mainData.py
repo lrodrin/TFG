@@ -21,3 +21,7 @@ if __name__ == "__main__":
     tableNames = list(six.moves.input("Please enter the table names you provide with spaces between them:\n").split())
     tables, cursor = Data.getTableNamesDB(tableNames)  # Get tables names from SQLite database
     print("SQLite tables:\n", tables)
+
+    rowsList = Data.selectDataTables(tables)    # Select rows from different SQLite tables
+    print("Rows from SQLite tables", tables)
+    print(rowsList)

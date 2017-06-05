@@ -187,6 +187,18 @@ class Data:
         return None
 
     @staticmethod
+    def selectDataTables(tableNames):
+        rowsList = list()
+        connection, cursor = Data.connectionDB("DB")  # Connection to SQLite database
+        for table in tableNames:
+            query = 'SELECT * FROM {0};'.format(str(table))
+            cursor.execute(query)
+            rows = cursor.fetchall()  # All the rows
+            rowsList.append(rows)
+
+        return rowsList
+
+    @staticmethod
     def getTableNamesDB(tableNames):
         """
         Return the tables specified by tableNames from a SQLite database

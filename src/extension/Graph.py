@@ -49,7 +49,6 @@ class Graph:
         :return: A graph
         :rtype: nx.Graph
         """
-        print(tableNames)
         graph = nx.Graph()  # Create an empty graph with no nodes and no edges
         for tableName in tableNames:
             columnNames, rows = Data.selectData(tableName, cursor)  # Select data from tableName

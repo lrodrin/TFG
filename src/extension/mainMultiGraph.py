@@ -13,7 +13,7 @@ __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 if __name__ == '__main__':
-    tableNames = list(six.moves.input("Please enter the table names you provide:\n"))
+    tableNames = list(six.moves.input("Please enter the table names you provide with spaces between them:\n").split())
     # initMultiGraph from different SQLite tables
     tables, cursor = Data.getTableNamesDB(tableNames)
     initGraph = Graph.initMultiGraph(tables, cursor)  # Initialize a graph

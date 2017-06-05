@@ -4,44 +4,67 @@ fontname=Verdana;
 fontsize=12;
 newrank=true;
 node [shape=circle];
-c;
-e;
-d;
-a;
-f;
-b;
-subgraph cluster_adfecb {
+Child;
+Adult;
+"1st";
+Crew;
+"2nd";
+"3rd";
+Female;
+Male;
+Yes;
+No;
+subgraph cluster_3rdCrewChild2nd1stFemaleNoAdultYesMale {
+node [shape=point];
+s_2nd1stAdult3rdCrewChild -> s_YesNo  [arrowhead=none, color=grey, style=solid];
+s_2nd1stAdult3rdCrewChild -> s_MaleFemale  [arrowhead=none, color=grey, style=solid];
+s_YesNo -> s_MaleFemale  [arrowhead=none, color=grey, style=solid];
+}
+
+subgraph cluster_2nd1stAdult3rdCrewChild {
+node [shape=point];
+s_2nd3rd -> s_Child  [arrowhead=none, color=grey, style=solid];
+s_2nd3rd -> s_Adult  [arrowhead=none, color=grey, style=solid];
+s_2nd3rd -> s_1st  [arrowhead=none, color=black, style=dashed];
+s_2nd3rd -> s_Crew  [arrowhead=none, color=black, style=dashed];
+s_Child -> s_Adult  [arrowhead=none, color=black, style=dashed];
+s_Child -> s_1st  [arrowhead=none, color=blue, style=solid];
+s_Child -> s_Crew  [arrowhead=none, color=black, style=dashed];
+s_Adult -> s_1st  [arrowhead=none, color=grey, style=solid];
+s_Adult -> s_Crew  [arrowhead=none, color=grey, style=solid];
+s_1st -> s_Crew  [arrowhead=none, color=black, style=dashed];
+}
+
+subgraph cluster_2nd3rd {
 rank=same;
 node [shape=point];
-s_adfeb -> s_c  [arrowhead=none, color=black];
+s_2nd -> s_3rd  [arrowhead=none, color=black, style=dashed];
 }
 
-subgraph cluster_adfeb {
+subgraph cluster_MaleFemale {
 rank=same;
 node [shape=point];
-s_aed -> s_bf  [arrowhead=none, color=black];
+s_Female -> s_Male  [arrowhead=none, color=black, style=dashed];
 }
 
-subgraph cluster_aed {
-node [shape=point];
-s_e -> s_d  [arrowhead=none, color=cyan];
-s_e -> s_a  [arrowhead=none, color=cyan];
-s_d -> s_a  [arrowhead=none, color=cyan];
-}
-
-subgraph cluster_bf {
+subgraph cluster_YesNo {
 rank=same;
 node [shape=point];
-s_f -> s_b  [arrowhead=none, color=black];
+s_Yes -> s_No  [arrowhead=none, color=black, style=dashed];
 }
 
-s_adfeb -> s_aed  [arrowhead=none, lhead=cluster_adfeb];
-s_c -> c  [arrowhead=none];
-s_aed -> s_e  [arrowhead=none, lhead=cluster_aed];
-s_bf -> s_f  [arrowhead=none, lhead=cluster_bf];
-s_e -> e  [arrowhead=none];
-s_d -> d  [arrowhead=none];
-s_a -> a  [arrowhead=none];
-s_f -> f  [arrowhead=none];
-s_b -> b  [arrowhead=none];
+s_2nd1stAdult3rdCrewChild -> s_2nd3rd  [arrowhead=none, lhead=cluster_2nd1stAdult3rdCrewChild];
+s_YesNo -> s_Yes  [arrowhead=none, lhead=cluster_YesNo];
+s_MaleFemale -> s_Female  [arrowhead=none, lhead=cluster_MaleFemale];
+s_2nd3rd -> s_2nd  [arrowhead=none, lhead=cluster_2nd3rd];
+s_Child -> Child  [arrowhead=none];
+s_Adult -> Adult  [arrowhead=none];
+s_1st -> "1st"  [arrowhead=none];
+s_Crew -> Crew  [arrowhead=none];
+s_2nd -> "2nd"  [arrowhead=none];
+s_3rd -> "3rd"  [arrowhead=none];
+s_Female -> Female  [arrowhead=none];
+s_Male -> Male  [arrowhead=none];
+s_Yes -> Yes  [arrowhead=none];
+s_No -> No  [arrowhead=none];
 }

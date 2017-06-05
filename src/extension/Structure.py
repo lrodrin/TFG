@@ -61,8 +61,10 @@ class Structure:
                     u = "s_%s" % "".join(primalClan1)
                     v = "s_%s" % "".join(primalClan2)
                     if u != v:  # If node cycle not exists
-                        edge = pydotplus.Edge(u, v, color=Clan.getColorClans(colorEdgesAtributtes, primalClan1, primalClan2),
-                                              style=Clan.getStyleClans(styleEdgesAtributtes, primalClan1, primalClan2), arrowhead="none")
+                        edge = pydotplus.Edge(u, v, color=Clan.getColorClans(colorEdgesAtributtes, primalClan1,
+                                                                             primalClan2),
+                                              style=Clan.getStyleClans(styleEdgesAtributtes, primalClan1, primalClan2),
+                                              arrowhead="none")
 
                     if not cluster.get_edge(edge):  # If edge not exists and node cycle also not exists
                         cluster.add_edge(edge)  # Add edge to cluster
@@ -165,5 +167,5 @@ class Structure:
         """
         colorEdgesAtributtes, styleEdgesAtributtes, primalClansDict = Structure.frequentDecomposition(graph, moreFrequentSubsets)
         # Graph decomposition
-        Structure.createGraphvizStructure(colorEdgesAtributtes, styleEdgesAtributtes, primalClansDict, filename)  #
+        Structure.createGraphvizStructure(colorEdgesAtributtes, styleEdgesAtributtes, primalClansDict, filename)
         # Create 2-structure

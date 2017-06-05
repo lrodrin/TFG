@@ -8,8 +8,8 @@ Distributed under MIT license
 """
 from collections import defaultdict
 
-from src.final.Graph import *
-from src.final.Subset import *
+from src.extension.Graph import *
+from src.extension.Subset import *
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
@@ -111,9 +111,9 @@ class Clan:
         :rtype: list
         """
         trivialClansList = list()
-        maxClanLenght = len(clansList[len(clansList) - 1])  # The lenght from the biggest clan
+        maxClanLength = len(clansList[len(clansList) - 1])  # The length from the biggest clan
         for clan in clansList:
-            if len(clan) == 1 or maxClanLenght == len(clan):  # If clan is a trivial clan
+            if len(clan) == 1 or maxClanLength == len(clan):  # If clan is a trivial clan
                 trivialClansList.append(clan)
 
         return sorted(trivialClansList)
@@ -186,12 +186,31 @@ class Clan:
         :return: Color edge attribute between primalClan1 and primalClan2
         :rtype: str
         """
-        print(colorEdgesAttributes)
         for key, color in colorEdgesAttributes.items():  # For each primal clan and their color attribute
             if (key[0] in primalClan1 and key[1] in primalClan2) or (
                             key[1] in primalClan1 and key[0] in primalClan2):  # If primalClan1 and primalClan2 have
                 #  the same color in colorEdgesAttributes
                 return color
+
+    @staticmethod
+    def getStyleClans(styleEdgesAttributes, primalClan1, primalClan2):
+        """
+        Get the style edge between two primal clans specified by primalClan_1 and primalClan2
+
+        :param styleEdgesAttributes: Color edges atributtes from a graph
+        :param primalClan1: Primal clan
+        :param primalClan2: Primal clan
+        :type styleEdgesAttributes: dict
+        :type primalClan1: set
+        :type primalClan2: set
+        :return: Style edge attribute between primalClan1 and primalClan2
+        :rtype: str
+        """
+        for key, style in styleEdgesAttributes.items():  # For each primal clan and their color attribute
+            if (key[0] in primalClan1 and key[1] in primalClan2) or (
+                            key[1] in primalClan1 and key[0] in primalClan2):  # If primalClan1 and primalClan2 have
+                #  the same color in colorEdgesAttributes
+                return style
 
     @staticmethod
     def printResults(graph):

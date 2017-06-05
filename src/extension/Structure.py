@@ -10,8 +10,8 @@ from collections import OrderedDict
 
 import pydotplus
 
-from src.final.Clan import *
-from src.final.Graph import *
+from src.extension.Clan import *
+from src.extension.Graph import *
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
@@ -19,14 +19,16 @@ __license__ = 'MIT'
 
 class Structure:
     @staticmethod
-    def createGraphvizStructure(edgesAtributtes, primalClansDict, structureName):
+    def createGraphvizStructure(colorEdgesAtributtes, styleEdgesAtributtes, primalClansDict, structureName):
         """
         Create a 2-structure from a dictionary of primal clans specified by primalClansDict
 
-        :param edgesAtributtes: Edges atributtes from a graph
+        :param colorEdgesAtributtes: Color edges atributtes from a graph
+        :param styleEdgesAtributtes: Style edges atributtes from a graph
         :param primalClansDict: Dictionary of primal clans
         :param structureName: Dot file name
-        :type edgesAtributtes: dict
+        :type colorEdgesAtributtes: dict
+        :type styleEdgesAtributtes: dict
         :type primalClansDict: dict
         :type structureName: str
         :return: A 2-structure
@@ -59,8 +61,8 @@ class Structure:
                     u = "s_%s" % "".join(primalClan1)
                     v = "s_%s" % "".join(primalClan2)
                     if u != v:  # If node cycle not exists
-                        edge = pydotplus.Edge(u, v, color=Clan.getColorClans(edgesAtributtes, primalClan1, primalClan2),
-                                              arrowhead="none")
+                        edge = pydotplus.Edge(u, v, color=Clan.getColorClans(colorEdgesAtributtes, primalClan1, primalClan2),
+                                              style=Clan.getStyleClans(styleEdgesAtributtes, primalClan1, primalClan2), arrowhead="none")
 
                     if not cluster.get_edge(edge):  # If edge not exists and node cycle also not exists
                         cluster.add_edge(edge)  # Add edge to cluster
@@ -104,11 +106,12 @@ class Structure:
         """
         clansList = Clan.clans(graph, graph.nodes())  # List of clans
         primalClansList = Clan.primalClans(clansList)  # List of primal clans
-        EdgesAtributtes = Graph.getColorAttributesFromGraph(graph)  # Edges atributtes from graph
+        colorEdgesAtributtes = Graph.getColorAttributesFromGraph(graph)  # Color edges atributtes from graph
+        styleEdgesAtributtes = Graph.getStyleAttributesFromGraph(graph)  # Style edges atributtes from graph
         primalClansDict = OrderedDict(reversed(sorted(Clan.primalClansDict(primalClansList).items(),
                                                       key=lambda t: len(t[0]))))  # Dictionary of primal clans
         # sorted in reverse mode by primal clans length
-        return EdgesAtributtes, primalClansDict
+        return colorEdgesAtributtes, styleEdgesAtributtes, primalClansDict
 
     @staticmethod
     def frequentDecomposition(graph, moreFrequentSubsets):
@@ -124,11 +127,12 @@ class Structure:
         """
         clansList = Clan.frequentClans(moreFrequentSubsets)  # List of more frequent clans
         primalClansList = Clan.primalClans(clansList)  # List of more frequent primal clans
-        EdgesAtributtes = Graph.getColorAttributesFromGraph(graph)  # Edges atributtes from graph
+        colorEdgesAtributtes = Graph.getColorAttributesFromGraph(graph)  # Color edges atributtes from graph
+        styleEdgesAtributtes = Graph.getStyleAttributesFromGraph(graph)  # Style edges atributtes from graph
         primalClansDict = OrderedDict(reversed(sorted(Clan.primalClansDict(primalClansList).items(),
                                                       key=lambda t: len(t[0]))))  # Dictionary of more frequent
         # primal clans sorted in reverse mode by primal clans length
-        return EdgesAtributtes, primalClansDict
+        return colorEdgesAtributtes, styleEdgesAtributtes, primalClansDict
 
     @staticmethod
     def create2Structure(graph, filename):
@@ -141,8 +145,10 @@ class Structure:
         :type filename: str
         :return: A 2-structure
         """
-        EdgesAtributtes, primalClansDict = Structure.decomposition(graph)  # Graph decomposition
-        Structure.createGraphvizStructure(EdgesAtributtes, primalClansDict, filename)  # Create 2-structure
+        colorEdgesAtributtes, styleEdgesAtributtes, primalClansDict = Structure.decomposition(graph)  # Graph
+        # decomposition
+        Structure.createGraphvizStructure(colorEdgesAtributtes, styleEdgesAtributtes, primalClansDict, filename)  #
+        # Create 2-structure
 
     @staticmethod
     def createFrequent2Structure(graph, filename, moreFrequentSubsets):
@@ -157,6 +163,7 @@ class Structure:
         :type moreFrequentSubsets: list
         :return: A 2-structure
         """
-        EdgesAtributtes, primalClansDict = Structure.frequentDecomposition(graph, moreFrequentSubsets)
+        colorEdgesAtributtes, styleEdgesAtributtes, primalClansDict = Structure.frequentDecomposition(graph, moreFrequentSubsets)
         # Graph decomposition
-        Structure.createGraphvizStructure(EdgesAtributtes, primalClansDict, filename)  # Create 2-structure
+        Structure.createGraphvizStructure(colorEdgesAtributtes, styleEdgesAtributtes, primalClansDict, filename)  #
+        # Create 2-structure

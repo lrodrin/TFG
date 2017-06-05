@@ -7,7 +7,7 @@ Distributed under MIT license
 [https://opensource.org/licenses/MIT]
 """
 
-from src.final.Interface import *
+from src.extension.Interface import *
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'

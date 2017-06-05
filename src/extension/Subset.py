@@ -10,7 +10,7 @@ import os
 import sys
 from itertools import chain, combinations
 
-from src.final.Data import *
+from src.extension.Data import *
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'

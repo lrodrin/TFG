@@ -10,7 +10,7 @@ import subprocess
 
 import six
 
-from src.final.Structure import *
+from src.extension.Structure import *
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'

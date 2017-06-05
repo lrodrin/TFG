@@ -10,19 +10,19 @@ d;
 a;
 f;
 b;
-subgraph cluster_bfdeca {
+subgraph cluster_adfecb {
 rank=same;
 node [shape=point];
-s_bfdea -> s_c  [arrowhead=none, color=black];
+s_adfeb -> s_c  [arrowhead=none, color=black];
 }
 
-subgraph cluster_bfdea {
+subgraph cluster_adfeb {
 rank=same;
 node [shape=point];
-s_eda -> s_bf  [arrowhead=none, color=black];
+s_aed -> s_bf  [arrowhead=none, color=black];
 }
 
-subgraph cluster_eda {
+subgraph cluster_aed {
 node [shape=point];
 s_e -> s_d  [arrowhead=none, color=cyan];
 s_e -> s_a  [arrowhead=none, color=cyan];
@@ -35,9 +35,9 @@ node [shape=point];
 s_f -> s_b  [arrowhead=none, color=black];
 }
 
-s_bfdea -> s_eda  [arrowhead=none, lhead=cluster_bfdea];
+s_adfeb -> s_aed  [arrowhead=none, lhead=cluster_adfeb];
 s_c -> c  [arrowhead=none];
-s_eda -> s_e  [arrowhead=none, lhead=cluster_eda];
+s_aed -> s_e  [arrowhead=none, lhead=cluster_aed];
 s_bf -> s_f  [arrowhead=none, lhead=cluster_bf];
 s_e -> e  [arrowhead=none];
 s_d -> d  [arrowhead=none];

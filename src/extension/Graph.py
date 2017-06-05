@@ -10,7 +10,7 @@ from itertools import combinations
 
 import networkx as nx
 
-from src.final.Data import *
+from src.extension.Data import *
 
 __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
@@ -78,6 +78,19 @@ class Graph:
         :rtype: dict
         """
         graphDict = nx.get_edge_attributes(graph, 'label')
+        return graphDict
+
+    @staticmethod
+    def getStyleAttributesFromGraph(graph):
+        """
+        Return a dictionary of style edges attributes from graph
+
+        :param graph: Networkx's graph
+        :type graph: nx.Graph
+        :return Style edge's attributes from graph
+        :rtype: dict
+        """
+        graphDict = nx.get_edge_attributes(graph, 'style')
         return graphDict
 
     @staticmethod

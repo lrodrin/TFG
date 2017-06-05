@@ -22,6 +22,6 @@ if __name__ == "__main__":
     tables, cursor = Data.getTableNamesDB(tableNames)  # Get tables names from SQLite database
     print("SQLite tables:\n", tables)
 
-    rowsList = Data.selectDataTables(tables)    # Select rows from different SQLite tables
+    rowsList = Data.selectDataTables(tables)  # Select rows from different SQLite tables
     print("Rows from SQLite tables", tables)
     print(rowsList)

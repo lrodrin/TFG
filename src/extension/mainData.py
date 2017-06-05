@@ -18,5 +18,6 @@ if __name__ == "__main__":
 
     columnNames, rows, cursor, tableName = Interface.inputFileOptions(option)  # Manages the data entry
 
-    tables = Data.getTableNamesDB(cursor)  # Get tables names from SQLite database
-    print("List of SQLite tables:\n", tables)
+    tableNames = list(six.moves.input("Please enter the table names you provide with spaces between them:\n").split())
+    tables, cursor = Data.getTableNamesDB(tableNames)  # Get tables names from SQLite database
+    print("SQLite tables:\n", tables)

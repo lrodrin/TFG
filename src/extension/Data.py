@@ -13,7 +13,6 @@ __license__ = 'MIT'
 
 
 class Data:
-
     @staticmethod
     def connectionDB(fileDB):
         """
@@ -188,22 +187,25 @@ class Data:
         return None
 
     @staticmethod
-    def getTableNamesDB(cursor):
+    def getTableNamesDB(tableNames):
         """
-        Return a list of all the table names from a SQLite database
+        Return the tables specified by tableNames from a SQLite database
         
-        :param cursor: Cursor object
+        :param tableNames: Table names
+        :type tableNames: list
         :return: List of table names
         :rtype: list
         """
         tablesNameList = list()
+        connection, cursor = Data.connectionDB("DB")  # Connection to SQLite database
         query = "SELECT name FROM sqlite_master WHERE type='table' ORDER BY Name"
         cursor.execute(query)
-        tables = map(lambda t: t[0], cursor.fetchall())
+        tables = map(lambda t: t[0], cursor.fetchall())  # All the tables from SQLite database
         for table in tables:
-            tablesNameList.append(table)  # Add table name to the list tablesNameList
+            if table in tableNames:  # If tableNames contains table
+                tablesNameList.append(table)  # Add table name to the list tablesNameList
 
-        return tablesNameList
+        return tablesNameList, cursor
 
     @staticmethod
     def convertDataToSet(dataFile):

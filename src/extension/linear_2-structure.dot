@@ -10,35 +10,35 @@ d;
 a;
 f;
 b;
-subgraph cluster_acebdf {
+subgraph cluster_bfedca {
 rank=same;
 node [shape=point];
-s_aebdf -> s_c  [color=black, style=dashed, arrowhead=none];
+s_fedba -> s_c  [color=black, style=dashed, arrowhead=none];
 }
 
-subgraph cluster_aebdf {
+subgraph cluster_fedba {
 rank=same;
 node [shape=point];
-s_eda -> s_bf  [color=black, style=solid, arrowhead=none];
+s_dae -> s_fb  [color=black, style=solid, arrowhead=none];
 }
 
-subgraph cluster_eda {
+subgraph cluster_dae {
 node [shape=point];
-s_e -> s_d  [color=cyan4, style=solid, arrowhead=none];
-s_e -> s_a  [color=cyan4, style=solid, arrowhead=none];
-s_d -> s_a  [color=cyan4, style=solid, arrowhead=none];
+s_e -> s_d  [color=grey, style=solid, arrowhead=none];
+s_e -> s_a  [color=grey, style=solid, arrowhead=none];
+s_d -> s_a  [color=grey, style=solid, arrowhead=none];
 }
 
-subgraph cluster_bf {
+subgraph cluster_fb {
 rank=same;
 node [shape=point];
 s_f -> s_b  [color=black, style=dashed, arrowhead=none];
 }
 
-s_aebdf -> s_eda  [lhead=cluster_aebdf, arrowhead=none];
+s_fedba -> s_dae  [lhead=cluster_fedba, arrowhead=none];
 s_c -> c  [arrowhead=none];
-s_eda -> s_e  [lhead=cluster_eda, arrowhead=none];
-s_bf -> s_f  [lhead=cluster_bf, arrowhead=none];
+s_dae -> s_e  [lhead=cluster_dae, arrowhead=none];
+s_fb -> s_f  [lhead=cluster_fb, arrowhead=none];
 s_e -> e  [arrowhead=none];
 s_d -> d  [arrowhead=none];
 s_a -> a  [arrowhead=none];

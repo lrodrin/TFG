@@ -13,7 +13,6 @@ __license__ = 'MIT'
 
 
 class Data:
-    # TODO tractar diferents taules
 
     @staticmethod
     def connectionDB(fileDB):

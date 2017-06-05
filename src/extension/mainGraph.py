@@ -17,16 +17,21 @@ if __name__ == '__main__':
                                      "TXT\n [3] = DB\n"))
 
     columnNames, rows, cursor, tableName = Interface.inputFileOptions(optionData)  # Manages the data entry
+    # initGraph
     initGraph, rows = Graph.initGraph(tableName, cursor)  # Initialize a graph
+    Graph.exportGraph(initGraph, "initGraph.dot")
+    Interface.openGraphviz("initGraph.dot")
 
-    # Print initGraph
-    # Graph.exportGraph(initGraph, "initGraph.dot")
-    # Interface.openGraphviz("initGraph.dot")
+    # initMultiGraph from different SQLite tables
+    tableNames = Data.getTableNamesDB(cursor)
+    initGraph = Graph.initMultiGraph(tableNames, cursor)  # Initialize a graph
+    Graph.exportGraph(initGraph, "initGraph2.dot")
+    Interface.openGraphviz("initGraph2.dot")
 
-    optionGraph = int(
-        six.moves.input("Please enter the option of graph you want to create:\n [1] = plain\n [2] = plain "
-                        "with threshold\n [3] = linear\n [4] = exponential\n"))
-    graph, graphName = Interface.graphOptions(optionGraph, initGraph, rows)  # Create a type of graph
-
-    if nx.number_of_nodes(graph) <= 15:
-        Interface.openGraphviz(graphName)  # Open graph in Graphviz program
+    # optionGraph = int(
+    #     six.moves.input("Please enter the option of graph you want to create:\n [1] = plain\n [2] = plain "
+    #                     "with threshold\n [3] = linear\n [4] = exponential\n"))
+    # graph, graphName = Interface.graphOptions(optionGraph, initGraph, rows)  # Create a type of graph
+    #
+    # if nx.number_of_nodes(graph) <= 15:
+    #     Interface.openGraphviz(graphName)  # Open graph in Graphviz program

@@ -39,6 +39,29 @@ class Graph:
         return graph, rows
 
     @staticmethod
+    def initMultiGraph(tableNames, cursor):
+        """
+        Create and initializes a graph from different tables SQLite database source
+
+        :param tableNames: Table names
+        :param cursor: Cursor object
+        :type tableNames: list
+        :return: A graph
+        :rtype: nx.Graph
+        """
+        print(tableNames)
+        graph = nx.Graph()  # Create an empty graph with no nodes and no edges
+        for tableName in tableNames:
+            columnNames, rows = Data.selectData(tableName, cursor)  # Select data from tableName
+            Graph.addNodes(graph, columnNames, rows)  # Adding nodes to graph
+            for (u, v) in combinations(graph.nodes(), 2):  # For the initialization all the edges from graph are
+                # painted black and the edge style is dashed
+                if u != v:
+                    graph.add_edge(u, v, color='black', style='dashed')
+
+        return graph
+
+    @staticmethod
     def addNodes(graph, columnNames, rows):
         """
         Add nodes to graph

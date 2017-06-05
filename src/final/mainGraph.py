@@ -17,11 +17,10 @@ if __name__ == '__main__':
                                      "TXT\n [3] = DB\n"))
 
     columnNames, rows, cursor, tableName = Interface.inputFileOptions(optionData)  # Manages the data entry
+    # initGraph
     initGraph, rows = Graph.initGraph(tableName, cursor)  # Initialize a graph
-
-    # Print initGraph
-    # Graph.exportGraph(initGraph, "initGraph.dot")
-    # Interface.openGraphviz("initGraph.dot")
+    Graph.exportGraph(initGraph, "initGraph.dot")
+    Interface.openGraphviz("initGraph.dot")
 
     optionGraph = int(
         six.moves.input("Please enter the option of graph you want to create:\n [1] = plain\n [2] = plain "

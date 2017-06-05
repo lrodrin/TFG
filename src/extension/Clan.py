@@ -38,9 +38,9 @@ class Clan:
                     colorX = graph.edge[external][u]['color']
                     colorY = graph.edge[external][v]['color']
                     lineStyleX = graph.edge[external][u]['style']
-                    lineStyley = graph.edge[external][v]['style']
-                    if colorX != colorY or lineStyleX != lineStyley:  # If the pair (external, u) and (external,
-                        # v) not have the same color edge
+                    lineStyleY = graph.edge[external][v]['style']
+                    if colorX != colorY or lineStyleX != lineStyleY:  # If the pair (external, u) and (external,
+                        # v) not have the same color edge or the same line style
                         isClan = False
         return isClan
 
@@ -186,6 +186,7 @@ class Clan:
         :return: Color edge attribute between primalClan1 and primalClan2
         :rtype: str
         """
+        print(colorEdgesAttributes)
         for key, color in colorEdgesAttributes.items():  # For each primal clan and their color attribute
             if (key[0] in primalClan1 and key[1] in primalClan2) or (
                             key[1] in primalClan1 and key[0] in primalClan2):  # If primalClan1 and primalClan2 have

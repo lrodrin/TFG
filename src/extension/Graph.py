@@ -56,7 +56,7 @@ class Graph:
             for (u, v) in combinations(graph.nodes(), 2):  # For the initialization all the edges from graph are
                 # painted black and the edge style is dashed
                 if u != v:  # If u and v have different values
-                    graph.add_edge(u, v, color='black', style='dashed')
+                    graph.add_edge(u, v, color='black', style='dashed', label=0)
 
         return graph
 
@@ -166,10 +166,13 @@ class Graph:
         labels = Graph.getLabelAttributesFromGraph(graph)  # Edge labels from graph
 
         for (u, v), label in labels.items():  # For each edge and label attribute in labels
+            print(u, v)
             if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph and u and v have different values
-                if label > 0:  # If label attribute from edge(u, v) is bigger than 0
+                if label >= 1:  # If label attribute from edge(u, v) is bigger than 0
                     graph.add_edge(u, v, color='black', style='solid')  # Edge painted black and line style is not
                     # dashed
+                else:
+                    graph.remove_edge(u, v)
 
         return graph
 
@@ -191,9 +194,7 @@ class Graph:
 
         for (u, v), label in labels.items():  # For each edge and label attribute in labels
             if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph and u and v have different values
-                if label < k:  # If label attribute from edge(u, v) is smaller than k constant
-                    graph.add_edge(u, v, color='black', style='dashed')  # Edge painted black and line style is dashed
-                elif label >= k:  # If label attribute from edge(u, v) is equal or greater than k constant
+                if label >= k:  # If label attribute from edge(u, v) is equal or greater than k constant
                     graph.add_edge(u, v, color='black',
                                    style='solid')  # Edge painted black and line style is not dashed
 

@@ -95,22 +95,25 @@ class Interface:
         :return: A type of graph and the name of graph dot file generated
         :rtype: nx.Graph, str
         """
+        s = "Please enter the K constant for the threshold:\n"
+
         if option == 1:  # Create a plain graph
             graph = Graph.createPlainGraph(initGraph, rows)
             graphName = "plainGraph.dot"
 
         elif option == 2:  # Create a plain graph with threshold
-            threshold = int(six.moves.input("Please enter the K constant for the threshold:\n"))
-            graph = Graph.createPlainGraphWithThreshold(initGraph, rows,
-                                                        threshold)
+            threshold = int(six.moves.input(s))
+            graph = Graph.createPlainGraphWithThreshold(initGraph, rows, threshold)
             graphName = "plainGraph_with_threshold.dot"
 
         elif option == 3:  # Create a linear graph
-            graph = Graph.createLinearGraph(initGraph, rows)
+            threshold = int(six.moves.input(s))
+            graph = Graph.createLinearGraphWithThreshold(initGraph, rows, threshold)
             graphName = "linearGraph.dot"
 
         elif option == 4:  # Create an exponential graph
-            graph = Graph.createExponentialGraph(initGraph, rows)
+            threshold = int(six.moves.input(s))
+            graph = Graph.createExponentialGraphWithThreshold(initGraph, rows, threshold)
             graphName = "exponentialGraph.dot"
 
         Graph.exportGraph(graph, graphName)  # Export a type of graph to Graphviz format

@@ -166,7 +166,6 @@ class Graph:
         labels = Graph.getLabelAttributesFromGraph(graph)  # Edge labels from graph
 
         for (u, v), label in labels.items():  # For each edge and label attribute in labels
-            print(u, v)
             if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph and u and v have different values
                 if label >= 1:  # If label attribute from edge(u, v) is bigger than 0
                     graph.add_edge(u, v, color='black', style='solid')  # Edge painted black and line style is not
@@ -197,6 +196,8 @@ class Graph:
                 if label >= k:  # If label attribute from edge(u, v) is equal or greater than k constant
                     graph.add_edge(u, v, color='black',
                                    style='solid')  # Edge painted black and line style is not dashed
+                else:
+                    graph.remove_edge(u, v)
 
         return graph
 
@@ -217,23 +218,65 @@ class Graph:
         for (u, v), label in labels.items():  # For each edge and label attribute in labels
             if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph and u and v have different values
                 if label == 1:  # Equivalence class of 1
-                    graph.add_edge(u, v, color='black', style='solid')  # Edge painted black and style is dashed
+                    graph.add_edge(u, v, color='black', style='solid')  # Edge painted black and style is solid
                 elif label == 2:  # Equivalence class of 2
-                    graph.add_edge(u, v, color='grey', style='solid')  # Edge painted grey and style is dashed
+                    graph.add_edge(u, v, color='grey', style='solid')  # Edge painted grey and style is solid
                 elif label == 3:  # Equivalence class of 4
-                    graph.add_edge(u, v, color='green', style='solid')  # Edge painted green and style is dashed
+                    graph.add_edge(u, v, color='green', style='solid')  # Edge painted green and style is solid
                 elif label == 4:  # Equivalence class of 4
-                    graph.add_edge(u, v, color='magenta', style='solid')  # Edge painted magenta and style is dashed
+                    graph.add_edge(u, v, color='magenta', style='solid')  # Edge painted magenta and style is solid
                 elif label == 5:  # Equivalence class of 5
-                    graph.add_edge(u, v, color='orange', style='solid')  # Edge painted orange and style is dashed
+                    graph.add_edge(u, v, color='orange', style='solid')  # Edge painted orange and style is solid
                 elif label == 6:  # Equivalence class of 6
-                    graph.add_edge(u, v, color='blue', style='solid')  # Edge painted blue and style is dashed
+                    graph.add_edge(u, v, color='blue', style='solid')  # Edge painted blue and style is solid
                 elif label == 7:  # Equivalence class of 7
-                    graph.add_edge(u, v, color='red', style='solid')  # Edge painted red and style is dashed
+                    graph.add_edge(u, v, color='red', style='solid')  # Edge painted red and style is solid
                 elif label == 8:  # Equivalence class of 8
-                    graph.add_edge(u, v, color='yellow', style='solid')  # Edge painted yellow and style is dashed
+                    graph.add_edge(u, v, color='yellow', style='solid')  # Edge painted yellow and style is solid
                 else:  # The others
-                    graph.add_edge(u, v, color='brown', style='solid')  # Edge painted brown and style is dashed
+                    graph.add_edge(u, v, color='brown', style='solid')  # Edge painted brown and style is solid
+
+        return graph
+
+    @staticmethod
+    def createLinearGraphWithThreshold(graph, rows, k):
+        """
+        Create a linear graph with threshold
+
+        :param graph: Networkx's graph
+        :param rows: Rows from a SQLite table
+        :param k: Threshold
+        :type graph: nx.Graph
+        :type k: int
+        :return: A linear graph with threshold
+        :rtype: nx.Graph
+        """
+        Graph.labeledEdges(graph, rows)  # Labeling edges from graph
+        labels = Graph.getLabelAttributesFromGraph(graph)  # Edge labels from graph
+
+        for (u, v), label in labels.items():  # For each edge and label attribute in labels
+            if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph and u and v have different values
+                if label >= k:  # If label attribute from edge(u, v) is equal or greater than k constant
+                    if label == k:  # Equivalence class k
+                        graph.add_edge(u, v, color='black', style='solid')  # Edge painted black and style is solid
+                    elif label == k + 1:  # Equivalence class k + 1
+                        graph.add_edge(u, v, color='grey', style='solid')  # Edge painted grey and style is solid
+                    elif label == k + 2:  # Equivalence class k + 2
+                        graph.add_edge(u, v, color='green', style='solid')  # Edge painted green and style is solid
+                    elif label == k + 3:  # Equivalence class k + 3
+                        graph.add_edge(u, v, color='magenta', style='solid')  # Edge painted magenta and style is solid
+                    elif label == k + 4:  # Equivalence class k + 4
+                        graph.add_edge(u, v, color='orange', style='solid')  # Edge painted orange and style is solid
+                    elif label == k + 5:  # Equivalence class k + 5
+                        graph.add_edge(u, v, color='blue', style='solid')  # Edge painted blue and style is solid
+                    elif label == k + 6:  # Equivalence class k + 6
+                        graph.add_edge(u, v, color='red', style='solid')  # Edge painted red and style is solid
+                    elif label == k + 7:  # Equivalence class k + 7
+                        graph.add_edge(u, v, color='yellow', style='solid')  # Edge painted yellow and style is solid
+                    else:  # Equivalence class >= k + 8
+                        graph.add_edge(u, v, color='brown', style='solid')  # Edge painted brown and style is solid
+                else:
+                    graph.remove_edge(u, v)
 
         return graph
 
@@ -254,23 +297,66 @@ class Graph:
         for (u, v), label in labels.items():  # For each edge and label attribute in labels
             if newGraph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph and u and v have different values
                 if label == 1:  # Equivalence class of 1
-                    newGraph.add_edge(u, v, color='black', style='solid')  # Edge painted black and style is dashed
+                    newGraph.add_edge(u, v, color='black', style='solid')  # Edge painted black and style is solid
                 elif 2 <= label < 4:  # Equivalence classes of (2-3)
-                    newGraph.add_edge(u, v, color='grey', style='solid')  # Edge painted grey and style is dashed
+                    newGraph.add_edge(u, v, color='grey', style='solid')  # Edge painted grey and style is solid
                 elif 4 <= label < 8:  # Equivalence classes of (4-7)
-                    newGraph.add_edge(u, v, color='green', style='solid')  # Edge painted green and style is dashed
+                    newGraph.add_edge(u, v, color='green', style='solid')  # Edge painted green and style is solid
                 elif 8 <= label < 16:  # Equivalence classes of (8-15)
-                    newGraph.add_edge(u, v, color='magenta', style='solid')  # Edge painted magenta and style is dashed
+                    newGraph.add_edge(u, v, color='magenta', style='solid')  # Edge painted magenta and style is solid
                 elif 16 <= label < 32:  # Equivalence classes of (16-31)
-                    newGraph.add_edge(u, v, color='orange', style='solid')  # Edge painted orange and style is dashed
+                    newGraph.add_edge(u, v, color='orange', style='solid')  # Edge painted orange and style is solid
                 elif 32 <= label < 64:  # Equivalence classes of (32-63)
-                    newGraph.add_edge(u, v, color='blue', style='solid')  # Edge painted blue and style is dashed
+                    newGraph.add_edge(u, v, color='blue', style='solid')  # Edge painted blue and style is solid
                 elif 64 <= label < 128:  # Equivalence classes of (64-127)
-                    newGraph.add_edge(u, v, color='red', style='solid')  # Edge painted red and style is dashed
+                    newGraph.add_edge(u, v, color='red', style='solid')  # Edge painted red and style is solid
                 elif 128 <= label < 256:  # Equivalence classes of (128-255)
-                    newGraph.add_edge(u, v, color='yellow', style='solid')  # Edge painted yellow and style is dashed
+                    newGraph.add_edge(u, v, color='yellow', style='solid')  # Edge painted yellow and style is solid
                 else:  # The others
-                    newGraph.add_edge(u, v, color='brown', style='solid')  # Edge painted brown and style is dashed
+                    newGraph.add_edge(u, v, color='brown', style='solid')  # Edge painted brown and style is solid
+
+        return newGraph
+
+    @staticmethod
+    def createExponentialGraphWithThreshold(linearGraph, rows, k):
+        """
+        Create a exponential graph with threshold
+
+        :param linearGraph: Networkx's graph
+        :param rows: Rows from a SQLite table
+        :param k: Threshold
+        :type linearGraph: nx.Graph
+        :type k: int
+        :return: A exponential graph with threshold
+        :rtype: nx.Graph
+        """
+        newGraph = Graph.createLinearGraphWithThreshold(linearGraph, rows, k)  # Create a new graph from linearGraph
+        labels = Graph.getLabelAttributesFromGraph(newGraph)  # Edge labels from graph
+
+        for (u, v), label in labels.items():  # For each edge and label attribute in labels
+            if newGraph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph and u and v have different values
+                if label >= k:  # If label attribute from edge(u, v) is equal or greater than k constant
+                    if label == k:  # Equivalence class k
+                        newGraph.add_edge(u, v, color='black', style='solid')  # Edge painted black and style is solid
+                    elif k + 1 <= label < k + 3:  # Equivalence classes (k+1-k+3)
+                        newGraph.add_edge(u, v, color='grey', style='solid')  # Edge painted grey and style is solid
+                    elif k + 3 <= label < k + 7:  # Equivalence classes (k+3-k+7)
+                        newGraph.add_edge(u, v, color='green', style='solid')  # Edge painted green and style is solid
+                    elif k + 7 <= label < k + 15:  # Equivalence classes (k+7-k+15)
+                        newGraph.add_edge(u, v, color='magenta',
+                                          style='solid')  # Edge painted magenta and style is solid
+                    elif k + 15 <= label < k + 31:  # Equivalence classes (k+15-k+31)
+                        newGraph.add_edge(u, v, color='orange', style='solid')  # Edge painted orange and style is solid
+                    elif k + 31 <= label < k + 63:  # Equivalence classes of (k+31-k+63)
+                        newGraph.add_edge(u, v, color='blue', style='solid')  # Edge painted blue and style is solid
+                    elif k + 63 <= label < k + 127:  # Equivalence classes of (k+63-k+127)
+                        newGraph.add_edge(u, v, color='red', style='solid')  # Edge painted red and style is solid
+                    elif k + 127 <= label < k + 255:  # Equivalence classes of (k+127-k+255)
+                        newGraph.add_edge(u, v, color='yellow', style='solid')  # Edge painted yellow and style is solid
+                    else:  # Others
+                        newGraph.add_edge(u, v, color='brown', style='solid')  # Edge painted brown and style is solid
+                else:
+                    graph.remove_edge(u, v)
 
         return newGraph
 

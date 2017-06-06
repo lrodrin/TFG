@@ -8,7 +8,6 @@ Distributed under MIT license
 """
 from collections import defaultdict
 
-from src.extension.Graph import *
 from src.extension.Subset import *
 
 __author__ = 'Laura Rodriguez Navas'
@@ -37,10 +36,7 @@ class Clan:
                     # u) and (external, v) in graph
                     colorX = graph.edge[external][u]['color']
                     colorY = graph.edge[external][v]['color']
-                    lineStyleX = graph.edge[external][u]['style']
-                    lineStyleY = graph.edge[external][v]['style']
-                    if colorX != colorY or lineStyleX != lineStyleY:  # If the pair (external, u) and (external,
-                        # v) not have the same color edge or the same line style
+                    if colorX != colorY:  # If the pair (external, u) and (external, v) not have the same color edge
                         isClan = False
         return isClan
 
@@ -82,26 +78,7 @@ class Clan:
         return sorted(clansList)
 
     @staticmethod
-    def trivialClans(clansList, cardinality):
-        """
-        Return a list of trivial clans from a list of clans specified by clansList
-
-        :param clansList: List of clans
-        :param cardinality: A maximal cardinality matching in a graph
-        :type clansList: list
-        :type cardinality: int
-        :return: List of trivial clans
-        :rtype: list
-        """
-        trivialClansList = list()
-        for clan in clansList:
-            if len(clan) == 1 or cardinality == len(clan):  # If clan is a trivial clan
-                trivialClansList.append(clan)
-
-        return sorted(trivialClansList)
-
-    @staticmethod
-    def trivialFrequentClans(clansList):
+    def trivialClans(clansList):
         """
         Return a list of trivial clans from a list of clans specified by clansList
 
@@ -226,7 +203,7 @@ class Clan:
         """
         clansList = Clan.clans(graph, graph.nodes())  # Create clans list
         print("\nList of clans:\n%s\n" % clansList)
-        trivialClansList = Clan.trivialClans(clansList, Graph.getMaxCardinalityFromGraph(graph))  # Create trivial clans
+        trivialClansList = Clan.trivialClans(clansList)  # Create trivial clans
         # list
         print("List of trivial clans:\n%s\n" % trivialClansList)
         primalClansList = Clan.primalClans(clansList)  # Create primal clans list
@@ -248,7 +225,7 @@ class Clan:
         """
         clansList = Clan.frequentClans(moreFrequentSubsets)  # Create clans list
         print("\nList of clans:\n%s\n" % clansList)
-        trivialClansList = Clan.trivialFrequentClans(clansList)  # Create trivial clans list
+        trivialClansList = Clan.trivialClans(clansList)  # Create trivial clans list
         print("List of trivial clans:\n%s\n" % trivialClansList)
         primalClansList = Clan.primalClans(clansList)  # Create primal clans list
         print("List of primal clans:\n%s\n" % primalClansList)

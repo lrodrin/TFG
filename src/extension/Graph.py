@@ -360,17 +360,17 @@ class Graph:
 
         return newGraph
 
-    @staticmethod
-    def getMaxCardinalityFromGraph(graph):
-        """
-        Return the max cardinality from graph
-
-        :param graph: Networkx's graph
-        :type graph: nx.Graph
-        :return: The max cardinality
-        :rtype: int
-        """
-        return nx.graph_clique_number(graph)
+    # @staticmethod
+    # def getMaxCardinalityFromGraph(graph):
+    #     """
+    #     Return the max cardinality from graph
+    #
+    #     :param graph: Networkx's graph
+    #     :type graph: nx.Graph
+    #     :return: The max cardinality
+    #     :rtype: int
+    #     """
+    #     return nx.graph_clique_number(graph)
 
     @staticmethod
     def exportGraph(graph, graphName):

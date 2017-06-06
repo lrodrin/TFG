@@ -17,7 +17,9 @@ def changeImport(FI, FO):
     for line in FI.readlines():
         if line.startswith("from"):
             if "src.extension." in line.split(" ")[1]:
-                newLine = line.split(" ")[1][10:]
+                newLine = line.split(" ")[1][14:]
+                print(newLine)
+                print(line)
                 line = str(line.split(" ")[0]) + " " + newLine + " " + str(line.split(" ")[2]) + " " + str(
                     line.split(" ")[3])
         FO.write(line)

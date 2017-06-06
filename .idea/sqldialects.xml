@@ -5,6 +5,7 @@
     <file url="file://$PROJECT_DIR$/src/data/create_data_from_txt.py" dialect="SQLite" />
     <file url="file://$PROJECT_DIR$/src/data/getableNames.py" dialect="SQLite" />
     <file url="file://$PROJECT_DIR$/src/extension/Data.py" dialect="SQLite" />
+    <file url="file://$PROJECT_DIR$/src/extension/Interface.py" dialect="SQLite" />
     <file url="file://$PROJECT_DIR$/src/final/Data.py" dialect="SQLite" />
     <file url="file://$PROJECT_DIR$/src/final/mainGraph.py" dialect="SQLite" />
   </component>

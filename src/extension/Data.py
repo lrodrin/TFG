@@ -26,7 +26,6 @@ class Data:
             dbName = fileDB + ".db"
             connection = sqlite3.connect(dbName)
             cursor = connection.cursor()
-            print("Connection successful to", dbName)
 
             return connection, cursor
 
@@ -188,20 +187,42 @@ class Data:
 
     @staticmethod
     def selectDataTables(tableNames):
+        """
+        Select all the rows from SQLite tables specified by tableNames
+        
+        :param tableNames: List of tables from SQLite database
+        :type tableNames: list
+        :return: List of rows
+        :rtype: list
+        """
         rowsList = list()
         connection, cursor = Data.connectionDB("DB")  # Connection to SQLite database
-        for table in tableNames:
+        for table in tableNames:  # For each table in tableNames
             query = 'SELECT * FROM {0};'.format(str(table))
             cursor.execute(query)
-            rows = cursor.fetchall()  # All the rows
-            rowsList.append(rows)
+            rows = cursor.fetchall()  # Rows from table
+            rowsList.append(rows)  # Add rows to the rowsList
 
         return rowsList
 
     @staticmethod
-    def getTableNamesDB(tableNames):
+    def getTables(cursor):
         """
-        Return the tables specified by tableNames from a SQLite database
+        Get all the tables in SQLite database
+        
+        :param cursor: Cursor object
+        :return: Tables from SQLite database
+        """
+        query = "SELECT name FROM sqlite_master WHERE type='table' ORDER BY Name"
+        cursor.execute(query)
+        tables = map(lambda t: t[0], cursor.fetchall())  # All the tables from SQLite database
+
+        return tables
+
+    @staticmethod
+    def getTablesForGraphCreation(tableNames):
+        """
+        Get the tables specified by tableNames from a SQLite database
         
         :param tableNames: Table names
         :type tableNames: list
@@ -210,12 +231,10 @@ class Data:
         """
         tablesNameList = list()
         connection, cursor = Data.connectionDB("DB")  # Connection to SQLite database
-        query = "SELECT name FROM sqlite_master WHERE type='table' ORDER BY Name"
-        cursor.execute(query)
-        tables = map(lambda t: t[0], cursor.fetchall())  # All the tables from SQLite database
-        for table in tables:
+        tables = Data.getTables(cursor)  # Get tables from SQLite databases
+        for table in tables:  # For each table in tables
             if table in tableNames:  # If tableNames contains table
-                tablesNameList.append(table)  # Add table name to the list tablesNameList
+                tablesNameList.append(table)  # Add table to the list tablesNameList
 
         return tablesNameList, cursor
 

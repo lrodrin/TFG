@@ -18,28 +18,43 @@ __license__ = 'MIT'
 
 class Interface:
     @staticmethod
+    def inputOptions():
+        """
+        Manage the input options
+        
+        """
+        s = "Please enter the option for the type of file you provide or Exit:\n [1] = ARFF\n [2] = TXT\n [3] = DB\n " \
+            "[0] = Exit\n "
+        option = int(six.moves.input(s))
+        while option != 0:  # While option is not 0 (Exit option)
+            Interface.inputFileOptions(option)  # Manages the data entry
+            option = int(six.moves.input(s))
+
+        print("Exit")
+
+    @staticmethod
     def inputFileOptions(option):
         """
         Manages the type of data (ARFF, TXT or DB) entry specified by option
 
         :param option: Type of data option
-        :type option: str
-        :return: The column names, rows, cursor and tableName generated for the type of data
+        :type option: int
         """
         if option == 1:
             fileARFF = str(six.moves.input("Please enter the name from ARFF file:\n")) + ".arff"
             # connection, cursor = Data.connection(fileARFF[0:-5] + ".arff")  # Connection to SQLite database
             connection, cursor = Data.connectionDB("DB")  # Connection to SQLite database
             file = Data.openFile(fileARFF)  # Open data file
-            columnNames, lines = Data.getDataFile(file, "ARFF")  # Get column names and lines from data file
+            columnNames, lines = Data.getDataFile(file, "ARFF")  # Get column names and lines from file
             tableName = fileARFF[0:-5]  # Table name
-            tableList = Data.getTableNamesDB(cursor)  # Get table names from database
-            if tableName not in tableList:  # If table name not exists
-                Data.createTable(cursor, tableName, columnNames)  # Create table tableName
-                Data.insertDataARFF(tableName, columnNames, lines, cursor,
-                                    connection)  # Insert data values to tableName
-
-            columnNames, rows = Data.selectData(tableName, cursor)  # Select data from tableName
+            tables = Data.getTables(cursor)
+            if tableName not in tables:  # If tableName not exists
+                Data.createTable(cursor, tableName, columnNames)  # Create table specified by tableName
+                print("Table %s created" % tableName)
+                Data.insertDataARFF(tableName, columnNames, lines, cursor, connection)  # Insert data values to
+                # tableName
+            else:
+                print("Table %s exists" % tableName)
 
         elif option == 2:
             fileTXT = str(six.moves.input("Please enter the name from TXT file:\n")) + ".txt"
@@ -48,22 +63,24 @@ class Interface:
             file = Data.openFile(fileTXT)  # Open data file
             columnNames, lines = Data.getDataFile(file, "TXT")  # Get column names and lines from file
             tableName = fileTXT[0:-4]  # Table name
-            tableList = Data.getTableNamesDB(cursor)  # Get table names from database
-            if tableName not in tableList:  # If table name not exists
-                Data.createTable(cursor, tableName, columnNames)  # Create table tableName
-                Data.insertDataTXT(tableName, columnNames, lines, cursor, connection)  # Insert data values to tableName
+            tables = Data.getTables(cursor)
+            if tableName not in tables:  # If tableName not exists
+                Data.createTable(cursor, tableName, columnNames)  # Create table specified by tableName
+                print("Table %s created" % tableName)
+                Data.insertDataTXT(tableName, columnNames, lines, cursor, connection)  # Insert data values to
+                # tableName
 
-            columnNames, rows = Data.selectData(tableName, cursor)  # Select data from tableName
+            else:
+                print("Table %s exists" % tableName)
 
         elif option == 3:
-            # fileDB = str(six.moves.input("Please enter the name from SQLite file:\n")) + ".db"
+            fileDB = str(six.moves.input("Please enter the name from SQLite file:\n")) + ".db"
             # connection, cursor = Data.connection(fileDB[0:-3] + ".db")  # Connection to SQLite database
             connection, cursor = Data.connectionDB("DB")  # Connection to SQLite database
-            tableName = str(
-                six.moves.input("Please enter the table name which to select from SQLite database: \n"))
-            columnNames, rows = Data.selectData(tableName, cursor)  # Select data from tableName
-
-        return columnNames, rows, cursor, tableName
+            tableName = fileDB[0:-3]
+            tables = Data.getTables(cursor)
+            if tableName in tables:  # If tableName exists
+                print("Table %s exists" % tableName)
 
     @staticmethod
     def graphOptions(option, initGraph, rows):

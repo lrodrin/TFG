@@ -5,50 +5,50 @@ fontsize=12;
 newrank=true;
 node [shape=circle];
 h;
+c;
 g;
 e;
 f;
-c;
 b;
 d;
 a;
-subgraph cluster_fhbecadg {
+subgraph cluster_efbhagcd {
 node [shape=point];
-s_da -> s_h  [color=black, style=dashed, arrowhead=none];
-s_da -> s_g  [color=black, style=dashed, arrowhead=none];
-s_da -> s_e  [color=black, style=dashed, arrowhead=none];
-s_da -> s_f  [color=black, style=dashed, arrowhead=none];
-s_da -> s_c  [color=black, style=solid, arrowhead=none];
-s_da -> s_b  [color=black, style=solid, arrowhead=none];
+s_ad -> s_h  [color=black, style=dashed, arrowhead=none];
+s_ad -> s_c  [color=black, style=solid, arrowhead=none];
+s_ad -> s_g  [color=black, style=dashed, arrowhead=none];
+s_ad -> s_e  [color=black, style=dashed, arrowhead=none];
+s_ad -> s_f  [color=black, style=dashed, arrowhead=none];
+s_ad -> s_b  [color=black, style=solid, arrowhead=none];
+s_h -> s_c  [color=black, style=dashed, arrowhead=none];
 s_h -> s_g  [color=black, style=dashed, arrowhead=none];
 s_h -> s_e  [color=black, style=dashed, arrowhead=none];
 s_h -> s_f  [color=black, style=solid, arrowhead=none];
-s_h -> s_c  [color=black, style=dashed, arrowhead=none];
 s_h -> s_b  [color=black, style=dashed, arrowhead=none];
+s_c -> s_g  [color=black, style=solid, arrowhead=none];
+s_c -> s_e  [color=black, style=dashed, arrowhead=none];
+s_c -> s_f  [color=black, style=dashed, arrowhead=none];
+s_c -> s_b  [color=grey, style=solid, arrowhead=none];
 s_g -> s_e  [color=black, style=solid, arrowhead=none];
 s_g -> s_f  [color=black, style=dashed, arrowhead=none];
-s_g -> s_c  [color=black, style=solid, arrowhead=none];
 s_g -> s_b  [color=black, style=dashed, arrowhead=none];
 s_e -> s_f  [color=black, style=dashed, arrowhead=none];
-s_e -> s_c  [color=black, style=dashed, arrowhead=none];
 s_e -> s_b  [color=black, style=dashed, arrowhead=none];
-s_f -> s_c  [color=black, style=dashed, arrowhead=none];
 s_f -> s_b  [color=black, style=solid, arrowhead=none];
-s_c -> s_b  [color=grey, style=solid, arrowhead=none];
 }
 
-subgraph cluster_da {
+subgraph cluster_ad {
 rank=same;
 node [shape=point];
 s_d -> s_a  [color=black, style=dashed, arrowhead=none];
 }
 
-s_da -> s_d  [lhead=cluster_da, arrowhead=none];
+s_ad -> s_d  [lhead=cluster_ad, arrowhead=none];
 s_h -> h  [arrowhead=none];
+s_c -> c  [arrowhead=none];
 s_g -> g  [arrowhead=none];
 s_e -> e  [arrowhead=none];
 s_f -> f  [arrowhead=none];
-s_c -> c  [arrowhead=none];
 s_b -> b  [arrowhead=none];
 s_d -> d  [arrowhead=none];
 s_a -> a  [arrowhead=none];

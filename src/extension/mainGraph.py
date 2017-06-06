@@ -13,19 +13,22 @@ __author__ = 'Laura Rodriguez Navas'
 __license__ = 'MIT'
 
 if __name__ == '__main__':
-    optionData = int(six.moves.input("Please enter the option for the type of file you provide:\n [1] = ARFF\n [2] = "
-                                     "TXT\n [3] = DB\n"))
+    Interface.inputOptions()
+    tableNames = list(
+        six.moves.input("Please enter the table names for the graf creation with spaces between them:\n").split())
 
-    columnNames, rows, cursor, tableName = Interface.inputFileOptions(optionData)  # Manages the data entry
     # initGraph
-    initGraph, rows = Graph.initGraph(tableName, cursor)  # Initialize a graph
+    tables, cursor = Data.getTablesForGraphCreation(tableNames)  # Get tables from SQLite database
+    initGraph = Graph.initGraph(tables, cursor)  # Initialize a graph
     # Graph.exportGraph(initGraph, "initGraph.dot")
     # Interface.openGraphviz("initGraph.dot")
 
     optionGraph = int(
         six.moves.input("Please enter the option of graph you want to create:\n [1] = plain\n [2] = plain "
                         "with threshold\n [3] = linear\n [4] = exponential\n"))
+
+    rows = Data.selectDataTables(tables)  # Select rows from SQLite tables
     graph, graphName = Interface.graphOptions(optionGraph, initGraph, rows)  # Create a type of graph
 
-    if nx.number_of_nodes(graph) <= 15:
+    if nx.number_of_nodes(graph) <= 15: # If number of nodes from graph is equal or lower than 15
         Interface.openGraphviz(graphName)  # Open graph in Graphviz program

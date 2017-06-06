@@ -17,29 +17,29 @@ __license__ = 'MIT'
 
 
 class Graph:
+    # @staticmethod
+    # def initGraph(tableName, cursor):
+    #     """
+    #     Create and initializes a graph from a table SQLite database source
+    #
+    #     :param tableName: Table name
+    #     :param cursor: Cursor object
+    #     :type tableName: str
+    #     :return: A graph
+    #     :rtype: nx.Graph
+    #     """
+    #     graph = nx.Graph()  # Create an empty graph with no nodes and no edges
+    #     columnNames, rows = Data.selectData(tableName, cursor)  # Select data from tableName
+    #     Graph.addNodes(graph, columnNames, rows)  # Adding nodes to graph
+    #     for (u, v) in combinations(graph.nodes(), 2):  # For the initialization all the edges from graph are
+    #         # painted black and the edge style is dashed
+    #         if u != v: # If u and v have different values
+    #             graph.add_edge(u, v, color='black', style='dashed')
+    #
+    #     return graph, rows
+
     @staticmethod
-    def initGraph(tableName, cursor):
-        """
-        Create and initializes a graph from a table SQLite database source
-
-        :param tableName: Table name
-        :param cursor: Cursor object
-        :type tableName: str
-        :return: A graph
-        :rtype: nx.Graph
-        """
-        graph = nx.Graph()  # Create an empty graph with no nodes and no edges
-        columnNames, rows = Data.selectData(tableName, cursor)  # Select data from tableName
-        Graph.addNodes(graph, columnNames, rows)  # Adding nodes to graph
-        for (u, v) in combinations(graph.nodes(), 2):  # For the initialization all the edges from graph are
-            # painted black and the edge style is dashed
-            if u != v:
-                graph.add_edge(u, v, color='black', style='dashed')
-
-        return graph, rows
-
-    @staticmethod
-    def initMultiGraph(tableNames, cursor):
+    def initGraph(tableNames, cursor):
         """
         Create and initializes a graph from different tables SQLite database source
 
@@ -50,12 +50,12 @@ class Graph:
         :rtype: nx.Graph
         """
         graph = nx.Graph()  # Create an empty graph with no nodes and no edges
-        for tableName in tableNames:
+        for tableName in tableNames:    # For each tableName in tableNames
             columnNames, rows = Data.selectData(tableName, cursor)  # Select data from tableName
             Graph.addNodes(graph, columnNames, rows)  # Adding nodes to graph
             for (u, v) in combinations(graph.nodes(), 2):  # For the initialization all the edges from graph are
                 # painted black and the edge style is dashed
-                if u != v:
+                if u != v:  # If u and v have different values
                     graph.add_edge(u, v, color='black', style='dashed')
 
         return graph
@@ -121,7 +121,7 @@ class Graph:
         Count the number of equivalences and label the edges from graph with the total number of equivalences
 
         :param graph: Networkx's graph
-        :param rowsList: Rows from a SQLite tables
+        :param rowsList: Rows from SQLite tables
         :type graph: nx.Graph
         :type rowsList: list
         """
@@ -138,7 +138,7 @@ class Graph:
         #                 numberOfEquivalences[(u, v)] = 1
         #                 graph.add_edge(u, v, label=1)
         numberOfEquivalences = dict()
-        for rows in rowsList:  # For each row in rowsList
+        for rows in rowsList:  # For each rows in rowsList
             for row in rows:  # For each row in rows
                 for (u, v) in combinations(row, 2):  # For each pair (u, v) in the row
                     if u != v:  # If u and v have different values

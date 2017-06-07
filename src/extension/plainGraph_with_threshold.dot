@@ -1,17 +1,12 @@
 strict graph "()" {
-a;
-Others;
-b;
-f;
-e;
-a -- Others  [color=black, style=dashed];
-a -- b  [color=black, label=2, style=solid];
-a -- f  [color=black, label=2, style=solid];
-a -- e  [color=black, label=2, style=solid];
-Others -- b  [color=black, style=dashed];
-Others -- f  [color=black, style=dashed];
-Others -- e  [color=black, style=dashed];
-b -- f  [color=black, style=dashed];
-b -- e  [color=black, label=2, style=solid];
-f -- e  [color=black, label=2, style=solid];
+"1st";
+Male;
+Adult;
+No;
+"1st" -- Male  [color=black, label=180, style=dashed];
+"1st" -- Adult  [color=black, label=319, style=dashed];
+"1st" -- No  [color=black, label=122, style=dashed];
+Male -- Adult  [color=black, label=1667, style=solid];
+Male -- No  [color=black, label=1364, style=solid];
+Adult -- No  [color=black, label=1438, style=solid];
 }

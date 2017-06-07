@@ -8,7 +8,7 @@ Distributed under MIT license
 """
 from collections import OrderedDict
 
-import pydot
+import pydotplus
 
 from src.extension.Clan import *
 from src.extension.Graph import *
@@ -33,9 +33,9 @@ class Structure:
         :type structureName: str
         :return: A 2-structure
         """
-        structure = pydot.Dot(strict=True, graph_type="digraph", graph_name=structureName[:-4], compound="true",
-                              fontname="Verdana",
-                              fontsize=12, newrank="true")
+        structure = pydotplus.Dot(strict=True, graph_type="digraph", graph_name=structureName[:-4], compound="true",
+                                  fontname="Verdana",
+                                  fontsize=12, newrank="true")
         structure.set_node_defaults(shape="circle")
 
         # Creating external nodes
@@ -44,14 +44,14 @@ class Structure:
                 if len(primal) == 1:  # If primal clan is a trivial clan
                     # if not structure.get_node("".join(primal)):
                     # Exclude the repetitive nodes
-                    structure.add_node(pydot.Node("".join(primal)))  # Add node to structure
+                    structure.add_node(pydotplus.Node("".join(primal)))  # Add node to structure
 
         # Creating clusters
         for key, values in primalClansDict.items():  # For each primal clan and their sub primal clans
             if len(values) == 2:  # Primitive structure
-                cluster = pydot.Cluster("".join(key), rank="same")  # Create a cluster
+                cluster = pydotplus.Cluster("".join(key), rank="same")  # Create a cluster
             else:
-                cluster = pydot.Cluster("".join(key))  # Create a cluster
+                cluster = pydotplus.Cluster("".join(key))  # Create a cluster
 
             cluster.set_node_defaults(shape="point")
 
@@ -61,10 +61,10 @@ class Structure:
                     u = "s_%s" % "".join(primalClan1)
                     v = "s_%s" % "".join(primalClan2)
                     if u != v:  # If node cycle not exists
-                        edge = pydot.Edge(u, v, color=Clan.getColorClans(colorEdgesAtributtes, primalClan1,
-                                                                         primalClan2),
-                                          style=Clan.getStyleClans(styleEdgesAtributtes, primalClan1, primalClan2),
-                                          arrowhead="none")
+                        edge = pydotplus.Edge(u, v, color=Clan.getColorClans(colorEdgesAtributtes, primalClan1,
+                                                                             primalClan2),
+                                              style=Clan.getStyleClans(styleEdgesAtributtes, primalClan1, primalClan2),
+                                              arrowhead="none")
 
                     if not cluster.get_edge(edge):  # If edge not exists and node cycle also not exists
                         cluster.add_edge(edge)  # Add edge to cluster
@@ -73,7 +73,7 @@ class Structure:
                 # Creating nodes inside the cluster
                 for primals in primalClansDict.values():  # For each primal clan
                     for primal in primals:  # For each sub primal clan
-                        node = pydot.Node("s_%s" % "".join(primal))
+                        node = pydotplus.Node("s_%s" % "".join(primal))
                         if not cluster.get_node(node):  # If edge not exists and node cycle also not exists
                             cluster.add_node(node)  # Add edge to cluster
 
@@ -85,11 +85,11 @@ class Structure:
                 u = "s_%s" % "".join(primal)
                 if primalClansDict.get(frozenset(primal)):  # If primal exists as a key in primalClansDict
                     v = "s_%s" % "".join(primalClansDict.get(frozenset(primal))[0])
-                    edge = pydot.Edge(u, v, lhead="cluster%s" % "".join(u[1:]), arrowhead="none")
+                    edge = pydotplus.Edge(u, v, lhead="cluster%s" % "".join(u[1:]), arrowhead="none")
 
                 else:  # If primal not exists as a key in primalClansDict
                     v = "".join(primal)
-                    edge = pydot.Edge(u, v, arrowhead="none")
+                    edge = pydotplus.Edge(u, v, arrowhead="none")
 
                 structure.add_edge(edge)  # Add edge to structure
 

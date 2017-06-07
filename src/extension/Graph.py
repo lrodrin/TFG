@@ -178,7 +178,7 @@ class Graph:
 
         if len(nodesDisconnectedList) != 0:
             print(graph.nodes(), nodesDisconnectedList)
-            diff = list(set(nodesDisconnectedList) - set(nodesDisconnectedList[0]))
+            diff = list(set(nodesDisconnectedList).difference(set(nodesDisconnectedList[0])))
             print(diff)
             if len(diff) != 1:
                 graph.remove_nodes_from(diff[0:len(diff)-1])
@@ -221,8 +221,8 @@ class Graph:
 
         if len(nodesDisconnectedList) != 0:
             print(graph.nodes(), nodesDisconnectedList)
-            diff = list(set(nodesDisconnectedList) - set(nodesDisconnectedList[0]))
-            print(diff)
+            diff = list(set(nodesDisconnectedList).difference(set(nodesDisconnectedList[0])))
+            print(diff, nodesDisconnectedList[0])
             if len(diff) != 1:
                 graph.remove_nodes_from(diff[0:len(diff)-1])
             else:

@@ -56,7 +56,7 @@ class Graph:
             for (u, v) in combinations(graph.nodes(), 2):  # For the initialization all the edges from graph are
                 # painted black and the edge style is dashed
                 if u != v:  # If u and v have different values
-                    graph.add_edge(u, v, color='black', style='dashed')
+                    graph.add_edge(u, v, color='black', style='dashed', label=0)
 
         return graph
 
@@ -178,7 +178,9 @@ class Graph:
                 # else:
                     # graph.remove_edge(u, v)
 
+        print(graph.nodes(), nodesDisconnectedList)
         diff = list(set(nodesDisconnectedList) - set(nodesDisconnectedList[0]))
+        print(diff)
         graph.remove_nodes_from(diff)
         mapping = {nodesDisconnectedList[0]: 'Others'}
         newGraph = nx.relabel_nodes(graph, mapping)
@@ -202,7 +204,6 @@ class Graph:
         labels = Graph.getLabelAttributesFromGraph(graph)  # Edge labels from graph
         nodesDisconnectedList = graph.nodes().copy()  # List copied of nodesList
         newGraph = nx.Graph()
-        print(nodesDisconnectedList)
 
         for (u, v), label in labels.items():  # For each edge and label attribute in labels
             if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph and u and v have different values
@@ -214,18 +215,14 @@ class Graph:
                     if v in nodesDisconnectedList:
                         nodesDisconnectedList.remove(v)
 
-        if len(nodesDisconnectedList) != 0:
-            diff = list(set(nodesDisconnectedList[0]) - set(nodesDisconnectedList))
-            print(diff)
-            graph.remove_nodes_from(diff)
-            print(nodesDisconnectedList[0])
-            mapping = {nodesDisconnectedList[0]: 'Others'}
-            newGraph = nx.relabel_nodes(graph, mapping)
+        print(graph.nodes(), nodesDisconnectedList)
+        diff = list(set(nodesDisconnectedList) - set(nodesDisconnectedList[0]))
+        print(diff)
+        graph.remove_nodes_from(diff[0:len(diff)-1])
+        print(nodesDisconnectedList[0])
+        mapping = {nodesDisconnectedList[0]: 'Others'}
+        newGraph = nx.relabel_nodes(graph, mapping)
 
-        else:
-            newGraph = graph
-
-        print(newGraph.nodes(), nodesDisconnectedList)
 
         return newGraph
 

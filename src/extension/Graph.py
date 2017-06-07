@@ -176,15 +176,23 @@ class Graph:
                     if v in nodesDisconnectedList:
                         nodesDisconnectedList.remove(v)
 
+        return Graph.frequentNodes(graph, nodesDisconnectedList)
+
+    @staticmethod
+    def frequentNodes(graph, nodesDisconnectedList):
         if len(nodesDisconnectedList) != 0:
             print(graph.nodes(), nodesDisconnectedList)
             diff = list(set(nodesDisconnectedList).difference(set(nodesDisconnectedList[0])))
             print(diff)
             if len(diff) != 1:
-                graph.remove_nodes_from(diff[0:len(diff)-1])
+                graph.remove_nodes_from(diff[0:len(diff) - 1])
             else:
                 graph.remove_nodes_from(diff)
-            mapping = {nodesDisconnectedList[0]: 'Others'}
+
+            if nodesDisconnectedList[0] != diff[0]:
+                mapping = {nodesDisconnectedList[0]: 'Others'}
+            else:
+                mapping = {nodesDisconnectedList[1]: 'Others'}
             newGraph = nx.relabel_nodes(graph, mapping)
 
             return newGraph
@@ -219,21 +227,7 @@ class Graph:
                     if v in nodesDisconnectedList:
                         nodesDisconnectedList.remove(v)
 
-        if len(nodesDisconnectedList) != 0:
-            print(graph.nodes(), nodesDisconnectedList)
-            diff = list(set(nodesDisconnectedList).difference(set(nodesDisconnectedList[0])))
-            print(diff, nodesDisconnectedList[0])
-            if len(diff) != 1:
-                graph.remove_nodes_from(diff[0:len(diff)-1])
-            else:
-                graph.remove_nodes_from(diff)
-            mapping = {nodesDisconnectedList[0]: 'Others'}
-            newGraph = nx.relabel_nodes(graph, mapping)
-
-            return newGraph
-
-        else:
-            return graph
+        return Graph.frequentNodes(graph, nodesDisconnectedList)
 
     @staticmethod
     def createLinearGraph(graph, rows):

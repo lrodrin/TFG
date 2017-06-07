@@ -56,7 +56,7 @@ class Graph:
             for (u, v) in combinations(graph.nodes(), 2):  # For the initialization all the edges from graph are
                 # painted black and the edge style is dashed
                 if u != v:  # If u and v have different values
-                    graph.add_edge(u, v, color='black', style='dashed', label=0)
+                    graph.add_edge(u, v, color='black', style='dashed')
 
         return graph
 
@@ -175,8 +175,6 @@ class Graph:
                         nodesDisconnectedList.remove(u)
                     if v in nodesDisconnectedList:
                         nodesDisconnectedList.remove(v)
-                # else:
-                    # graph.remove_edge(u, v)
 
         print(graph.nodes(), nodesDisconnectedList)
         diff = list(set(nodesDisconnectedList) - set(nodesDisconnectedList[0]))
@@ -217,11 +215,9 @@ class Graph:
         print(graph.nodes(), nodesDisconnectedList)
         diff = list(set(nodesDisconnectedList) - set(nodesDisconnectedList[0]))
         print(diff)
-        graph.remove_nodes_from(diff[0:len(diff)-1])
-        print(nodesDisconnectedList[0])
+        graph.remove_nodes_from(diff[0:len(diff) - 1])
         mapping = {nodesDisconnectedList[0]: 'Others'}
         newGraph = nx.relabel_nodes(graph, mapping)
-
 
         return newGraph
 

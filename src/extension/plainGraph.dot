@@ -1,23 +1,17 @@
 strict graph "()" {
 a;
 Others;
-d;
 b;
 f;
 e;
-a -- Others  [color=black, label=0, style=dashed];
-a -- d  [color=black, label=0, style=dashed];
+a -- Others  [color=black, style=dashed];
 a -- b  [color=black, label=2, style=solid];
 a -- f  [color=black, label=2, style=solid];
 a -- e  [color=black, label=2, style=solid];
-Others -- d  [color=black, label=0, style=dashed];
-Others -- b  [color=black, label=0, style=dashed];
-Others -- f  [color=black, label=0, style=dashed];
-Others -- e  [color=black, label=0, style=dashed];
-d -- b  [color=black, label=0, style=dashed];
-d -- f  [color=black, label=0, style=dashed];
-d -- e  [color=black, label=0, style=dashed];
-b -- f  [color=black, label=0, style=dashed];
+Others -- b  [color=black, style=dashed];
+Others -- f  [color=black, style=dashed];
+Others -- e  [color=black, style=dashed];
+b -- f  [color=black, style=dashed];
 b -- e  [color=black, label=2, style=solid];
 f -- e  [color=black, label=2, style=solid];
 }

@@ -5,25 +5,34 @@ fontsize=12;
 newrank=true;
 node [shape=circle];
 Others;
-No;
-Adult;
-Male;
-subgraph cluster_OthersMaleNoAdult {
+e;
+a;
+f;
+b;
+subgraph cluster_bfOthersea {
 rank=same;
 node [shape=point];
-s_MaleNoAdult -> s_Others  [arrowhead=none, color=black, style=dashed];
+s_aebf -> s_Others  [arrowhead=none, color=black, style=dashed];
 }
 
-subgraph cluster_MaleNoAdult {
+subgraph cluster_aebf {
 node [shape=point];
-s_No -> s_Adult  [arrowhead=none, color=black, style=solid];
-s_No -> s_Male  [arrowhead=none, color=black, style=solid];
-s_Adult -> s_Male  [arrowhead=none, color=black, style=solid];
+s_bf -> s_e  [arrowhead=none, color=black, style=solid];
+s_bf -> s_a  [arrowhead=none, color=black, style=solid];
+s_e -> s_a  [arrowhead=none, color=black, style=solid];
 }
 
-s_MaleNoAdult -> s_No  [arrowhead=none, lhead=cluster_MaleNoAdult];
+subgraph cluster_bf {
+rank=same;
+node [shape=point];
+s_f -> s_b  [arrowhead=none, color=black, style=dashed];
+}
+
+s_aebf -> s_bf  [arrowhead=none, lhead=cluster_aebf];
 s_Others -> Others  [arrowhead=none];
-s_No -> No  [arrowhead=none];
-s_Adult -> Adult  [arrowhead=none];
-s_Male -> Male  [arrowhead=none];
+s_bf -> s_f  [arrowhead=none, lhead=cluster_bf];
+s_e -> e  [arrowhead=none];
+s_a -> a  [arrowhead=none];
+s_f -> f  [arrowhead=none];
+s_b -> b  [arrowhead=none];
 }

@@ -16,7 +16,7 @@ myope;
 presbyopic;
 pre_presbyopic;
 young;
-subgraph cluster_presbyopicnormalyesreducedsoftpre_presbyopicnoneyoungnohypermetropehardmyope {
+subgraph cluster_reducednormalhypermetropepresbyopicpre_presbyopicyoungmyopeyesnonesofthardno {
 node [shape=point];
 s_hard;
 s_soft;

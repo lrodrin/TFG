@@ -4,22 +4,35 @@ fontname=Verdana;
 fontsize=12;
 newrank=true;
 node [shape=circle];
+Others;
 e;
+a;
 f;
 b;
-a;
-subgraph cluster_feab {
+subgraph cluster_ebOthersfa {
+rank=same;
 node [shape=point];
-s_e -> s_f  [arrowhead=none, color=black, style=solid];
-s_e -> s_b  [arrowhead=none, color=black, style=solid];
-s_e -> s_a  [arrowhead=none, color=black, style=solid];
-s_f -> s_b  [arrowhead=none, color=black, style=dashed];
-s_f -> s_a  [arrowhead=none, color=black, style=solid];
-s_b -> s_a  [arrowhead=none, color=black, style=solid];
+s_feab -> s_Others  [arrowhead=none, color=black, style=dashed];
 }
 
+subgraph cluster_feab {
+node [shape=point];
+s_fb -> s_e  [arrowhead=none, color=black, style=solid];
+s_fb -> s_a  [arrowhead=none, color=black, style=solid];
+s_e -> s_a  [arrowhead=none, color=black, style=solid];
+}
+
+subgraph cluster_fb {
+rank=same;
+node [shape=point];
+s_f -> s_b  [arrowhead=none, color=black, style=dashed];
+}
+
+s_feab -> s_fb  [arrowhead=none, lhead=cluster_feab];
+s_Others -> Others  [arrowhead=none];
+s_fb -> s_f  [arrowhead=none, lhead=cluster_fb];
 s_e -> e  [arrowhead=none];
+s_a -> a  [arrowhead=none];
 s_f -> f  [arrowhead=none];
 s_b -> b  [arrowhead=none];
-s_a -> a  [arrowhead=none];
 }

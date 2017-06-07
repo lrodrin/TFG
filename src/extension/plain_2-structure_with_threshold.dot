@@ -4,25 +4,25 @@ fontname=Verdana;
 fontsize=12;
 newrank=true;
 node [shape=circle];
-"1st";
+Others;
 No;
 Adult;
 Male;
-subgraph cluster_Adult1stMaleNo {
+subgraph cluster_OthersMaleNoAdult {
 rank=same;
 node [shape=point];
-s_AdultNoMale -> s_1st  [arrowhead=none, color=black, style=dashed];
+s_MaleNoAdult -> s_Others  [arrowhead=none, color=black, style=dashed];
 }
 
-subgraph cluster_AdultNoMale {
+subgraph cluster_MaleNoAdult {
 node [shape=point];
 s_No -> s_Adult  [arrowhead=none, color=black, style=solid];
 s_No -> s_Male  [arrowhead=none, color=black, style=solid];
 s_Adult -> s_Male  [arrowhead=none, color=black, style=solid];
 }
 
-s_AdultNoMale -> s_No  [arrowhead=none, lhead=cluster_AdultNoMale];
-s_1st -> "1st"  [arrowhead=none];
+s_MaleNoAdult -> s_No  [arrowhead=none, lhead=cluster_MaleNoAdult];
+s_Others -> Others  [arrowhead=none];
 s_No -> No  [arrowhead=none];
 s_Adult -> Adult  [arrowhead=none];
 s_Male -> Male  [arrowhead=none];

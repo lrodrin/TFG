@@ -347,7 +347,7 @@ class Graph:
         return newGraph
 
     @staticmethod
-    def createExponentialGraphWithThreshold(linearGraph, rows, k):
+    def createExponentialGraphWithThreshold(graph, rows, k):
         """
         Create a exponential graph with threshold
 

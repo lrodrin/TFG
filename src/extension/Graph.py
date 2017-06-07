@@ -359,39 +359,39 @@ class Graph:
         :return: A exponential graph with threshold
         :rtype: nx.Graph
         """
-        newGraph = Graph.createLinearGraphWithThreshold(linearGraph, rows, k)  # Create a new graph from linearGraph
-        labels = Graph.getLabelAttributesFromGraph(newGraph)  # Edge labels from graph
-        nodesDisconnectedList = newGraph.nodes().copy()  # List copied of nodesList
+        Graph.labeledEdges(graph, rows)  # Labeling edges from graph
+        labels = Graph.getLabelAttributesFromGraph(graph)  # Edge labels from graph
+        nodesDisconnectedList = graph.nodes().copy()  # List copied of nodesList
 
         for (u, v), label in labels.items():  # For each edge and label attribute in labels
-            if newGraph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph and u and v have different values
+            if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph and u and v have different values
                 if label >= k:  # If label attribute from edge(u, v) is equal or greater than k constant
                     if label == k:  # Equivalence class k
-                        newGraph.add_edge(u, v, color='black', style='solid')  # Edge painted black and style is solid
+                        graph.add_edge(u, v, color='black', style='solid')  # Edge painted black and style is solid
                     elif k + 1 <= label < k + 3:  # Equivalence classes (k+1-k+3)
-                        newGraph.add_edge(u, v, color='grey', style='solid')  # Edge painted grey and style is solid
+                        graph.add_edge(u, v, color='grey', style='solid')  # Edge painted grey and style is solid
                     elif k + 3 <= label < k + 7:  # Equivalence classes (k+3-k+7)
-                        newGraph.add_edge(u, v, color='green', style='solid')  # Edge painted green and style is solid
+                        graph.add_edge(u, v, color='green', style='solid')  # Edge painted green and style is solid
                     elif k + 7 <= label < k + 15:  # Equivalence classes (k+7-k+15)
-                        newGraph.add_edge(u, v, color='magenta',
+                        graph.add_edge(u, v, color='magenta',
                                           style='solid')  # Edge painted magenta and style is solid
                     elif k + 15 <= label < k + 31:  # Equivalence classes (k+15-k+31)
-                        newGraph.add_edge(u, v, color='orange', style='solid')  # Edge painted orange and style is solid
+                        graph.add_edge(u, v, color='orange', style='solid')  # Edge painted orange and style is solid
                     elif k + 31 <= label < k + 63:  # Equivalence classes of (k+31-k+63)
-                        newGraph.add_edge(u, v, color='blue', style='solid')  # Edge painted blue and style is solid
+                        graph.add_edge(u, v, color='blue', style='solid')  # Edge painted blue and style is solid
                     elif k + 63 <= label < k + 127:  # Equivalence classes of (k+63-k+127)
-                        newGraph.add_edge(u, v, color='red', style='solid')  # Edge painted red and style is solid
+                        graph.add_edge(u, v, color='red', style='solid')  # Edge painted red and style is solid
                     elif k + 127 <= label < k + 255:  # Equivalence classes of (k+127-k+255)
-                        newGraph.add_edge(u, v, color='yellow', style='solid')  # Edge painted yellow and style is solid
+                        graph.add_edge(u, v, color='yellow', style='solid')  # Edge painted yellow and style is solid
                     else:  # Others
-                        newGraph.add_edge(u, v, color='brown', style='solid')  # Edge painted brown and style is solid
+                        graph.add_edge(u, v, color='brown', style='solid')  # Edge painted brown and style is solid
 
                     if u in nodesDisconnectedList:
                         nodesDisconnectedList.remove(u)
                     if v in nodesDisconnectedList:
                         nodesDisconnectedList.remove(v)
 
-        return Graph.frequentNodes(newGraph, nodesDisconnectedList)
+        return Graph.frequentNodes(graph, nodesDisconnectedList)
 
     # @staticmethod
     # def getMaxCardinalityFromGraph(graph):

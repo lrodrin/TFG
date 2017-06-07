@@ -1,0 +1,64 @@
+id train_id position shape len sides roof wheels load_shape load_num
+id:1 train_id:1 position:1 shape:rectangle len:short sides:not_double roof:none wheels:2 load_shape:circle load_num:1
+id:2 train_id:1 position:2 shape:rectangle len:long sides:not_double roof:none wheels:3load_shape:hexagon load_num:1
+id:3 train_id:1 position:3 shape:rectangle len:short sides:not_double roof:peaked wheels:2 load_shape:triangle load_num:1
+id:4 train_id:1 position:4 shape:rectangle len:long sides:not_double roof:none wheels:2 load_shape:rectangle load_num:3
+id:5 train_id:2 position:1 shape:rectangle len:short sides:not_double roof:flat wheels:2 load_shape:circle load_num:2
+id:6 train_id:2 position:2 shape:bucket len:short sides:not_double roof:none wheels:2 load_shape:rectangle load_num:1
+id:7 train_id:2 position:3 shape:u_shaped len:short sides:not_double roof:none wheels:2 load_shape:triangle load_num:1
+id:8 train_id:3 position:1 shape:rectangle len:long sides:not_double roof:flat wheels:3 load_shape:triangle load_num:1
+id:9 train_id:3 position:2 shape:hexagon len:short sides:not_double roof:flat wheels:2 load_shape:triangle load_num:1
+id:10 train_id:3 position:3 shape:rectangle len:short sides:not_double roof:none wheels:2 load_shape:circle load_num:1
+id:11 train_id:4 position:1 shape:rectangle len:short sides:not_double roof:none wheels:2 load_shape:rectangle load_num:1
+id:12 train_id:4 position:2 shape:ellipse len:short sides:not_double roof:arc wheels:2 load_shape:diamond	load_num:1
+id:13 train_id:4 position:3 shape:rectangle len:short sides:double roof:none wheels:2 load_shape:triangle load_num:1
+id:14 train_id:4 position:4 shape:bucket len:short sides:not_double roof:none wheels:2 load_shape:triangle load_num:1
+id:15 train_id:5 position:1 shape:rectangle len:short sides:not_double roof:flat wheels:2 load_shape:circle load_num:1
+id:16 train_id:5 position:2 shape:rectangle len:long sides:not_double roof:flat wheels:3 load_shape:rectangle load_num:1
+id:17 train_id:5 position:3 shape:rectangle len:short sides:double roof:none wheels:2 load_shape:triangle load_num:1
+id:18 train_id:6 position:1 shape:rectangle len:long sides:not_double roof:	 jagged wheels:3 load_shape:rectangle load_num:1
+id:19 train_id:6 position:2 shape:hexagon	len:short sides:not_double roof:flat wheels:2 load_shape:circle load_num:1
+id:20 train_id:6 position:3 shape:rectangle len:short sides:not_double roof:none wheels:2 load_shape:triangle load_num:1
+id:21 train_id:6 position:4 shape:rectangle len:long sides:not_double roof:	 jagged wheels:2 load_shape:rectangle load_num:0
+id:22 train_id:7 position:1 shape:rectangle len:long sides:not_double roof:none wheels:2load_shape:hexagon load_num:1
+id:23 train_id:7 position:2 shape:rectangle len:short sides:not_double roof:none wheels:2 load_shape:rectangle load_num:1
+id:24 train_id:7 position:3 shape:rectangle len:short sides:not_double roof:flat wheels:2 load_shape:triangle load_num:1
+id:25 train_id:8 position:1 shape:rectangle len:short sides:not_double roof:peaked wheels:2 load_shape:	 rectangle load_num:1
+id:26 train_id:8 position:2 shape:bucket len:short sides:not_double roof:none wheels:2 load_shape:rectangle load_num:1
+id:27 train_id:8 position:3 shape:rectangle len:long sides:not_double roof:flat wheels:2 load_shape:circle load_num:1
+id:28 train_id:8 position:4 shape:rectangle len:short sides:not_double roof:none wheels:2 load_shape:rectangle load_num:1
+id:29 train_id:9 position:1 shape:rectangle len:long sides:not_double roof:none wheels:2 load_shape:rectangle load_num:3
+id:30 train_id:9 position:2 shape:rectangle len:short sides:not_double roof:none wheels:2 load_shape:circle load_num:1
+id:31 train_id:9 position:3 shape:rectangle len:long sides:not_double roof:	 jagged wheels:3load_shape:hexagon load_num:1
+id:32 train_id:9 position:4 shape:u_shaped len:short sides:not_double roof:none wheels:2 load_shape:triangle load_num:1
+id:33 train_id:10 position:1 shape:bucket len:short sides:not_double roof:none wheels:2 load_shape:triangle load_num:1
+id:34 train_id:10 position:2 shape:u_shaped len:short	sides:not_double roof:none wheels:2 load_shape:circle load_num:1
+id:35 train_id:10 position:3 shape:rectangle len:short	sides:not_double roof:none wheels:2 load_shape:triangle load_num:1
+id:36 train_id:10 position:4 shape:rectangle len:short	sides:not_double roof:none wheels:2 load_shape:triangle load_num:1
+id:37 train_id:11 position:1 shape:rectangle len:short	sides:not_double roof:none wheels:2 load_shape:triangle load_num:1
+id:38 train_id:11 position:2 shape:rectangle len:long	sides:not_double roof:flat wheels:2 load_shape:circle load_num:3
+id:39 train_id:12 position:1 shape:rectangle len:long	sides:not_double roof:jagged wheels:2 load_shape:circle load_num:0
+id:40 train_id:12 position:2 shape:u_shaped len:short	sides:not_double roof:none wheels:2 load_shape:triangle load_num:1
+id:41 train_id:12 position:3 shape:rectangle len:short	sides:double roof:none wheels:2 load_shape:circle load_num:1
+id:42 train_id:13 position:1 shape:u_shaped len:short	sides:not_double roof:none wheels:2 load_shape:circle load_num:1
+id:43 train_id:13 position:2 shape:rectangle len:long	sides:not_double roof:flat wheels:3 load_shape:rectangle load_num:1
+id:44 train_id:14 position:1 shape:bucket len:short sides:not_double roof:none wheels:2 load_shape:circle load_num:1
+id:45 train_id:14 position:2 shape:rectangle len:short	sides:not_double roof:none wheels:2 load_shape:rectangle load_num:1
+id:46 train_id:14 position:3 shape:rectangle len:long	sides:not_double roof:jagged wheels:3 load_shape:rectangle load_num:1
+id:47 train_id:14 position:4 shape:bucket len:short sides:not_double roof:none wheels:2 load_shape:circle load_num:1
+id:48 train_id:15 position:1 shape:rectangle len:long	sides:not_double roof:none wheels:2 load_shape:rectangle load_num:2
+id:49 train_id:15 position:2 shape:u_shaped len:short	sides:not_double roof:none wheels:2 load_shape:rectangle load_num:1
+id:50 train_id:16 position:1 shape:bucket len:short sides:not_double roof:none wheels:2 load_shape:rectangle load_num:1
+id:51 train_id:16 position:2 shape:rectangle len:long	sides:not_double roof:flat wheels:2 load_shape:triangle load_num:3
+id:52 train_id:17 position:1 shape:rectangle len:long	sides:not_double roof:none wheels:2load_shape:hexagon load_num:1
+id:53 train_id:17 position:2 shape:rectangle len:short	sides:not_double roof:none wheels:2 load_shape:circle load_num:1
+id:54 train_id:17 position:3 shape:rectangle len:short	sides:double roof:none wheels:2 load_shape:circle load_num:1
+id:55 train_id:17 position:4 shape:rectangle len:long	sides:not_double roof:none wheels:2 load_shape:rectangle load_num:3
+id:56 train_id:18 position:1 shape:u_shaped len:short	sides:not_double roof:none wheels:2 load_shape:triangle load_num:1
+id:57 train_id:18 position:2 shape:rectangle len:long	sides:not_double roof:none wheels:3 load_shape:rectangle load_num:3
+id:58 train_id:19 position:1 shape:rectangle len:long	sides:not_double roof:flat wheels:3 load_shape:rectangle load_num:3
+id:59 train_id:19 position:2 shape:rectangle len:long	sides:not_double roof:flat wheels:2 load_shape:rectangle load_num:3
+id:60 train_id:19 position:3 shape:rectangle len:long	sides:not_double roof:none wheels:2 load_shape:rectangle load_num:0
+id:61 train_id:19 position:4 shape:u_shaped len:short	sides:not_double roof:none wheels:2 load_shape:triangle load_num:1
+id:62 train_id:20 position:1 shape:rectangle len:long	sides:not_double roof:flat wheels:3load_shape:hexagon load_num:1
+id:63 train_id:20 position:2 shape:u_shaped len:short sides:not_double roof:none wheels:2 load_shape:triangle load_num:1

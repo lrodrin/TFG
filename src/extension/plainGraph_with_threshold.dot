@@ -1,11 +1,11 @@
 strict graph "()" {
-"1st";
+Others;
 Male;
 Adult;
 No;
-"1st" -- Male  [color=black, label=180, style=dashed];
-"1st" -- Adult  [color=black, label=319, style=dashed];
-"1st" -- No  [color=black, label=122, style=dashed];
+Others -- Male  [color=black, label=862, style=dashed];
+Others -- Adult  [color=black, label=885, style=dashed];
+Others -- No  [color=black, label=673, style=dashed];
 Male -- Adult  [color=black, label=1667, style=solid];
 Male -- No  [color=black, label=1364, style=solid];
 Adult -- No  [color=black, label=1438, style=solid];

@@ -351,10 +351,10 @@ class Graph:
         """
         Create a exponential graph with threshold
 
-        :param linearGraph: Networkx's graph
+        :param graph: Networkx's graph
         :param rows: Rows from a SQLite table
         :param k: Threshold
-        :type linearGraph: nx.Graph
+        :type graph: nx.Graph
         :type k: int
         :return: A exponential graph with threshold
         :rtype: nx.Graph

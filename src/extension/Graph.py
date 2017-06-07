@@ -188,11 +188,7 @@ class Graph:
                 graph.remove_nodes_from(diff[0:len(diff) - 1])
             else:
                 graph.remove_nodes_from(diff)
-
-            if nodesDisconnectedList[0] != diff[0]:
-                mapping = {nodesDisconnectedList[0]: 'Others'}
-            else:
-                mapping = {nodesDisconnectedList[1]: 'Others'}
+            mapping = {nodesDisconnectedList[0]: 'Others'}
             newGraph = nx.relabel_nodes(graph, mapping)
 
             return newGraph
@@ -281,6 +277,7 @@ class Graph:
         """
         Graph.labeledEdges(graph, rows)  # Labeling edges from graph
         labels = Graph.getLabelAttributesFromGraph(graph)  # Edge labels from graph
+        nodesDisconnectedList = graph.nodes().copy()  # List copied of nodesList
 
         for (u, v), label in labels.items():  # For each edge and label attribute in labels
             if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph and u and v have different values
@@ -303,10 +300,13 @@ class Graph:
                         graph.add_edge(u, v, color='yellow', style='solid')  # Edge painted yellow and style is solid
                     else:  # Equivalence class >= k + 8
                         graph.add_edge(u, v, color='brown', style='solid')  # Edge painted brown and style is solid
-                else:
-                    graph.remove_edge(u, v)
 
-        return graph
+                    if u in nodesDisconnectedList:
+                        nodesDisconnectedList.remove(u)
+                    if v in nodesDisconnectedList:
+                        nodesDisconnectedList.remove(v)
+
+        return Graph.frequentNodes(graph, nodesDisconnectedList)
 
     @staticmethod
     def createExponentialGraph(linearGraph, rows):

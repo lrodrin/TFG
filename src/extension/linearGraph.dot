@@ -1,23 +1,12 @@
-strict graph "" {
-a;
-c;
-b;
-f;
-d;
-e;
-a -- c  [color=black, label=0, style=dashed];
-a -- b  [color=black, label=1, style=dashed];
-a -- f  [color=black, label=1, style=dashed];
-a -- d  [color=black, label=2, style=solid];
-a -- e  [color=black, label=2, style=solid];
-c -- b  [color=black, label=0, style=dashed];
-c -- f  [color=black, label=0, style=dashed];
-c -- d  [color=black, label=0, style=dashed];
-c -- e  [color=black, label=0, style=dashed];
-b -- f  [color=black, label=0, style=dashed];
-b -- d  [color=black, label=1, style=dashed];
-b -- e  [color=black, label=1, style=dashed];
-f -- d  [color=black, label=1, style=dashed];
-f -- e  [color=black, label=1, style=dashed];
-d -- e  [color=black, label=2, style=solid];
+strict graph "()" {
+"2nd";
+Male;
+Adult;
+No;
+"2nd" -- Male  [color=black, label=179, style=dashed];
+"2nd" -- Adult  [color=black, label=261, style=dashed];
+"2nd" -- No  [color=black, label=167, style=dashed];
+Male -- Adult  [color=brown, label=1667, style=solid];
+Male -- No  [color=brown, label=1364, style=solid];
+Adult -- No  [color=brown, label=1438, style=solid];
 }

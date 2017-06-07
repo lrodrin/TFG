@@ -181,7 +181,7 @@ class Graph:
         print(graph.nodes(), nodesDisconnectedList)
         diff = list(set(nodesDisconnectedList) - set(nodesDisconnectedList[0]))
         print(diff)
-        graph.remove_nodes_from(diff)
+        graph.remove_nodes_from(diff[0:len(diff)-1])
         mapping = {nodesDisconnectedList[0]: 'Others'}
         newGraph = nx.relabel_nodes(graph, mapping)
 
@@ -203,7 +203,6 @@ class Graph:
         Graph.labeledEdges(graph, rows)  # Labeling edges from graph
         labels = Graph.getLabelAttributesFromGraph(graph)  # Edge labels from graph
         nodesDisconnectedList = graph.nodes().copy()  # List copied of nodesList
-        newGraph = nx.Graph()
 
         for (u, v), label in labels.items():  # For each edge and label attribute in labels
             if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph and u and v have different values

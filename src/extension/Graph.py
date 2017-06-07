@@ -56,7 +56,7 @@ class Graph:
             for (u, v) in combinations(graph.nodes(), 2):  # For the initialization all the edges from graph are
                 # painted black and the edge style is dashed
                 if u != v:  # If u and v have different values
-                    graph.add_edge(u, v, color='black', style='dashed', label=0)
+                    graph.add_edge(u, v, color='black', style='dashed')
 
         return graph
 
@@ -164,25 +164,26 @@ class Graph:
         """
         Graph.labeledEdges(graph, rows)  # Labeling edges from graph
         labels = Graph.getLabelAttributesFromGraph(graph)  # Edge labels from graph
-        nodesList = graph.nodes()
-        nodesDisconnectedList = graph.nodes().copy()
-        print(nodesList, nodesDisconnectedList)
+        nodesDisconnectedList = graph.nodes().copy()  # List copied of nodesList
 
         for (u, v), label in labels.items():  # For each edge and label attribute in labels
             if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph and u and v have different values
                 if label >= 1:  # If label attribute from edge(u, v) is bigger than 0
                     graph.add_edge(u, v, color='black', style='solid')  # Edge painted black and line style is not
-                    print(u)
+                    # dashed
                     if u in nodesDisconnectedList:
                         nodesDisconnectedList.remove(u)
                     if v in nodesDisconnectedList:
                         nodesDisconnectedList.remove(v)
+                # else:
+                    # graph.remove_edge(u, v)
+
         diff = list(set(nodesDisconnectedList) - set(nodesDisconnectedList[0]))
         graph.remove_nodes_from(diff)
         mapping = {nodesDisconnectedList[0]: 'Others'}
-        G = nx.relabel_nodes(graph,mapping)
+        newGraph = nx.relabel_nodes(graph, mapping)
 
-        return G
+        return newGraph
 
     @staticmethod
     def createPlainGraphWithThreshold(graph, rows, k):
@@ -199,17 +200,34 @@ class Graph:
         """
         Graph.labeledEdges(graph, rows)  # Labeling edges from graph
         labels = Graph.getLabelAttributesFromGraph(graph)  # Edge labels from graph
+        nodesDisconnectedList = graph.nodes().copy()  # List copied of nodesList
+        newGraph = nx.Graph()
+        print(nodesDisconnectedList)
 
         for (u, v), label in labels.items():  # For each edge and label attribute in labels
             if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph and u and v have different values
-                if label >= k:  # If label attribute from edge(u, v) is equal or greater than k constant
-                    graph.add_edge(u, v, color='black',
-                                   style='solid')  # Edge painted black and line style is not dashed
-                else:
-                    graph.nodes()
-                    graph.remove_edge(u, v)
+                if label >= k:  # If label attribute from edge(u, v) is bigger than k
+                    graph.add_edge(u, v, color='black', style='solid')  # Edge painted black and line style is not
+                    # dashed
+                    if u in nodesDisconnectedList:
+                        nodesDisconnectedList.remove(u)
+                    if v in nodesDisconnectedList:
+                        nodesDisconnectedList.remove(v)
 
-        return graph
+        if len(nodesDisconnectedList) != 0:
+            diff = list(set(nodesDisconnectedList[0]) - set(nodesDisconnectedList))
+            print(diff)
+            graph.remove_nodes_from(diff)
+            print(nodesDisconnectedList[0])
+            mapping = {nodesDisconnectedList[0]: 'Others'}
+            newGraph = nx.relabel_nodes(graph, mapping)
+
+        else:
+            newGraph = graph
+
+        print(newGraph.nodes(), nodesDisconnectedList)
+
+        return newGraph
 
     @staticmethod
     def createLinearGraph(graph, rows):

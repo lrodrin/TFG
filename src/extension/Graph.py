@@ -176,14 +176,21 @@ class Graph:
                     if v in nodesDisconnectedList:
                         nodesDisconnectedList.remove(v)
 
-        print(graph.nodes(), nodesDisconnectedList)
-        diff = list(set(nodesDisconnectedList) - set(nodesDisconnectedList[0]))
-        print(diff)
-        graph.remove_nodes_from(diff)
-        mapping = {nodesDisconnectedList[0]: 'Others'}
-        newGraph = nx.relabel_nodes(graph, mapping)
+        if len(nodesDisconnectedList) != 0:
+            print(graph.nodes(), nodesDisconnectedList)
+            diff = list(set(nodesDisconnectedList) - set(nodesDisconnectedList[0]))
+            print(diff)
+            if len(diff) != 1:
+                graph.remove_nodes_from(diff[0:len(diff)-1])
+            else:
+                graph.remove_nodes_from(diff)
+            mapping = {nodesDisconnectedList[0]: 'Others'}
+            newGraph = nx.relabel_nodes(graph, mapping)
 
-        return newGraph
+            return newGraph
+
+        else:
+            return graph
 
     @staticmethod
     def createPlainGraphWithThreshold(graph, rows, k):
@@ -212,14 +219,21 @@ class Graph:
                     if v in nodesDisconnectedList:
                         nodesDisconnectedList.remove(v)
 
-        print(graph.nodes(), nodesDisconnectedList)
-        diff = list(set(nodesDisconnectedList) - set(nodesDisconnectedList[0]))
-        print(diff)
-        graph.remove_nodes_from(diff[0:len(diff) - 1])
-        mapping = {nodesDisconnectedList[0]: 'Others'}
-        newGraph = nx.relabel_nodes(graph, mapping)
+        if len(nodesDisconnectedList) != 0:
+            print(graph.nodes(), nodesDisconnectedList)
+            diff = list(set(nodesDisconnectedList) - set(nodesDisconnectedList[0]))
+            print(diff)
+            if len(diff) != 1:
+                graph.remove_nodes_from(diff[0:len(diff)-1])
+            else:
+                graph.remove_nodes_from(diff)
+            mapping = {nodesDisconnectedList[0]: 'Others'}
+            newGraph = nx.relabel_nodes(graph, mapping)
 
-        return newGraph
+            return newGraph
+
+        else:
+            return graph
 
     @staticmethod
     def createLinearGraph(graph, rows):

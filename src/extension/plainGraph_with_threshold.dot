@@ -1,17 +1,15 @@
 strict graph "" {
-a;
-c;
-b;
-f;
-d;
-e;
-a -- b  [color=black, label=1, style=solid];
-a -- f  [color=black, label=1, style=solid];
-a -- d  [color=black, label=2, style=solid];
-a -- e  [color=black, label=2, style=solid];
-b -- d  [color=black, label=1, style=solid];
-b -- e  [color=black, label=1, style=solid];
-f -- d  [color=black, label=1, style=solid];
-f -- e  [color=black, label=1, style=solid];
-d -- e  [color=black, label=2, style=solid];
+Crew;
+"3rd";
+"1st";
+"2nd";
+Male;
+Female;
+Adult;
+Child;
+No;
+Yes;
+Male -- Adult  [color=black, label=1667, style=solid];
+Male -- No  [color=black, label=1364, style=solid];
+Adult -- No  [color=black, label=1438, style=solid];
 }

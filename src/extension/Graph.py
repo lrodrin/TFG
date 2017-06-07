@@ -50,7 +50,7 @@ class Graph:
         :rtype: nx.Graph
         """
         graph = nx.Graph()  # Create an empty graph with no nodes and no edges
-        for tableName in tableNames:    # For each tableName in tableNames
+        for tableName in tableNames:  # For each tableName in tableNames
             columnNames, rows = Data.selectData(tableName, cursor)  # Select data from tableName
             Graph.addNodes(graph, columnNames, rows)  # Adding nodes to graph
             for (u, v) in combinations(graph.nodes(), 2):  # For the initialization all the edges from graph are
@@ -164,16 +164,25 @@ class Graph:
         """
         Graph.labeledEdges(graph, rows)  # Labeling edges from graph
         labels = Graph.getLabelAttributesFromGraph(graph)  # Edge labels from graph
+        nodesList = graph.nodes()
+        nodesDisconnectedList = graph.nodes().copy()
+        print(nodesList, nodesDisconnectedList)
 
         for (u, v), label in labels.items():  # For each edge and label attribute in labels
             if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph and u and v have different values
                 if label >= 1:  # If label attribute from edge(u, v) is bigger than 0
                     graph.add_edge(u, v, color='black', style='solid')  # Edge painted black and line style is not
-                    # dashed
-                else:
-                    graph.remove_edge(u, v)
+                    print(u)
+                    if u in nodesDisconnectedList:
+                        nodesDisconnectedList.remove(u)
+                    if v in nodesDisconnectedList:
+                        nodesDisconnectedList.remove(v)
+        diff = list(set(nodesDisconnectedList) - set(nodesDisconnectedList[0]))
+        graph.remove_nodes_from(diff)
+        mapping = {nodesDisconnectedList[0]: 'Others'}
+        G = nx.relabel_nodes(graph,mapping)
 
-        return graph
+        return G
 
     @staticmethod
     def createPlainGraphWithThreshold(graph, rows, k):
@@ -197,6 +206,7 @@ class Graph:
                     graph.add_edge(u, v, color='black',
                                    style='solid')  # Edge painted black and line style is not dashed
                 else:
+                    graph.nodes()
                     graph.remove_edge(u, v)
 
         return graph

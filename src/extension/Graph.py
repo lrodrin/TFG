@@ -186,10 +186,12 @@ class Graph:
             print(diff)
             if len(diff) != 1:
                 graph.remove_nodes_from(diff[0:len(diff) - 1])
+                mapping = {diff[len(diff)-1]: 'Others'}
             else:
                 graph.remove_nodes_from(diff)
+                mapping = {nodesDisconnectedList[0]: 'Others'}
 
-            mapping = {nodesDisconnectedList[0]: 'Others'}
+            # mapping = {nodesDisconnectedList[0]: 'Others'}
             newGraph = nx.relabel_nodes(graph, mapping)
 
             return newGraph

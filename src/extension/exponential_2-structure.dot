@@ -4,64 +4,26 @@ fontname=Verdana;
 fontsize=12;
 newrank=true;
 node [shape=circle];
-Year_4;
-Year_6;
-Year_1;
-Year_3;
-Year_7;
-Year_5;
-Year_2;
-Post_Quals;
-Post_Generals;
-Pre_Quals;
-Faculty_adj;
-Faculty;
-1;
-0;
 Others;
-3;
-subgraph cluster_OthersPost_GeneralsFaculty10Year_7Year_4Year_5Year_6Post_QualsYear_1Year_3Year_2Pre_QualsFaculty_adj3 {
-node [shape=point];
-s_Others3;
-s_Year_4;
-s_Year_6;
-s_Year_1;
-s_Year_3;
-s_Year_7;
-s_Year_5;
-s_Year_2;
-s_Post_Quals;
-s_Post_Generals;
-s_Pre_Quals;
-s_Faculty_adj;
-s_Faculty;
-s_1;
-s_0;
-s_Others;
-s_3;
-}
-
-subgraph cluster_Others3 {
+No;
+Adult;
+Male;
+subgraph cluster_AdultMaleNoOthers {
 rank=same;
 node [shape=point];
-s_Others -> s_3  [arrowhead=none, color=black, style=dashed];
+s_AdultMaleNo -> s_Others  [arrowhead=none, color=black, style=dashed];
 }
 
-s_Others3 -> s_Others  [arrowhead=none, lhead=cluster_Others3];
-s_Year_4 -> Year_4  [arrowhead=none];
-s_Year_6 -> Year_6  [arrowhead=none];
-s_Year_1 -> Year_1  [arrowhead=none];
-s_Year_3 -> Year_3  [arrowhead=none];
-s_Year_7 -> Year_7  [arrowhead=none];
-s_Year_5 -> Year_5  [arrowhead=none];
-s_Year_2 -> Year_2  [arrowhead=none];
-s_Post_Quals -> Post_Quals  [arrowhead=none];
-s_Post_Generals -> Post_Generals  [arrowhead=none];
-s_Pre_Quals -> Pre_Quals  [arrowhead=none];
-s_Faculty_adj -> Faculty_adj  [arrowhead=none];
-s_Faculty -> Faculty  [arrowhead=none];
-s_1 -> 1  [arrowhead=none];
-s_0 -> 0  [arrowhead=none];
+subgraph cluster_AdultMaleNo {
+node [shape=point];
+s_No -> s_Adult  [arrowhead=none, color=brown, style=solid];
+s_No -> s_Male  [arrowhead=none, color=brown, style=solid];
+s_Adult -> s_Male  [arrowhead=none, color=brown, style=solid];
+}
+
+s_AdultMaleNo -> s_No  [arrowhead=none, lhead=cluster_AdultMaleNo];
 s_Others -> Others  [arrowhead=none];
-s_3 -> 3  [arrowhead=none];
+s_No -> No  [arrowhead=none];
+s_Adult -> Adult  [arrowhead=none];
+s_Male -> Male  [arrowhead=none];
 }

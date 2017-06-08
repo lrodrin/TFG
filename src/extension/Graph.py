@@ -320,7 +320,8 @@ class Graph:
 
         return Graph.frequentNodes(graph, nodesDisconnectedList)
 
-    @staticmethod
+    staticmethod
+
     def createExponentialGraph(linearGraph, rows):
         """
         Create a exponential graph
@@ -337,28 +338,30 @@ class Graph:
         for (u, v), label in labels.items():  # For each edge and label attribute in labels
             if newGraph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph and u and v have different values
                 if label == 1:  # Equivalence class of 1
-                    newGraph.add_edge(u, v, color='black', style='solid')  # Edge painted black and style is solid
+                    newGraph.add_edge(u, v, color='black', style='solid')  # Edge painted black and style is dashed
                 elif 2 <= label < 4:  # Equivalence classes of (2-3)
-                    newGraph.add_edge(u, v, color='grey', style='solid')  # Edge painted grey and style is solid
+                    newGraph.add_edge(u, v, color='cyan', style='solid')  # Edge painted cyan and style is dashed
                 elif 4 <= label < 8:  # Equivalence classes of (4-7)
-                    newGraph.add_edge(u, v, color='green', style='solid')  # Edge painted green and style is solid
+                    newGraph.add_edge(u, v, color='green', style='solid')  # Edge painted green and style is dashed
                 elif 8 <= label < 16:  # Equivalence classes of (8-15)
-                    newGraph.add_edge(u, v, color='magenta', style='solid')  # Edge painted magenta and style is solid
+                    newGraph.add_edge(u, v, color='magenta', style='solid')  # Edge painted magenta and style is dashed
                 elif 16 <= label < 32:  # Equivalence classes of (16-31)
-                    newGraph.add_edge(u, v, color='orange', style='solid')  # Edge painted orange and style is solid
+                    newGraph.add_edge(u, v, color='orange', style='solid')  # Edge painted orange and style is dashed
                 elif 32 <= label < 64:  # Equivalence classes of (32-63)
-                    newGraph.add_edge(u, v, color='blue', style='solid')  # Edge painted blue and style is solid
+                    newGraph.add_edge(u, v, color='blue', style='solid')  # Edge painted blue and style is dashed
                 elif 64 <= label < 128:  # Equivalence classes of (64-127)
-                    newGraph.add_edge(u, v, color='red', style='solid')  # Edge painted red and style is solid
+                    newGraph.add_edge(u, v, color='red', style='solid')  # Edge painted red and style is dashed
                 elif 128 <= label < 256:  # Equivalence classes of (128-255)
-                    newGraph.add_edge(u, v, color='yellow', style='solid')  # Edge painted yellow and style is solid
+                    newGraph.add_edge(u, v, color='yellow', style='solid')  # Edge painted yellow and style is dashed
+                elif 256 <= label < 512:  # Equivalence classes of (256-511)
+                    newGraph.add_edge(u, v, color='brown', style='solid')  # Edge painted brown and style is dashed
                 else:  # The others
-                    newGraph.add_edge(u, v, color='brown', style='solid')  # Edge painted brown and style is solid
+                    newGraph.add_edge(u, v, color='grey', style='solid')  # Edge painted grey and style is dashed
 
         return newGraph
 
     @staticmethod
-    def createExponentialGraphWithThreshold(linearGraph, rows, k):
+    def createExponentialGraphWithThreshold(graph, rows, k):
         """
         Create a exponential graph with threshold
 
@@ -370,7 +373,7 @@ class Graph:
         :return: A exponential graph with threshold
         :rtype: nx.Graph
         """
-        graph = Graph.createLinearGraph(linearGraph, rows)  # Create a new graph from linearGraph
+        Graph.labeledEdges(graph, rows)  # Create a new graph from linearGraph
         labels = Graph.getLabelAttributesFromGraph(graph)  # Edge labels from graph
         nodesDisconnectedList = graph.nodes()  # List copied of nodesList
 

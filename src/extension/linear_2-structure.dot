@@ -4,85 +4,67 @@ fontname=Verdana;
 fontsize=12;
 newrank=true;
 node [shape=circle];
-Others;
-3;
-Year_6;
-0;
-Year_2;
-Year_4;
-Year_1;
-Year_3;
-Year_5;
-Pre_Quals;
-1;
-Post_Generals;
-Faculty;
-subgraph cluster_0Year_3Year_5Pre_QualsYear_6OthersYear_23Year_1Post_Generals1Year_4Faculty {
+Child;
+Adult;
+"1st";
+Crew;
+"2nd";
+"3rd";
+Female;
+Male;
+Yes;
+No;
+subgraph cluster_2ndCrewAdultMale3rdNo1stFemaleYesChild {
 node [shape=point];
-s_Year_2Year_5Year_10Year_4Year_3Post_Generals1Pre_QualsYear_6Faculty -> s_Others  [arrowhead=none, color=black, style=dashed];
-s_Year_2Year_5Year_10Year_4Year_3Post_Generals1Pre_QualsYear_6Faculty -> s_3  [arrowhead=none, color=black, style=dashed];
-s_Others -> s_3  [arrowhead=none, color=black, style=dashed];
+s_Child2ndAdultCrew3rd1st -> s_YesNo  [arrowhead=none, color=brown, style=solid];
+s_Child2ndAdultCrew3rd1st -> s_FemaleMale  [arrowhead=none, color=brown, style=solid];
+s_YesNo -> s_FemaleMale  [arrowhead=none, color=brown, style=solid];
 }
 
-subgraph cluster_0Year_3Year_5Pre_QualsYear_6Year_2Year_1Post_Generals1Year_4Faculty {
+subgraph cluster_Child2ndAdultCrew3rd1st {
 node [shape=point];
-s_Year_2Year_5Year_1Year_4Year_3Post_Generals1Pre_QualsFaculty -> s_Year_6  [arrowhead=none, color=black, style=dashed];
-s_Year_2Year_5Year_1Year_4Year_3Post_Generals1Pre_QualsFaculty -> s_0  [arrowhead=none, color=brown, style=solid];
-s_Year_6 -> s_0  [arrowhead=none, color=orange, style=solid];
+s_2nd3rd -> s_Child  [arrowhead=none, color=brown, style=solid];
+s_2nd3rd -> s_Adult  [arrowhead=none, color=brown, style=solid];
+s_2nd3rd -> s_1st  [arrowhead=none, color=black, style=dashed];
+s_2nd3rd -> s_Crew  [arrowhead=none, color=black, style=dashed];
+s_Child -> s_Adult  [arrowhead=none, color=black, style=dashed];
+s_Child -> s_1st  [arrowhead=none, color=blue, style=solid];
+s_Child -> s_Crew  [arrowhead=none, color=black, style=dashed];
+s_Adult -> s_1st  [arrowhead=none, color=brown, style=solid];
+s_Adult -> s_Crew  [arrowhead=none, color=brown, style=solid];
+s_1st -> s_Crew  [arrowhead=none, color=black, style=dashed];
 }
 
-subgraph cluster_Year_3Year_5Pre_QualsYear_2Year_1Post_Generals1Year_4Faculty {
+subgraph cluster_2nd3rd {
 rank=same;
 node [shape=point];
-s_Year_1Year_4Year_3Post_Generals1Year_5Pre_QualsFaculty -> s_Year_2  [arrowhead=none, color=black, style=dashed];
+s_2nd -> s_3rd  [arrowhead=none, color=black, style=dashed];
 }
 
-subgraph cluster_Year_3Year_5Pre_QualsYear_1Post_Generals1Year_4Faculty {
-node [shape=point];
-s_Post_GeneralsFaculty -> s_Year_4  [arrowhead=none, color=black, style=dashed];
-s_Post_GeneralsFaculty -> s_Year_1  [arrowhead=none, color=black, style=dashed];
-s_Post_GeneralsFaculty -> s_Year_3  [arrowhead=none, color=black, style=dashed];
-s_Post_GeneralsFaculty -> s_Year_5  [arrowhead=none, color=black, style=dashed];
-s_Post_GeneralsFaculty -> s_Pre_Quals  [arrowhead=none, color=black, style=dashed];
-s_Post_GeneralsFaculty -> s_1  [arrowhead=none, color=brown, style=solid];
-s_Year_4 -> s_Year_1  [arrowhead=none, color=black, style=dashed];
-s_Year_4 -> s_Year_3  [arrowhead=none, color=black, style=dashed];
-s_Year_4 -> s_Year_5  [arrowhead=none, color=black, style=dashed];
-s_Year_4 -> s_Pre_Quals  [arrowhead=none, color=black, style=dashed];
-s_Year_4 -> s_1  [arrowhead=none, color=orange, style=solid];
-s_Year_1 -> s_Year_3  [arrowhead=none, color=black, style=dashed];
-s_Year_1 -> s_Year_5  [arrowhead=none, color=black, style=dashed];
-s_Year_1 -> s_Pre_Quals  [arrowhead=none, color=green, style=solid];
-s_Year_1 -> s_1  [arrowhead=none, color=green, style=solid];
-s_Year_3 -> s_Year_5  [arrowhead=none, color=black, style=dashed];
-s_Year_3 -> s_Pre_Quals  [arrowhead=none, color=grey, style=solid];
-s_Year_3 -> s_1  [arrowhead=none, color=magenta, style=solid];
-s_Year_5 -> s_Pre_Quals  [arrowhead=none, color=black, style=dashed];
-s_Year_5 -> s_1  [arrowhead=none, color=yellow, style=solid];
-s_Pre_Quals -> s_1  [arrowhead=none, color=brown, style=solid];
-}
-
-subgraph cluster_Post_GeneralsFaculty {
+subgraph cluster_FemaleMale {
 rank=same;
 node [shape=point];
-s_Post_Generals -> s_Faculty  [arrowhead=none, color=black, style=dashed];
+s_Female -> s_Male  [arrowhead=none, color=black, style=dashed];
 }
 
-s_Year_2Year_5Year_10Year_4Year_3Post_Generals1Pre_QualsYear_6Faculty -> s_Year_2Year_5Year_1Year_4Year_3Post_Generals1Pre_QualsFaculty  [arrowhead=none, lhead=cluster_Year_2Year_5Year_10Year_4Year_3Post_Generals1Pre_QualsYear_6Faculty];
-s_Others -> Others  [arrowhead=none];
-s_3 -> 3  [arrowhead=none];
-s_Year_2Year_5Year_1Year_4Year_3Post_Generals1Pre_QualsFaculty -> s_Year_1Year_4Year_3Post_Generals1Year_5Pre_QualsFaculty  [arrowhead=none, lhead=cluster_Year_2Year_5Year_1Year_4Year_3Post_Generals1Pre_QualsFaculty];
-s_Year_6 -> Year_6  [arrowhead=none];
-s_0 -> 0  [arrowhead=none];
-s_Year_1Year_4Year_3Post_Generals1Year_5Pre_QualsFaculty -> s_Post_GeneralsFaculty  [arrowhead=none, lhead=cluster_Year_1Year_4Year_3Post_Generals1Year_5Pre_QualsFaculty];
-s_Year_2 -> Year_2  [arrowhead=none];
-s_Post_GeneralsFaculty -> s_Post_Generals  [arrowhead=none, lhead=cluster_Post_GeneralsFaculty];
-s_Year_4 -> Year_4  [arrowhead=none];
-s_Year_1 -> Year_1  [arrowhead=none];
-s_Year_3 -> Year_3  [arrowhead=none];
-s_Year_5 -> Year_5  [arrowhead=none];
-s_Pre_Quals -> Pre_Quals  [arrowhead=none];
-s_1 -> 1  [arrowhead=none];
-s_Post_Generals -> Post_Generals  [arrowhead=none];
-s_Faculty -> Faculty  [arrowhead=none];
+subgraph cluster_YesNo {
+rank=same;
+node [shape=point];
+s_Yes -> s_No  [arrowhead=none, color=black, style=dashed];
+}
+
+s_Child2ndAdultCrew3rd1st -> s_2nd3rd  [arrowhead=none, lhead=cluster_Child2ndAdultCrew3rd1st];
+s_YesNo -> s_Yes  [arrowhead=none, lhead=cluster_YesNo];
+s_FemaleMale -> s_Female  [arrowhead=none, lhead=cluster_FemaleMale];
+s_2nd3rd -> s_2nd  [arrowhead=none, lhead=cluster_2nd3rd];
+s_Child -> Child  [arrowhead=none];
+s_Adult -> Adult  [arrowhead=none];
+s_1st -> "1st"  [arrowhead=none];
+s_Crew -> Crew  [arrowhead=none];
+s_2nd -> "2nd"  [arrowhead=none];
+s_3rd -> "3rd"  [arrowhead=none];
+s_Female -> Female  [arrowhead=none];
+s_Male -> Male  [arrowhead=none];
+s_Yes -> Yes  [arrowhead=none];
+s_No -> No  [arrowhead=none];
 }

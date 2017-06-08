@@ -4,14 +4,64 @@ fontname=Verdana;
 fontsize=12;
 newrank=true;
 node [shape=circle];
-Others;
-5;
-subgraph cluster_5Others {
-rank=same;
+Child;
+Adult;
+Crew;
+"2nd";
+"1st";
+"3rd";
+Female;
+Male;
+Yes;
+No;
+subgraph cluster_Yes2ndFemale3rdMaleNoChildAdult1stCrew {
 node [shape=point];
-s_Others -> s_5  [arrowhead=none, color=black, style=dashed];
+s_3rdChild2ndAdult1stCrew -> s_YesNo  [arrowhead=none, color=black, style=solid];
+s_3rdChild2ndAdult1stCrew -> s_FemaleMale  [arrowhead=none, color=black, style=solid];
+s_YesNo -> s_FemaleMale  [arrowhead=none, color=black, style=solid];
 }
 
-s_Others -> Others  [arrowhead=none];
-s_5 -> 5  [arrowhead=none];
+subgraph cluster_3rdChild2ndAdult1stCrew {
+node [shape=point];
+s_3rd1st2nd -> s_Child  [arrowhead=none, color=black, style=solid];
+s_3rd1st2nd -> s_Adult  [arrowhead=none, color=black, style=solid];
+s_3rd1st2nd -> s_Crew  [arrowhead=none, color=black, style=dashed];
+s_Child -> s_Adult  [arrowhead=none, color=black, style=dashed];
+s_Child -> s_Crew  [arrowhead=none, color=black, style=dashed];
+s_Adult -> s_Crew  [arrowhead=none, color=black, style=solid];
+}
+
+subgraph cluster_3rd1st2nd {
+node [shape=point];
+s_2nd -> s_1st  [arrowhead=none, color=black, style=dashed];
+s_2nd -> s_3rd  [arrowhead=none, color=black, style=dashed];
+s_1st -> s_3rd  [arrowhead=none, color=black, style=dashed];
+}
+
+subgraph cluster_FemaleMale {
+rank=same;
+node [shape=point];
+s_Female -> s_Male  [arrowhead=none, color=black, style=dashed];
+}
+
+subgraph cluster_YesNo {
+rank=same;
+node [shape=point];
+s_Yes -> s_No  [arrowhead=none, color=black, style=dashed];
+}
+
+s_3rdChild2ndAdult1stCrew -> s_3rd1st2nd  [arrowhead=none, lhead=cluster_3rdChild2ndAdult1stCrew];
+s_YesNo -> s_Yes  [arrowhead=none, lhead=cluster_YesNo];
+s_FemaleMale -> s_Female  [arrowhead=none, lhead=cluster_FemaleMale];
+s_3rd1st2nd -> s_2nd  [arrowhead=none, lhead=cluster_3rd1st2nd];
+s_Child -> Child  [arrowhead=none];
+s_Adult -> Adult  [arrowhead=none];
+s_Crew -> Crew  [arrowhead=none];
+s_2nd -> "2nd"  [arrowhead=none];
+s_1st -> "1st"  [arrowhead=none];
+s_3rd -> "3rd"  [arrowhead=none];
+s_Female -> Female  [arrowhead=none];
+s_Male -> Male  [arrowhead=none];
+s_Yes -> Yes  [arrowhead=none];
+s_No -> No  [arrowhead=none];
 }

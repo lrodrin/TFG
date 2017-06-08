@@ -358,7 +358,7 @@ class Graph:
         return newGraph
 
     @staticmethod
-    def createExponentialGraphWithThreshold(graph, rows, k):
+    def createExponentialGraphWithThreshold(linearGraph, rows, k):
         """
         Create a exponential graph with threshold
 
@@ -370,7 +370,7 @@ class Graph:
         :return: A exponential graph with threshold
         :rtype: nx.Graph
         """
-        Graph.labeledEdges(graph, rows)  # Labeling edges from graph
+        graph = Graph.createLinearGraph(linearGraph, rows)  # Create a new graph from linearGraph
         labels = Graph.getLabelAttributesFromGraph(graph)  # Edge labels from graph
         nodesDisconnectedList = graph.nodes()  # List copied of nodesList
 

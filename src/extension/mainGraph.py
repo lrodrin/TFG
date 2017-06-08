@@ -30,5 +30,5 @@ if __name__ == '__main__':
     rows = Data.selectDataTables(tables)  # Select rows from SQLite tables
     graph, graphName = Interface.graphOptions(optionGraph, initGraph, rows)  # Create a type of graph
 
-    if nx.number_of_nodes(graph) <= 15: # If number of nodes from graph is equal or lower than 15
+    if nx.number_of_nodes(graph) <= 16: # If number of nodes from graph is equal or lower than 15
         Interface.openGraphviz(graphName)  # Open graph in Graphviz program

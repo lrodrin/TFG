@@ -19,37 +19,37 @@ Pre_Quals;
 Faculty;
 Year_5;
 Post_Generals;
-subgraph cluster_Post_Generals3Year_401FacultyYear_3Faculty_adjYear_5Year_6Pre_QualsPost_QualsYear_2Year_1Others {
+subgraph cluster_Post_QualsFacultyYear_6Post_Generals3Faculty_adj0Year_2Year_5Year_41Pre_QualsYear_1OthersYear_3 {
 node [shape=point];
-s_Year_5Year_6Post_GeneralsPre_Quals0Post_Quals1Year_4FacultyYear_3Year_2Year_1Faculty_adj -> s_Others  [arrowhead=none, color=black, style=dashed];
-s_Year_5Year_6Post_GeneralsPre_Quals0Post_Quals1Year_4FacultyYear_3Year_2Year_1Faculty_adj -> s_3  [arrowhead=none, color=black, style=dashed];
+s_Year_4Post_QualsFacultyYear_6Post_GeneralsFaculty_adj10Pre_QualsYear_2Year_1Year_3Year_5 -> s_Others  [arrowhead=none, color=black, style=dashed];
+s_Year_4Post_QualsFacultyYear_6Post_GeneralsFaculty_adj10Pre_QualsYear_2Year_1Year_3Year_5 -> s_3  [arrowhead=none, color=black, style=dashed];
 s_Others -> s_3  [arrowhead=none, color=black, style=dashed];
 }
 
-subgraph cluster_Post_GeneralsYear_40FacultyYear_3Faculty_adjYear_5Year_6Pre_QualsPost_QualsYear_2Year_11 {
+subgraph cluster_Post_QualsFacultyYear_6Post_GeneralsFaculty_adj0Year_2Year_5Year_41Pre_QualsYear_1Year_3 {
 node [shape=point];
-s_Year_5Year_6Post_GeneralsPre_QualsYear_4FacultyYear_3Year_2Year_11 -> s_Post_Quals  [arrowhead=none, color=black, style=dashed];
-s_Year_5Year_6Post_GeneralsPre_QualsYear_4FacultyYear_3Year_2Year_11 -> s_Faculty_adj  [arrowhead=none, color=black, style=dashed];
-s_Year_5Year_6Post_GeneralsPre_QualsYear_4FacultyYear_3Year_2Year_11 -> s_0  [arrowhead=none, color=brown, style=solid];
+s_Year_4FacultyYear_6Post_Generals1Year_2Pre_QualsYear_1Year_3Year_5 -> s_Post_Quals  [arrowhead=none, color=black, style=dashed];
+s_Year_4FacultyYear_6Post_Generals1Year_2Pre_QualsYear_1Year_3Year_5 -> s_Faculty_adj  [arrowhead=none, color=black, style=dashed];
+s_Year_4FacultyYear_6Post_Generals1Year_2Pre_QualsYear_1Year_3Year_5 -> s_0  [arrowhead=none, color=brown, style=solid];
 s_Post_Quals -> s_Faculty_adj  [arrowhead=none, color=black, style=dashed];
 s_Post_Quals -> s_0  [arrowhead=none, color=grey, style=solid];
 s_Faculty_adj -> s_0  [arrowhead=none, color=green, style=solid];
 }
 
-subgraph cluster_Post_GeneralsYear_4FacultyYear_3Year_5Year_6Pre_QualsYear_2Year_11 {
+subgraph cluster_FacultyYear_6Post_GeneralsYear_2Year_5Year_41Pre_QualsYear_1Year_3 {
 rank=same;
 node [shape=point];
-s_Year_5Post_GeneralsPre_QualsYear_4FacultyYear_3Year_2Year_11 -> s_Year_6  [arrowhead=none, color=black, style=dashed];
+s_Year_4FacultyPost_Generals1Year_2Pre_QualsYear_1Year_3Year_5 -> s_Year_6  [arrowhead=none, color=black, style=dashed];
 }
 
-subgraph cluster_Post_GeneralsYear_4FacultyYear_3Year_5Pre_QualsYear_2Year_11 {
+subgraph cluster_FacultyPost_GeneralsYear_2Year_5Year_41Pre_QualsYear_1Year_3 {
 node [shape=point];
-s_FacultyYear_5Post_Generals -> s_Year_4  [arrowhead=none, color=black, style=dashed];
-s_FacultyYear_5Post_Generals -> s_Year_1  [arrowhead=none, color=black, style=dashed];
-s_FacultyYear_5Post_Generals -> s_Year_3  [arrowhead=none, color=black, style=dashed];
-s_FacultyYear_5Post_Generals -> s_Year_2  [arrowhead=none, color=black, style=dashed];
-s_FacultyYear_5Post_Generals -> s_Pre_Quals  [arrowhead=none, color=black, style=dashed];
-s_FacultyYear_5Post_Generals -> s_1  [arrowhead=none, color=brown, style=solid];
+s_Year_5Post_GeneralsFaculty -> s_Year_4  [arrowhead=none, color=black, style=dashed];
+s_Year_5Post_GeneralsFaculty -> s_Year_1  [arrowhead=none, color=black, style=dashed];
+s_Year_5Post_GeneralsFaculty -> s_Year_3  [arrowhead=none, color=black, style=dashed];
+s_Year_5Post_GeneralsFaculty -> s_Year_2  [arrowhead=none, color=black, style=dashed];
+s_Year_5Post_GeneralsFaculty -> s_Pre_Quals  [arrowhead=none, color=black, style=dashed];
+s_Year_5Post_GeneralsFaculty -> s_1  [arrowhead=none, color=brown, style=solid];
 s_Year_4 -> s_Year_1  [arrowhead=none, color=black, style=dashed];
 s_Year_4 -> s_Year_3  [arrowhead=none, color=black, style=dashed];
 s_Year_4 -> s_Year_2  [arrowhead=none, color=black, style=dashed];
@@ -67,35 +67,35 @@ s_Year_2 -> s_1  [arrowhead=none, color=grey, style=solid];
 s_Pre_Quals -> s_1  [arrowhead=none, color=brown, style=solid];
 }
 
-subgraph cluster_FacultyYear_5Post_Generals {
+subgraph cluster_Year_5Post_GeneralsFaculty {
 rank=same;
 node [shape=point];
-s_Year_5Post_Generals -> s_Faculty  [arrowhead=none, color=black, style=dashed];
+s_Post_GeneralsYear_5 -> s_Faculty  [arrowhead=none, color=black, style=dashed];
 }
 
-subgraph cluster_Year_5Post_Generals {
+subgraph cluster_Post_GeneralsYear_5 {
 rank=same;
 node [shape=point];
 s_Year_5 -> s_Post_Generals  [arrowhead=none, color=grey, style=solid];
 }
 
-s_Year_5Year_6Post_GeneralsPre_Quals0Post_Quals1Year_4FacultyYear_3Year_2Year_1Faculty_adj -> s_Year_5Year_6Post_GeneralsPre_QualsYear_4FacultyYear_3Year_2Year_11  [arrowhead=none, lhead=cluster_Year_5Year_6Post_GeneralsPre_Quals0Post_Quals1Year_4FacultyYear_3Year_2Year_1Faculty_adj];
+s_Year_4Post_QualsFacultyYear_6Post_GeneralsFaculty_adj10Pre_QualsYear_2Year_1Year_3Year_5 -> s_Year_4FacultyYear_6Post_Generals1Year_2Pre_QualsYear_1Year_3Year_5  [arrowhead=none, lhead=cluster_Year_4Post_QualsFacultyYear_6Post_GeneralsFaculty_adj10Pre_QualsYear_2Year_1Year_3Year_5];
 s_Others -> Others  [arrowhead=none];
 s_3 -> 3  [arrowhead=none];
-s_Year_5Year_6Post_GeneralsPre_QualsYear_4FacultyYear_3Year_2Year_11 -> s_Year_5Post_GeneralsPre_QualsYear_4FacultyYear_3Year_2Year_11  [arrowhead=none, lhead=cluster_Year_5Year_6Post_GeneralsPre_QualsYear_4FacultyYear_3Year_2Year_11];
+s_Year_4FacultyYear_6Post_Generals1Year_2Pre_QualsYear_1Year_3Year_5 -> s_Year_4FacultyPost_Generals1Year_2Pre_QualsYear_1Year_3Year_5  [arrowhead=none, lhead=cluster_Year_4FacultyYear_6Post_Generals1Year_2Pre_QualsYear_1Year_3Year_5];
 s_Post_Quals -> Post_Quals  [arrowhead=none];
 s_Faculty_adj -> Faculty_adj  [arrowhead=none];
 s_0 -> 0  [arrowhead=none];
-s_Year_5Post_GeneralsPre_QualsYear_4FacultyYear_3Year_2Year_11 -> s_FacultyYear_5Post_Generals  [arrowhead=none, lhead=cluster_Year_5Post_GeneralsPre_QualsYear_4FacultyYear_3Year_2Year_11];
+s_Year_4FacultyPost_Generals1Year_2Pre_QualsYear_1Year_3Year_5 -> s_Year_5Post_GeneralsFaculty  [arrowhead=none, lhead=cluster_Year_4FacultyPost_Generals1Year_2Pre_QualsYear_1Year_3Year_5];
 s_Year_6 -> Year_6  [arrowhead=none];
-s_FacultyYear_5Post_Generals -> s_Year_5Post_Generals  [arrowhead=none, lhead=cluster_FacultyYear_5Post_Generals];
+s_Year_5Post_GeneralsFaculty -> s_Post_GeneralsYear_5  [arrowhead=none, lhead=cluster_Year_5Post_GeneralsFaculty];
 s_Year_4 -> Year_4  [arrowhead=none];
 s_Year_1 -> Year_1  [arrowhead=none];
 s_Year_3 -> Year_3  [arrowhead=none];
 s_Year_2 -> Year_2  [arrowhead=none];
 s_Pre_Quals -> Pre_Quals  [arrowhead=none];
 s_1 -> 1  [arrowhead=none];
-s_Year_5Post_Generals -> s_Year_5  [arrowhead=none, lhead=cluster_Year_5Post_Generals];
+s_Post_GeneralsYear_5 -> s_Year_5  [arrowhead=none, lhead=cluster_Post_GeneralsYear_5];
 s_Faculty -> Faculty  [arrowhead=none];
 s_Year_5 -> Year_5  [arrowhead=none];
 s_Post_Generals -> Post_Generals  [arrowhead=none];

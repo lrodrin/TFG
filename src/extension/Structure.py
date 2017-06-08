@@ -55,7 +55,7 @@ class Structure:
 
             cluster.set_node_defaults(shape="point")
 
-            if len(values) <= 10:
+            if len(values) <= 5:
                 # Creating edges and nodes inside the cluster
                 for primalClan1, primalClan2 in combinations(values, 2):
                     u = "s_%s" % "".join(primalClan1)

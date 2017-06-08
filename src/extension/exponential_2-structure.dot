@@ -15,19 +15,19 @@ student_0;
 professor_1;
 yearsInProgram_0;
 inPhase_0;
-subgraph cluster_hasPosition_0inPhase_0Othersstudent_0inPhase_Post_GeneralsyearsInProgram_0professor_0student_1professor_1inPhase_Pre_QualshasPosition_Faculty {
+subgraph cluster_student_0professor_1hasPosition_0inPhase_0yearsInProgram_0inPhase_Pre_Qualsstudent_1inPhase_Post_GeneralsOthersprofessor_0hasPosition_Faculty {
 rank=same;
 node [shape=point];
-s_hasPosition_0inPhase_0student_0student_1professor_0inPhase_Post_Generalsprofessor_1yearsInProgram_0inPhase_Pre_QualshasPosition_Faculty -> s_Others  [arrowhead=none, color=black, style=dashed];
+s_student_1inPhase_Post_Generalsstudent_0professor_1hasPosition_0inPhase_0yearsInProgram_0inPhase_Pre_Qualsprofessor_0hasPosition_Faculty -> s_Others  [arrowhead=none, color=black, style=dashed];
 }
 
-subgraph cluster_hasPosition_0inPhase_0student_0inPhase_Post_GeneralsyearsInProgram_0professor_0student_1professor_1inPhase_Pre_QualshasPosition_Faculty {
+subgraph cluster_student_0professor_1hasPosition_0inPhase_0yearsInProgram_0inPhase_Pre_Qualsstudent_1inPhase_Post_Generalsprofessor_0hasPosition_Faculty {
 node [shape=point];
-s_hasPosition_0inPhase_0student_0student_1professor_0inPhase_Post_Generalsprofessor_1yearsInProgram_0inPhase_Pre_QualshasPosition_Faculty;
+s_student_1inPhase_Post_Generalsstudent_0professor_1hasPosition_0inPhase_0yearsInProgram_0inPhase_Pre_Qualsprofessor_0hasPosition_Faculty;
 s_Others;
-s_hasPosition_0professor_0student_1;
+s_student_1hasPosition_0professor_0;
 s_yearsInProgram_0inPhase_0;
-s_student_0professor_1;
+s_professor_1student_0;
 s_inPhase_Post_Generals;
 s_inPhase_Pre_Quals;
 s_hasPosition_Faculty;
@@ -40,14 +40,14 @@ s_yearsInProgram_0;
 s_inPhase_0;
 }
 
-subgraph cluster_hasPosition_0professor_0student_1 {
+subgraph cluster_student_1hasPosition_0professor_0 {
 node [shape=point];
 s_hasPosition_0 -> s_student_1  [arrowhead=none, color=yellow, style=solid];
 s_hasPosition_0 -> s_professor_0  [arrowhead=none, color=yellow, style=solid];
 s_student_1 -> s_professor_0  [arrowhead=none, color=yellow, style=solid];
 }
 
-subgraph cluster_student_0professor_1 {
+subgraph cluster_professor_1student_0 {
 rank=same;
 node [shape=point];
 s_student_0 -> s_professor_1  [arrowhead=none, color=blue, style=solid];
@@ -59,11 +59,11 @@ node [shape=point];
 s_yearsInProgram_0 -> s_inPhase_0  [arrowhead=none, color=red, style=solid];
 }
 
-s_hasPosition_0inPhase_0student_0student_1professor_0inPhase_Post_Generalsprofessor_1yearsInProgram_0inPhase_Pre_QualshasPosition_Faculty -> s_hasPosition_0professor_0student_1  [arrowhead=none, lhead=cluster_hasPosition_0inPhase_0student_0student_1professor_0inPhase_Post_Generalsprofessor_1yearsInProgram_0inPhase_Pre_QualshasPosition_Faculty];
+s_student_1inPhase_Post_Generalsstudent_0professor_1hasPosition_0inPhase_0yearsInProgram_0inPhase_Pre_Qualsprofessor_0hasPosition_Faculty -> s_student_1hasPosition_0professor_0  [arrowhead=none, lhead=cluster_student_1inPhase_Post_Generalsstudent_0professor_1hasPosition_0inPhase_0yearsInProgram_0inPhase_Pre_Qualsprofessor_0hasPosition_Faculty];
 s_Others -> Others  [arrowhead=none];
-s_hasPosition_0professor_0student_1 -> s_hasPosition_0  [arrowhead=none, lhead=cluster_hasPosition_0professor_0student_1];
+s_student_1hasPosition_0professor_0 -> s_hasPosition_0  [arrowhead=none, lhead=cluster_student_1hasPosition_0professor_0];
 s_yearsInProgram_0inPhase_0 -> s_yearsInProgram_0  [arrowhead=none, lhead=cluster_yearsInProgram_0inPhase_0];
-s_student_0professor_1 -> s_student_0  [arrowhead=none, lhead=cluster_student_0professor_1];
+s_professor_1student_0 -> s_student_0  [arrowhead=none, lhead=cluster_professor_1student_0];
 s_inPhase_Post_Generals -> inPhase_Post_Generals  [arrowhead=none];
 s_inPhase_Pre_Quals -> inPhase_Pre_Quals  [arrowhead=none];
 s_hasPosition_Faculty -> hasPosition_Faculty  [arrowhead=none];

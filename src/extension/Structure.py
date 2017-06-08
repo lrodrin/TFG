@@ -60,6 +60,7 @@ class Structure:
                 for primalClan1, primalClan2 in combinations(values, 2):
                     u = "s_%s" % "".join(primalClan1)
                     v = "s_%s" % "".join(primalClan2)
+                    print(u, v)
                     if u != v:  # If node cycle not exists
                         edge = pydotplus.Edge(u, v, color=Clan.getColorClans(colorEdgesAtributtes, primalClan1,
                                                                              primalClan2),

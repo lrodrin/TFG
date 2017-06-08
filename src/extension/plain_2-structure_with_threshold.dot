@@ -4,55 +4,26 @@ fontname=Verdana;
 fontsize=12;
 newrank=true;
 node [shape=circle];
-Adult;
-Female;
-Male;
-Crew;
-"2nd";
-"1st";
-"3rd";
-Yes;
+Others;
 No;
-subgraph cluster_2ndCrewMale3rdNo1stAdultYesFemale {
-node [shape=point];
-s_2nd1stCrewMaleFemale3rd -> s_YesNo  [arrowhead=none, color=black, style=solid];
-s_2nd1stCrewMaleFemale3rd -> s_Adult  [arrowhead=none, color=black, style=solid];
-s_YesNo -> s_Adult  [arrowhead=none, color=black, style=solid];
-}
-
-subgraph cluster_2nd1stCrewMaleFemale3rd {
-node [shape=point];
-s_1st2nd3rd -> s_Female  [arrowhead=none, color=black, style=solid];
-s_1st2nd3rd -> s_Male  [arrowhead=none, color=black, style=solid];
-s_1st2nd3rd -> s_Crew  [arrowhead=none, color=black, style=dashed];
-s_Female -> s_Male  [arrowhead=none, color=black, style=dashed];
-s_Female -> s_Crew  [arrowhead=none, color=black, style=dashed];
-s_Male -> s_Crew  [arrowhead=none, color=black, style=solid];
-}
-
-subgraph cluster_1st2nd3rd {
-node [shape=point];
-s_2nd -> s_1st  [arrowhead=none, color=black, style=dashed];
-s_2nd -> s_3rd  [arrowhead=none, color=black, style=dashed];
-s_1st -> s_3rd  [arrowhead=none, color=black, style=dashed];
-}
-
-subgraph cluster_YesNo {
+Adult;
+Male;
+subgraph cluster_MaleNoAdultOthers {
 rank=same;
 node [shape=point];
-s_Yes -> s_No  [arrowhead=none, color=black, style=dashed];
+s_MaleNoAdult -> s_Others  [arrowhead=none, color=black, style=dashed];
 }
 
-s_2nd1stCrewMaleFemale3rd -> s_1st2nd3rd  [arrowhead=none, lhead=cluster_2nd1stCrewMaleFemale3rd];
-s_YesNo -> s_Yes  [arrowhead=none, lhead=cluster_YesNo];
-s_Adult -> Adult  [arrowhead=none];
-s_1st2nd3rd -> s_2nd  [arrowhead=none, lhead=cluster_1st2nd3rd];
-s_Female -> Female  [arrowhead=none];
-s_Male -> Male  [arrowhead=none];
-s_Crew -> Crew  [arrowhead=none];
-s_2nd -> "2nd"  [arrowhead=none];
-s_1st -> "1st"  [arrowhead=none];
-s_3rd -> "3rd"  [arrowhead=none];
-s_Yes -> Yes  [arrowhead=none];
+subgraph cluster_MaleNoAdult {
+node [shape=point];
+s_No -> s_Adult  [arrowhead=none, color=black, style=solid];
+s_No -> s_Male  [arrowhead=none, color=black, style=solid];
+s_Adult -> s_Male  [arrowhead=none, color=black, style=solid];
+}
+
+s_MaleNoAdult -> s_No  [arrowhead=none, lhead=cluster_MaleNoAdult];
+s_Others -> Others  [arrowhead=none];
 s_No -> No  [arrowhead=none];
+s_Adult -> Adult  [arrowhead=none];
+s_Male -> Male  [arrowhead=none];
 }

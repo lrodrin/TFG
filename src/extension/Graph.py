@@ -184,6 +184,7 @@ class Graph:
             print(graph.nodes(), nodesDisconnectedList)
             diff = list(set(nodesDisconnectedList).difference(set(nodesDisconnectedList[0])))
             print(diff)
+            print(diff[len(diff) - 1])
             if len(diff) != 1:
                 graph.remove_nodes_from(diff[0:len(diff) - 1])
                 mapping = {diff[len(diff) - 1]: 'Others'}
@@ -192,6 +193,20 @@ class Graph:
                 mapping = {nodesDisconnectedList[0]: 'Others'}
 
             newGraph = nx.relabel_nodes(graph, mapping)
+
+            styles = Graph.getStyleAttributesFromGraph(newGraph)
+            labels = Graph.getLabelAttributesFromGraph(newGraph)
+            print(styles)
+            print(labels)
+
+            for key, value in styles.items():
+                if value == "dashed":
+
+                    labels[key] = None
+
+            print(labels)
+
+            nx.set_edge_attributes(newGraph, 'label', labels)
 
             return newGraph
 

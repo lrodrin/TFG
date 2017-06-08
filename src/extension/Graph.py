@@ -186,12 +186,11 @@ class Graph:
             print(diff)
             if len(diff) != 1:
                 graph.remove_nodes_from(diff[0:len(diff) - 1])
-                mapping = {diff[len(diff)-1]: 'Others'}
+                mapping = {diff[len(diff) - 1]: 'Others'}
             else:
                 graph.remove_nodes_from(diff)
                 mapping = {nodesDisconnectedList[0]: 'Others'}
 
-            # mapping = {nodesDisconnectedList[0]: 'Others'}
             newGraph = nx.relabel_nodes(graph, mapping)
 
             return newGraph
@@ -214,7 +213,7 @@ class Graph:
         """
         Graph.labeledEdges(graph, rows)  # Labeling edges from graph
         labels = Graph.getLabelAttributesFromGraph(graph)  # Edge labels from graph
-        nodesDisconnectedList = graph.nodes() # List copied of nodesList
+        nodesDisconnectedList = graph.nodes()  # List copied of nodesList
 
         for (u, v), label in labels.items():  # For each edge and label attribute in labels
             if graph.has_edge(u, v) and u != v:  # If exists edge (u, v) in graph and u and v have different values
@@ -376,7 +375,7 @@ class Graph:
                         graph.add_edge(u, v, color='green', style='solid')  # Edge painted green and style is solid
                     elif k + 7 <= label < k + 15:  # Equivalence classes (k+7-k+15)
                         graph.add_edge(u, v, color='magenta',
-                                          style='solid')  # Edge painted magenta and style is solid
+                                       style='solid')  # Edge painted magenta and style is solid
                     elif k + 15 <= label < k + 31:  # Equivalence classes (k+15-k+31)
                         graph.add_edge(u, v, color='orange', style='solid')  # Edge painted orange and style is solid
                     elif k + 31 <= label < k + 63:  # Equivalence classes of (k+31-k+63)

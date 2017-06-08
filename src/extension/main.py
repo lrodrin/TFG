@@ -28,6 +28,6 @@ if __name__ == '__main__':
     graph, graphName = Interface.graphOptions(optionStructure, initGraph, rows)  # Create a type of graph
     structureName = Interface.structureOptions(optionStructure, graph, None)  # Create 2-structure from graph
 
-    if nx.number_of_nodes(graph) <= 15:
+    if nx.number_of_nodes(graph) <= 20:
         Interface.openGraphviz(graphName)  # Open graph in Graphviz program
     Interface.openGraphviz(structureName)

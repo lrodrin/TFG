@@ -180,7 +180,7 @@ class Graph:
 
     @staticmethod
     def frequentNodes(graph, nodesDisconnectedList):
-        if len(nodesDisconnectedList) != 0:
+        if nodesDisconnectedList != list():
             print(graph.nodes(), nodesDisconnectedList)
             diff = list(set(nodesDisconnectedList).difference(set(nodesDisconnectedList[0])))
             print(diff)
@@ -196,15 +196,10 @@ class Graph:
 
             styles = Graph.getStyleAttributesFromGraph(newGraph)
             labels = Graph.getLabelAttributesFromGraph(newGraph)
-            print(styles)
-            print(labels)
 
             for key, value in styles.items():
                 if value == "dashed":
-
-                    labels[key] = None
-
-            print(labels)
+                    labels[key] = ""
 
             nx.set_edge_attributes(newGraph, 'label', labels)
 

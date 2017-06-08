@@ -1,4 +1,4 @@
-p_id  professor  student  hasPosition  inPhase  yearsInProgram 
+p_id professor student hasPosition inPhase yearsInProgram
 p_id:3 professor:0 student:1 hasPosition:0 inPhase:0 yearsInProgram:0
 p_id:4 professor:0 student:1 hasPosition:0 inPhase:0 yearsInProgram:0
 p_id:5 professor:1 student:0 hasPosition:Faculty inPhase:0 yearsInProgram:0

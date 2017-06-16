@@ -4,5 +4,5 @@ Disseny i implementació d'un paquet de programari que sistemitza l'anàlisi i l
 Execució del paquet de programari:
 
 - Descarregar i descomprimir codi_font.zip o codi_font.rar
-- python changeImport.py (Ubuntu i MAC OS X) o python changeImportWindows.py (Windows)
-- python main.py
+- Executar python changeImport.py (Ubuntu i MAC OS X) o python changeImportWindows.py (Windows)
+- Executar python main.py

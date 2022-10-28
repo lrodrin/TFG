@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using these metadata."
+authors:
+  - family-names: "Rodríguez-Navas"
+    given-names: "Laura"
+    orcid: "https://orcid.org/0000-0003-4929-1219"
+title: "Estructures de grafs amb equivalències d’arestes aplicades a l’anàlisi de dades relacionals"
+version: 0.1.0
+date-released: 2017-01-16
+url: "https://github.com/lrodrin/TFG"
+keywords:
+  - data science
+  - machine learning
+  - gaifman graphs
+  - 2-structures
+license: MIT
+type: software
+version: 0.1.0
